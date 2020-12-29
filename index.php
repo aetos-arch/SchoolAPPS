@@ -11,14 +11,22 @@ if (isset($url[0])) {
     $module = "pageAccueil";
 }
 
-if (!in_array($module, array('test','module2','module3'))){
-    echo "Aucun acces";
-    http_response_code(403);
-    die;
+// Si c'est pas un module
+if (!in_array($module, array('module1','module2','module3'))) {
+    if (in_array($module, array('test','fichier2','fichier3'))) {
+        ob_start();
+        require "$module.php";
+        $pageContent = ob_get_clean();
+        require 'layout.php';
+    } else {
+        echo "Aucun acces";
+        http_response_code(403);
+        die;
+    }
+} else {
+    ob_start();
+    require "modules/$module/mod_$module.php";
+    $pageContent = ob_get_clean();
+    require 'layout.php';
 }
-
-ob_start();
-require "modules/$module/mod_$module.php";
-$pageContent = ob_get_clean();
-require 'layout.php';
 ?>
