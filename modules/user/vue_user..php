@@ -6,6 +6,7 @@ class VueUser
 	{
 	}
 
+	// ajouter le select produit
 	public function ticket()
 	{
 		echo ' <h3>Création ticket</h3>

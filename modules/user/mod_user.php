@@ -7,7 +7,7 @@ class ModUser
 	public function __construct()
 	{
 
-		$controlleurUser = new ContUser();
+		$controllUser = new ContUser();
 
 		if (isset($_SESSION['idUtil'])) {
 			if (isset($url[1])) {
@@ -15,21 +15,21 @@ class ModUser
 
 				switch ($action) {
 					case 'menu':
-						$controlleurUser->menu();
+						$controllUser->menu();
 						break;
 
 					case 'newPseudo':
-						$controlleurUser->newPseudo();
+						$controllUser->newPseudo();
 						break;
 
 					case 'newPass':
-						$controlleurUser->newPass();
+						$controllUser->newPass();
 						break;
 					case 'commandes':
-						$controlleurUser->printCommandes();
+						$controllUser->printCommandes();
 						break;
 					case 'ticket':
-						$controlleurUser->ticket();
+						$controllUser->ticket();
 						break;
 					default:
 						# code...
