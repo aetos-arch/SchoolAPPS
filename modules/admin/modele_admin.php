@@ -1,30 +1,13 @@
 <?php
 require_once 'connexion.php';
-class ModeleUser extends Connexion
+class ModeleAdmin extends Connexion
 {
 	public function __construct()
 	{
 	}
 
-	public function getCommandes($idUtilisateur)
-	{
-		try {
-			$req = Connexion::$bdd->prepare('select * from paniers where idUtilisateur=?');
-			$req->execute(array($idUtilisateur));
-			$result = $req->fetch();
-			return $result;
-		} catch (PDOException $e) {
-		}
-	}
 
-	public function creerTicket($result)
-	{
-		try {
-			$req = Connexion::$bdd->prepare('insert into tickets (intitule, explication, idEtat, idUtilisateur, idProduit) values(?, ?, ?, ?, ?)');
-			$req->execute(array($result['intitule'], $result['explication'],  2,  $_SESSION['idUtil'],  $result['idProduit']));
-		} catch (PDOException $e) {
-		}
-	}
+    
 
 	public function pseudoExiste($newPseudo)
 	{

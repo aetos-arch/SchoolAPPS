@@ -1,8 +1,8 @@
 <?php
-require_once 'vue_user.php';
-require_once 'modele_user.php';
+require_once 'vue_admin.php';
+require_once 'modele_admin.php';
 
-class ContUser
+class ContAdmin
 {
 	private $vue;
 	private $modele;
@@ -10,10 +10,17 @@ class ContUser
 
 	public function __construct()
 	{
-		$this->vue = new  VueUser();
-		$this->modele = new  modeleUser();
+		$this->vue = new  VueAdmin();
+		$this->modele = new  ModeleAdmin();
 	}
 
+	public function ticket () {
+
+	}
+
+	public function gestionTechnicien () {
+		
+	}
 
 	public function newPseudo()
 	{
@@ -26,7 +33,7 @@ class ContUser
 				exit();
 			} else {
 				$this->modele->setPseudo($_SESSION['idUtil'], $newPseudo);
-				$_SESSION['nomUser'] = $newPseudo;
+				$_SESSION['nomadmin'] = $newPseudo;
 				header('');
 				exit();
 			}
@@ -60,23 +67,5 @@ class ContUser
 	public function menu()
 	{
 		$this->vue->printMenu();
-	}
-
-
-	public function ticket()
-	{
-		$this->vue->ticket();
-		if (isset($_POST['explication'])) {
-			$intitule = htmlspecialchars($_POST['explication']);
-			$explication = htmlspecialchars($_POST['explication']);
-			$result = htmlspecialchars($_POST['explication']);
-			$this->modele->creerTicket($result);
-		}
-	}
-
-	public function printCommandes()
-	{
-		$commandes = $this->modele->getCommandes($_SESSION['idUtil']);
-		$this->vue->printCommandes($commandes);
 	}
 }
