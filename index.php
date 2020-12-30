@@ -12,7 +12,7 @@ if (isset($url[0])) {
 }
 
 // Si c'est pas un module
-if (!in_array($module, array('module1','module2','module3'))) {
+if (!in_array($module, array('connexion','user'))) {
     if (in_array($module, array('test','fichier2','fichier3'))) {
         ob_start();
         require "$module.php";
