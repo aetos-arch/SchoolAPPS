@@ -40,7 +40,5 @@
 			else
 					echo '<h3>Aucune connexion trouvée.</h3>';
 		}
-
 	}
-	
 ?>

@@ -1,8 +1,61 @@
-#logo{
-    width: 200px;
+:root {
+    --ghost-white: #F4F6FF;
+    --rich-black: #050404;
+    --cg-blue: #027B9B;
+    --max-blue-green: #02c3c8;
+    --armananth-purple: #ad3959;
+    --cyan-process: #02b3e4;
+    --emerald: #15c26b;
+    --honey-yellow: #ffae0c;
+    --dark-orchid: #9b4cda;
 }
 
-nav{
-    width: 25%;
-    float: right;
+body {
+    font-family: 'Crimson Text', serif;
+}
+
+#logo {
+    margin-left: 3px;
+    width: 16%;
+}
+
+.navbar {
+    font-family: 'Open Sans', serif;
+    height: 100px;
+    font-size: 16pt;
+    background-color: var(--ghost-white);
+}
+
+h1 {
+    color: var(--armananth-purple);
+    font-family: "Open Sans", sans-serif;
+    font-size: 25px;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#navbarNavDropdown {
+    margin-right: 6%;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--cg-blue);
+}
+
+nav a:hover {
+    text-decoration: none;
+    color: var(--armananth-purple);
+}
+
+footer {
+    background-color: var(--rich-black);
+    color: var(--ghost-white);
+}
+
+footer ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }

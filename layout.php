@@ -14,7 +14,7 @@
 
 <?php require 'include/header.php' ?>
 
-<?= $pageContent ?>
+<?=$pageContent ?>
 
 <?php require 'include/footer.php' ?>
 
