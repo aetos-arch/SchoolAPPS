@@ -20,8 +20,8 @@ class ModeleUser extends Connexion
 	public function creerTicket($result)
 	{
 		try {
-			$req = Connexion::$bdd->prepare('insert into tickets values(?, ?, ?, ?, ?, ?)');
-			$req->execute(array($result[''], $result['intitule'], $result['explication'],  1,  $_SESSION['idUtil'],  $result['idProduit']));
+			$req = Connexion::$bdd->prepare('insert into tickets (intitule, explication, idEtat, idUtilisateur, idProduit) values(?, ?, ?, ?, ?)');
+			$req->execute(array($result['intitule'], $result['explication'],  1,  $_SESSION['idUtil'],  $result['idProduit']));
 		} catch (PDOException $e) {
 		}
 	}
