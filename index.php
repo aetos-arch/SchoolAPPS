@@ -13,8 +13,8 @@ if (isset($url[0])) {
 
 
 // Si c'est pas un page
-if (!in_array($page, array('connexion','user','page3', 'article'))) {
-    if (in_array($page, array('home','contact','propos', 'mentions'))) {
+if (!in_array($page, array('connexion', 'user', 'page3', 'article'))) {
+    if (in_array($page, array('home', 'contact', 'propos', 'mentions'))) {
         ob_start();
         require "static/$page.php";
         $pageContent = ob_get_clean();
@@ -30,5 +30,3 @@ if (!in_array($page, array('connexion','user','page3', 'article'))) {
     $pageContent = ob_get_clean();
     require 'layout.php';
 }
-
-?>

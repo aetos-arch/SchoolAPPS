@@ -1,44 +1,42 @@
 <?php
-	require_once 'cont_majUser.php';
+require_once 'cont_user.php';
 
-	class ModUser{
-		
-		public function __construct() {
+class ModUser
+{
 
-			$controlleurUser = new ContUser();
+	public function __construct()
+	{
 
-			if (isset($_SESSION['idUtil'])) {
+		$controlleurUser = new ContUser();
 
-				if (isset($url[1])) {
+		if (isset($_SESSION['idUtil'])) {
+			if (isset($url[1])) {
+				$action = $url[1];
 
-					$action = $url[1];
+				switch ($action) {
+					case 'menu':
+						$controlleurUser->menu();
+						break;
 
-						switch ($action) {
-							case 'menu':
-								$controlleurUser->menu();
-								break;
+					case 'newPseudo':
+						$controlleurUser->newPseudo();
+						break;
 
-							case 'newPseudo':
-								$controlleurUser->newPseudo();
-								break;
-							
-							case 'newPass':
-								$controlleurUser->newPass();
-								break;
-							case 'commandes':
-								$controlleurUser->printCommandes();
-								break;
-							case 'ticket':
-								$controlleurUser->ticket();
-								break;
-							default:
-								# code...
-								break;
-						}
+					case 'newPass':
+						$controlleurUser->newPass();
+						break;
+					case 'commandes':
+						$controlleurUser->printCommandes();
+						break;
+					case 'ticket':
+						$controlleurUser->ticket();
+						break;
+					default:
+						# code...
+						break;
 				}
 			}
-			else
-					echo '<h3>Aucune connexion trouvée.</h3>';
-		}
+		} else
+			echo '<h3>Aucune connexion trouvée.</h3>';
 	}
-?>
+}

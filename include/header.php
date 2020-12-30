@@ -1,6 +1,6 @@
 <header class="fixed-top">
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a href="/home"><img id="logo" src="../images/logo_principal.png" alt="Logo du site"/> La référence de l'éducation</a>
+        <a href="/home"><img id="logo" src="../images/logo_principal.png" alt="Logo du site" /> La référence de l'éducation</a>
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
