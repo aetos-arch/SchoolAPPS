@@ -63,20 +63,43 @@ class ContUser
 	}
 
 
-	public function ticket()
+	public function newTicket()
 	{
-		$this->vue->ticket();
+		$this->vue->newTicket();
 		if (isset($_POST['explication'])) {
-			$intitule = htmlspecialchars($_POST['explication']);
-			$explication = htmlspecialchars($_POST['explication']);
-			$result = htmlspecialchars($_POST['explication']);
+			$result = [
+				'explication' => htmlspecialchars($_POST['explication']),
+				'intitule' => htmlspecialchars($_POST['intitule']),
+				'idProduit' => htmlspecialchars($_POST['idProduit']),
+				'idUtilisateur' => $_SESSION['idUtil']
+			];
 			$this->modele->creerTicket($result);
 		}
 	}
 
-	public function printCommandes()
+	public function listTickets()
+	{
+		$result = $this->modele->getTickets(($_SESSION['idUtil']));
+		$this->vue->listTickets($result);
+	}
+
+	public function printTicket()
+	{
+		$idTicket = $_POST['idTicket'];
+		$result = $this->modele->getTicket($idTicket);
+		$this->vue->printTicket($result);
+	}
+
+	public function listCommandes()
 	{
 		$commandes = $this->modele->getCommandes($_SESSION['idUtil']);
-		$this->vue->printCommandes($commandes);
+		$this->vue->listCommandes($commandes);
+	}
+
+	public function printCommande()
+	{
+		$idCommande = $_POST['idCommande'];
+		$result = $this->modele->getTicket($idCommande);
+		$this->vue->printCommande($result);
 	}
 }

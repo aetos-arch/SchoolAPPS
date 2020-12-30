@@ -23,11 +23,20 @@ class ModUser
 					case 'newPass':
 						$controllUser->newPass();
 						break;
-					case 'commandes':
-						$controllUser->printCommandes();
+					case 'listCommandes':
+						$controllUser->listCommandes();
 						break;
-					case 'ticket':
-						$controllUser->ticket();
+					case 'printCommande':
+						$controllUser->printCommande();
+						break;
+					case 'newTicket':
+						$controllUser->newTicket();
+						break;
+					case 'printTicket':
+						$controllUser->printTicket();
+						break;
+					case 'listTicket':
+						$controllUser->listTickets();
 						break;
 					default:
 						# code...

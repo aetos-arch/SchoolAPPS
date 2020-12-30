@@ -6,6 +6,17 @@ class ModeleUser extends Connexion
 	{
 	}
 
+	public function getCommande($idCommande)
+	{
+		try {
+			$req = Connexion::$bdd->prepare('select * from paniers where idCommande =?');
+			$req->execute(array($idCommande));
+			$result = $req->fetch();
+			return $result;
+		} catch (PDOException $e) {
+		}
+	}
+
 	public function getCommandes($idUtilisateur)
 	{
 		try {
@@ -17,11 +28,34 @@ class ModeleUser extends Connexion
 		}
 	}
 
+	public function getTicket($idTicket)
+	{
+		try {
+			$req = Connexion::$bdd->prepare('select * from tickets where idTicket =?');
+			$req->execute(array($idTicket));
+			$result = $req->fetch();
+			return $result;
+		} catch (PDOException $e) {
+		}
+	}
+
+
+	public function getTickets($idUtilisateur)
+	{
+		try {
+			$req = Connexion::$bdd->prepare('select * from tickets where idUtilisateur=?');
+			$req->execute(array($idUtilisateur));
+			$result = $req->fetch();
+			return $result;
+		} catch (PDOException $e) {
+		}
+	}
+
 	public function creerTicket($result)
 	{
 		try {
 			$req = Connexion::$bdd->prepare('insert into tickets (intitule, explication, idEtat, idUtilisateur, idProduit) values(?, ?, ?, ?, ?)');
-			$req->execute(array($result['intitule'], $result['explication'],  2,  $_SESSION['idUtil'],  $result['idProduit']));
+			$req->execute(array($result['intitule'], $result['explication'],  2, $result['idUtilisateur'],  $result['idProduit']));
 		} catch (PDOException $e) {
 		}
 	}
@@ -29,7 +63,7 @@ class ModeleUser extends Connexion
 	public function pseudoExiste($newPseudo)
 	{
 		try {
-			$req = Connexion::$bdd->prepare('select idUtilisateur from utilisateur where idUtilisateur = ?');
+			$req = Connexion::$bdd->prepare('select login from utilisateurs where login = ?');
 			$req->execute(array($newPseudo));
 			$nb = $req->rowCount();
 			return $nb;
@@ -40,28 +74,28 @@ class ModeleUser extends Connexion
 	public function setPseudo($idUtilisateur, $newPseudo)
 	{
 		try {
-			$req = Connexion::$bdd->prepare('update utilisateur set idUtilisateur = ? where idUtilisateur= ?');
+			$req = Connexion::$bdd->prepare('update utilisateurs set login = ? where idUtilisateur= ?');
 			$req->execute(array($newPseudo, $idUtilisateur));
 		} catch (PDOException $e) {
 		}
 	}
 
-	public function getPassword($id)
+	public function getPassword($idUtilisateur)
 	{
 		try {
-			$req = Connexion::$bdd->prepare('select hashMdp from utilisateur where idUtilisateur=?');
-			$req->execute(array($id));
+			$req = Connexion::$bdd->prepare('select hashMdp from utilisateurs where idUtilisateur=?');
+			$req->execute(array($idUtilisateur));
 			$result = $req->fetch();
 			return $result;
 		} catch (PDOException $e) {
 		}
 	}
 
-	public function setPass($hashMdp, $idUser)
+	public function setPass($hashMdp, $idUtilisateur)
 	{
 		try {
-			$req = Connexion::$bdd->prepare('update utilisateur set hashMdp = ? where idUser= ?');
-			$req->execute(array($hashMdp, $idUser));
+			$req = Connexion::$bdd->prepare('update utilisateurs set hashMdp = ? where idUtilisateur= ?');
+			$req->execute(array($hashMdp, $idUtilisateur));
 		} catch (PDOException $e) {
 		}
 	}
