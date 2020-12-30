@@ -37,6 +37,15 @@ class ModeleAdmin extends Connexion
 		}
 	}
 
+	public function deleteTicket($idTicket)
+	{
+		try {
+			$req = Connexion::$bdd->prepare('delete from tickets where idTicket = ?');
+			$req->execute(array($idTicket));
+		} catch (PDOException $e) {
+		}
+	}
+
 
 	public function newTechnicien($result)
 	{

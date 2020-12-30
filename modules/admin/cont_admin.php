@@ -36,6 +36,8 @@ class ContAdmin
 
 	public function deleteTicket()
 	{
+		$idTicket = $_POST['idTicket'];
+		$this->modele->deleteTicket($idTicket);
 	}
 
 	public function gestionTechnicien()
