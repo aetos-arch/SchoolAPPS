@@ -11,7 +11,7 @@ class ContUser
 	public function __construct()
 	{
 		$this->vue = new  VueUser();
-		$this->modele = new  modeleUser();
+		$this->modele = new  ModeleUser();
 	}
 
 
