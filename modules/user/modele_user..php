@@ -6,16 +6,15 @@ class ModeleUser extends Connexion
 	{
 	}
 
-	public function ticket($result)
-	{
-	}
-
 	public function getCommandes($idUtilisateur)
 	{
-		$req = Connexion::$bdd->prepare('select * from panier where idUtilisateur=?');
-		$req->execute(array($idUtilisateur));
-		$result = $req->fetch();
-		return $result;
+		try {
+			$req = Connexion::$bdd->prepare('select * from paniers where idUtilisateur=?');
+			$req->execute(array($idUtilisateur));
+			$result = $req->fetch();
+			return $result;
+		} catch (PDOException $e) {
+		}
 	}
 
 	public function creerTicket($result)
@@ -29,10 +28,13 @@ class ModeleUser extends Connexion
 
 	public function pseudoExiste($newPseudo)
 	{
-		$req = Connexion::$bdd->prepare('select idUtilisateur from utilisateur where idUtilisateur = ?');
-		$req->execute(array($newPseudo));
-		$nb = $req->rowCount();
-		return $nb;
+		try {
+			$req = Connexion::$bdd->prepare('select idUtilisateur from utilisateur where idUtilisateur = ?');
+			$req->execute(array($newPseudo));
+			$nb = $req->rowCount();
+			return $nb;
+		} catch (PDOException $e) {
+		}
 	}
 
 	public function setPseudo($idUtilisateur, $newPseudo)
@@ -46,15 +48,21 @@ class ModeleUser extends Connexion
 
 	public function getPassword($id)
 	{
-		$req = Connexion::$bdd->prepare('select hashMdp from utilisateur where idUtilisateur=?');
-		$req->execute(array($id));
-		$result = $req->fetch();
-		return $result;
+		try {
+			$req = Connexion::$bdd->prepare('select hashMdp from utilisateur where idUtilisateur=?');
+			$req->execute(array($id));
+			$result = $req->fetch();
+			return $result;
+		} catch (PDOException $e) {
+		}
 	}
 
-	public function setPass($mdp, $id)
+	public function setPass($hashMdp, $idUser)
 	{
-		$req = Connexion::$bdd->prepare('update utilisateur set hashMdp = ? where idUser= ?');
-		$req->execute(array($mdp, $id));
+		try {
+			$req = Connexion::$bdd->prepare('update utilisateur set hashMdp = ? where idUser= ?');
+			$req->execute(array($hashMdp, $idUser));
+		} catch (PDOException $e) {
+		}
 	}
 }
