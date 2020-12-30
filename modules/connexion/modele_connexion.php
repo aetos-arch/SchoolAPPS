@@ -29,5 +29,4 @@ class ModeleConnexion extends Connexion{
         $selectPreparee =Connexion::$bdd->query('INSERT INTO Utilisateurs (idUtilisateur, hashMdp) VALUES (serial, \''.$mdp.'\')');
         $req = $selectPreparee->fetchAll();
     }
-
 }

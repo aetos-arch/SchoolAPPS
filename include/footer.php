@@ -21,7 +21,7 @@
                     <a href="#" >A propos</a>
                 </li>
                 <li>
-                    <a href="#" >Mentions Légales</a>
+                    <a href="/mentions" >Mentions Légales</a>
                 </li>
             </ul>
             <div id="footer-social">
