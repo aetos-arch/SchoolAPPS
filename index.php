@@ -8,14 +8,15 @@ if (isset($_GET['url'])) {
 if (isset($url[0])) {
     $module = $url[0];
 } else {
-    $module = "pageAccueil";
+    $module = 'home';
 }
 
 // Si c'est pas un module
-if (!in_array($module, array('module1','module2','module3'))) {
-    if (in_array($module, array('test','fichier2','fichier3'))) {
+if (!in_array($module, array('connexion','module2','module3'))) {
+    if (in_array($module, array('home','contact','propos', 'mentions'))) {
+
         ob_start();
-        require "$module.php";
+        require "static/$module.php";
         $pageContent = ob_get_clean();
         require 'layout.php';
     } else {
@@ -29,4 +30,5 @@ if (!in_array($module, array('module1','module2','module3'))) {
     $pageContent = ob_get_clean();
     require 'layout.php';
 }
+
 ?>
