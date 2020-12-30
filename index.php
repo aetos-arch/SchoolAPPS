@@ -6,16 +6,17 @@ if (isset($_GET['url'])) {
 }
 
 if (isset($url[0])) {
-    $module = $url[0];
+    $page = $url[0];
 } else {
-    $module = "pageAccueil";
+    $page = 'home';
 }
 
-// Si c'est pas un module
-if (!in_array($module, array('connexion','user'))) {
-    if (in_array($module, array('test','fichier2','fichier3'))) {
+
+// Si c'est pas un page
+if (!in_array($page, array('connexion', 'user', 'page3', 'article'))) {
+    if (in_array($page, array('home', 'contact', 'propos', 'mentions'))) {
         ob_start();
-        require "$module.php";
+        require "static/$page.php";
         $pageContent = ob_get_clean();
         require 'layout.php';
     } else {
@@ -25,8 +26,7 @@ if (!in_array($module, array('connexion','user'))) {
     }
 } else {
     ob_start();
-    require "modules/$module/mod_$module.php";
+    require "modules/$page/mod_$page.php";
     $pageContent = ob_get_clean();
     require 'layout.php';
 }
-?>

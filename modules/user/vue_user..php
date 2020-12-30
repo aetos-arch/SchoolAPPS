@@ -1,11 +1,14 @@
 <?php
-class VueUser {
+class VueUser
+{
 
-	public function __construct () {
-		
+	public function __construct()
+	{
 	}
 
-	public function ticket() {
+	// ajouter le select produit
+	public function ticket()
+	{
 		echo ' <h3>Création ticket</h3>
 		<hr class="mt-2 mb-4">
 
@@ -23,7 +26,8 @@ class VueUser {
 		</form>';
 	}
 
-	public function newPass(){
+	public function newPass()
+	{
 		echo  '<h3>Changer votre mot de passe</h3>
 		<hr class="mt-2 mb-4">
 		
@@ -49,7 +53,8 @@ class VueUser {
 		</form>';
 	}
 
-	public function newPseudo(){
+	public function newPseudo()
+	{
 		echo '<h3>Changer de pseudo</h3>
 		<hr class="mt-2 mb-4">
 		
@@ -66,13 +71,12 @@ class VueUser {
 		</div>';
 	}
 
-	
-	public function printMenu() {
 
+	public function printMenu()
+	{
 	}
 
-	public function printCommandes () {
-
+	public function printCommandes()
+	{
 	}
 }
-?>
