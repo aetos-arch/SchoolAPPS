@@ -8,7 +8,6 @@ if (isset($_GET['url'])) {
 if (isset($url[0])) {
     $page = $url[0];
 } else {
-<<<<<<< HEAD
     $page = 'home';
 }
 
@@ -18,17 +17,6 @@ if (!in_array($page, array('connexion','user','page3', 'article'))) {
     if (in_array($page, array('home','contact','propos', 'mentions'))) {
         ob_start();
         require "static/$page.php";
-=======
-    $module = 'home';
-}
-
-// Si c'est pas un module
-if (!in_array($module, array('connexion','module2','module3'))) {
-    if (in_array($module, array('home','contact','propos', 'mentions'))) {
-
-        ob_start();
-        require "static/$module.php";
->>>>>>> main
         $pageContent = ob_get_clean();
         require 'layout.php';
     } else {

@@ -19,14 +19,7 @@
 
 <?php require 'include/header.php' ?>
 
-<<<<<<< HEAD
-<?=$pageContent ?>
-=======
 <?= $pageContent; ?>
-
-
-
->>>>>>> main
 
 <?php require 'include/footer.php' ?>
 

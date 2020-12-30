@@ -14,13 +14,10 @@ body {
     font-family: 'Crimson Text', serif;
 }
 
-<<<<<<< HEAD
-=======
 main {
     margin-top: 100px;
 }
 
->>>>>>> main
 #logo {
     margin-left: 3px;
     width: 16%;
@@ -44,12 +41,9 @@ h1 {
 
 #navbarNavDropdown {
     margin-right: 6%;
-<<<<<<< HEAD
-=======
     font-family: 'Open Sans', serif;
     font-size: 16pt;
     background-color: var(--ghost-white);
->>>>>>> main
 }
 
 nav a {
@@ -57,13 +51,10 @@ nav a {
     color: var(--cg-blue);
 }
 
-<<<<<<< HEAD
-=======
 .navbar-toggler-icon {
     color: var(--armananth-purple);
 }
 
->>>>>>> main
 nav a:hover {
     text-decoration: none;
     color: var(--armananth-purple);
