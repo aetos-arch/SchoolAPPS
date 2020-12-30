@@ -13,18 +13,19 @@ if (isset($url[0])) {
 
 
 // Si c'est pas un page
-if (!in_array($page, array('connexion', 'user', 'page3', 'article'))) {
+if (!in_array($page, array('connexion', 'user', 'technicien', 'admin'))) {
+    // Si c'est une page static
     if (in_array($page, array('home', 'contact', 'propos', 'mentions'))) {
         ob_start();
         require "static/$page.php";
         $pageContent = ob_get_clean();
         require 'layout.php';
-    } else {
+    } else { // Ni module ni page static
         echo "Aucun acces";
         http_response_code(403);
         die;
     }
-} else {
+} else { // Module
     ob_start();
     require "modules/$page/mod_$page.php";
     $pageContent = ob_get_clean();
