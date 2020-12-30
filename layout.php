@@ -21,9 +21,6 @@
 
 <?= $pageContent; ?>
 
-
-
-
 <?php require 'include/footer.php' ?>
 
 <?= $pageJavaScripts ?? ''?>
