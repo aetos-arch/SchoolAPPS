@@ -1,49 +1,33 @@
 <?php
-class VueUser
+class VueAdmin
 {
 
 	public function __construct()
 	{
 	}
 
-	// ajouter le select produit
-	public function creerTicket()
+	public function listTickets()
 	{
-		echo ' <h3>Création ticket</h3>
-		<hr class="mt-2 mb-4">
 
-		<form action="" method="POST">
-			<div class="row">
-				<div class="col-4 form-group">
-					<label for="intitule">intitule</label>
-					<input type="text" name="intitule" required value="intitule" class="form-control">
-				</div>
-				<div class="col-4 form-group">
-					<label for="explication">explication</label>
-					<textarea name="explication" required rows="5" cols="33" class="form-control">
-				</div>
-			<button type="submit" class="btn btn-primary d-block mb-2">Envoyer</button>
-		</form>';
 	}
 
-	public function printTicket()
+	public function printTicket($result)
 	{
-		echo ' <h3>Création ticket</h3>
-		<hr class="mt-2 mb-4">
 
-		<form action="" method="POST">
-			<div class="row">
-				<div class="col-4 form-group">
-					<label for="intitule">intitule</label>
-					<input type="text" name="intitule" required value="intitule" class="form-control">
-				</div>
-				<div class="col-4 form-group">
-					<label for="explication">explication</label>
-					<textarea name="explication" required rows="5" cols="33" class="form-control">
-				</div>
-			<button type="submit" class="btn btn-primary d-block mb-2">Envoyer</button>
-		</form>';
 	}
+	
+	public function printTechniciens()
+	{
+
+	}
+
+
+	public function stat($result)
+	{
+
+	}
+
+
 
 	public function newPass()
 	{
@@ -92,10 +76,6 @@ class VueUser
 
 
 	public function printMenu()
-	{
-	}
-
-	public function printCommandes()
 	{
 	}
 }

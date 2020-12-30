@@ -1,30 +1,80 @@
 <?php
-require_once '../../config/connexion.php';
-class ModeleUser extends Connexion
+require_once 'connexion.php';
+class ModeleAdmin extends Connexion
 {
 	public function __construct()
 	{
 	}
 
-	public function getCommandes($idUtilisateur)
+	public function getTickets()
 	{
 		try {
-			$req = Connexion::$bdd->prepare('select * from paniers where idUtilisateur=?');
-			$req->execute(array($idUtilisateur));
+			$req = Connexion::$bdd->prepare('select * from ?');
+			$req->execute(array("ticket"));
 			$result = $req->fetch();
 			return $result;
 		} catch (PDOException $e) {
 		}
 	}
 
-	public function creerTicket($result)
+	public function getTicket($idTicket)
 	{
 		try {
-			$req = Connexion::$bdd->prepare('insert into tickets (intitule, explication, idEtat, idUtilisateur, idProduit) values(?, ?, ?, ?, ?)');
-			$req->execute(array($result['intitule'], $result['explication'],  2,  $_SESSION['idUtil'],  $result['idProduit']));
+			$req = Connexion::$bdd->prepare('select * from ?');
+			$req->execute(array("ticket"));
+			$result = $req->fetch();
+			return $result;
 		} catch (PDOException $e) {
 		}
 	}
+
+	public function assigneTicket($newPseudo)
+	{
+		try {
+			$req = Connexion::$bdd->prepare('');
+			$req->execute(array($newPseudo));
+			$nb = $req->rowCount();
+			return $nb;
+		} catch (PDOException $e) {
+		}
+	}
+
+
+	public function newTechnicien($newPseudo)
+	{
+		try {
+			$req = Connexion::$bdd->prepare('');
+			$req->execute(array($newPseudo));
+			$nb = $req->rowCount();
+			return $nb;
+		} catch (PDOException $e) {
+		}
+	}
+
+
+	public function deleteTechnicien($newPseudo)
+	{
+		try {
+			$req = Connexion::$bdd->prepare('');
+			$req->execute(array($newPseudo));
+			$nb = $req->rowCount();
+			return $nb;
+		} catch (PDOException $e) {
+		}
+	}
+
+
+	public function stat()
+	{
+		try {
+			$req = Connexion::$bdd->prepare('');
+			$req->execute(array());
+			$nb = $req->rowCount();
+			return $nb;
+		} catch (PDOException $e) {
+		}
+	}
+
 
 	public function pseudoExiste($newPseudo)
 	{

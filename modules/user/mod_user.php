@@ -17,11 +17,9 @@ class ModUser
 					case 'menu':
 						$controllUser->menu();
 						break;
-
 					case 'newPseudo':
 						$controllUser->newPseudo();
 						break;
-
 					case 'newPass':
 						$controllUser->newPass();
 						break;

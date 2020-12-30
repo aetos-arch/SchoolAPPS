@@ -1,8 +1,8 @@
 <?php
-require_once 'vue_user.php';
-require_once 'modele_user.php';
+require_once 'vue_admin.php';
+require_once 'modele_admin.php';
 
-class ContUser
+class ContAdmin
 {
 	private $vue;
 	private $modele;
@@ -10,10 +10,52 @@ class ContUser
 
 	public function __construct()
 	{
-		$this->vue = new  VueUser();
-		$this->modele = new  modeleUser();
+		$this->vue = new  VueAdmin();
+		$this->modele = new  ModeleAdmin();
 	}
 
+	public function listTickets()
+	{
+		$result = $this->modele->getTickets();
+		$this->vue->listTickets($result);
+	}
+
+
+	public function printTicket()
+	{
+		$result = $this->modele->getTicket($_POST['idTicket']);
+		$this->vue->printTicket($result);
+	}
+
+	public function assignerTicket()
+	{
+		if (isset($_POST['idTechnicien'])) {
+			$this->modele->assigneTicket($_POST['idTechnicien']);
+		}
+	}
+
+	public function deleteTicket()
+	{
+	}
+
+	public function gestionTechnicien()
+	{
+		$this->vue->printTechniciens();
+
+		if (isset($_POST['idDelete'])) {
+			$this->modele->deleteTechnicien($_POST['idDelete']);
+		}
+
+		if (isset($_POST['newTechnicien'])) {
+			$this->modele->newTechnicien($_POST['newTechnicien']);
+		}
+	}
+
+	public function stat()
+	{
+		$result = $this->modele->stat();
+		$this->vue->stat($result);
+	}
 
 	public function newPseudo()
 	{
@@ -26,7 +68,7 @@ class ContUser
 				exit();
 			} else {
 				$this->modele->setPseudo($_SESSION['idUtil'], $newPseudo);
-				$_SESSION['nomUser'] = $newPseudo;
+				$_SESSION['nomadmin'] = $newPseudo;
 				header('');
 				exit();
 			}
@@ -60,23 +102,5 @@ class ContUser
 	public function menu()
 	{
 		$this->vue->printMenu();
-	}
-
-
-	public function ticket()
-	{
-		$this->vue->ticket();
-		if (isset($_POST['explication'])) {
-			$intitule = htmlspecialchars($_POST['explication']);
-			$explication = htmlspecialchars($_POST['explication']);
-			$result = htmlspecialchars($_POST['explication']);
-			$this->modele->creerTicket($result);
-		}
-	}
-
-	public function printCommandes()
-	{
-		$commandes = $this->modele->getCommandes($_SESSION['idUtil']);
-		$this->vue->printCommandes($commandes);
 	}
 }
