@@ -28,6 +28,9 @@ class ModAdmin
                     case 'gestionTechnicien':
                         $controllAdmin->gestionTechnicien();
                         break;
+                    case 'deleteTechnicien':
+                        $controllAdmin->gestionTechnicien();
+                        break;
                     case 'newPseudo':
                         $controllAdmin->newPseudo();
                         break;
