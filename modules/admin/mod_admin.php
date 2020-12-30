@@ -12,13 +12,18 @@ class ModAdmin
         if (isset($_SESSION['idUtil'])) {
             if (isset($url[1])) {
                 $action = $url[1];
-
                 switch ($action) {
                     case 'menu':
                         $controllAdmin->menu();
                         break;
-                    case 'ticket':
-                        $controllAdmin->ticket();
+                    case 'listTickets':
+                        $controllAdmin->listTickets();
+                        break;
+                    case 'printTicket':
+                        $controllAdmin->printTicket();
+                        break;
+                    case 'deleteTicket':
+                        $controllAdmin->deleteTicket();
                         break;
                     case 'gestionTechnicien':
                         $controllAdmin->gestionTechnicien();
@@ -28,6 +33,12 @@ class ModAdmin
                         break;
                     case 'newPass':
                         $controllAdmin->newPass();
+                        break;
+                    case 'stat':
+                        $controllAdmin->stat();
+                        break;
+                    case 'assignerTicket':
+                        $controllAdmin->assignerTicket();
                         break;
                     default:
                         # code...

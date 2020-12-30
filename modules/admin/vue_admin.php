@@ -6,11 +6,28 @@ class VueAdmin
 	{
 	}
 
-	// ajouter le select produit
-	public function ticket()
+	public function listTickets()
 	{
 
 	}
+
+	public function printTicket($result)
+	{
+
+	}
+	
+	public function printTechniciens()
+	{
+
+	}
+
+
+	public function stat($result)
+	{
+
+	}
+
+
 
 	public function newPass()
 	{

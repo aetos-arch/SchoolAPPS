@@ -6,8 +6,75 @@ class ModeleAdmin extends Connexion
 	{
 	}
 
+	public function getTickets()
+	{
+		try {
+			$req = Connexion::$bdd->prepare('select * from ?');
+			$req->execute(array("ticket"));
+			$result = $req->fetch();
+			return $result;
+		} catch (PDOException $e) {
+		}
+	}
 
-    
+	public function getTicket($idTicket)
+	{
+		try {
+			$req = Connexion::$bdd->prepare('select * from ?');
+			$req->execute(array("ticket"));
+			$result = $req->fetch();
+			return $result;
+		} catch (PDOException $e) {
+		}
+	}
+
+	public function assigneTicket($newPseudo)
+	{
+		try {
+			$req = Connexion::$bdd->prepare('');
+			$req->execute(array($newPseudo));
+			$nb = $req->rowCount();
+			return $nb;
+		} catch (PDOException $e) {
+		}
+	}
+
+
+	public function newTechnicien($newPseudo)
+	{
+		try {
+			$req = Connexion::$bdd->prepare('');
+			$req->execute(array($newPseudo));
+			$nb = $req->rowCount();
+			return $nb;
+		} catch (PDOException $e) {
+		}
+	}
+
+
+	public function deleteTechnicien($newPseudo)
+	{
+		try {
+			$req = Connexion::$bdd->prepare('');
+			$req->execute(array($newPseudo));
+			$nb = $req->rowCount();
+			return $nb;
+		} catch (PDOException $e) {
+		}
+	}
+
+
+	public function stat()
+	{
+		try {
+			$req = Connexion::$bdd->prepare('');
+			$req->execute(array());
+			$nb = $req->rowCount();
+			return $nb;
+		} catch (PDOException $e) {
+		}
+	}
+
 
 	public function pseudoExiste($newPseudo)
 	{

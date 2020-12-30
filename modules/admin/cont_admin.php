@@ -14,12 +14,47 @@ class ContAdmin
 		$this->modele = new  ModeleAdmin();
 	}
 
-	public function ticket () {
-
+	public function listTickets()
+	{
+		$result = $this->modele->getTickets();
+		$this->vue->listTickets($result);
 	}
 
-	public function gestionTechnicien () {
-		
+
+	public function printTicket()
+	{
+		$result = $this->modele->getTicket($_POST['idTicket']);
+		$this->vue->printTicket($result);
+	}
+
+	public function assignerTicket()
+	{
+		if (isset($_POST['idTechnicien'])) {
+			$this->modele->assigneTicket($_POST['idTechnicien']);
+		}
+	}
+
+	public function deleteTicket()
+	{
+	}
+
+	public function gestionTechnicien()
+	{
+		$this->vue->printTechniciens();
+
+		if (isset($_POST['idDelete'])) {
+			$this->modele->deleteTechnicien($_POST['idDelete']);
+		}
+
+		if (isset($_POST['newTechnicien'])) {
+			$this->modele->newTechnicien($_POST['newTechnicien']);
+		}
+	}
+
+	public function stat()
+	{
+		$result = $this->modele->stat();
+		$this->vue->stat($result);
 	}
 
 	public function newPseudo()

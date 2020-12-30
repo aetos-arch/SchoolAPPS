@@ -7,7 +7,26 @@ class VueUser
 	}
 
 	// ajouter le select produit
-	public function ticket()
+	public function creerTicket()
+	{
+		echo ' <h3>Création ticket</h3>
+		<hr class="mt-2 mb-4">
+
+		<form action="" method="POST">
+			<div class="row">
+				<div class="col-4 form-group">
+					<label for="intitule">intitule</label>
+					<input type="text" name="intitule" required value="intitule" class="form-control">
+				</div>
+				<div class="col-4 form-group">
+					<label for="explication">explication</label>
+					<textarea name="explication" required rows="5" cols="33" class="form-control">
+				</div>
+			<button type="submit" class="btn btn-primary d-block mb-2">Envoyer</button>
+		</form>';
+	}
+
+	public function printTicket()
 	{
 		echo ' <h3>Création ticket</h3>
 		<hr class="mt-2 mb-4">
