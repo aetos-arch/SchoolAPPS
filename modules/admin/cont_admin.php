@@ -81,8 +81,8 @@ class ContAdmin
 	{
 		$this->vue->newPass();
 		if (isset($_POST['new_password2'])) {
-			$newPass1 = $_POST['new_password1'];
-			$newPass2 = $_POST['new_password2'];
+			$newPass1 = htmlspecialchars($_POST['new_password1']);
+			$newPass2 = htmlspecialchars($_POST['new_password2']);
 
 			if ($newPass1 == $newPass2) {
 				$passNow = $this->modele->getPassword($_SESSION['idUtil']);
