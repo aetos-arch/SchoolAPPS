@@ -1,6 +1,9 @@
 <header class="fixed-top">
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a href="/home"><img id="logo" src="../images/logo_principal.png" alt="Logo du site" /> La référence de l'éducation</a>
+        <a href="/home" id="brand-homelink">
+            <img id="logo" src="../images/logo.svg" alt="Logo du site" />
+            <span>La référence de l'éducation</span>
+        </a>
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -20,16 +23,19 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Actualités</a>
+                    <a class="nav-link" href="actualites">Actualités</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/propos">A propos</a>
+                    <a class="nav-link" href="propos">A propos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="contact">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Connexion</a>
+                    <a class="nav-link" href="connexion"><i class="fas fa-user"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="panier"><i class="fas fa-shopping-cart"></i></a>
                 </li>
             </ul>
         </div>
