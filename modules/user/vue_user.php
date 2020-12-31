@@ -49,8 +49,6 @@ class VueUser
 	{
 	}
 
-
-
 	public function newPseudo()
 	{
 		echo '<h3>Changer de pseudo</h3>
