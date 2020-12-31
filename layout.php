@@ -17,12 +17,11 @@
 </head>
 
 <body>
-
-    <?php require 'include/header.php' ?>
+    <?php require 'include/inc_header.php' ?>
 
     <?= $pageContent; ?>
 
-    <?php require 'include/footer.php' ?>
+    <?php require 'include/inc_footer.php' ?>
 
     <?= $pageJavaScripts ?? '' ?>
 </body>

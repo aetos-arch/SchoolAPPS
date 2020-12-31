@@ -1,5 +1,4 @@
 <?php
-require_once '../../config/connexion.php';
 class ModeleTechnicien extends Connexion
 {
 	public function __construct()
