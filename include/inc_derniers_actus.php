@@ -7,13 +7,25 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-block w-100" src="/images/first.png" alt="First slide">
+                <img class="d-block w-100" src="/images/illustrations/typing.jpg" alt="First slide">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Des logiciels de qualités...</h5>
+                    <p>Au service de tous !</p>
+                </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="/images/second.png" alt="Second slide">
+                <img class="d-block w-100" src="/images/illustrations/slide2.jpg" alt="Second slide">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Des solutions pour tout les ages</h5>
+                    <p>...</p>
+                </div>
             </div>
             <div class="carousel-item">
                 <img class="d-block w-100" src="/images/third.png" alt="Third slide">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Des offres au plus proche de vos besoins</h5>
+                    <p>...</p>
+                </div>
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

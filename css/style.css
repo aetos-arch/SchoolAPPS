@@ -2,8 +2,10 @@
     --ghost-white: #F4F6FF;
     --rich-black: #050404;
     --cg-blue: #027B9B;
+    --cg-blue-light: #50a3bb;
     --max-blue-green: #02c3c8;
     --armananth-purple: #ad3959;
+    --armananth-purple-light: #c4768e;
     --cyan-process: #02b3e4;
     --emerald: #15c26b;
     --honey-yellow: #ffae0c;
@@ -19,8 +21,24 @@ main {
     margin-top: 100px;
 }
 
+section.row {
+    justify-content: center;
+    margin: 0;
+}
+
+a.lire-plus {
+    background-color: var(--cg-blue);
+    margin: 2px;
+    color: white;
+}
+
+a.lire-plus:hover {
+    background-color: var(--armananth-purple);
+    color: white;
+}
+
 .content-block {
-    padding: 10px 0 12px;
+    padding: 15px 0 12px;
 }
 
 .navbar {
@@ -37,8 +55,11 @@ h1 {
     font-family: "Open Sans", sans-serif;
     font-size: 25px;
     text-align: center;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 12px auto;
+}
+
+p {
+    font-family: 'Crimson Text', serif;
 }
 
 #brand-homelink {
@@ -82,11 +103,57 @@ nav a:hover {
 #navbarNavDropdown {
     font-family: 'Open Sans', serif;
     font-size: 15pt;
+    text-align: center;
     background-color: var(--ghost-white);
 }
 
 .navbar-toggler-icon {
     color: var(--armananth-purple);
+}
+
+#latest-articles {
+    background-color: var(--ghost-white);
+}
+
+#latest-products {
+    text-align: center;
+}
+
+.articles {
+    text-align: center;
+    padding: 0.5% 0 0;
+    width: 25%;
+    margin: 20px 15px;
+    border-radius: 5px;
+    opacity: 0.9;
+}
+
+.articles:hover {
+    opacity: 1;
+}
+
+.articles:nth-child(odd) {
+    background-color: var(--armananth-purple-light);
+}
+
+.articles:nth-child(even) {
+    background-color: var(--cg-blue-light);
+}
+
+.actu {
+    background-color: var(--armananth-purple-light);
+    padding: 1% 2% 0;
+    margin: 20px 15px;
+    opacity: 0.9;
+}
+
+.actu:hover {
+    opacity: 1;
+}
+
+section.sponsor {
+    margin: 20px 0;
+    text-align: center;
 }
 
 footer {
@@ -120,7 +187,7 @@ footer a:hover {
 }
 
 #footer-social, #footer-quicklinks{
-    margin: 15px 0px;
+    margin: 15px 0;
 }
 
 .foot-sub-title {
@@ -134,6 +201,4 @@ footer i.fas, i.fab {
 
 footer ul {
     list-style-type: none;
-    padding: 0;
-    margin: 0;
 }
