@@ -1,7 +1,7 @@
 <main>
     <?php require 'include/inc_derniers_actus.php' ?>
     <section class="container">
-        <div class="container content-block" id="home-latest-products">
+        <div class="container content-block">
             <h1>A propos de nous</h1>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -13,11 +13,11 @@
                 Cum sociis natoque penatibus et magnis. Ut diam quam nulla porttitor. Purus viverra accumsan in nisl nisi.
             </p>
         </div>
-        <div class="container content-block" id="home-latest-products">
+        <div class="container content-block">
             <h1>Notre mission</h1>
             <p>
                 Pellentesque dignissim enim sit amet. Eu turpis egestas pretium aenean pharetra magna. Duis at tellus at urna condimentum mattis pellentesque id nibh.
-                Ac placerat vestibulum lectus mauris ultrices eros in. Est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus.
+                Ac placerat vestibulum lectus mauris ultrices eros in. Est pellentesque elit ullamcorper dignissim <cr></cr>as tincidunt lobortis feugiat vivamus.
                 Et magnis dis parturient montes nascetur ridiculus. Vel quam elementum pulvinar etiam non quam lacus. A arcu cursus vitae congue mauris rhoncus aenean vel.
                 Elit ut aliquam purus sit. Massa tempor nec feugiat nisl. Felis eget nunc lobortis mattis aliquam faucibus purus in massa.
                 Rhoncus urna neque viverra justo. Auctor urna nunc id cursus metus aliquam. Lacinia at quis risus sed vulputate odio ut enim blandit.

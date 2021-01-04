@@ -1,4 +1,9 @@
-<div class="d-block content-block">
+<div class="container content-block">
     <h1>Nos Sponsors</h1>
-    <img class="d-block w-75 mx-auto" src="/images/first.png" alt="First slide">
+    <section class="row sponsor">
+            <article class="col"><img class="rounded-2" src="/images/100x100.png" alt="First slide"></article>
+            <article class="col"><img class="rounded-2" src="/images/100x100.png" alt="First slide"></article>
+            <article class="col"><img class="rounded-2" src="/images/100x100.png" alt="First slide"></article>
+            <article class="col"><img class="rounded-2" src="/images/100x100.png" alt="First slide"></article>
+    </section>
 </div>
