@@ -19,7 +19,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="#">School Dev</a>
                         <a class="dropdown-item" href="#">School Net</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">Plateforme E-education</a>
                     </div>
                 </li>
                 <li class="nav-item">
