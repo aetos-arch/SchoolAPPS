@@ -26,6 +26,12 @@ class ModUser
 					case 'listCommandes':
 						$controllUser->listCommandes();
 						break;
+					case 'listTickets':
+						$controllUser->listTickets();
+						break;
+					case 'printTicket':
+						$controllUser->printTicket();
+						break;
 					case 'printCommande':
 						$controllUser->printCommande();
 						break;
@@ -37,6 +43,9 @@ class ModUser
 						break;
 					case 'listTicket':
 						$controllUser->listTickets();
+						break;
+					case 'choisirDateRdv':
+						$controllUser->choisirDateRdv();
 						break;
 					default:
 						# code...
