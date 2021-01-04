@@ -20,7 +20,7 @@ class ModeleTechnicien extends Connexion
 	public function getTickets($idUtilisateur)
 	{
 		try {
-			$req = Connexion::$bdd->prepare('select * from tickets where idUtilisateur=?');
+			$req = Connexion::$bdd->prepare('select * from tickets where idTechnicien=?');
 			$req->execute(array($idUtilisateur));
 			$result = $req->fetch();
 			return $result;

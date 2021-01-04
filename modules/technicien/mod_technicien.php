@@ -23,7 +23,7 @@ class ModTechnicien
 					case 'printTicket':
 						$controllUser->printTicket();
 						break;
-					case 'listTicket':
+					case 'listTickets':
 						$controllUser->listTickets();
 						break;
 					default:
