@@ -17,19 +17,35 @@ class ModUser
 					case 'menu':
 						$controllUser->menu();
 						break;
-
 					case 'newPseudo':
 						$controllUser->newPseudo();
 						break;
-
 					case 'newPass':
 						$controllUser->newPass();
 						break;
-					case 'commandes':
-						$controllUser->printCommandes();
+					case 'listCommandes':
+						$controllUser->listCommandes();
 						break;
-					case 'ticket':
-						$controllUser->ticket();
+					case 'listTickets':
+						$controllUser->listTickets();
+						break;
+					case 'printTicket':
+						$controllUser->printTicket();
+						break;
+					case 'printCommande':
+						$controllUser->printCommande();
+						break;
+					case 'newTicket':
+						$controllUser->newTicket();
+						break;
+					case 'printTicket':
+						$controllUser->printTicket();
+						break;
+					case 'listTicket':
+						$controllUser->listTickets();
+						break;
+					case 'choisirDateRdv':
+						$controllUser->choisirDateRdv();
 						break;
 					default:
 						# code...

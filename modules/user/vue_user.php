@@ -6,8 +6,23 @@ class VueUser
 	{
 	}
 
+
+
+	public function printMenu()
+	{
+	}
+
+	public function listCommandes()
+	{
+	}
+
+	
+	public function printCommande()
+	{
+	}
+
 	// ajouter le select produit
-	public function ticket()
+	public function newTicket()
 	{
 		echo ' <h3>Création ticket</h3>
 		<hr class="mt-2 mb-4">
@@ -25,6 +40,33 @@ class VueUser
 			<button type="submit" class="btn btn-primary d-block mb-2">Envoyer</button>
 		</form>';
 	}
+
+	public function listTickets()
+	{
+	}
+
+	public function printTicket()
+	{
+	}
+
+	public function newPseudo()
+	{
+		echo '<h3>Changer de pseudo</h3>
+		<hr class="mt-2 mb-4">
+		
+		<div class="card-panel  lighten-4">
+			<form action="user/newPseudo" method="POST" >
+				<div class="row">
+					<div class="col-4 form-group">
+						<label for="newPseudo">Nouveau pseudo</label>
+						<input name="newPseudo" type="text" class="form-control">
+						<button style="margin-top:20px;"class="btn btn-primary" type="submit" name="action">Valider</button>
+					</div>
+				</div>
+			</form>
+		</div>';
+	}
+
 
 	public function newPass()
 	{
@@ -51,32 +93,5 @@ class VueUser
 				</div>
 			</div>
 		</form>';
-	}
-
-	public function newPseudo()
-	{
-		echo '<h3>Changer de pseudo</h3>
-		<hr class="mt-2 mb-4">
-		
-		<div class="card-panel  lighten-4">
-			<form action="user/newPseudo" method="POST" >
-				<div class="row">
-					<div class="col-4 form-group">
-						<label for="newPseudo">Nouveau pseudo</label>
-						<input name="newPseudo" type="text" class="form-control">
-						<button style="margin-top:20px;"class="btn btn-primary" type="submit" name="action">Valider</button>
-					</div>
-				</div>
-			</form>
-		</div>';
-	}
-
-
-	public function printMenu()
-	{
-	}
-
-	public function printCommandes()
-	{
 	}
 }
