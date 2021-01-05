@@ -1,4 +1,5 @@
 <?php
+require_once 'config/connexion.php';
 class ModeleUser extends Connexion
 {
 	public function __construct()

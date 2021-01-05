@@ -19,8 +19,8 @@ class ContConnexion {
     }
 
     function connexion(){
-        $this->modele->connexion($_POST['id'],$mdp=$_POST['mdp']);
-        //header("Location: index.php");
+        $this->modele->connexion($_POST['username'],$_POST['password']);
+        $this->vue->affichage();
     }
 
     function deconnexion(){
