@@ -1,5 +1,7 @@
 <?php
 
+require_once 'config/connexion.php';
+
 class ModeleConnexion extends Connexion{
 
     function connexion($id,$mdp){
