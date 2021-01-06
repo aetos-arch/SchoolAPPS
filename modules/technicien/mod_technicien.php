@@ -17,15 +17,21 @@ class ModTechnicien
 					case 'menu':
 						$controllUser->menu();
 						break;
-					case 'newPass':
-						$controllUser->newPass();
+					case 'nouveauMotDePasse':
+						$controllUser->nouveauMotDePasse();
 						break;
-					case 'printTicket':
-						$controllUser->printTicket();
+					case 'ticket':
+						$controllUser->afficheTicket();
 						break;
-					case 'listTickets':
-						$controllUser->listTickets();
+					case 'tickets':
+						$controllUser->afficheTickets();
 						break;
+					//case 'changerEtat':
+					//	$controllUser->changerEtat();
+					//	break;
+					//case 'discussion':
+					//	$controllUser->discussion();
+					//	break;
 					default:
 						# code...
 						break;

@@ -1,5 +1,5 @@
 <?php
-class VueUser
+class VueUtilisateur
 {
 
 	public function __construct()
@@ -8,21 +8,21 @@ class VueUser
 
 
 
-	public function printMenu()
+	public function afficheMenu()
 	{
 	}
 
-	public function listCommandes()
+	public function afficheCommandes()
 	{
 	}
 
-	
-	public function printCommande()
+	public function afficheCommande()
 	{
 	}
+
 
 	// ajouter le select produit
-	public function newTicket()
+	public function nouveauTicket()
 	{
 		echo ' <h3>Création ticket</h3>
 		<hr class="mt-2 mb-4">
@@ -41,15 +41,16 @@ class VueUser
 		</form>';
 	}
 
-	public function listTickets()
+	public function afficheTickets()
+	{
+
+	}
+
+	public function afficheTicket()
 	{
 	}
 
-	public function printTicket()
-	{
-	}
-
-	public function newPseudo()
+	public function nouveauLogin()
 	{
 		echo '<h3>Changer de pseudo</h3>
 		<hr class="mt-2 mb-4">
@@ -68,7 +69,7 @@ class VueUser
 	}
 
 
-	public function newPass()
+	public function nouveauMotDePasse()
 	{
 		echo  '<h3>Changer votre mot de passe</h3>
 		<hr class="mt-2 mb-4">

@@ -1,6 +1,5 @@
 <?php
-require_once 'config/connexion.php';
-class ModeleUser extends Connexion
+class ModeleUtilisateur extends Connexion
 {
 	public function __construct()
 	{
@@ -20,7 +19,7 @@ class ModeleUser extends Connexion
 	public function getCommandes($idUtilisateur)
 	{
 		try {
-			$req = Connexion::$bdd->prepare('select * from paniers where idUtilisateur=?');
+			$req = Connexion::$bdd->prepare('select * from paniers where idUtilisateur=? and idCommandes is not null');
 			$req->execute(array($idUtilisateur));
 			$result = $req->fetch();
 			return $result;
@@ -60,7 +59,7 @@ class ModeleUser extends Connexion
 		}
 	}
 
-	public function pseudoExiste($newPseudo)
+	public function loginExiste($newPseudo)
 	{
 		try {
 			$req = Connexion::$bdd->prepare('select login from utilisateurs where login = ?');

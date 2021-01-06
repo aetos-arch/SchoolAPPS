@@ -10,85 +10,85 @@ class ContAdmin
 
 	public function __construct()
 	{
-		$this->vue = new  VueAdmin();
+		$this->vue = new VueAdmin();
 		$this->modele = new  ModeleAdmin();
 	}
 
-	public function listTickets()
+	public function afficherTickets()
 	{
-		$result = $this->modele->getTickets();
-		$this->vue->listTickets($result);
+		$result = $this->modele->getTicketsEtat(1);
+		$this->vue->afficherTickets($result);
 	}
 
 
-	public function printTicket()
+	public function afficherTicket()
 	{
 		$result = $this->modele->getTicket($_POST['idTicket']);
-		$this->vue->printTicket($result);
+		$this->vue->afficherTicket($result);
 	}
 
 	public function assignerTicket()
 	{
 		if (isset($_POST['idTechnicien'])) {
-			$this->modele->assigneTicket($_POST['idTechnicien']);
+			$this->modele->assignerTicket($_POST['idTechnicien']);
 		}
 	}
 
-	public function deleteTicket()
+	public function supprimerTicket()
 	{
 		$idTicket = $_POST['idTicket'];
-		$this->modele->deleteTicket($idTicket);
+		$this->modele->supprimerTicket($idTicket);
 	}
 
 	public function gestionTechnicien()
 	{
-		$this->vue->printTechniciens();
+		$this->vue->afficherTechniciens();
 
 		if (isset($_POST['idDelete'])) {
-			$this->modele->deleteTechnicien($_POST['idDelete']);
+			$this->modele->supprimerTechnicien($_POST['idDelete']);
 		}
 
-		if (isset($_POST['newTechnicien'])) {
-			$this->modele->newTechnicien($_POST['newTechnicien']);
+		if (isset($_POST['nouveauTechnicien'])) {
+			$this->modele->nouveauTechnicien($_POST['nouveauTechnicien']);
 		}
 	}
 
-	public function stat()
+	public function statistique()
 	{
 		$result = $this->modele->stat();
-		$this->vue->stat($result);
+		$this->vue->afficherStatistique($result);
 	}
 
-	public function newPseudo()
+	public function nouveauLogin()
 	{
-		$this->vue->newPseudo();
-		if (isset($_POST['newPseudo'])) {
-			$newPseudo = htmlspecialchars($_POST['newPseudo']);
-			if ($this->modele->pseudoExiste($newPseudo) != 0) {
+		$this->vue->nouveauLogin();
+		if (isset($_POST['nouveauLogin'])) {
+			$nouveauLogin = htmlspecialchars($_POST['nouveauLogin']);
+			if ($this->modele->loginExiste($nouveauLogin) != 0) {
 				// erreur pseudo existe déjà
 				header('');
 				exit();
 			} else {
-				$this->modele->setPseudo($_SESSION['idUtil'], $newPseudo);
-				$_SESSION['nomadmin'] = $newPseudo;
+				$this->modele->setLogin($_SESSION['idUtil'], $nouveauLogin);
+				$_SESSION['login'] = $nouveauLogin;
 				header('');
 				exit();
 			}
 		}
 	}
 
-	public function newPass()
+	public function nouveauMotDePasse()
 	{
-		$this->vue->newPass();
+		$this->vue->nouveauMotDePasse();
 		if (isset($_POST['new_password2'])) {
-			$newPass1 = htmlspecialchars($_POST['new_password1']);
-			$newPass2 = htmlspecialchars($_POST['new_password2']);
+			$nouveauMdp1 = htmlspecialchars($_POST['new_password1']);
+			$nouveauMdp2 = htmlspecialchars($_POST['new_password2']);
 
-			if ($newPass1 == $newPass2) {
-				$passNow = $this->modele->getPassword($_SESSION['idUtil']);
+			if ($nouveauMdp1 == $nouveauMdp2) {
+				$passNow = $this->modele->getPass($_SESSION['idUtil']);
 				if (password_verify($_POST['old_password'], $passNow)) {
-					$newPassHash = password_hash($newPass1,  PASSWORD_BCRYPT);
-					$this->modele->setPass($newPassHash, $_SESSION['idUtil']);
+					$nouveauMdpHash = password_hash($nouveauMdp1,  PASSWORD_BCRYPT);
+					$this->modele->setPass($nouveauMdpHash, $_SESSION['idUtil']);
 					header('');
 					exit();
 				} else {
@@ -103,6 +103,6 @@ class ContAdmin
 
 	public function menu()
 	{
-		$this->vue->printMenu();
+		$this->vue->afficherMenu();
 	}
 }

@@ -8,19 +8,38 @@ class VueTechnicien
 
 
 
-	public function printMenu()
+	public function afficheMenu()
 	{
 	}
 
-	public function listTickets()
+	public function afficheTickets()
 	{
 	}
 
-	public function printTicket()
+	public function afficheTicket()
 	{
 	}
 
-	public function newPass()
+	public function nouveauLogin()
+	{
+		echo '<h3>Changer de pseudo</h3>
+		<hr class="mt-2 mb-4">
+		
+		<div class="card-panel  lighten-4">
+			<form action="user/newPseudo" method="POST" >
+				<div class="row">
+					<div class="col-4 form-group">
+						<label for="newPseudo">Nouveau pseudo</label>
+						<input name="newPseudo" type="text" class="form-control">
+						<button style="margin-top:20px;"class="btn btn-primary" type="submit" name="action">Valider</button>
+					</div>
+				</div>
+			</form>
+		</div>';
+	}
+
+
+	public function nouveauMotDePasse()
 	{
 		echo  '<h3>Changer votre mot de passe</h3>
 		<hr class="mt-2 mb-4">
