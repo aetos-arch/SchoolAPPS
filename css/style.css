@@ -14,10 +14,7 @@
 
 body {
     width: 100%;
-    font-family: 'Crimson Text', serif;
-}
-
-main {
+    font-family: 'Open Sans', serif;
     margin-top: 100px;
 }
 
@@ -48,6 +45,14 @@ a.lire-plus:hover {
     font-size: 15pt;
     background-color: var(--ghost-white);
     box-shadow: 0 0 20px #cacaca;
+}
+
+.carousel-caption {
+    background-color: #60ABC296;
+    border-radius: 21px;
+    right: 35%;
+    bottom: 0.75rem;
+    left: 35%;
 }
 
 h1 {
@@ -98,6 +103,7 @@ nav a {
 nav a:hover {
     text-decoration: none;
     color: var(--armananth-purple);
+
 }
 
 #navbarNavDropdown {
@@ -186,8 +192,16 @@ footer a:hover {
     padding: 15px 10px;
 }
 
-#footer-social, #footer-quicklinks{
+#footer-copyright {
+    padding: 15px 10px;
+}
+
+#footer-social{
     margin: 15px 0;
+}
+
+#footer-quicklinks {
+
 }
 
 .foot-sub-title {
@@ -201,4 +215,5 @@ footer i.fas, i.fab {
 
 footer ul {
     list-style-type: none;
+    text-align: left;
 }
