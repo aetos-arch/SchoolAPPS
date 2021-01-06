@@ -16,13 +16,13 @@ class VueUtilisateur
 	{
 	}
 
-	
-	public function printCommande()
+	public function afficheCommande()
 	{
 	}
 
+
 	// ajouter le select produit
-	public function newTicket()
+	public function nouveauTicket()
 	{
 		echo ' <h3>Création ticket</h3>
 		<hr class="mt-2 mb-4">

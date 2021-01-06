@@ -7,7 +7,7 @@ class ModUser
 	public function __construct()
 	{
 
-		$controllUser = new ContUser();
+		$controllUser = new ContUtilisateur();
 
 		if (isset($_SESSION['idUtil'])) {
 			if (isset($url[1])) {

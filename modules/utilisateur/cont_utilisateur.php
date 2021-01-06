@@ -63,9 +63,9 @@ class ContUtilisateur
 	}
 
 
-	public function newTicket()
+	public function nouveauTicket()
 	{
-		$this->vue->newTicket();
+		$this->vue->nouveauTicket();
 		if (isset($_POST['explication'])) {
 			$result = [
 				'explication' => htmlspecialchars($_POST['explication']),
@@ -96,10 +96,10 @@ class ContUtilisateur
 		$this->vue->afficheCommandes($commandes);
 	}
 
-	public function printCommande()
+	public function afficheCommande()
 	{
 		$idCommande = $_POST['idCommande'];
 		$result = $this->modele->getTicket($idCommande);
-		$this->vue->printCommande($result);
+		$this->vue->afficheCommande($result);
 	}
 }
