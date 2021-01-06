@@ -21,11 +21,11 @@ class ContUtilisateur
 		if (isset($_POST['nouveauLogin'])) {
 			$nouveauLogin = htmlspecialchars($_POST['nouveauLogin']);
 			if ($this->modele->loginExiste($nouveauLogin) != 0) {
-				// erreur pseudo existe déjà
+				// erreur login existe déjà
 				header('');
 				exit();
 			} else {
-				$this->modele->setPseudo($_SESSION['idUtil'], $nouveauLogin);
+				$this->modele->setLogin($_SESSION['idUtil'], $nouveauLogin);
 				$_SESSION['nomUser'] = $nouveauLogin;
 				header('');
 				exit();
@@ -36,9 +36,9 @@ class ContUtilisateur
 	public function nouveauMotDePasse()
 	{
 		$this->vue->nouveauMotDePasse();
-		if (isset($_POST['new_password2'])) {
-			$nouveauMotDePasse1 = htmlspecialchars($_POST['new_password1']);
-			$nouveauMotDePasse2 = htmlspecialchars($_POST['new_password2']);
+		if (isset($_POST['nouveau_password2'])) {
+			$nouveauMotDePasse1 = htmlspecialchars($_POST['nouveau_password1']);
+			$nouveauMotDePasse2 = htmlspecialchars($_POST['nouveau_password2']);
 
 			if ($nouveauMotDePasse1 == $nouveauMotDePasse2) {
 				$passNow = $this->modele->getPassword($_SESSION['idUtil']);
@@ -59,7 +59,7 @@ class ContUtilisateur
 
 	public function menu()
 	{
-		$this->vue->afficheMenu();
+		$this->vue->afficherMenu();
 	}
 
 

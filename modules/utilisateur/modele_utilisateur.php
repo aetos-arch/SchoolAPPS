@@ -59,22 +59,22 @@ class ModeleUtilisateur extends Connexion
 		}
 	}
 
-	public function loginExiste($newPseudo)
+	public function loginExiste($nouveauLogin)
 	{
 		try {
 			$req = Connexion::$bdd->prepare('select login from utilisateurs where login = ?');
-			$req->execute(array($newPseudo));
+			$req->execute(array($nouveauLogin));
 			$nb = $req->rowCount();
 			return $nb;
 		} catch (PDOException $e) {
 		}
 	}
 
-	public function setPseudo($idUtilisateur, $newPseudo)
+	public function setLogin($idUtilisateur, $nouveauLogin)
 	{
 		try {
 			$req = Connexion::$bdd->prepare('update utilisateurs set login = ? where idUtilisateur= ?');
-			$req->execute(array($newPseudo, $idUtilisateur));
+			$req->execute(array($nouveauLogin, $idUtilisateur));
 		} catch (PDOException $e) {
 		}
 	}

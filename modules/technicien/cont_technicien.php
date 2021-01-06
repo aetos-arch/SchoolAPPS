@@ -40,7 +40,7 @@ class ContTechnicien
 
 	public function menu()
 	{
-		$this->vue->afficheMenu();
+		$this->vue->afficherMenu();
 	}
 
 	public function afficheTickets()
