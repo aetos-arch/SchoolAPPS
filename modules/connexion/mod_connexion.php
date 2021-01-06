@@ -13,31 +13,27 @@ class ModConnexion{
         $action='';
 
 
-        // en attendant
+        //TODO : nettoyer en remontant l'explode dans un ModGenerique
         $url = explode('/', $_GET['url']);
         if (isset($url[1])) {
             $action = $url[1];
-            echo $url[1];
         }
-        echo "Action module = " . var_dump($action);
 
         switch ($action) {
             case "deconnexion":
                 $controleur->deconnexion();
                 break;
             case "inscription":
-                $controleur->popInscription();
+                $controleur->inscription();
                 break;
             case "verifConnexion":
-                $controleur->connexion();
+                $controleur->verifConnexion();
                 break;
             default:
                 $controleur->popConnexion();
                 break;
         }
     }
-
-
 
 }
 ?>
