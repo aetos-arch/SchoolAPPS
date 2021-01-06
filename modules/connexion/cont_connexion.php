@@ -18,22 +18,23 @@ class ContConnexion {
         $this->vue->popConnexion();
     }
 
-    function connexion(){
-        $this->modele->connexion($_POST['username'],$_POST['password']);
+    function verifConnexion(){
+        $this->modele->connexion($_POST['login'],$_POST['mdp']);
         $this->vue->affichage();
     }
 
     function deconnexion(){
         $this->modele->deconnexion();
-        //header("Location: index.php");
-    }
-
-    function popInscription(){
-        $this->vue->popInscription();
     }
 
     function inscription(){
-        $this->modele->inscription($_POST['id']);
+        if($this->modele->loginExiste($_POST['login'])==0) {
+            $this->modele->inscription($_POST['login'], $_POST['nom'], $_POST['prenom'],
+                $_POST['mdp'], $_POST['eFacturation'], $_POST['eLivraison'], $_POST['tel'], $_POST['dateNaissance']);
+            if ($this->modele->verifInscription($_SESSION['login'])==1){
+                $this->vue->affichage();
+            }
+        }
     }
 
 }
