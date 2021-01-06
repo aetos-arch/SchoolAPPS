@@ -62,11 +62,11 @@ class ModeleTechnicien extends Connexion
 		}
 	}
 
-	public function loginExiste($newPseudo)
+	public function loginExiste($newLogin)
 	{
 		try {
 			$req = Connexion::$bdd->prepare('select login from utilisateurs where login = ?');
-			$req->execute(array($newPseudo));
+			$req->execute(array($newLogin));
 			$nb = $req->rowCount();
 			return $nb;
 		} catch (PDOException $e) {

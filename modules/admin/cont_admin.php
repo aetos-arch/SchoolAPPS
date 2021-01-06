@@ -65,7 +65,7 @@ class ContAdmin
 		if (isset($_POST['nouveauLogin'])) {
 			$nouveauLogin = htmlspecialchars($_POST['nouveauLogin']);
 			if ($this->modele->loginExiste($nouveauLogin) != 0) {
-				// erreur pseudo existe déjà
+				// erreur Login existe déjà
 				header('');
 				exit();
 			} else {
