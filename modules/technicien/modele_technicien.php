@@ -1,4 +1,7 @@
 <?php
+
+require_once 'config/connexion.php';
+
 class ModeleTechnicien extends Connexion
 {
 	public function __construct()
@@ -27,7 +30,8 @@ class ModeleTechnicien extends Connexion
 	}
 
 
-	public function changerEtat ($idEtat, $idTicket) {
+	public function changerEtat($idEtat, $idTicket)
+	{
 		try {
 			$req = Connexion::$bdd->prepare('update tickets set idEtat = ? where idTicket = ?');
 			$req->execute(array($idEtat, $idTicket));
@@ -37,7 +41,8 @@ class ModeleTechnicien extends Connexion
 		}
 	}
 
-	public function getNombreTicketsEtat ($idTechnicien, $idEtat) {
+	public function getNombreTicketsEtat($idTechnicien, $idEtat)
+	{
 		try {
 			$req = Connexion::$bdd->prepare('select idTicket from tickets where idTechnicien = ? and idEtat = ?');
 			$req->execute(array($idTechnicien, $idEtat));

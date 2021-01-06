@@ -25,15 +25,15 @@ class ModAdmin
                     case 'supprimerTicket':
                         $controllAdmin->supprimerTicket();
                         break;
-                  /*  case 'discussion':
+                        /*  case 'discussion':
                         $controllAdmin->discussion();
                         break; */
                     case 'gestionTechnicien':
                         $controllAdmin->gestionTechnicien();
                         break;
-                   // case 'supprimerTechnicien':
-                    //    $controllAdmin->supprimerTechnicien();
-                    //    break;
+                        // case 'supprimerTechnicien':
+                        //    $controllAdmin->supprimerTechnicien();
+                        //    break;
                     case 'nouveauLogin':
                         $controllAdmin->nouveauLogin();
                         break;
@@ -55,3 +55,9 @@ class ModAdmin
             echo '<h3>Aucune connexion trouvée.</h3>';
     }
 }
+
+?>
+
+<?php
+    $modAdmin = new ModAdmin();
+?>

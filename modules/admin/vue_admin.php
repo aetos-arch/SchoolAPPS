@@ -8,23 +8,19 @@ class VueAdmin
 
 	public function afficherTickets()
 	{
-
 	}
 
 	public function afficherTicket($result)
 	{
-
 	}
-	
+
 	public function afficherTechniciens()
 	{
-
 	}
 
 
 	public function afficherStatistique($result)
 	{
-
 	}
 
 

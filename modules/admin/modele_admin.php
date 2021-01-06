@@ -1,4 +1,7 @@
 <?php
+
+require_once 'config/connexion.php';
+
 class ModeleAdmin extends Connexion
 {
 	public function __construct()
@@ -28,7 +31,8 @@ class ModeleAdmin extends Connexion
 	}
 
 
-	public function changerEtatTicket ($idEtat, $idTicket) {
+	public function changerEtatTicket($idEtat, $idTicket)
+	{
 		try {
 			$req = Connexion::$bdd->prepare('update tickets set idEtat = ? where idTicket = ?');
 			$req->execute(array($idEtat, $idTicket));

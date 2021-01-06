@@ -6,8 +6,6 @@ class VueUtilisateur
 	{
 	}
 
-
-
 	public function afficherMenu()
 	{
 	}
@@ -43,7 +41,6 @@ class VueUtilisateur
 
 	public function afficheTickets()
 	{
-
 	}
 
 	public function afficheTicket()
