@@ -26,12 +26,12 @@ class ModTechnicien
 					case 'tickets':
 						$controllUser->afficheTickets();
 						break;
-					//case 'changerEtat':
-					//	$controllUser->changerEtat();
-					//	break;
-					//case 'discussion':
-					//	$controllUser->discussion();
-					//	break;
+						//case 'changerEtat':
+						//	$controllUser->changerEtat();
+						//	break;
+						//case 'discussion':
+						//	$controllUser->discussion();
+						//	break;
 					default:
 						# code...
 						break;
@@ -41,3 +41,10 @@ class ModTechnicien
 			echo '<h3>Aucune connexion trouvée.</h3>';
 	}
 }
+
+
+?>
+
+<?php
+$modTechnicien = new ModTechnicien();
+?>

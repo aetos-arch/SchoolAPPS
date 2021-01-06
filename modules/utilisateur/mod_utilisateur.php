@@ -1,11 +1,20 @@
 <?php
 require_once 'cont_utilisateur.php';
 
-class ModUser
+class ModUtilisateur
 {
 
 	public function __construct()
 	{
+
+
+		// en attendant
+		$url = explode('/', $_GET['url']);
+		if (isset($url[1])) {
+			$action = $url[1];
+			echo $url[1];
+		}
+	
 
 		$controllUser = new ContUtilisateur();
 
@@ -47,3 +56,8 @@ class ModUser
 			echo '<h3>Aucune connexion trouvée.</h3>';
 	}
 }
+?>
+
+<?php
+    $modUtilisateur = new ModUtilisateur();
+?>

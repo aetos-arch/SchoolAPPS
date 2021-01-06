@@ -11,6 +11,7 @@ if (isset($url[0])) {
     $page = 'home';
 }
 
+
 // Si c'est pas un page
 if (!in_array($page, array('connexion', 'utilisateur', 'technicien', 'admin', 'panier', 'avis'))) {
     // Si c'est une page static
