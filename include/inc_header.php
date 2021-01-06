@@ -17,9 +17,9 @@
                         Logiciels
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">School Dev</a>
-                        <a class="dropdown-item" href="#">School Net</a>
-                        <a class="dropdown-item" href="#">Plateforme E-education</a>
+                        <a class="dropdown-item" href="schooldev">School Dev</a>
+                        <a class="dropdown-item" href="schoolnet">School Net</a>
+                        <a class="dropdown-item" href="E-education">Plateforme E-education</a>
                     </div>
                 </li>
                 <li class="nav-item">
