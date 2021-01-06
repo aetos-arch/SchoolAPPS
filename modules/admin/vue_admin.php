@@ -6,30 +6,30 @@ class VueAdmin
 	{
 	}
 
-	public function listTickets()
+	public function afficherTickets()
 	{
 
 	}
 
-	public function printTicket($result)
+	public function afficherTicket($result)
 	{
 
 	}
 	
-	public function printTechniciens()
+	public function afficherTechniciens()
 	{
 
 	}
 
 
-	public function stat($result)
+	public function afficherStatistique($result)
 	{
 
 	}
 
 
 
-	public function newPass()
+	public function nouveauMotDePasse()
 	{
 		echo  '<h3>Changer votre mot de passe</h3>
 		<hr class="mt-2 mb-4">
@@ -56,7 +56,7 @@ class VueAdmin
 		</form>';
 	}
 
-	public function newPseudo()
+	public function nouveauLogin()
 	{
 		echo '<h3>Changer de pseudo</h3>
 		<hr class="mt-2 mb-4">
@@ -75,7 +75,7 @@ class VueAdmin
 	}
 
 
-	public function printMenu()
+	public function afficherMenu()
 	{
 	}
 }

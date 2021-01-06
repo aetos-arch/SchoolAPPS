@@ -1,8 +1,8 @@
 <?php
-require_once 'vue_user.php';
-require_once 'modele_user.php';
+require_once 'vue_utilisateur.php';
+require_once 'modele_utilisateur.php';
 
-class ContUser
+class ContUtilisateur
 {
 	private $vue;
 	private $modele;
@@ -10,41 +10,41 @@ class ContUser
 
 	public function __construct()
 	{
-		$this->vue = new  VueUser();
-		$this->modele = new  ModeleUser();
+		$this->vue = new  VueUtilisateur();
+		$this->modele = new  ModeleUtilisateur();
 	}
 
 
-	public function newPseudo()
+	public function nouveauLogin()
 	{
-		$this->vue->newPseudo();
-		if (isset($_POST['newPseudo'])) {
-			$newPseudo = htmlspecialchars($_POST['newPseudo']);
-			if ($this->modele->pseudoExiste($newPseudo) != 0) {
+		$this->vue->nouveauLogin();
+		if (isset($_POST['nouveauLogin'])) {
+			$nouveauLogin = htmlspecialchars($_POST['nouveauLogin']);
+			if ($this->modele->loginExiste($nouveauLogin) != 0) {
 				// erreur pseudo existe déjà
 				header('');
 				exit();
 			} else {
-				$this->modele->setPseudo($_SESSION['idUtil'], $newPseudo);
-				$_SESSION['nomUser'] = $newPseudo;
+				$this->modele->setPseudo($_SESSION['idUtil'], $nouveauLogin);
+				$_SESSION['nomUser'] = $nouveauLogin;
 				header('');
 				exit();
 			}
 		}
 	}
 
-	public function newPass()
+	public function nouveauMotDePasse()
 	{
-		$this->vue->newPass();
+		$this->vue->nouveauMotDePasse();
 		if (isset($_POST['new_password2'])) {
-			$newPass1 = htmlspecialchars($_POST['new_password1']);
-			$newPass2 = htmlspecialchars($_POST['new_password2']);
+			$nouveauMotDePasse1 = htmlspecialchars($_POST['new_password1']);
+			$nouveauMotDePasse2 = htmlspecialchars($_POST['new_password2']);
 
-			if ($newPass1 == $newPass2) {
+			if ($nouveauMotDePasse1 == $nouveauMotDePasse2) {
 				$passNow = $this->modele->getPassword($_SESSION['idUtil']);
 				if (password_verify($_POST['old_password'], $passNow)) {
-					$newPassHash = password_hash($newPass1,  PASSWORD_BCRYPT);
-					$this->modele->setPass($newPassHash, $_SESSION['idUtil']);
+					$nouveauMotDePasseHash = password_hash($nouveauMotDePasse1,  PASSWORD_BCRYPT);
+					$this->modele->setPass($nouveauMotDePasseHash, $_SESSION['idUtil']);
 					header('');
 					exit();
 				} else {
@@ -59,7 +59,7 @@ class ContUser
 
 	public function menu()
 	{
-		$this->vue->printMenu();
+		$this->vue->afficheMenu();
 	}
 
 
@@ -77,23 +77,23 @@ class ContUser
 		}
 	}
 
-	public function listTickets()
+	public function afficheTickets()
 	{
 		$result = $this->modele->getTickets(($_SESSION['idUtil']));
-		$this->vue->listTickets($result);
+		$this->vue->afficheTickets($result);
 	}
 
-	public function printTicket()
+	public function afficheTicket()
 	{
 		$idTicket = $_POST['idTicket'];
 		$result = $this->modele->getTicket($idTicket);
-		$this->vue->printTicket($result);
+		$this->vue->afficheTicket($result);
 	}
 
-	public function listCommandes()
+	public function afficheCommandes()
 	{
 		$commandes = $this->modele->getCommandes($_SESSION['idUtil']);
-		$this->vue->listCommandes($commandes);
+		$this->vue->afficheCommandes($commandes);
 	}
 
 	public function printCommande()

@@ -1,13 +1,13 @@
 <?php
-require_once 'cont_technicien.php';
+require_once 'cont_utilisateur.php';
 
-class ModTechnicien
+class ModUser
 {
 
 	public function __construct()
 	{
 
-		$controllUser = new ContTechnicien();
+		$controllUser = new ContUser();
 
 		if (isset($_SESSION['idUtil'])) {
 			if (isset($url[1])) {
@@ -17,20 +17,26 @@ class ModTechnicien
 					case 'menu':
 						$controllUser->menu();
 						break;
+					case 'nouveauLogin':
+						$controllUser->nouveauLogin();
+						break;
 					case 'nouveauMotDePasse':
 						$controllUser->nouveauMotDePasse();
 						break;
-					case 'ticket':
-						$controllUser->afficheTicket();
+					case 'afficheCommandes':
+						$controllUser->afficheCommandes();
 						break;
-					case 'tickets':
+					case 'afficheTickets':
 						$controllUser->afficheTickets();
 						break;
-					case 'changerEtat':
-						$controllUser->changerEtat();
+					case 'commandes':
+						$controllUser->afficheCommandes();
 						break;
-					case 'discussion':
-						$controllUser->discussion();
+					case 'nouveauTicket':
+						$controllUser->nouveauTicket();
+						break;
+					case 'ticket':
+						$controllUser->afficheTicket();
 						break;
 					default:
 						# code...

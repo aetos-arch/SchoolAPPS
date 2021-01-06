@@ -16,29 +16,32 @@ class ModAdmin
                     case 'menu':
                         $controllAdmin->menu();
                         break;
-                    case 'listTickets':
-                        $controllAdmin->listTickets();
+                    case 'tickets':
+                        $controllAdmin->afficherTickets();
                         break;
-                    case 'printTicket':
-                        $controllAdmin->printTicket();
+                    case 'ticket':
+                        $controllAdmin->afficherTicket();
                         break;
-                    case 'deleteTicket':
-                        $controllAdmin->deleteTicket();
+                    case 'supprimerTicket':
+                        $controllAdmin->supprimerTicket();
                         break;
+                  /*  case 'discussion':
+                        $controllAdmin->discussion();
+                        break; */
                     case 'gestionTechnicien':
                         $controllAdmin->gestionTechnicien();
                         break;
-                    case 'deleteTechnicien':
-                        $controllAdmin->gestionTechnicien();
+                   // case 'supprimerTechnicien':
+                    //    $controllAdmin->supprimerTechnicien();
+                    //    break;
+                    case 'nouveauLogin':
+                        $controllAdmin->nouveauLogin();
                         break;
-                    case 'newPseudo':
-                        $controllAdmin->newPseudo();
+                    case 'nouveauMotDePasse':
+                        $controllAdmin->nouveauMotDePasse();
                         break;
-                    case 'newPass':
-                        $controllAdmin->newPass();
-                        break;
-                    case 'stat':
-                        $controllAdmin->stat();
+                    case 'statistique':
+                        $controllAdmin->statistique();
                         break;
                     case 'assignerTicket':
                         $controllAdmin->assignerTicket();
