@@ -11,8 +11,8 @@ class Connexion
     {
         $db_host = "localhost";
         $user = "root";
-        $password = "root";
-        $db_name = "SchoolAPPS";
+        $password = "";
+        $db_name = "schoolapps";
         $dns = 'mysql:host=' . $db_host . ';dbname=' . $db_name . ';charset=utf8';
         try {
             self::$bdd = new PDO($dns, $user, $password);

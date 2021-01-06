@@ -1,6 +1,8 @@
 <?php
+
 require_once 'config/connexion.php';
-class ModeleUser extends Connexion
+
+class ModeleUtilisateur extends Connexion
 {
 	public function __construct()
 	{
@@ -20,7 +22,7 @@ class ModeleUser extends Connexion
 	public function getCommandes($idUtilisateur)
 	{
 		try {
-			$req = Connexion::$bdd->prepare('select * from paniers where idUtilisateur=?');
+			$req = Connexion::$bdd->prepare('select * from paniers where idUtilisateur=? and idCommandes is not null');
 			$req->execute(array($idUtilisateur));
 			$result = $req->fetch();
 			return $result;
@@ -60,22 +62,22 @@ class ModeleUser extends Connexion
 		}
 	}
 
-	public function pseudoExiste($newPseudo)
+	public function loginExiste($nouveauLogin)
 	{
 		try {
 			$req = Connexion::$bdd->prepare('select login from utilisateurs where login = ?');
-			$req->execute(array($newPseudo));
+			$req->execute(array($nouveauLogin));
 			$nb = $req->rowCount();
 			return $nb;
 		} catch (PDOException $e) {
 		}
 	}
 
-	public function setPseudo($idUtilisateur, $newPseudo)
+	public function setLogin($idUtilisateur, $nouveauLogin)
 	{
 		try {
 			$req = Connexion::$bdd->prepare('update utilisateurs set login = ? where idUtilisateur= ?');
-			$req->execute(array($newPseudo, $idUtilisateur));
+			$req->execute(array($nouveauLogin, $idUtilisateur));
 		} catch (PDOException $e) {
 		}
 	}

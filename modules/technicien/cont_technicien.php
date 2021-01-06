@@ -14,18 +14,18 @@ class ContTechnicien
 		$this->modele = new  ModeleTechnicien();
 	}
 
-	public function newPass()
+	public function nouveauMotDePasse()
 	{
-		$this->vue->newPass();
-		if (isset($_POST['new_password2'])) {
-			$newPass1 = $_POST['new_password1'];
-			$newPass2 = $_POST['new_password2'];
+		$this->vue->nouveauMotDePasse();
+		if (isset($_POST['nouveauMotDePasse2'])) {
+			$nouveauMotDePasse1 = $_POST['nouveauMotDePasse1'];
+			$nouveauMotDePasse2 = $_POST['nouveauMotDePasse2'];
 
-			if ($newPass1 == $newPass2) {
-				$passNow = $this->modele->getPassword($_SESSION['idUtil']);
+			if ($nouveauMotDePasse1 == $nouveauMotDePasse2) {
+				$passNow = $this->modele->getPass($_SESSION['idUtil']);
 				if (password_verify($_POST['old_password'], $passNow)) {
-					$newPassHash = password_hash($newPass1,  PASSWORD_BCRYPT);
-					$this->modele->setPass($newPassHash, $_SESSION['idUtil']);
+					$nouveauMotDePasseHash = password_hash($nouveauMotDePasse1,  PASSWORD_BCRYPT);
+					$this->modele->setPass($nouveauMotDePasseHash, $_SESSION['idUtil']);
 					header('');
 					exit();
 				} else {
@@ -40,19 +40,19 @@ class ContTechnicien
 
 	public function menu()
 	{
-		$this->vue->printMenu();
+		$this->vue->afficherMenu();
 	}
 
-	public function listTickets()
+	public function afficheTickets()
 	{
 		$result = $this->modele->getTickets(($_SESSION['idUtil']));
-		$this->vue->listTickets($result);
+		$this->vue->afficheTickets($result);
 	}
 
-	public function printTicket()
+	public function afficheTicket()
 	{
 		$idTicket = $_POST['idTicket'];
 		$result = $this->modele->getTicket($idTicket);
-		$this->vue->printTicket($result);
+		$this->vue->afficheTicket($result);
 	}
 }

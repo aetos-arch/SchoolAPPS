@@ -1,20 +1,59 @@
 <?php
+
+require_once 'config/connexion.php';
+
 class ModeleTechnicien extends Connexion
 {
 	public function __construct()
 	{
 	}
+	public function getTicketsEtat($idEtat, $idUtilisateur)
+	{
+		try {
+			$req = Connexion::$bdd->prepare('select * from tickets where idEtat = ? and idUtilisateur = ?');
+			$req->execute(array($idEtat, $idUtilisateur));
+			$result = $req->fetch();
+			return $result;
+		} catch (PDOException $e) {
+		}
+	}
 
 	public function getTicket($idTicket)
 	{
 		try {
-			$req = Connexion::$bdd->prepare('select * from tickets where idTicket =?');
+			$req = Connexion::$bdd->prepare('select * from tickets where idTicket = ?');
 			$req->execute(array($idTicket));
 			$result = $req->fetch();
 			return $result;
 		} catch (PDOException $e) {
 		}
 	}
+
+
+	public function changerEtat($idEtat, $idTicket)
+	{
+		try {
+			$req = Connexion::$bdd->prepare('update tickets set idEtat = ? where idTicket = ?');
+			$req->execute(array($idEtat, $idTicket));
+			$result = $req->fetch();
+			return $result;
+		} catch (PDOException $e) {
+		}
+	}
+
+	public function getNombreTicketsEtat($idTechnicien, $idEtat)
+	{
+		try {
+			$req = Connexion::$bdd->prepare('select idTicket from tickets where idTechnicien = ? and idEtat = ?');
+			$req->execute(array($idTechnicien, $idEtat));
+			$nb = $req->rowCount();
+			return $nb;
+		} catch (PDOException $e) {
+		}
+	}
+
+
+
 
 
 	public function getTickets($idUtilisateur)
@@ -28,18 +67,18 @@ class ModeleTechnicien extends Connexion
 		}
 	}
 
-	public function pseudoExiste($newPseudo)
+	public function loginExiste($newLogin)
 	{
 		try {
 			$req = Connexion::$bdd->prepare('select login from utilisateurs where login = ?');
-			$req->execute(array($newPseudo));
+			$req->execute(array($newLogin));
 			$nb = $req->rowCount();
 			return $nb;
 		} catch (PDOException $e) {
 		}
 	}
 
-	public function getPassword($idUtilisateur)
+	public function getPass($idUtilisateur)
 	{
 		try {
 			$req = Connexion::$bdd->prepare('select hashMdp from utilisateurs where idUtilisateur=?');
