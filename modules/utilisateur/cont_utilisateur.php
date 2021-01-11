@@ -92,7 +92,9 @@ class ContUtilisateur
 
 	public function afficheCommandes()
 	{
-		$commandes = $this->modele->getCommandes($_SESSION['idUtil']);
+		//$commandes = $this->modele->getCommandes($_SESSION['idUtil']);
+		$commandes = $this->modele->getCommandes(1);
+		var_dump($commandes);
 		$this->vue->afficheCommandes($commandes);
 	}
 
