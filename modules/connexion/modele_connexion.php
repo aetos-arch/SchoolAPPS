@@ -37,7 +37,7 @@ class ModeleConnexion extends Connexion{
         $req = $selectPreparee->fetchAll();
 
         $_SESSION['idUtil']=$req[0]['idUtilisateur'];
-        $_SESSION['login'] = $login;
+        $_SESSION['login'] = $req[0]['login'];
     }
 
     public function loginExiste($newPseudo)
