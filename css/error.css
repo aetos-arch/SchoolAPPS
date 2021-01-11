@@ -1,0 +1,10 @@
+main#404-error {
+    font-family: "Open Sans", sans-serif;
+    text-align: center;
+}
+
+.big-info {
+    font-size: 3vh;
+    margin: 50px 25px !important;
+    text-align: center;
+}
