@@ -28,6 +28,17 @@ class ModeleAvis extends Connexion
 		}
 	}
 
+	public function avisExiste($idUtilisateur, $idProduit)
+	{
+		try {
+			$req = Connexion::$bdd->prepare('select idUtilisateur from avis where idUtilisateur = ? and idProduit = ?');
+			$req->execute(array($idUtilisateur, $idProduit));
+			$nb = $req->rowCount();
+			return $nb;
+		} catch (PDOException $e) {
+		}
+	}
+
 
 	public function supprimerAvis($idAvis)
 	{
