@@ -27,7 +27,7 @@ if (!in_array($page, array('connexion', 'utilisateur', 'technicien', 'admin', 'p
         $pageContent = ob_get_clean();
         require 'layout.php';
     } else { // Ni module ni page static
-        echo "Aucun acces";
+        require "static/error404.php";
         http_response_code(403);
         die;
     }

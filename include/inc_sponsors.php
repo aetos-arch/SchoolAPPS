@@ -1,9 +1,9 @@
 <div class="container content-block">
     <h1>Nos Sponsors</h1>
     <section class="row sponsor">
-            <article class="col"><img class="rounded-2" src="/images/100x100.png" alt="First slide"></article>
-            <article class="col"><img class="rounded-2" src="/images/100x100.png" alt="First slide"></article>
-            <article class="col"><img class="rounded-2" src="/images/100x100.png" alt="First slide"></article>
-            <article class="col"><img class="rounded-2" src="/images/100x100.png" alt="First slide"></article>
+            <div class="col sponsor"><img class="rounded-2" src="/images/100x100.png" alt="First slide"></div>
+            <div class="col sponsor"><img class="rounded-2" src="/images/100x100.png" alt="First slide"></div>
+            <div class="col sponsor"><img class="rounded-2" src="/images/100x100.png" alt="First slide"></div>
+            <div class="col sponsor"><img class="rounded-2" src="/images/100x100.png" alt="First slide"></div>
     </section>
 </div>
