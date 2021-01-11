@@ -18,7 +18,7 @@ class ModUtilisateur
 
 		$controllUser = new ContUtilisateur();
 
-		if (isset($_SESSION['idUtil'])) {
+	//	if (isset($_SESSION['idUtil'])) {
 			if (isset($url[1])) {
 				$action = $url[1];
 
@@ -52,8 +52,8 @@ class ModUtilisateur
 						break;
 				}
 			}
-		} else
-			echo '<h3>Aucune connexion trouvée.</h3>';
+	//	} else
+		//	echo '<h3>Aucune connexion trouvée.</h3>';
 	}
 }
 ?>
