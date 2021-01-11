@@ -1,4 +1,10 @@
 <?php
+
+if(!isset($_SESSION['login']) && !isset($_SESSION['idUtil']) && !defined('CONSTANT')) {
+    session_start();
+    define('CONSTANT', NULL);
+}
+
 $url = '';
 
 if (isset($_GET['url'])) {

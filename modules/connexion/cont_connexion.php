@@ -25,6 +25,8 @@ class ContConnexion {
 
     function deconnexion(){
         $this->modele->deconnexion();
+        echo '<main>Vous avez bien été déconnecté(e).<br>
+            <a href="/home">Retour à la page d\'accueil</a></main>';
     }
 
     function inscription(){
