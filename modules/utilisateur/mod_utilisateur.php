@@ -16,7 +16,7 @@ class ModUtilisateur
 		}
 	
 
-		$controllUser = new ContUtilisateur();
+		$controllUtilisateur = new ContUtilisateur();
 
 	//	if (isset($_SESSION['idUtil'])) {
 			if (isset($url[1])) {
@@ -24,28 +24,28 @@ class ModUtilisateur
 
 				switch ($action) {
 					case 'menu':
-						$controllUser->menu();
+						$controllUtilisateur->menu();
 						break;
 					case 'nouveauLogin':
-						$controllUser->nouveauLogin();
+						$controllUtilisateur->nouveauLogin();
 						break;
 					case 'nouveauMotDePasse':
-						$controllUser->nouveauMotDePasse();
+						$controllUtilisateur->nouveauMotDePasse();
 						break;
 					case 'afficheCommandes':
-						$controllUser->afficheCommandes();
+						$controllUtilisateur->afficheCommandes();
 						break;
 					case 'afficheTickets':
-						$controllUser->afficheTickets();
+						$controllUtilisateur->afficheTickets();
 						break;
 					case 'commandes':
-						$controllUser->afficheCommandes();
+						$controllUtilisateur->afficheCommandes();
 						break;
 					case 'nouveauTicket':
-						$controllUser->nouveauTicket();
+						$controllUtilisateur->nouveauTicket();
 						break;
 					case 'ticket':
-						$controllUser->afficheTicket();
+						$controllUtilisateur->afficheTicket();
 						break;
 					default:
 						# code...
