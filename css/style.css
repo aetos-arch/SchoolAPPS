@@ -18,6 +18,28 @@ body {
     margin-top: 100px;
 }
 
+@media screen and (max-width: 1150px) {
+    #brand-homelink span {
+        visibility: hidden;
+        clear: both;
+        float: left;
+        margin: 10px auto 5px 20px;
+        width: 28%;
+        display: none;
+    }
+
+    #brand-homelink {
+        margin-left: 5%;
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #footer-left {
+        border-right: none !important;
+    }
+}
+
 section.row {
     justify-content: center;
     margin: 0;
@@ -58,38 +80,24 @@ a.lire-plus:hover {
 h1 {
     color: var(--armananth-purple);
     font-family: "Open Sans", sans-serif;
-    font-size: 25px;
+    font-size: 30px;
     text-align: center;
     margin: 12px auto;
 }
 
 p {
     font-family: 'Crimson Text', serif;
+
 }
 
 #brand-homelink {
-    width: 75%;
+    width: 60%;
 }
 
 #brand-homelink span {
     font-size: 20px;
 }
 
-@media screen and (max-width: 1150px) {
-    #brand-homelink span {
-        visibility: hidden;
-        clear: both;
-        float: left;
-        margin: 10px auto 5px 20px;
-        width: 28%;
-        display: none;
-    }
-
-    #brand-homelink {
-        margin-left: 5%;
-        width: 30%;
-    }
-}
 
 #logo {
     width: 90px;
@@ -128,7 +136,6 @@ nav a:hover {
 .articles {
     text-align: center;
     padding: 0.5% 0 0;
-    width: 25%;
     margin: 20px 15px;
     border-radius: 5px;
     opacity: 0.9;
@@ -146,6 +153,10 @@ nav a:hover {
     background-color: var(--cg-blue-light);
 }
 
+.products {
+    margin: 15px 5px;
+}
+
 .actu {
     background-color: var(--armananth-purple-light);
     padding: 1% 2% 0;
@@ -157,7 +168,7 @@ nav a:hover {
     opacity: 1;
 }
 
-section.sponsor {
+.sponsor {
     margin: 20px 0;
     text-align: center;
 }
@@ -192,10 +203,6 @@ footer a:hover {
     padding: 15px 10px;
 }
 
-#footer-copyright {
-    padding: 15px 10px;
-}
-
 #footer-social{
     margin: 15px 0;
 }
@@ -206,6 +213,7 @@ footer a:hover {
 
 .foot-sub-title {
     font-size: 24px;
+    margin: 10px 0px;
 }
 
 footer i.fas, i.fab {
@@ -215,5 +223,5 @@ footer i.fas, i.fab {
 
 footer ul {
     list-style-type: none;
-    text-align: left;
+    text-align: center;
 }
