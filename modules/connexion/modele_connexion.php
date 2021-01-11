@@ -14,7 +14,7 @@ class ModeleConnexion extends Connexion{
 
         if ($req!=NULL) {
             $_SESSION['idUtil']=$req[0]['idUtilisateur'];
-            $_SESSION['login'] = $pseudo;
+            $_SESSION['login'] = $req[0]['login'];
         }else{
             echo "<br>L'identifiant ou le mot de passe que vous avez saisi est erroné, veuillez recommencer s'il vous plait.";
         }
@@ -36,8 +36,7 @@ class ModeleConnexion extends Connexion{
         $selectPreparee->execute($reponse);
         $req = $selectPreparee->fetchAll();
 
-        $_SESSION['idUtil']=$req[0]['idUtilisateur'];
-        $_SESSION['login'] = $req[0]['login'];
+        $this->connexion($login,$mdp);
     }
 
     public function loginExiste($newPseudo)
