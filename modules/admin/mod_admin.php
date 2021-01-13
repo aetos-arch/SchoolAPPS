@@ -3,13 +3,12 @@ require_once 'cont_admin.php';
 
 class ModAdmin
 {
-
     public function __construct()
     {
 
         $controllAdmin = new ContAdmin();
 
-        if (isset($_SESSION['idUtil'])) {
+		if (isset($_SESSION['idTypeUtilisateur']) && $_SESSION['idTypeUtilisateur'] == 1) {
             if (isset($url[1])) {
                 $action = $url[1];
                 switch ($action) {
