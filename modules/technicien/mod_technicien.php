@@ -9,7 +9,7 @@ class ModTechnicien
 
 		$controllUser = new ContTechnicien();
 
-		if (isset($_SESSION['idUtil'])) {
+		if (isset($_SESSION['idTypeUtilisateur']) && $_SESSION['idTypeUtilisateur'] == 2) {
 			if (isset($url[1])) {
 				$action = $url[1];
 

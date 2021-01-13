@@ -18,7 +18,7 @@ class ModUtilisateur
 
 		$controllUtilisateur = new ContUtilisateur();
 
-	//	if (isset($_SESSION['idUtil'])) {
+		//if (isset($_SESSION['idTypeUtilisateur']) && $_SESSION['idTypeUtilisateur'] == 3) {
 			if (isset($url[1])) {
 				$action = $url[1];
 
