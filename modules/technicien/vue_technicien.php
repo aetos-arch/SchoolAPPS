@@ -6,8 +6,6 @@ class VueTechnicien
 	{
 	}
 
-
-
 	public function afficherMenu()
 	{
 	}

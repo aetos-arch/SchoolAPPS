@@ -1,17 +1,15 @@
 <?php
+
+require_once 'modules/generique/cont_generique.php';
 require_once 'vue_technicien.php';
 require_once 'modele_technicien.php';
 
-class ContTechnicien
+class ContTechnicien extends ContGenerique
 {
-	private $vue;
-	private $modele;
-
 
 	public function __construct()
 	{
-		$this->vue = new  VueTechnicien();
-		$this->modele = new  ModeleTechnicien();
+        parent::__contruction(new ModeleTechnicien(), new VueTechnicien());
 	}
 
 	public function nouveauMotDePasse()

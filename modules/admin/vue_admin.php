@@ -1,5 +1,8 @@
 <?php
-class VueAdmin
+
+require_once 'modules/generique/vue_generique.php';
+
+class VueAdmin extends VueGenerique
 {
 
 	public function __construct()

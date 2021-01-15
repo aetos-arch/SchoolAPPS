@@ -1,6 +1,8 @@
 <?php
 
-class VueConnexion{
+require_once 'modules/generique/vue_generique.php';
+
+class VueConnexion extends VueGenerique {
 
     public function __construct () {}
 

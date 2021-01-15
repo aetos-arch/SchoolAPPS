@@ -1,17 +1,14 @@
 <?php
+require_once 'modules/generique/cont_generique.php';
 require_once 'vue_avis.php';
 require_once 'modele_avis.php';
 
-class ContAvis
+class ContAvis extends ContGenerique
 {
-    private $vue;
-    private $modele;
-
 
     public function __construct()
     {
-        $this->vue = new  VueAvis();
-        $this->modele = new  ModeleAvis();
+        parent::__construct(new modeleAvis(), new VueAvis());
     }
 
     public function donnerAvis()

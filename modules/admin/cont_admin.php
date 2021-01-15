@@ -1,17 +1,14 @@
 <?php
+require_once 'modules/generique/cont_generique.php';
 require_once 'vue_admin.php';
 require_once 'modele_admin.php';
 
-class ContAdmin
+class ContAdmin extends ContGenerique
 {
-	private $vue;
-	private $modele;
-
 
 	public function __construct()
 	{
-		$this->vue = new VueAdmin();
-		$this->modele = new  ModeleAdmin();
+	    parent::__construct(new ModeleAdmin, new VueAdmin());
 	}
 
 	public function afficherTickets()

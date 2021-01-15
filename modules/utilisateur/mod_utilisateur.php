@@ -1,18 +1,15 @@
 <?php
-require_once 'cont_utilisateur.php';
 
-class ModUtilisateur
+require_once 'modules/generique/mod_generique.php';
+
+class ModUtilisateur extends ModGenerique
 {
 
-	public function __construct()
+	public function __construct($url)
 	{
 
-
-		// en attendant
-		$url = explode('/', $_GET['url']);
 		if (isset($url[1])) {
 			$action = $url[1];
-			echo $url[1];
 		}
 	
 

@@ -1,8 +1,8 @@
 <?php
 
-require_once 'config/connexion.php';
+require_once 'modules/generique/modele_generique.php';
 
-class ModeleUtilisateur extends Connexion
+class ModeleUtilisateur extends ModeleGenerique
 {
 	public function __construct()
 	{
@@ -56,7 +56,7 @@ class ModeleUtilisateur extends Connexion
 	public function creerTicket($result)
 	{
 		try {
-			$req = Connexion::$bdd->prepare('INSERT INTO tickets (intitule, explication, idEtat, idUtilisateur, idProduit) values(?, ?, ?, ?, ?)');
+			$req = Connexion::$bdd->prepare('INSERT INTO tickets (intitule, explication, idEtat, idUtilisateur, idProduit) VALUES(?, ?, ?, ?, ?)');
 			$req->execute(array($result['intitule'], $result['explication'],  3, $result['idUtilisateur'],  $result['idProduit']));
 		} catch (PDOException $e) {
 		}
