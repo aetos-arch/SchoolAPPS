@@ -1,20 +1,12 @@
 <?php
+require_once 'modules/generique/mod_generique.php';
 require_once 'cont_avis.php';
 
-class ModAvis
+class ModAvis extends ModGenerique
 {
 
-    public function __construct()
+    public function __construct($url)
     {
-
-
-        // en attendant
-        $url = explode('/', $_GET['url']);
-        if (isset($url[1])) {
-            $action = $url[1];
-            echo $url[1];
-        }
-
 
         $controllAvis = new ContAvis();
 
@@ -45,5 +37,5 @@ class ModAvis
 ?>
 
 <?php
-$modAvis = new ModAvis();
+$modAvis = new ModAvis((isset($url)) ? $url : null);
 ?>

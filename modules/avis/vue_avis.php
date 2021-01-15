@@ -1,5 +1,8 @@
 <?php
-class VueAvis
+
+require_once 'modules/generique/vue_generique.php';
+
+class VueAvis extends VueGenerique
 {
 
 	public function __construct()

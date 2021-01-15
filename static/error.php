@@ -21,10 +21,8 @@
 <?php require 'include/inc_header.php' ?>
 <main id="404-error">
     <div class="container-fluid row">
+        <div class="big-info">Erreur <?php echo (isset($error)) ? $error : 'inconnu';?></div><br>
         <h1 class="big-info" id="error-h1">Oups, il semblerait que cette page n'existe pas ...</h1>
-
-        <div class="big-info">Erreur 404</div><br>
-
         <a class="big-info" href="home">Me ramener à l'accueil</a>
     </div>
 </main>

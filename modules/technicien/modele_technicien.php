@@ -2,7 +2,7 @@
 
 require_once 'config/connexion.php';
 
-class ModeleTechnicien extends Connexion
+class ModeleTechnicien extends ModeleGenerique
 {
 	public function __construct()
 	{
