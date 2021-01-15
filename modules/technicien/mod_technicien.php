@@ -1,7 +1,7 @@
 <?php
 require_once 'cont_technicien.php';
 
-class ModTechnicien
+class ModTechnicien extends ModGenerique
 {
 
 	public function __construct()
@@ -42,9 +42,8 @@ class ModTechnicien
 	}
 }
 
-
 ?>
 
 <?php
-$modTechnicien = new ModTechnicien();
+$modTechnicien = new ModTechnicien($url);
 ?>

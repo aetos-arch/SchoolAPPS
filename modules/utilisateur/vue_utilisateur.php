@@ -1,5 +1,8 @@
 <?php
-class VueUtilisateur
+
+require_once 'modules/generique/vue_generique.php';
+
+class VueUtilisateur extends VueGenerique
 {
 
 	public function __construct()

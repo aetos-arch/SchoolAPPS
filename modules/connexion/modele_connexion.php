@@ -17,6 +17,7 @@ class ModeleConnexion extends Connexion
         if ($req != NULL) {
             $_SESSION['idUtil'] = $req[0]['idUtilisateur'];
             $_SESSION['login'] = $pseudo;
+            $_SESSION['idTypeUtilisateur'] = 1;
         } else {
             echo "<br>L'identifiant ou le mot de passe que vous avez saisi est erroné, veuillez recommencer s'il vous plait.";
         }
