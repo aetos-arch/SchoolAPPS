@@ -17,13 +17,13 @@
                         Logiciels
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="/schooldev">School Dev</a>
-                        <a class="dropdown-item" href="/schoolnet">School Net</a>
+                        <a class="dropdown-item" href="/schoolDev">School Dev</a>
+                        <a class="dropdown-item" href="/schoolNet">School Net</a>
                         <a class="dropdown-item" href="/E-education">Plateforme E-education</a>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/actualites">Actualités</a>
+                    <a class="nav-link" href="/articles">Nos articles</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/propos">A propos</a>
@@ -42,7 +42,7 @@
                                     <a class="dropdown-item" href="/connexion/popInscription">S\'inscrire</a>';
                         }else {
                             echo '
-                                    <p class="dropdown-item">'.$_SESSION['login'].'</p>
+                                    <p class="dropdown-item">'.ucfirst($_SESSION['login']).'</p>                            
                                     <a class="dropdown-item" href="/connexion">Test</a>
                                     <a class="dropdown-item" href="/connexion/deconnexion">Se déconnecter</a>';
                         }

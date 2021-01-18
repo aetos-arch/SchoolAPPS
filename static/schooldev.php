@@ -1,6 +1,6 @@
 <main>
     <div class="container row" id="home-actus">
-        <h1>Dernières actualités</h1>
+        <h1>Derniers articles</h1>
     </div>
     <div class="container row" id="home-latest-products">
         <h1>Découvrez nos nouveaux produits</h1>

@@ -13,5 +13,9 @@ class ContGenerique {
         $this->vue = $vue;
     }
 
+    function actionInexistante() {
+        $this->vue->actionInexistante();
+    }
+
 }
 ?>

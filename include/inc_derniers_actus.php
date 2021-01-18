@@ -14,17 +14,17 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="/images/illustrations/slide2.jpg" alt="Second slide">
+                <img class="d-block w-100" src="/images/illustrations/children.jpg" alt="Second slide">
                 <div class="carousel-caption d-none d-lg-block">
                     <h5>Des solutions pour tout les ages</h5>
-                    <p>...</p>
+                    <p>Et tout les niveaux<p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="/images/third.png" alt="Third slide">
+                <img class="d-block w-100" src="/images/illustrations/laptop.jpg" alt=" slide">
                 <div class="carousel-caption d-none d-lg-block">
-                    <h5>Des offres au plus proche de vos besoins</h5>
-                    <p>...</p>
+                    <h5>Des offres au plus proche de vos besoins...</h5>
+                    <p>Accessibles à tous !<p>
                 </div>
             </div>
         </div>

@@ -9,6 +9,11 @@ class VueAvis extends VueGenerique
 	{
 	}
 
+	public function listeAvis($result, $estUtilisateur)
+	{
+		// to do
+	}
+
 	public function formDonnerAvis()
 	{
 		// to do

@@ -7,12 +7,6 @@ class ModUtilisateur extends ModGenerique
 
 	public function __construct($url)
 	{
-
-		if (isset($url[1])) {
-			$action = $url[1];
-		}
-	
-
 		$controllUtilisateur = new ContUtilisateur();
 
 		//if (isset($_SESSION['idTypeUtilisateur']) && $_SESSION['idTypeUtilisateur'] == 3) {
@@ -29,10 +23,7 @@ class ModUtilisateur extends ModGenerique
 					case 'nouveauMotDePasse':
 						$controllUtilisateur->nouveauMotDePasse();
 						break;
-					case 'afficheCommandes':
-						$controllUtilisateur->afficheCommandes();
-						break;
-					case 'afficheTickets':
+					case 'tickets':
 						$controllUtilisateur->afficheTickets();
 						break;
 					case 'commandes':
@@ -56,5 +47,5 @@ class ModUtilisateur extends ModGenerique
 ?>
 
 <?php
-    $modUtilisateur = new ModUtilisateur();
+    $modUtilisateur = new ModUtilisateur((isset($url)) ? $url : null);
 ?>

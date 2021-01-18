@@ -9,7 +9,7 @@ class ContUtilisateur extends ContGenerique
 
 	public function __construct()
 	{
-        parent::__contruction(new ModeleUtilisateur(), new VueUtilisateur());
+        parent::__construct(new ModeleUtilisateur(), new VueUtilisateur());
 	}
 
 
@@ -37,7 +37,6 @@ class ContUtilisateur extends ContGenerique
 		if (isset($_POST['nouveau_password2'])) {
 			$nouveauMotDePasse1 = htmlspecialchars($_POST['nouveau_password1']);
 			$nouveauMotDePasse2 = htmlspecialchars($_POST['nouveau_password2']);
-
 			if ($nouveauMotDePasse1 == $nouveauMotDePasse2) {
 				$passNow = $this->modele->getPassword($_SESSION['idUtil']);
 				if (password_verify($_POST['old_password'], $passNow)) {
