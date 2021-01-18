@@ -1,6 +1,7 @@
 <?php
 
-require_once 'config/connexion.php';
+require_once 'modules/generique/modele_generique.php';
+//require_once 'config/connexion.php';
 
 class ModeleTechnicien extends ModeleGenerique
 {

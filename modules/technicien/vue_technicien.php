@@ -1,20 +1,103 @@
 <?php
-class VueTechnicien
+
+require_once 'modules/generique/vue_generique.php';
+
+class VueTechnicien extends VueGenerique
 {
 
 	public function __construct()
 	{
+	    parent::__construct();
+	}
+
+	public function pageAccueilTech($moduleContent)
+	{
+	    ?>
+        <section>
+            <div class="content-block">
+                <h1>Espace technicien</h1>
+                <div class="container-fluid">
+                    <section class="row">
+                        <nav class="col-2" id="sideNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a href="/technicien">Tableau de board</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/technicien/tickets">Mes Tickets</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/technicien/ticket">Ticket</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/technicien/nouveauMotDePasse">Changer mon mot de passe</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Votre profil
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="dropdown-item" href="/technicien/">Mes informations</a>
+                                        <a class="dropdown-item" href="/technicien/">Changer mon login</a>
+                                        <a class="dropdown-item" href="/technicien/">Changer mon mot de passe</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="col">
+                            <?= $moduleContent ?>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            </div>
+        </section>
+        <?php
 	}
 
 	public function afficherMenu()
 	{
+	    ?>
+        <nav id="sideNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="/technicien/menu">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/technicien/ticket">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/technicien/nouveauMotDePasse">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/technicien/menu">Menu</a>
+                </li>
+            </ul>
+        </nav>
+
+        <?php
 	}
 
-	public function afficheTickets()
+
+    public function tableauBord()
+    {
+        ?>
+            <h3>Mon tableau de bord</h3>
+            <section class="row">
+                <h4>Tickets ouverts : </h4>
+                <h4>Tickets fermés : </h4>
+                <h4>Tickets urgents : </h4>
+            </section>
+        <?php
+    }
+
+	public function afficheTickets($result)
 	{
+	    echo 'Mes tickets';
 	}
 
-	public function afficheTicket()
+	public function afficheTicket($result)
 	{
 	}
 
