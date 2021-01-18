@@ -10,8 +10,16 @@ class ContConnexion extends ContGenerique {
         parent::__construct($modele, $vue);
     }
 
+    function popConnexionInscription(){
+        $this->vue->popConnexionInscription();
+    }
+
     function popConnexion(){
         $this->vue->popConnexion();
+    }
+
+    function popInscription(){
+        $this->vue->popInscription();
     }
 
     function verifConnexion(){

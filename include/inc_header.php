@@ -38,8 +38,8 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <?php if (!isset($_SESSION['idUtil']) and (!isset($_SESSION['login']))) {
                             echo '
-                                    <a class="dropdown-item" href="/connexion">Se connecter</a>
-                                    <a class="dropdown-item" href="/connexion">S\'inscrire</a>';
+                                    <a class="dropdown-item" href="/connexion/popConnexion">Se connecter</a>
+                                    <a class="dropdown-item" href="/connexion/popInscription">S\'inscrire</a>';
                         }else {
                             echo '
                                     <p class="dropdown-item">'.$_SESSION['login'].'</p>
