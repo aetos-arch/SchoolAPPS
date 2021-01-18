@@ -1,7 +1,7 @@
 <?php
 require_once 'cont_technicien.php';
 
-class ModTechnicien
+class ModTechnicien extends ModGenerique
 {
 
 	public function __construct()
@@ -9,7 +9,7 @@ class ModTechnicien
 
 		$controllUser = new ContTechnicien();
 
-		if (isset($_SESSION['idUtil'])) {
+		if (isset($_SESSION['idTypeUtilisateur']) && $_SESSION['idTypeUtilisateur'] == 2) {
 			if (isset($url[1])) {
 				$action = $url[1];
 
@@ -42,9 +42,8 @@ class ModTechnicien
 	}
 }
 
-
 ?>
 
 <?php
-$modTechnicien = new ModTechnicien();
+$modTechnicien = new ModTechnicien($url);
 ?>

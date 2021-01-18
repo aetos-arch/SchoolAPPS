@@ -1,17 +1,15 @@
 <?php
+
+require_once 'modules/generique/cont_generique.php';
 require_once 'vue_utilisateur.php';
 require_once 'modele_utilisateur.php';
 
-class ContUtilisateur
+class ContUtilisateur extends ContGenerique
 {
-	private $vue;
-	private $modele;
-
 
 	public function __construct()
 	{
-		$this->vue = new  VueUtilisateur();
-		$this->modele = new  ModeleUtilisateur();
+        parent::__contruction(new ModeleUtilisateur(), new VueUtilisateur());
 	}
 
 
@@ -92,7 +90,9 @@ class ContUtilisateur
 
 	public function afficheCommandes()
 	{
-		$commandes = $this->modele->getCommandes($_SESSION['idUtil']);
+		//$commandes = $this->modele->getCommandes($_SESSION['idUtil']);
+		$commandes = $this->modele->getCommandes(1);
+		var_dump($commandes);
 		$this->vue->afficheCommandes($commandes);
 	}
 

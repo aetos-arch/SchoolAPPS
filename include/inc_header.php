@@ -17,19 +17,19 @@
                         Logiciels
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="schooldev">School Dev</a>
-                        <a class="dropdown-item" href="schoolnet">School Net</a>
-                        <a class="dropdown-item" href="E-education">Plateforme E-education</a>
+                        <a class="dropdown-item" href="/schooldev">School Dev</a>
+                        <a class="dropdown-item" href="/schoolnet">School Net</a>
+                        <a class="dropdown-item" href="/E-education">Plateforme E-education</a>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="actualites">Actualités</a>
+                    <a class="nav-link" href="/actualites">Actualités</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="propos">A propos</a>
+                    <a class="nav-link" href="/propos">A propos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="contact">Contact</a>
+                    <a class="nav-link" href="/contact">Contact</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="connexion" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -38,19 +38,19 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <?php if (!isset($_SESSION['idUtil']) and (!isset($_SESSION['login']))) {
                             echo '
-                                    <a class="dropdown-item" href="connexion">Se connecter</a>
-                                    <a class="dropdown-item" href="connexion">S\'inscrire</a>';
+                                    <a class="dropdown-item" href="/connexion">Se connecter</a>
+                                    <a class="dropdown-item" href="/connexion">S\'inscrire</a>';
                         }else {
                             echo '
                                     <p class="dropdown-item">'.$_SESSION['login'].'</p>
-                                    <a class="dropdown-item" href="connexion">Test</a>
-                                    <a class="dropdown-item" href="connexion/deconnexion">Se déconnecter</a>';
+                                    <a class="dropdown-item" href="/connexion">Test</a>
+                                    <a class="dropdown-item" href="/connexion/deconnexion">Se déconnecter</a>';
                         }
                         ?>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="panier"><i class="fas fa-shopping-cart"></i></a>
+                    <a class="nav-link" href="/panier"><i class="fas fa-shopping-cart"></i></a>
                 </li>
             </ul>
         </div>

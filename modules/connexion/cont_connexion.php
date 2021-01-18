@@ -1,17 +1,13 @@
 <?php
 
+require_once 'modules/generique/cont_generique.php';
 require_once "modele_connexion.php";
 require_once "vue_connexion.php";
 
-class ContConnexion {
-    public $modele;
-    public $vue;
+class ContConnexion extends ContGenerique {
 
     function __construct($modele, $vue){
-
-        $this->modele = $modele;
-        $this->vue = $vue;
-
+        parent::__construct($modele, $vue);
     }
 
     function popConnexion(){
@@ -19,7 +15,7 @@ class ContConnexion {
     }
 
     function verifConnexion(){
-        $this->modele->connexion($_POST['login'],$_POST['mdp']);
+        $this->modele->connexion($_POST['login'], $_POST['mdp']);
         $this->vue->affichage();
     }
 

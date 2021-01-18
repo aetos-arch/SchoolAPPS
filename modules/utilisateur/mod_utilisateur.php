@@ -1,59 +1,56 @@
 <?php
-require_once 'cont_utilisateur.php';
 
-class ModUtilisateur
+require_once 'modules/generique/mod_generique.php';
+
+class ModUtilisateur extends ModGenerique
 {
 
-	public function __construct()
+	public function __construct($url)
 	{
 
-
-		// en attendant
-		$url = explode('/', $_GET['url']);
 		if (isset($url[1])) {
 			$action = $url[1];
-			echo $url[1];
 		}
 	
 
-		$controllUser = new ContUtilisateur();
+		$controllUtilisateur = new ContUtilisateur();
 
-		if (isset($_SESSION['idUtil'])) {
+		//if (isset($_SESSION['idTypeUtilisateur']) && $_SESSION['idTypeUtilisateur'] == 3) {
 			if (isset($url[1])) {
 				$action = $url[1];
 
 				switch ($action) {
 					case 'menu':
-						$controllUser->menu();
+						$controllUtilisateur->menu();
 						break;
 					case 'nouveauLogin':
-						$controllUser->nouveauLogin();
+						$controllUtilisateur->nouveauLogin();
 						break;
 					case 'nouveauMotDePasse':
-						$controllUser->nouveauMotDePasse();
+						$controllUtilisateur->nouveauMotDePasse();
 						break;
 					case 'afficheCommandes':
-						$controllUser->afficheCommandes();
+						$controllUtilisateur->afficheCommandes();
 						break;
 					case 'afficheTickets':
-						$controllUser->afficheTickets();
+						$controllUtilisateur->afficheTickets();
 						break;
 					case 'commandes':
-						$controllUser->afficheCommandes();
+						$controllUtilisateur->afficheCommandes();
 						break;
 					case 'nouveauTicket':
-						$controllUser->nouveauTicket();
+						$controllUtilisateur->nouveauTicket();
 						break;
 					case 'ticket':
-						$controllUser->afficheTicket();
+						$controllUtilisateur->afficheTicket();
 						break;
 					default:
 						# code...
 						break;
 				}
 			}
-		} else
-			echo '<h3>Aucune connexion trouvée.</h3>';
+	//	} else
+		//	echo '<h3>Aucune connexion trouvée.</h3>';
 	}
 }
 ?>

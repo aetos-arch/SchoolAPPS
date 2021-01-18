@@ -1,15 +1,15 @@
 <?php
 require_once 'cont_admin.php';
 
-class ModAdmin
+class ModAdmin extends ModeleGenerique
 {
-
-    public function __construct()
+    public function __construct($url)
     {
-
         $controllAdmin = new ContAdmin();
 
-        if (isset($_SESSION['idUtil'])) {
+
+
+		if (isset($_SESSION['idTypeUtilisateur']) && $_SESSION['idTypeUtilisateur'] == 1) {
             if (isset($url[1])) {
                 $action = $url[1];
                 switch ($action) {
@@ -59,5 +59,5 @@ class ModAdmin
 ?>
 
 <?php
-    $modAdmin = new ModAdmin();
+    $modAdmin = new ModAdmin((isset($url)) ? $url : null);
 ?>
