@@ -1,8 +1,7 @@
 <?php
 
-if(!isset($_SESSION['login']) && !isset($_SESSION['idUtil']) && !defined('CONSTANT')) {
+if(!isset($_SESSION['login']) && !isset($_SESSION['idUtil']) && !isset($_SESSION['idTypeUtilisateur'])) {
     session_start();
-    define('CONSTANT', NULL);
 }
 
 $url = '';
