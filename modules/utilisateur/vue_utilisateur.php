@@ -9,6 +9,78 @@ class VueUtilisateur extends VueGenerique
 	{
 	}
 
+    public function pageAccueilUtilisateur($moduleContent)
+    {
+        include 'include/inc_breadcrumb.php';
+        ?>
+        <section>
+            <div class="content-block">
+                <div class="container-fluid">
+                    <section class="row">
+                        <nav class="col-lg-3" id="sideNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <div class="card">
+                                        <div class="card-header" id="headingOne">
+                                            <a href="/technicien" class="btn btn-nav">Tableau de bord</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <div id="accordion">
+                                    <div class="card">
+                                        <div class="card-header" id="headingOne">
+                                            <button class="btn btn-nav dropdown-toggle" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                Votre profil
+                                            </button>
+                                        </div>
+                                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                            <a class="dropdown-item" href="/technicien/profil">Mes informations</a>
+                                            <a class="dropdown-item" href="/technicien/changer-login">Changer mon login</a>
+                                            <a class="dropdown-item" href="/technicien/nouveau-mot-de-passe">Changer mon mot de passe</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <li class="nav-item">
+                                    <div class="card">
+                                        <div class="card-header" id="headingOne">
+                                            <a href="/technicien/mes-tickets" class="btn btn-nav">Mes Tickets</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <div class="card">
+                                        <div class="card-header" id="headingOne">
+                                            <a href="/technicien" class="btn btn-nav">Messagerie</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="col-lg">
+                            <h1>Votre espace technicien, <?php echo ucfirst($_SESSION['login']);?> </h1>
+                            <?= $moduleContent ?>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            </div>
+        </section>
+        <?php
+    }
+
+    public function tableauBord()
+    {
+        ?>
+        <h3>Mon tableau de bord</h3>
+        <section class="row">
+            <h4>Tickets ouverts : </h4>
+            <h4>Tickets fermés : </h4>
+            <h4>Tickets urgents : </h4>
+        </section>
+        <?php
+    }
+
 	public function afficherMenu()
 	{
 	}

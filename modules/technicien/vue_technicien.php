@@ -12,39 +12,53 @@ class VueTechnicien extends VueGenerique
 
 	public function pageAccueilTech($moduleContent)
 	{
+	    include 'include/inc_breadcrumb.php';
 	    ?>
         <section>
             <div class="content-block">
-                <h1>Espace technicien</h1>
                 <div class="container-fluid">
                     <section class="row">
-                        <nav class="col-2" id="sideNav">
+                        <nav class="col-lg-3" id="sideNav">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a href="/technicien">Tableau de board</a>
+                                    <div class="card">
+                                        <div class="card-header" id="headingOne">
+                                            <a href="/technicien" class="btn btn-nav">Tableau de bord</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <div id="accordion">
+                                    <div class="card">
+                                        <div class="card-header" id="headingOne">
+                                                <button class="btn btn-nav dropdown-toggle" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                    Votre profil
+                                                </button>
+                                        </div>
+                                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                            <a class="dropdown-item" href="/technicien/profil">Mes informations</a>
+                                            <a class="dropdown-item" href="/technicien/changer-login">Changer mon login</a>
+                                            <a class="dropdown-item" href="/technicien/nouveau-mot-de-passe">Changer mon mot de passe</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <li class="nav-item">
+                                    <div class="card">
+                                        <div class="card-header" id="headingOne">
+                                            <a href="/technicien/mes-tickets" class="btn btn-nav">Mes Tickets</a>
+                                        </div>
+                                    </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/technicien/tickets">Mes Tickets</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/technicien/ticket">Ticket</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/technicien/nouveauMotDePasse">Changer mon mot de passe</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Votre profil
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="/technicien/">Mes informations</a>
-                                        <a class="dropdown-item" href="/technicien/">Changer mon login</a>
-                                        <a class="dropdown-item" href="/technicien/">Changer mon mot de passe</a>
+                                    <div class="card">
+                                        <div class="card-header" id="headingOne">
+                                            <a href="/technicien" class="btn btn-nav">Messagerie</a>
+                                        </div>
                                     </div>
                                 </li>
                             </ul>
                         </nav>
-                        <div class="col">
+                        <div class="col-lg">
+                            <h1>Votre espace technicien, <?php echo ucfirst($_SESSION['login']);?> </h1>
                             <?= $moduleContent ?>
                         </div>
                     </section>
@@ -78,6 +92,16 @@ class VueTechnicien extends VueGenerique
 
         <?php
 	}
+	public function afficherProfil()
+	{
+	    ?>
+        <div class="card">
+            <div class="card-header">Votre profil</div>
+            <div class="card-body">Nom, prenom, age, email</div>
+        </div>
+
+        <?php
+	}
 
 
     public function tableauBord()
@@ -94,7 +118,25 @@ class VueTechnicien extends VueGenerique
 
 	public function afficheTickets($result)
 	{
-	    echo 'Mes tickets';
+	    foreach ($result as &$ticket) {
+	    ?>
+            <div class="ticket row card">
+                <div class="col-lg card-header">
+                    <img src="../../images/60x60.png">
+                    <h4 class="d-inline"><?= $ticket['intitule'] ?> - N°<?= $ticket['idTicket'] ?></h4>
+                </div>
+                <div class="col-lg card-body">
+                    <p id="explication"><?= $ticket['explication']; ?></p>
+                </div>
+                <div class="col-lg card-footer">
+                    <p><?= $ticket['idEtat']; ?> - <?= $ticket['idProduit']; ?></p>
+                </div>
+            </div>
+
+        <?php
+        }
+
+	    unset($ticket);
 	}
 
 	public function afficheTicket($result)
@@ -107,7 +149,7 @@ class VueTechnicien extends VueGenerique
 		<hr class="mt-2 mb-4">
 		
 		<div class="card-panel  lighten-4">
-			<form action="user/nouveauLogin" method="POST" >
+			<form action="/technicien/changer-login" method="POST" >
 				<div class="row">
 					<div class="col-4 form-group">
 						<label for="nouveauLogin">Nouveau Login</label>
