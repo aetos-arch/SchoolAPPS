@@ -23,7 +23,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/actualites">Nos articles</a>
+                    <a class="nav-link" href="/articles">Nos articles</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/propos">A propos</a>

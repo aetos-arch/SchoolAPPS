@@ -1,7 +1,7 @@
 <main>
     <?php require 'include/inc_derniers_actus.php' ?>
     <section class="content-block">
-        <h1>Nos Actualites</h1>
+        <h1>Nos Articles</h1>
         <div class="container align-items-center mx-auto">
             <div class="actu card text-center">
                 <div class="card-body">
