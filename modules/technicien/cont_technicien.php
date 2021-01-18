@@ -16,8 +16,8 @@ class ContTechnicien extends ContGenerique
 	{
 		$this->vue->nouveauMotDePasse();
 		if (isset($_POST['nouveauMotDePasse2'])) {
-			$nouveauMotDePasse1 = $_POST['nouveauMotDePasse1'];
-			$nouveauMotDePasse2 = $_POST['nouveauMotDePasse2'];
+			$nouveauMotDePasse1 = strip_tags($_POST['nouveauMotDePasse1']);
+			$nouveauMotDePasse2 = strip_tags($_POST['nouveauMotDePasse2']);
 
 			if ($nouveauMotDePasse1 == $nouveauMotDePasse2) {
 				$passNow = $this->modele->getPass($_SESSION['idUtil']);
@@ -83,7 +83,7 @@ class ContTechnicien extends ContGenerique
 
 	public function afficheTicket()
 	{
-		$idTicket = $_POST['idTicket'];
+		$idTicket = strip_tags($_POST['idTicket']);
 		$result = $this->modele->getTicket($idTicket);
 		$this->vue->afficheTicket($result);
 	}
