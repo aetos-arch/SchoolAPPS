@@ -13,19 +13,21 @@ class ContAvis extends ContGenerique
 
     public function listerAvis($nomProduit)
     {
-        $data = $this->modele->getAllAvisProduit($nomProduit);
+        $idProduit = $this->modele->getIdProduit($nomProduit);
+        $data = $this->modele->getAllAvisProduit($idProduit);
         $this->vue->listerAvis($data);
     }
 
-    public function donnerAvis()
+    public function donnerAvis($nomProduit)
     {
-        $avisExiste = $this->modele->avisExiste($_SESSION['idUtilisateur'], $_POST['idProduit']);
+        $idProduit = $this->modele->getIdProduit($nomProduit);
+        $avisExiste = $this->modele->avisExiste($_SESSION['idUtilisateur'], $idProduit);
         if ($avisExiste != 0) {
            echo "avis existe déjà";
         } else if (isset($_POST['commentaire'])) {
             $result = [
                 'idUtilisateur' => $_SESSION['idUtilisateur'],
-                'idProduit' => htmlspecialchars($_POST['idProduit']),
+                'idProduit' => htmlspecialchars($idProduit),
                 'titre' => htmlspecialchars($_POST['titre']),
                 'commentaire' => htmlspecialchars($_POST['commentaire']),
                 'note' => htmlspecialchars($_POST['note'])
@@ -41,6 +43,7 @@ class ContAvis extends ContGenerique
     {
         $idAvis = $_POST['idAvis'];
         $this->modele->supprimerAvis($idAvis);
+        // redirection
     }
 
     public function modifierAvis()

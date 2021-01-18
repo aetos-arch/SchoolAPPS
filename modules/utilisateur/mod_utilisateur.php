@@ -50,5 +50,5 @@ class ModUtilisateur extends ModGenerique
 ?>
 
 <?php
-    $modUtilisateur = new ModUtilisateur();
+    $modUtilisateur = new ModUtilisateur((isset($url)) ? $url : null);
 ?>

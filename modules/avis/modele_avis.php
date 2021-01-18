@@ -49,8 +49,7 @@ class ModeleAvis extends ModeleGenerique
 		}
 	}
 
-	public function getAllAvisProduit($nomProduit)
-	{
+	public function getIdProduit ($nomProduit) {
 		try {
 			$req = Connexion::$bdd->prepare('select idProduit from produits where nomProduit=?');
 			$req->execute(array($nomProduit));
@@ -58,12 +57,20 @@ class ModeleAvis extends ModeleGenerique
 			if ($idProduit === false) {
 				// exception
 			} else {
+				return $idProduit;
+			}
+		 } catch (PDOException $e) {
+		}
+	}
+
+	public function getAllAvisProduit($idProduit)
+	{
+		try {
 				$req = Connexion::$bdd->prepare('select * from avis where idProduit=?');
 				$req->execute(array($idProduit['idProduit']));
 				$result = $req->fetch();
 				return $result;
-			}
-		} catch (PDOException $e) {
+			} catch (PDOException $e) {
 		}
 	}
 }

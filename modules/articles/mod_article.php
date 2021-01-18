@@ -4,7 +4,7 @@ require_once 'cont_article.php';
 class ModArticle
 {
 
-    public function __construct()
+    public function __construct($url)
     {
         $controllArticle = new ContArticle();
 
@@ -29,5 +29,5 @@ class ModArticle
 ?>
 
 <?php
-$modarticle = new ModArticle();
+$modarticle = new ModArticle((isset($url)) ? $url : null);
 ?>
