@@ -17,5 +17,18 @@ class ContGenerique {
         $this->vue->actionInexistante();
     }
 
+    public function verifTableauPasVide ($tab) {
+        foreach ($tab as $key=>$v) {
+            if (empty($v)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function tableauValeurVide() {
+        $this->vue->tableauValeurVide();
+    }
+
 }
 ?>

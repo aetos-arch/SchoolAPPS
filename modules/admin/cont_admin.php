@@ -20,14 +20,14 @@ class ContAdmin extends ContGenerique
 
 	public function afficherTicket()
 	{
-		$result = $this->modele->getTicket($_POST['idTicket']);
+		$result = $this->modele->getTicket(strip_tags($_POST['idTicket']));
 		$this->vue->afficherTicket($result);
 	}
 
 	public function assignerTicket()
 	{
 		if (isset($_POST['idTechnicien'])) {
-			$this->modele->assignerTicket($_POST['idTechnicien']);
+			$this->modele->assignerTicket(strip_tags($_POST['idTechnicien']));
 		}
 	}
 
@@ -60,7 +60,7 @@ class ContAdmin extends ContGenerique
 	{
 		$this->vue->nouveauLogin();
 		if (isset($_POST['nouveauLogin'])) {
-			$nouveauLogin = htmlspecialchars($_POST['nouveauLogin']);
+			$nouveauLogin = strip_tags($_POST['nouveauLogin']);
 			if ($this->modele->loginExiste($nouveauLogin) != 0) {
 				// erreur Login existe déjà
 				header('');
@@ -78,8 +78,8 @@ class ContAdmin extends ContGenerique
 	{
 		$this->vue->nouveauMotDePasse();
 		if (isset($_POST['new_password2'])) {
-			$nouveauMdp1 = htmlspecialchars($_POST['new_password1']);
-			$nouveauMdp2 = htmlspecialchars($_POST['new_password2']);
+			$nouveauMdp1 = strip_tags($_POST['new_password1']);
+			$nouveauMdp2 = strip_tags($_POST['new_password2']);
 
 			if ($nouveauMdp1 == $nouveauMdp2) {
 				$passNow = $this->modele->getPass($_SESSION['idUtil']);

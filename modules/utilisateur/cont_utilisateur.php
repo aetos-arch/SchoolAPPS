@@ -17,7 +17,7 @@ class ContUtilisateur extends ContGenerique
 	{
 		$this->vue->nouveauLogin();
 		if (isset($_POST['nouveauLogin'])) {
-			$nouveauLogin = htmlspecialchars($_POST['nouveauLogin']);
+			$nouveauLogin = strip_tags($_POST['nouveauLogin']);
 			if ($this->modele->loginExiste($nouveauLogin) != 0) {
 				// erreur login existe déjà
 				header('');
@@ -35,8 +35,8 @@ class ContUtilisateur extends ContGenerique
 	{
 		$this->vue->nouveauMotDePasse();
 		if (isset($_POST['nouveau_password2'])) {
-			$nouveauMotDePasse1 = htmlspecialchars($_POST['nouveau_password1']);
-			$nouveauMotDePasse2 = htmlspecialchars($_POST['nouveau_password2']);
+			$nouveauMotDePasse1 = strip_tags($_POST['nouveau_password1']);
+			$nouveauMotDePasse2 = strip_tags($_POST['nouveau_password2']);
 			if ($nouveauMotDePasse1 == $nouveauMotDePasse2) {
 				$passNow = $this->modele->getPassword($_SESSION['idUtil']);
 				if (password_verify($_POST['old_password'], $passNow)) {
@@ -62,15 +62,21 @@ class ContUtilisateur extends ContGenerique
 
 	public function nouveauTicket()
 	{
-		$this->vue->nouveauTicket();
 		if (isset($_POST['explication'])) {
 			$result = [
-				'explication' => htmlspecialchars($_POST['explication']),
-				'intitule' => htmlspecialchars($_POST['intitule']),
-				'idProduit' => htmlspecialchars($_POST['idProduit']),
+				'explication' => strip_tags($_POST['explication']),
+				'intitule' => strip_tags($_POST['intitule']),
+				'idProduit' => strip_tags($_POST['idProduit']),
 				'idUtilisateur' => $_SESSION['idUtil']
 			];
-			$this->modele->creerTicket($result);
+
+			if ($this->verifTableauPasVide($result)) {
+				$this->modele->creerTicket($result);
+			} else {
+				// exception
+			}
+		} else {
+			$this->vue->nouveauTicket();
 		}
 	}
 
@@ -82,7 +88,7 @@ class ContUtilisateur extends ContGenerique
 
 	public function afficheTicket()
 	{
-		$idTicket = $_POST['idTicket'];
+		$idTicket = strip_tags($_POST['idTicket']);
 		$result = $this->modele->getTicket($idTicket);
 		$this->vue->afficheTicket($result);
 	}
@@ -97,7 +103,7 @@ class ContUtilisateur extends ContGenerique
 
 	public function afficheCommande()
 	{
-		$idCommande = $_POST['idCommande'];
+		$idCommande = strip_tags($_POST['idCommande']);
 		$result = $this->modele->getTicket($idCommande);
 		$this->vue->afficheCommande($result);
 	}

@@ -15,6 +15,14 @@ class VueGenerique {
         <h3>Cette action est inexistante.</h3>
         <?php
     }
+
+    
+    public function tableauValeurVide() {
+        ?>
+        <h3>Valeur vide dans une case du formulaire.</h3>
+        <?php
+    }
+
 }
 
 ?>
