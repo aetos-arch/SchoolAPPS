@@ -45,8 +45,8 @@ class VueConnexion extends VueGenerique {
             echo 'Vous etes connecté en tant que '.$_SESSION['login'].'<br>
             <a href="/connexion/deconnexion">Se déconnecter</a>';
         }else{
-            echo '<a href="/connexion/popConnexion">Se connecter</a><t>
-			<a href="/connexion/inscription">S\'inscrire</a><t>';
+            echo '<a href="/connexion">Se connecter</a><t>
+			<a href="/connexion">S\'inscrire</a><t>';
         }
         echo '</main>';
     }
