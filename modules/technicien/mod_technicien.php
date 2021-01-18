@@ -8,7 +8,7 @@ class ModTechnicien extends ModGenerique
 
 	public function __construct($url)
 	{
-		$controllUser = new ContTechnicien();
+		$controllTech = new ContTechnicien();
 
 		ob_start();
 		if (isset($_SESSION['idTypeUtilisateur']) && $_SESSION['idTypeUtilisateur'] == 2) {
@@ -16,39 +16,39 @@ class ModTechnicien extends ModGenerique
 				$action = $url[1];
 				switch ($action) {
 					case 'menu':
-						$controllUser->menu();
+						$controllTech->menu();
 						break;
-					case 'tableau de board':
-						$controllUser->nouveauMotDePasse();
+					case 'profil':
+						$controllTech->profil();
 						break;
-					case 'changer login':
-						$controllUser->nouveauLogin();
+					case 'nouveau-mot-de-passe':
+						$controllTech->nouveauMotDePasse();
 						break;
-					case 'nouveauMotDePasse':
-						$controllUser->nouveauMotDePasse();
+					case 'changer-login':
+						$controllTech->nouveauLogin();
 						break;
 					case 'ticket':
-						$controllUser->afficheTicket();
+						$controllTech->afficheTicket();
 						break;
-					case 'tickets':
-						$controllUser->afficheTickets();
+					case 'mes-tickets':
+						$controllTech->afficheTickets();
 						break;
 						//case 'changerEtat':
-						//	$controllUser->changerEtat();
+						//	$controllTech->changerEtat();
 						//	break;
 						//case 'discussion':
-						//	$controllUser->discussion();
+						//	$controllTech->discussion();
 						//	break;
 					default:
-						$controllUser->actionInexistante();
+						$controllTech->actionInexistante();
 						break;
 				}
 			} else {
-				$controllUser->tableauBord();
+				$controllTech->tableauBord();
 			}
 			$moduleContent = ob_get_clean();
 
-			$controllUser->accueilTechnicien($moduleContent);
+			$controllTech->accueilTechnicien($moduleContent);
 		} else
 			echo '<h3>Aucune connexion trouvée.</h3>';
 	}

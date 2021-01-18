@@ -12,8 +12,17 @@ class ContUtilisateur extends ContGenerique
         parent::__construct(new ModeleUtilisateur(), new VueUtilisateur());
 	}
 
+    public function accueilUtilisateur($moduleContent)
+    {
+        $this->vue->pageAccueilUtilisateur($moduleContent);
+    }
 
-	public function nouveauLogin()
+    public function tableauBord()
+    {
+        $this->vue->tableauBord();
+    }
+
+    public function nouveauLogin()
 	{
 		$this->vue->nouveauLogin();
 		if (isset($_POST['nouveauLogin'])) {

@@ -53,10 +53,6 @@ class ModeleTechnicien extends ModeleGenerique
 		}
 	}
 
-
-
-
-
 	public function getTickets($idUtilisateur)
 	{
 		try {

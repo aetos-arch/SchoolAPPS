@@ -29,7 +29,7 @@
                         <a href="/propos">A propos de nous</a><br>
                         <a href="/mentions">Nos produits</a><br>
                         <a href="/contact">Contact</a><br>
-                        <a href="/connexion">Se connecter</a><br>
+                        <a href="/connexion/popConnexion">Se connecter</a><br>
                         <a href="/mentions">Mentions Légales</a><br>
                     </p>
                 </aside>
