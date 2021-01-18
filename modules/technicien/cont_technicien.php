@@ -12,6 +12,16 @@ class ContTechnicien extends ContGenerique
         parent::__construct(new ModeleTechnicien(), new VueTechnicien());
 	}
 
+    public function accueilTechnicien($moduleContent)
+    {
+        $this->vue->pageAccueilTech($moduleContent);
+    }
+
+    public function profil()
+    {
+        $this->vue->afficherProfil();
+    }
+
 	public function nouveauMotDePasse()
 	{
 		$this->vue->nouveauMotDePasse();
@@ -38,7 +48,7 @@ class ContTechnicien extends ContGenerique
 
     public function nouveauLogin()
     {
-        $this->vue->nouveauMotDePasse();
+        $this->vue->nouveauLogin();
         if (isset($_POST['nouveauMotDePasse2'])) {
             $nouveauMotDePasse1 = $_POST['nouveauMotDePasse1'];
             $nouveauMotDePasse2 = $_POST['nouveauMotDePasse2'];
@@ -58,12 +68,6 @@ class ContTechnicien extends ContGenerique
             }
         }
     }
-
-
-	public function accueilTechnicien($moduleContent)
-	{
-		$this->vue->pageAccueilTech($moduleContent);
-	}
 
 	public function menu()
 	{

@@ -1,6 +1,7 @@
 <?php
 
 require_once 'modules/generique/mod_generique.php';
+require_once 'cont_utilisateur.php';
 
 class ModUtilisateur extends ModGenerique
 {
@@ -9,7 +10,8 @@ class ModUtilisateur extends ModGenerique
 	{
 		$controllUtilisateur = new ContUtilisateur();
 
-		//if (isset($_SESSION['idTypeUtilisateur']) && $_SESSION['idTypeUtilisateur'] == 3) {
+		ob_start();
+		if (isset($_SESSION['idTypeUtilisateur']) && $_SESSION['idTypeUtilisateur'] == 3) {
 			if (isset($url[1])) {
 				$action = $url[1];
 
@@ -17,31 +19,36 @@ class ModUtilisateur extends ModGenerique
 					case 'menu':
 						$controllUtilisateur->menu();
 						break;
-					case 'nouveauLogin':
+					case 'changer-login':
 						$controllUtilisateur->nouveauLogin();
 						break;
-					case 'nouveauMotDePasse':
+					case 'nouveau-mot-de-passe':
 						$controllUtilisateur->nouveauMotDePasse();
 						break;
-					case 'tickets':
+					case 'mes-tickets':
 						$controllUtilisateur->afficheTickets();
 						break;
 					case 'commandes':
 						$controllUtilisateur->afficheCommandes();
 						break;
-					case 'nouveauTicket':
+					case 'nouveau-ticket':
 						$controllUtilisateur->nouveauTicket();
 						break;
 					case 'ticket':
 						$controllUtilisateur->afficheTicket();
 						break;
 					default:
-						# code...
+						$controllUtilisateur->actionInexistante();
 						break;
 				}
+			} else {
+				$controllUtilisateur->tableauBord();
 			}
-	//	} else
-		//	echo '<h3>Aucune connexion trouvée.</h3>';
+			$moduleContent = ob_get_clean();
+
+			$controllUtilisateur->accueilUtilisateur($moduleContent);
+		} else
+			echo '<h3>Aucune connexion trouvée.</h3>';
 	}
 }
 ?>

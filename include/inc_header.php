@@ -35,22 +35,38 @@
                     <a class="nav-link dropdown-toggle" href="connexion" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-user"></i>
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                         <?php if (!isset($_SESSION['idUtil']) and (!isset($_SESSION['login']))) {
                             echo '
                                     <a class="dropdown-item" href="/connexion/popConnexion">Se connecter</a>
                                     <a class="dropdown-item" href="/connexion/popInscription">S\'inscrire</a>';
                         }else {
-                            echo '
-                                    <p class="dropdown-item">'.ucfirst($_SESSION['login']).'</p>                            
-                                    <a class="dropdown-item" href="/connexion">Test</a>
-                                    <a class="dropdown-item" href="/connexion/deconnexion">Se déconnecter</a>';
+                            ?>
+                                    <p class="dropdown-item"><?=ucfirst($_SESSION['login'])?></p>
+                                   <?php if (isset($_SESSION['idTypeUtilisateur'])) {
+                                        switch ($_SESSION['idTypeUtilisateur']) {
+                                            case 1:
+                                                echo '<a class="dropdown-item" href="/admin">Mon espace Admin</a>';
+                                                break;
+                                            case 2:
+                                                echo '<a class="dropdown-item" href="/technicien">Mon espace Technicien</a>';
+                                                break;
+                                            case 3:
+                                                echo '<a class="dropdown-item" href="/utilisateur">Mon espace Utilisateur</a>';
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                    }
+                            ?>
+                                    <a class="dropdown-item" href="/connexion/deconnexion">Se déconnecter</a>
+                            <?php
                         }
                         ?>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/panier"><i class="fas fa-shopping-cart"></i></a>
+                    <a class="nav-link" href="/panier"><i class="fas fa-shopping-cart"></i><span class="badge bg-danger badge-dot">0</span></a>
                 </li>
             </ul>
         </div>

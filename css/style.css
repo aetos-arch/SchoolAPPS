@@ -73,19 +73,57 @@ a.lire-plus:hover {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: "Open Sans", sans-serif;
+    margin: 12px auto;
     text-align: center;
 }
 
-h1, h2, h3, h4 {
+h1 {
     color: var(--armananth-purple);
     font-size: 24pt;
-    margin: 12px auto;
+}
+
+h2 {
+    color: var(--armananth-purple);
+    font-size: 22pt;
+}
+
+h3 {
+    color: var(--armananth-purple);
+    font-size: 20pt;
+    text-align: left;
+}
+
+h4 {
+    color: var(--armananth-purple);
+    font-size: 16pt;
+    text-align: left;
+}
+
+h5 {
+    font-size: 16pt;
 }
 
 p {
     font-size: 15pt;
     font-family: 'Crimson Text', serif;
 
+}
+
+.breadcrumb {
+    background-color: #e5e5e5;
+    color : var(--emerald);
+}
+
+.breadcrumb > * {
+    padding: 5px 2px;
+}
+
+#sideNav div.card-header {
+    background: var(--cg-blue-light);
+}
+
+#sideNav div.card-header:hover {
+    background: var(--cg-blue);
 }
 
 #brand-homelink {
@@ -96,9 +134,13 @@ p {
     font-size: 20px;
 }
 
-
 #logo {
     width: 90px;
+}
+
+.badge-dot {
+    border-radius: 5px;
+    position: center;
 }
 
 nav a {
@@ -178,6 +220,20 @@ div.actu:nth-child(odd) {
 .sponsor {
     margin: 20px 0;
     text-align: center;
+}
+
+.ticket {
+    margin: 10px 0px;
+    opacity: 0.9;
+}
+
+.ticket:hover {
+    opacity: 1;
+}
+
+#explication {
+    font-size: 16pt;
+    color: var(--rich-black);
 }
 
 footer {
