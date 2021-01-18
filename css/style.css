@@ -71,16 +71,19 @@ a.lire-plus:hover {
     left: 35%;
 }
 
-h1 {
-    color: var(--armananth-purple);
+h1, h2, h3, h4, h5, h6 {
     font-family: "Open Sans", sans-serif;
-    font-size: 30px;
     text-align: center;
+}
+
+h1, h2, h3, h4 {
+    color: var(--armananth-purple);
+    font-size: 24pt;
     margin: 12px auto;
 }
 
 p {
-    font-size: 3vh;
+    font-size: 15pt;
     font-family: 'Crimson Text', serif;
 
 }
@@ -176,7 +179,6 @@ footer {
 }
 
 footer a {
-    font-size: 18px;
     text-decoration: none;
     color: var(--ghost-white);
 }

@@ -10,10 +10,7 @@ class ModGenerique{
     protected static $url;
 
     function __construct(){
-
         $controleur = new ContGenerique(new ModeleGenerique(), new VueGenerique());
-        $action='';
-
     }
 
 }

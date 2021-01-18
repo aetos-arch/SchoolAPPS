@@ -20,8 +20,9 @@ if (isset($url[0])) {
 // Si c'est pas un page
 if (!in_array($page, array('connexion', 'utilisateur', 'technicien', 'admin', 'panier', 'avis'))) {
     // Si c'est une page static
-    if (in_array($page, array('home', 'contact', 'propos', 'mentions', 'logiciels', 'actualites', 'schooldev', 'schoolnet', 'E-education'))) {
+    if (in_array($page, array('home', 'contact', 'propos', 'mentions', 'logiciels', 'actualites', 'schoolDev', 'schoolNet', 'E-education'))) {
         ob_start();
+        $pageTitle = ucfirst($page) . ' - School APPS';
         require "static/$page.php";
         $pageContent = ob_get_clean();
         require 'layout.php';
@@ -32,6 +33,7 @@ if (!in_array($page, array('connexion', 'utilisateur', 'technicien', 'admin', 'p
         die;
     }
 } else { // Module
+    $pageTitle = ucfirst($page) . ' - School APPS';
     ob_start();
     require "modules/$page/mod_$page.php";
     $pageContent = ob_get_clean();
