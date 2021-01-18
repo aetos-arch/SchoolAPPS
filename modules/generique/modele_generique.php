@@ -11,4 +11,7 @@ class ModeleGenerique extends Connexion {
         self::$connexion = Connexion::initConnexion();
     }
 
+    public function verifTableauVide () {
+        
+    }
 }

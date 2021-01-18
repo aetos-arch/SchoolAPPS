@@ -13,7 +13,7 @@ class ModeleArticle extends Connexion
         try {
             $req = Connexion::$bdd->prepare('select * from articles limit 6');
             $req->execute();
-            $result = $req->fetch();
+            $result = $req->fetchAll();
             return $result;
         } catch (PDOException $e) {
         }
@@ -24,7 +24,7 @@ class ModeleArticle extends Connexion
         try {
             $req = Connexion::$bdd->prepare('select * from articles where idArticle = ?');
             $req->execute(array($idArticle));
-            $result = $req->fetch();
+            $result = $req->fetchAll();
             return $result;
         } catch (PDOException $e) {
         }

@@ -13,7 +13,7 @@ class ModeleTechnicien extends ModeleGenerique
 		try {
 			$req = Connexion::$bdd->prepare('select * from tickets where idEtat = ? and idUtilisateur = ?');
 			$req->execute(array($idEtat, $idUtilisateur));
-			$result = $req->fetch();
+			$result = $req->fetchAll();
 			return $result;
 		} catch (PDOException $e) {
 		}
@@ -24,7 +24,7 @@ class ModeleTechnicien extends ModeleGenerique
 		try {
 			$req = Connexion::$bdd->prepare('select * from tickets where idTicket = ?');
 			$req->execute(array($idTicket));
-			$result = $req->fetch();
+			$result = $req->fetchAll();
 			return $result;
 		} catch (PDOException $e) {
 		}
@@ -36,7 +36,7 @@ class ModeleTechnicien extends ModeleGenerique
 		try {
 			$req = Connexion::$bdd->prepare('update tickets set idEtat = ? where idTicket = ?');
 			$req->execute(array($idEtat, $idTicket));
-			$result = $req->fetch();
+			$result = $req->fetchAll();
 			return $result;
 		} catch (PDOException $e) {
 		}
@@ -62,7 +62,7 @@ class ModeleTechnicien extends ModeleGenerique
 		try {
 			$req = Connexion::$bdd->prepare('select * from tickets where idTechnicien=?');
 			$req->execute(array($idUtilisateur));
-			$result = $req->fetch();
+			$result = $req->fetchAll();
 			return $result;
 		} catch (PDOException $e) {
 		}
@@ -84,7 +84,7 @@ class ModeleTechnicien extends ModeleGenerique
 		try {
 			$req = Connexion::$bdd->prepare('select hashMdp from utilisateurs where idUtilisateur=?');
 			$req->execute(array($idUtilisateur));
-			$result = $req->fetch();
+			$result = $req->fetchAll();
 			return $result;
 		} catch (PDOException $e) {
 		}
