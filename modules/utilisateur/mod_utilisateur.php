@@ -23,10 +23,7 @@ class ModUtilisateur extends ModGenerique
 					case 'nouveauMotDePasse':
 						$controllUtilisateur->nouveauMotDePasse();
 						break;
-					case 'afficheCommandes':
-						$controllUtilisateur->afficheCommandes();
-						break;
-					case 'afficheTickets':
+					case 'tickets':
 						$controllUtilisateur->afficheTickets();
 						break;
 					case 'commandes':
