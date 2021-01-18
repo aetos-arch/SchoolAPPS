@@ -7,12 +7,6 @@ class ModUtilisateur extends ModGenerique
 
 	public function __construct($url)
 	{
-
-		if (isset($url[1])) {
-			$action = $url[1];
-		}
-	
-
 		$controllUtilisateur = new ContUtilisateur();
 
 		//if (isset($_SESSION['idTypeUtilisateur']) && $_SESSION['idTypeUtilisateur'] == 3) {

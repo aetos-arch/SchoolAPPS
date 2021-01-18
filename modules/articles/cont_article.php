@@ -20,8 +20,8 @@ class ContArticle
         $this->vue->afficherArticles($data);
     }
 
-    public function afficherArticle () {
-        $data = $this->modele->getArticle($url[2]);
+    public function afficherArticle ($url) {
+        $data = $this->modele->getArticle($url);
         $this->vue->afficherArticle($data);
     }
 }

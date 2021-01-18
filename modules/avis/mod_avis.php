@@ -10,11 +10,14 @@ class ModAvis extends ModGenerique
 
         $controllAvis = new ContAvis();
 
+        // co que utilisateur
         if (isset($_SESSION['idUtil'])) {
             if (isset($url[1])) {
                 $action = $url[1];
-
                 switch ($action) {
+                    case '':
+                        $controllAvis->listerAvis($url[2]);
+                        break;
                     case 'donnerAvis':
                         $controllAvis->donnerAvis();
                         break;

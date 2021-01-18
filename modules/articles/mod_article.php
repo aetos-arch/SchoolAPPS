@@ -15,7 +15,7 @@ class ModArticle
                     $controllArticle->listeArticles();
                     break;
                 case 'afficherArticle':
-                    $controllArticle->afficherArticle();
+                    $controllArticle->afficherArticle($url[2]);
                     break;
                 default:
                     # code...
