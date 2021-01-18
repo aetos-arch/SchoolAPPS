@@ -29,9 +29,11 @@ class ContConnexion extends ContGenerique {
         if($this->modele->loginExiste($_POST['login'])==0) {
             $this->modele->inscription($_POST['login'], $_POST['nom'], $_POST['prenom'],
                 $_POST['mdp'], $_POST['eFacturation'], $_POST['eLivraison'], $_POST['tel'], $_POST['dateNaissance']);
-            if ($this->modele->verifInscription($_SESSION['login'])==1){
+            if ($this->modele->verifInscription($_POST['login'])==1){
                 $this->vue->affichage();
             }
+        }else{
+            echo '<main><a href="/connexion/popConnexion">L\'identifiant que vous avez saisi est déjà pris, veuillez recommencer avec un autre.</a></main>';
         }
     }
 
