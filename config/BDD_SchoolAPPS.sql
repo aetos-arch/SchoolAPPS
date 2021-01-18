@@ -214,6 +214,6 @@ INSERT INTO `utilisateurs` (`idUtilisateur`, `login`, `nom`, `prenom`, `hashMdp`
 
 INSERT INTO `categories` (`idCat`, `catProduit`) VALUES ('1', 'catPRO1');
 
-INSERT INTO `produits` (`idProduit`, `nomProduit`, `description`, `prixHT`, `dateSortie`, `nbrVues`, `nbrAchat`, `categorie`, `idCat`) VALUES ('1', 'Produit', 'sgslkgjsdgsjd', '50', '2021-01-17', '2', NULL, '1', '1');
+INSERT INTO `produits` (`idProduit`, `nomProduit`, `description`, `prixHT`, `dateSortie`, `nbrVues`, `nbrAchat`, `idCat`) VALUES ('1', 'Produit', 'sgslkgjsdgsjd', '50', '2021-01-17', '2', NULL, '1', '1');
 
 INSERT INTO `tickets` (`idTicket`, `intitule`, `explication`, `idEtat`, `idUtilisateur`, `idProduit`, `idTechnicien`) VALUES ('1', 'Ticket test', 'J\'explique mon problème', '2', '1', '1', '2');
