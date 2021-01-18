@@ -40,13 +40,11 @@ class VueConnexion{
     function affichage(){
         echo '<main>';
         if (isset($_SESSION['login'])){
-            echo "Vous etes connecté en tant que ".$_SESSION['login']."<br>";
-        }
-        if (isset($_SESSION['login'])) {
-            echo "<a href='School-APPS/connexion/deconnexion'>Se déconnecter</a><t>";
+            echo 'Vous etes connecté en tant que '.$_SESSION['login'].'<br>
+            <a href="/connexion/deconnexion">Se déconnecter</a>';
         }else{
-            echo "<a href='connexion/popConnexion'>Se connecter</a><t>
-			<a href='School-APPS/connexion/inscription'>S'inscrire</a><t>";
+            echo '<a href="/connexion/popConnexion">Se connecter</a><t>
+			<a href="/connexion/inscription">S\'inscrire</a><t>';
         }
         echo '</main>';
     }
