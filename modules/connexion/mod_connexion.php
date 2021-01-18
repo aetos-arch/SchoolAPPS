@@ -25,8 +25,14 @@ class ModConnexion extends ModGenerique {
             case "verifConnexion":
                 $controleur->verifConnexion();
                 break;
+            case "popConnexion":
+            $controleur->popConnexion();
+            break;
+            case "popInscription":
+                $controleur->popInscription();
+                break;
             default:
-                $controleur->popConnexion();
+                $controleur->popConnexionInscription();
                 break;
         }
     }

@@ -168,6 +168,43 @@ CREATE TABLE commandes(
         idCommandes   int (11) Auto_increment  NOT NULL ,
         dateAchat     Date NOT NULL ,
         idUtilisateur Int NOT NULL ,
+        PRIMARY KEY (idCommandes )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: juger
+#------------------------------------------------------------
+
+CREATE TABLE juger(
+        idAvis        Int NOT NULL ,
+        idUtilisateur Int NOT NULL ,
+        idProduit     Int NOT NULL ,
+        PRIMARY KEY (idAvis ,idUtilisateur ,idProduit )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: concernerTicket
+#------------------------------------------------------------
+
+CREATE TABLE concernerTicket(
+        idTicket  Int NOT NULL ,
+        idMessage Int NOT NULL ,
+        PRIMARY KEY (idTicket ,idMessage )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: produitsPanier
+#------------------------------------------------------------
+
+CREATE TABLE produitsPanier(
+        qteProduits   Int NOT NULL ,
+        idProduit     Int NOT NULL ,
+        idPanier      Int NOT NULL ,
+        idUtilisateur Int NOT NULL ,
+        PRIMARY KEY (idProduit ,idPanier ,idUtilisateur )
         idPanier      Int NOT NULL ,
         PRIMARY KEY (idCommandes )
 )ENGINE=InnoDB;
