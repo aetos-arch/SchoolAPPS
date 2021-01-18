@@ -151,6 +151,15 @@ nav a:hover {
     background-color: var(--cg-blue-light);
 }
 
+
+div.actu:nth-child(even) {
+    background-color: var(--cg-blue-light);
+}
+
+div.actu:nth-child(odd) {
+    background-color: var(--armananth-purple-light);
+}
+
 .products {
     margin: 15px 5px;
 }
