@@ -9,13 +9,12 @@
 
 CREATE TABLE produits(
         idProduit   int (11) Auto_increment  NOT NULL ,
-        nomProduit  Varchar (32) NOT NULL ,
+        nomProduit  Varchar (64) NOT NULL ,
         description Text NOT NULL ,
         prixHT      Double NOT NULL ,
         dateSortie  Date NOT NULL ,
         nbrVues     Int NOT NULL ,
         nbrAchat    Int ,
-        categorie   Int NOT NULL ,
         idCat       Int NOT NULL ,
         PRIMARY KEY (idProduit )
 )ENGINE=InnoDB;
@@ -28,12 +27,12 @@ CREATE TABLE produits(
 CREATE TABLE utilisateurs(
         idUtilisateur     int (11) Auto_increment  NOT NULL ,
         login             Varchar (32) NOT NULL ,
-        nom               Varchar (32) NOT NULL ,
-        prenom            Varchar (32) NOT NULL ,
-        hashMdp           Varchar (40) NOT NULL ,
-        emailFacturation  Varchar (25) NOT NULL ,
-        emailLivraison    Varchar (25) ,
-        telephone         Int ,
+        nom               Varchar (32) NULL ,
+        prenom            Varchar (32) NULL ,
+        hashMdp           Varchar (64) NOT NULL ,
+        emailFacturation  Varchar (254) NOT NULL ,
+        emailLivraison    Varchar (254) ,
+        telephone         Int (10) ,
         dateNaissance     Date NOT NULL ,
         idTypeUtilisateur Int NOT NULL ,
         PRIMARY KEY (idUtilisateur ) ,
@@ -211,3 +210,10 @@ INSERT INTO `utilisateurs` (`idUtilisateur`, `login`, `nom`, `prenom`, `hashMdp`
 (1, 'utilisateur', 'utilisateur', 'utilisateur', '$2y$10$90yGN9i3D0/TIJVoseZUN.qOf1SjmszFNSnC.QT9NLExI9FmmiHGi', 'utilisateur@hotmail.fr', 'utilisateur@hotmail.fr', 101010101, '2021-01-01', 3),
 (2, 'technicien', 'technicien', 'technicien', '$2y$10$90yGN9i3D0/TIJVoseZUN.qOf1SjmszFNSnC.QT9NLExI9FmmiHGi', 'technicien@hotmail.fr', 'technicien@hotmail.fr', 202020202, '2021-01-02', 2),
 (3, 'admin', 'admin', 'admin', '$2y$10$90yGN9i3D0/TIJVoseZUN.qOf1SjmszFNSnC.QT9NLExI9FmmiHGi', 'admin@hotmail.fr', 'admin@hotmail.fr', 303030303, '2021-01-03', 1);
+
+
+INSERT INTO `categories` (`idCat`, `catProduit`) VALUES ('1', 'catPRO1');
+
+INSERT INTO `produits` (`idProduit`, `nomProduit`, `description`, `prixHT`, `dateSortie`, `nbrVues`, `nbrAchat`, `idCat`) VALUES ('1', 'Produit', 'sgslkgjsdgsjd', '50', '2021-01-17', '2', NULL, '1', '1');
+
+INSERT INTO `tickets` (`idTicket`, `intitule`, `explication`, `idEtat`, `idUtilisateur`, `idProduit`, `idTechnicien`) VALUES ('1', 'Ticket test', 'J\'explique mon problème', '2', '1', '1', '2');
