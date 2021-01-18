@@ -43,7 +43,7 @@ class ModeleAvis extends ModeleGenerique
 		try {
 			$req = Connexion::$bdd->prepare('select * from avis where idAVis=?');
 			$req->execute(array($idAVis));
-			$result = $req->fetch();
+			$result = $req->fetchAll();
 			return $result;
 		} catch (PDOException $e) {
 		}
@@ -53,7 +53,7 @@ class ModeleAvis extends ModeleGenerique
 		try {
 			$req = Connexion::$bdd->prepare('select idProduit from produits where nomProduit=?');
 			$req->execute(array($nomProduit));
-			$idProduit = $req->fetch();
+			$idProduit = $req->fetchAll();
 			if ($idProduit === false) {
 				// exception
 			} else {
@@ -68,7 +68,7 @@ class ModeleAvis extends ModeleGenerique
 		try {
 				$req = Connexion::$bdd->prepare('select * from avis where idProduit=?');
 				$req->execute(array($idProduit['idProduit']));
-				$result = $req->fetch();
+				$result = $req->fetchAll();
 				return $result;
 			} catch (PDOException $e) {
 		}

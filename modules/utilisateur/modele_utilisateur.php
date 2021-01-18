@@ -13,7 +13,7 @@ class ModeleUtilisateur extends ModeleGenerique
 		try {
 			$req = Connexion::$bdd->prepare('SELECT * FROM commandes c INNER JOIN panier p ON c.idUtilisateur=p.idtilisateur WHERE p.idPanier=c.idpanier AND c.idCommandes = ?;');
 			$req->execute(array($idCommande));
-			$result = $req->fetch();
+			$result = $req->fetchAll();
 			return $result;
 		} catch (PDOException $e) {
 		}
@@ -24,7 +24,7 @@ class ModeleUtilisateur extends ModeleGenerique
 		try {
 			$req = Connexion::$bdd->prepare('SELECT * FROM commandes c INNER JOIN panier p ON c.idUtilisateur=p.idtilisateur WHERE p.idPanier=c.idpanier AND c.idUtilisateur= ?;');
 			$req->execute(array($idUtilisateur));
-			$result = $req->fetch();
+			$result = $req->fetchAll();
 			return $result;
 		} catch (PDOException $e) {
 		}
@@ -35,7 +35,7 @@ class ModeleUtilisateur extends ModeleGenerique
 		try {
 			$req = Connexion::$bdd->prepare('SELECT * FROM tickets WHERE idTicket =?');
 			$req->execute(array($idTicket));
-			$result = $req->fetch();
+			$result = $req->fetchAll();
 			return $result;
 		} catch (PDOException $e) {
 		}
@@ -47,7 +47,7 @@ class ModeleUtilisateur extends ModeleGenerique
 		try {
 			$req = Connexion::$bdd->prepare('SELECT * FROM tickets WHERE idUtilisateur=?');
 			$req->execute(array($idUtilisateur));
-			$result = $req->fetch();
+			$result = $req->fetchAll();
 			return $result;
 		} catch (PDOException $e) {
 		}
@@ -87,7 +87,7 @@ class ModeleUtilisateur extends ModeleGenerique
 		try {
 			$req = Connexion::$bdd->prepare('SELECT hashMdp FROM utilisateurs WHERE idUtilisateur=?');
 			$req->execute(array($idUtilisateur));
-			$result = $req->fetch();
+			$result = $req->fetchAll();
 			return $result;
 		} catch (PDOException $e) {
 		}
