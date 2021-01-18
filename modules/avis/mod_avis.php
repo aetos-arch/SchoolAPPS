@@ -9,14 +9,16 @@ class ModAvis extends ModGenerique
     {
 
         $controllAvis = new ContAvis();
-
-        if (isset($_SESSION['idUtil'])) {
+        
+       // if (isset($_SESSION['idTypeUtilisateur']) && $_SESSION['idTypeUtilisateur'] == 3) {
             if (isset($url[1])) {
                 $action = $url[1];
-
                 switch ($action) {
+                    case '':
+                        $controllAvis->listerAvis($url[2]);
+                        break;
                     case 'donnerAvis':
-                        $controllAvis->donnerAvis();
+                        $controllAvis->donnerAvis($url[2]);
                         break;
                     case 'supprimerAvis':
                         $controllAvis->supprimerAvis();
@@ -29,9 +31,9 @@ class ModAvis extends ModGenerique
                         break;
                 }
             }
-        } else {
+      //  } else {
             // page erreur
-        }
+      //  }
     }
 }
 ?>

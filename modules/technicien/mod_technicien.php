@@ -45,5 +45,5 @@ class ModTechnicien extends ModGenerique
 ?>
 
 <?php
-$modTechnicien = new ModTechnicien($url);
+$modTechnicien = new ModTechnicien((isset($url)) ? $url : null);
 ?>

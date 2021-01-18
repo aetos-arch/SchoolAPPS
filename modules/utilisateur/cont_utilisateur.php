@@ -9,7 +9,7 @@ class ContUtilisateur extends ContGenerique
 
 	public function __construct()
 	{
-        parent::__contruction(new ModeleUtilisateur(), new VueUtilisateur());
+        parent::__construct(new ModeleUtilisateur(), new VueUtilisateur());
 	}
 
 
