@@ -6,12 +6,11 @@
                 <span class="foot-sub-title">S.A.S School APPS</span><br>
                 Capital de 1 000 000 €<br>
                 Siret - 900 060 130 00013<br>
-                Fièrement sponsoriée par Monsieur BOSSARD - 900 060 130 00013<br>
+                Fièrement sponsoriée par Monsieur BOSSARD<br>
             </p>
         </div>
         <div class="col-md" id="footer-center">
             <p>
-
                     <span class="foot-sub-title">Siège</span><br>
                     140 Rue de la Nouvelle France<br>
                     93100 Montreuil<br>
@@ -25,14 +24,14 @@
             <div class="row" id="footer-quicklinks">
                 <span class="foot-sub-title">Accès Rapide</span>
                 <aside class="row">
-                    <ul class="col-lg">
-                        <li><a href="/home" >Accueil</a></li>
-                        <li><a href="propos" >A propos de nous</a></li>
-                        <li><a href="mentions" >Nos produits</a></li>
-                        <li><a href="contact" >Contact</a></li>
-                        <li><a href="connexion" >Se connecter</a></li>
-                        <li><a href="mentions" >Mentions Légales</a></li>
-                    </ul>
+                    <p class="col-lg">
+                        <a href="/home">Accueil</a><br>
+                        <a href="/propos">A propos de nous</a><br>
+                        <a href="/mentions">Nos produits</a><br>
+                        <a href="/contact">Contact</a><br>
+                        <a href="/connexion">Se connecter</a><br>
+                        <a href="/mentions">Mentions Légales</a><br>
+                    </p>
                 </aside>
             </div>
         </div>
