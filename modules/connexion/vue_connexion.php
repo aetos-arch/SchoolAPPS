@@ -41,22 +41,19 @@ class VueConnexion extends VueGenerique {
 
     function popConnexion(){
         echo '
-            <section class="content-block">
+            <main class="content-block">
                 <div id="pop_connexion">
-                        <h1>Connexion</h1>
-                    <div class="container">
-                        <form action="/connexion/verifConnexion" method="POST">
-                        <label><b>Nom d\'utilisateur</b></label>
-                        <input type="text" placeholder="Entrer le nom d\'utilisateur" name="login" required>
-                        <label><b>Mot de passe</b></label>
-                        <input type="password" placeholder="Entrer le mot de passe" name="mdp" required>
-                        <input type="submit" id=\'submit\' value=\'Se connecter\' >
-                        </form>
-                    </div>
-                    </div>
-                    <br>
+                    <h1>Connexion</h1>
+                    <form action="/connexion/connexion" method="POST">
+                    <label><b>Nom d\'utilisateur</b></label>
+                    <input type="text" placeholder="Entrer le nom d\'utilisateur" name="login" required>
+                    <label><b>Mot de passe</b></label>
+                    <input type="password" placeholder="Entrer le mot de passe" name="mdp" required>
+                    <input type="submit" id=\'submit\' value=\'Se connecter\' >
+                    </form>
                 </div>
-        </section>';
+                <br>
+        </main>';
     }
 
     function popInscription(){
@@ -76,19 +73,38 @@ class VueConnexion extends VueGenerique {
                     </form>
                 <p>Les champs suivis d\'une étoile (*) sont obligatoires.</p>
                 </div>
-                </div>';
+            </div>';
     }
 
     function affichage(){
-        echo '<main>';
-        if (isset($_SESSION['login'])){
-            echo 'Vous etes connecté en tant que '.$_SESSION['login'].'<br>
-            <a href="/connexion/deconnexion">Se déconnecter</a>';
-        }else{
-            echo '<a href="/connexion">Se connecter</a><t>
-			<a href="/connexion">S\'inscrire</a><t>';
-        }
-        echo '</main>';
+        echo '<main>Vous etes connecté en tant que '.$_SESSION['login'].'<br>
+            <a href="/connexion/deconnexion">Se déconnecter</a></main>';
+    }
+
+    function affichageInscription(){
+        echo '<main>Votre inscription a bien été prise en compte.</main>';
+    }
+
+    function erreurInscription(){
+        echo '<main>Il y a eu une erreur dans l\'inscription, veuillez recommencer.</main>';
+    }
+
+    function IDMDPErrone(){
+        echo "<br>L'identifiant ou le mot de passe que vous avez saisi est erroné, veuillez recommencer s'il vous plait.";
+    }
+
+    function mdpErronne(){
+        echo "<br>Le mot de passe que vous avez saisi est erroné, veuillez recommencer s'il vous plait.";
+    }
+
+    function affichageDeconnexion(){
+        echo '<main>Vous avez bien été déconnecté(e).<br>
+            <a href="/home">Retour à la page d\'accueil</a></main>';
+    }
+
+    function affichageIDUtilisé(){
+        echo '<main><a href="/connexion/popConnexion">L\'identifiant que vous avez saisi est déjà pris, veuillez recommencer avec un autre.</a></main>';
+
     }
 
 }
