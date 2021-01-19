@@ -1,38 +1,36 @@
 <?php
 require_once "modules/generique/mod_generique.php";
 require_once "cont_connexion.php";
-require_once "modele_connexion.php";
-require_once "vue_connexion.php";
 
 class ModConnexion extends ModGenerique {
 
     function __construct($url){
 
-        $controleur = new ContConnexion(new ModeleConnexion(), new VueConnexion());
-        $action='';
+        $controleurConnexion = new ContConnexion();
 
+        $action='';
         if (isset($url[1])) {
             $action = $url[1];
         }
 
         switch ($action) {
+            case "connexion":
+                $controleurConnexion->connexion();
+                break;
             case "deconnexion":
-                $controleur->deconnexion();
+                $controleurConnexion->deconnexion();
                 break;
             case "inscription":
-                $controleur->inscription();
-                break;
-            case "verifConnexion":
-                $controleur->verifConnexion();
+                $controleurConnexion->inscription();
                 break;
             case "popConnexion":
-            $controleur->popConnexion();
+            $controleurConnexion->popConnexion();
             break;
             case "popInscription":
-                $controleur->popInscription();
+                $controleurConnexion->popInscription();
                 break;
             default:
-                $controleur->popConnexionInscription();
+                $controleurConnexion->popConnexionInscription();
                 break;
         }
     }
