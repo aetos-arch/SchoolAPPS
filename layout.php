@@ -26,5 +26,4 @@
 
     <?= $pageJavaScripts ?? '' ?>
 </body>
-
 </html>
