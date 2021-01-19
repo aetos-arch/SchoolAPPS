@@ -14,7 +14,6 @@ class ModUtilisateur extends ModGenerique
 		if (isset($_SESSION['idTypeUtilisateur']) && $_SESSION['idTypeUtilisateur'] == 3) {
 			if (isset($url[1])) {
 				$action = $url[1];
-
 				switch ($action) {
 					case 'menu':
 						$controllUtilisateur->menu();
