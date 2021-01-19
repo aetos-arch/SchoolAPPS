@@ -17,9 +17,16 @@ class ModProduit
                         $controllProduit->actionInexistante();
                     }
                     break;
+                case 'ajouter-au-panier':
+                    if (isset($url[2])) {
+                        $controllProduit->afficherProduit($url[2]);
+                    } else {
+                        $controllProduit->actionInexistante();
+                    }
+                    break;
                 default:
                     $controllProduit->actionInexistante();
-                break;
+                    break;
             }
         } else
             $controllProduit->listeProduits();
