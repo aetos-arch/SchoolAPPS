@@ -10,13 +10,13 @@ class VueTechnicien extends VueGenerique
 	    parent::__construct();
 	}
 
-	public function pageAccueilTech($moduleContent)
+	public function pageAccueilTech($moduleContent, $url)
 	{
 	    include 'include/inc_breadcrumb.php';
 	    ?>
         <section>
             <div class="content-block">
-                <div class="container-fluid">
+                <div class="container">
                     <section class="row">
                         <nav class="col-lg-3" id="sideNav">
                             <ul class="navbar-nav">
@@ -82,7 +82,7 @@ class VueTechnicien extends VueGenerique
                     <a href="/technicien/ticket">Menu</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/technicien/nouveauMotDePasse">Menu</a>
+                    <a href="/technicien/nouveau-mot-de-passe">Menu</a>
                 </li>
                 <li class="nav-item">
                     <a href="/technicien/menu">Menu</a>
@@ -129,18 +129,42 @@ class VueTechnicien extends VueGenerique
                     <p id="explication"><?= $ticket['explication']; ?></p>
                 </div>
                 <div class="col-lg card-footer">
-                    <p><?= $ticket['idEtat']; ?> - <?= $ticket['idProduit']; ?></p>
+                    <span>
+                        Etat : <?= $ticket['idEtat']; ?> - Id produit : <?= $ticket['idProduit']; ?>
+                    </span>
+                    <a class="btn lire-plus" href="/technicien/ticket/<?= $ticket['idTicket'] ?>">Voir plus</a>
                 </div>
             </div>
-
         <?php
         }
 
 	    unset($ticket);
 	}
 
-	public function afficheTicket($result)
+	public function afficheTicket($ticket)
 	{
+        ?>
+	     <div class="ticket row card">
+                <div class="col-lg card-header">
+                    <h4 class="d-inline"><?= $ticket[0]['intitule'] ?> - N°<?= $ticket[0]['idTicket'] ?>
+                        <span>
+                            Etat <?= $ticket[0]['idEtat']; ?> - Id produit : <?= $ticket[0]['idProduit']; ?>
+                        </span>
+                    </h4>
+                </div>
+                <div class="col-lg card-body">
+                    <p id="explication"><?= $ticket[0]['explication']; ?></p>
+                    <div class="card">
+                        Info client :
+                    </div>
+                </div>
+                <div class="col-lg card-footer">
+
+                    <a class="btn lire-plus-r" href="/technicien/ticket/<?= $ticket[0]['idTicket'] ?>">Changer l'état</a>
+                    <a class="btn lire-plus-r" href="/technicien/ticket/<?= $ticket[0]['idTicket'] ?>">Ecrire un message</a>
+                </div>
+            </div>
+        <?php
 	}
 
 	public function nouveauLogin()
@@ -149,17 +173,28 @@ class VueTechnicien extends VueGenerique
 		<hr class="mt-2 mb-4">
 		
 		<div class="card-panel  lighten-4">
-			<form action="/technicien/changer-login" method="POST" >
+			<form action="/technicien/changer-login" method="POST">
 				<div class="row">
 					<div class="col-4 form-group">
 						<label for="nouveauLogin">Nouveau Login</label>
-						<input name="nouveauLogin" type="text" class="form-control">
-						<button style="margin-top:20px;"class="btn btn-primary" type="submit" name="action">Valider</button>
+						<input name="nouveauLogin" type="text" class="form-control" required pattern="\S+.*" placeholder="Votre nouveau login">
+						<button class="btn btn-primary " type="submit" name="action">Valider</button>
 					</div>
 				</div>
 			</form>
 		</div>';
 	}
+
+    public function loginExistant()
+    {
+        ?> <span class="alert-warning">Vous ne pouvez pas remettre le login actuel</span><?php
+    }
+
+    public function loginMisAjour($newLogin)
+    {
+        ?> <span class="alert-warning">Votre login a bien été mis à jour<br>
+        (Lors de votre prochaine connexion il faudra utiliser celui-ci : <?= $newLogin ?>)</span><?php
+    }
 
 
 	public function nouveauMotDePasse()
@@ -167,7 +202,7 @@ class VueTechnicien extends VueGenerique
 		echo  '<h3>Changer votre mot de passe</h3>
 		<hr class="mt-2 mb-4">
 		
-		<form action="" method="post">
+		<form action="/technicien/nouveau-mot-de-passe" method="post">
 			<div class="row">
 				<div class="col-4 form-group">
 					<label for="old_password">Ancien mot de passe</label>

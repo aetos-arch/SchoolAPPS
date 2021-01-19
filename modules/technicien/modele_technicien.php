@@ -75,6 +75,15 @@ class ModeleTechnicien extends ModeleGenerique
 		}
 	}
 
+    public function setLogin($idUtilisateur, $nouveauLogin)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('UPDATE utilisateurs set login = ? WHERE idUtilisateur= ?');
+            $req->execute(array($nouveauLogin, $idUtilisateur));
+        } catch (PDOException $e) {
+        }
+    }
+
 	public function getPass($idUtilisateur)
 	{
 		try {

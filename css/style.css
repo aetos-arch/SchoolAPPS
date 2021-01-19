@@ -50,6 +50,17 @@ a.lire-plus:hover {
     color: white;
 }
 
+a.lire-plus-r {
+    background-color: var(--armananth-purple);
+    margin: 2px;
+    color: white;
+}
+
+a.lire-plus-r:hover {
+    background-color: var(--cg-blue);
+    color: white;
+}
+
 .content-block {
     padding: 15px 0 12px;
 }
@@ -111,11 +122,11 @@ p {
 
 .breadcrumb {
     background-color: #e5e5e5;
-    color : var(--emerald);
+    color : var(--cyan-process);
 }
 
 .breadcrumb > * {
-    padding: 5px 2px;
+    padding: 5px 2px 5px 15px;
 }
 
 #sideNav div.card-header {
@@ -138,9 +149,13 @@ p {
     width: 90px;
 }
 
+.badge {
+    vertical-align: top !important;
+}
+
 .badge-dot {
-    border-radius: 5px;
-    position: center;
+    border-radius: 9px;
+    font-size: 9pt;
 }
 
 nav a {
@@ -193,21 +208,11 @@ nav a:hover {
     background-color: var(--cg-blue-light);
 }
 
-
-div.actu:nth-child(even) {
-    background-color: var(--cg-blue-light);
-}
-
-div.actu:nth-child(odd) {
-    background-color: var(--armananth-purple-light);
-}
-
 .products {
     margin: 15px 5px;
 }
 
 .actu {
-    background-color: var(--armananth-purple-light);
     padding: 1% 2% 0;
     margin: 20px 15px;
     opacity: 0.9;
@@ -215,6 +220,18 @@ div.actu:nth-child(odd) {
 
 .actu:hover {
     opacity: 1;
+}
+
+article.card-footer {
+    color: var(--rich-black);
+}
+
+.actu:nth-child(even) {
+    background-color: var(--armananth-purple-light);
+}
+
+.actu:nth-child(odd) {
+    background-color: var(--cg-blue-light);
 }
 
 .sponsor {
