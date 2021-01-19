@@ -47,7 +47,6 @@ CREATE TABLE paniers(
         idPanier      int (11) Auto_increment  NOT NULL ,
         dateCreation  Date NOT NULL ,
         total         DECIMAL (15,3)  NOT NULL ,
-        qteProduits   Int NOT NULL ,
         idUtilisateur Int NOT NULL ,
         PRIMARY KEY (idPanier )
 )ENGINE=InnoDB;
