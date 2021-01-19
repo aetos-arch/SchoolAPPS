@@ -17,6 +17,11 @@ class VueGenerique {
         <?php
     }
 
+    public function messageVue($msg)
+    {
+        ?> <span class="alert-warning"><?= $msg ?></span><?php
+    }
+
     public function motDePasseIncorrect() {
         ?>
         <h3>Mot de passe incorrect.</h3>
@@ -34,6 +39,7 @@ class VueGenerique {
         <h3>Le login que vous avez saisie existe malheuresement déjà :(...</h3>
         <?php
     }
+
 }
 
 ?>

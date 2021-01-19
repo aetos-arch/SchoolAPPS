@@ -1,9 +1,9 @@
 <main>
     <?php require 'include/inc_derniers_actus.php' ?>
-    <section class="content-block">
+    <section class="content-block container">
         <h1>Nos Articles</h1>
         <div class="container align-items-center mx-auto">
-            <div class="actu card text-center">
+            <article class="actu card text-center">
                 <div class="card-body">
                     <h5 class="card-title">Actu 1</h5>
                     <img class="img-fluid" src="../images/illustrations/macbook.jpg">
@@ -12,9 +12,9 @@
                         Cum sociis natoque penatibus et magnis. Ut diam quam nulla porttitor. Purus viverra accumsan in nisl nisi.</p>
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
-                <div class="card-footer text-muted">2 days ago</div>
-            </div>
-            <div class="actu card text-center">
+                <div class="card-footer">2 days ago</div>
+            </article>
+            <article class="actu card text-center">
                 <div class="card-body">
                     <h5 class="card-title">Actu 1</h5>
                     <img class="img-fluid" src="../images/illustrations/sport.jpg">
@@ -23,9 +23,9 @@
                         Cum sociis natoque penatibus et magnis. Ut diam quam nulla porttitor. Purus viverra accumsan in nisl nisi.</p>
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
-                <div class="card-footer text-muted">2 days ago</div>
-            </div>
-            <div class="actu card text-center">
+                <div class="card-footer">2 days ago</div>
+            </article>
+            <article class="actu card text-center">
                 <div class="card-body">
                     <h5 class="card-title">Actu 1</h5>
                     <img class="img-fluid" src="../images/illustrations/school.jpg">
@@ -34,8 +34,8 @@
                         Cum sociis natoque penatibus et magnis. Ut diam quam nulla porttitor. Purus viverra accumsan in nisl nisi.</p>
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
-                <div class="card-footer text-muted">2 days ago</div>
-            </div>
+                <div class="card-footer">2 days ago</div>
+            </article>
         </div>
         <?php require 'include/inc_sponsors.php' ?>
     </section>

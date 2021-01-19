@@ -26,9 +26,14 @@ class ModTechnicien extends ModGenerique
 						break;
 					case 'changer-login':
 						$controllTech->nouveauLogin();
+						if (isset($url[2]) && $url === 'verif') {
+							$controllTech->soumettreLogin();
+						}
 						break;
 					case 'ticket':
-						$controllTech->afficheTicket();
+						if (isset($url[2]) && is_numeric($url[2])) {
+							$controllTech->afficheTicket($url[2]);
+						}
 						break;
 					case 'mes-tickets':
 						$controllTech->afficheTickets();
@@ -48,7 +53,7 @@ class ModTechnicien extends ModGenerique
 			}
 			$moduleContent = ob_get_clean();
 
-			$controllTech->accueilTechnicien($moduleContent);
+			$controllTech->accueilTechnicien($moduleContent, $url);
 		} else
 			echo '<h3>Aucune connexion trouvée.</h3>';
 	}

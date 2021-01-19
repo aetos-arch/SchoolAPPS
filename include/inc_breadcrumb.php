@@ -1,5 +1,13 @@
-<di class="breadcrumb">
-    <a class="breadcrumb-item" href=""> Module</a>
-    <a class="breadcrumb-item" href=""> Module</a>
-    <a class="breadcrumb-item" href=""> Module</a>
-</di>
+<div class="breadcrumb">
+    <?php
+        if(isset($url)) {
+            foreach ($url as &$path) {
+    ?>
+                <p class="breadcrumb-item"> <?= ucfirst($path) ?></p>
+    <?php
+            }
+            unset($path);
+        }
+
+    ?>
+</div>
