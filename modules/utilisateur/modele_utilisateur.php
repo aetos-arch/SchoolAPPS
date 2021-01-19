@@ -11,7 +11,7 @@ class ModeleUtilisateur extends ModeleGenerique
 	public function getCommande($idCommande)
 	{
 		try {
-			$req = Connexion::$bdd->prepare('SELECT * FROM commandes c INNER JOIN panier p ON c.idUtilisateur=p.idtilisateur WHERE p.idPanier=c.idpanier AND c.idCommandes = ?;');
+			$req = Connexion::$bdd->prepare('SELECT * FROM commandes c INNER JOIN panier p ON c.idUtilisateur=p.idtilisateur WHERE p.idPanier=c.idpanier AND c.idCommandes = ?');
 			$req->execute(array($idCommande));
 			$result = $req->fetchAll();
 			return $result;
@@ -22,7 +22,7 @@ class ModeleUtilisateur extends ModeleGenerique
 	public function getCommandes($idUtilisateur)
 	{
 		try {
-			$req = Connexion::$bdd->prepare('SELECT * FROM commandes c INNER JOIN panier p ON c.idUtilisateur=p.idtilisateur WHERE p.idPanier=c.idpanier AND c.idUtilisateur= ?;');
+			$req = Connexion::$bdd->prepare('SELECT * FROM commandes c INNER JOIN panier p ON c.idUtilisateur=p.idtilisateur WHERE p.idPanier=c.idpanier AND c.idUtilisateur= ?');
 			$req->execute(array($idUtilisateur));
 			$result = $req->fetchAll();
 			return $result;

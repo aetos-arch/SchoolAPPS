@@ -14,7 +14,7 @@ class ContAvis extends ContGenerique
     public function listerAvis($nomProduit)
     {
         $idProduit = $this->modele->getIdProduit($nomProduit);
-        $data = $this->modele->getAllAvisProduit($idProduit);
+        $data = $this->modele->getAllAvisProduit($idProduit['idProduit']);
         $this->vue->listerAvis($data);
     }
 
