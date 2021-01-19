@@ -20,5 +20,4 @@ class VuePanier extends VueGenerique
               <h3>Total HT : '.($listeProduit[0])['TotalPanier'].'</h3></main>';
         }
     }
-
 }

@@ -116,4 +116,51 @@ class ContUtilisateur extends ContGenerique
 		$result = $this->modele->getTicket($idCommande);
 		$this->vue->afficheCommande($result);
 	}
+
+	public function donnerAvis($nomProduit)
+    {
+        $idProduit = $this->modele->getIdProduit($nomProduit);
+        $avisExiste = $this->modele->avisExiste($_SESSION['idUtilisateur'], $idProduit);
+        if ($avisExiste != 0) {
+           echo "avis existe déjà";
+        } else if (isset($_POST['commentaire'])) {
+            $result = [
+                'idUtilisateur' => $_SESSION['idUtilisateur'],
+                'idProduit' => addslashes(strip_tags($idProduit)),
+                'titre' => addslashes(strip_tags($_POST['titre'])),
+                'commentaire' => addslashes(strip_tags($_POST['commentaire'])),
+                'note' => addslashes(strip_tags($_POST['note']))
+            ];
+            $this->modele->donnerAvis($result);
+        } else {
+            $this->vue->formDonnerAvis();
+        }
+    }
+
+
+    public function supprimerAvis()
+    {
+        $idAvis = $_POST['idAvis'];
+        $this->modele->supprimerAvis($idAvis);
+        // redirection
+    }
+
+    public function modifierAvis()
+    {
+        if (isset($_POST['commentaire'])) {
+            $result = [
+                'idUtilisateur' => $_SESSION['idUtilisateur'],
+                'idProduit' => strip_tags($_POST['idProduit']),
+                'titre' => addslashes(strip_tags($_POST['titre'])),
+                'commentaire' => addslashes(strip_tags($_POST['commentaire'])),
+                'note' => addslashes(strip_tags($_POST['note']))
+            ];
+            $this->modele->donnerAvis($result);
+        } else {
+            $idAvis = $_POST['idAvis'];
+            $result = $this->modele->getAvis($idAvis);
+            $this->vue->formModifierAvis($result);
+        }
+    }
+
 }

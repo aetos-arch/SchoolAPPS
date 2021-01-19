@@ -16,11 +16,10 @@ if (isset($url[0])) {
     $page = 'home';
 }
 
-
 // Si c'est pas un page
 if (!in_array($page, array('connexion', 'utilisateur', 'technicien', 'admin', 'panier', 'avis', 'contact'))) {
     // Si c'est une page static
-    if (in_array($page, array('home', 'propos', 'mentions', 'logiciels', 'articles', 'schoolDev', 'schoolNet', 'E-education'))) {
+    if (in_array($page, array('home', 'propos', 'mentions', 'produits', 'articles', 'schoolDev', 'schoolNet', 'E-education'))) {
         ob_start();
         $pageTitle = ucfirst($page) . ' - School APPS';
         require "static/$page.php";

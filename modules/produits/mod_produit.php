@@ -22,8 +22,7 @@ class ModProduit
                 break;
             }
         } else
-            $this->$controllProduit->listeProduits();
-
+            $controllProduit->listeProduits();
     }
 }
 

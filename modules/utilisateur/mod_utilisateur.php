@@ -37,6 +37,18 @@ class ModUtilisateur extends ModGenerique
 					case 'ticket':
 						$controllUtilisateur->afficheTicket();
 						break;
+					case 'donner-avis':
+						if (isset($url[2])) {
+							$controllUtilisateur->donnerAvis($url[2]);
+						} else {
+							$controllUtilisateur->actionInexistante();
+						}
+					case 'supprimerAvis':
+						$controllUtilisateur->supprimerAvis();
+						break;
+					case 'modifierAvis':
+						$controllUtilisateur->modifierAvis();
+						break;
 					default:
 						$controllUtilisateur->actionInexistante();
 						break;
@@ -54,5 +66,5 @@ class ModUtilisateur extends ModGenerique
 ?>
 
 <?php
-    $modUtilisateur = new ModUtilisateur((isset($url)) ? $url : null);
+$modUtilisateur = new ModUtilisateur((isset($url)) ? $url : null);
 ?>
