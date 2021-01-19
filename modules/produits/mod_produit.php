@@ -13,7 +13,6 @@ class ModProduit
                 case 'afficher-produit':
                     if (isset($url[2])) {
                         $controllProduit->afficherProduit($url[2]);
-                        $controllProduit->listerAvis($url[2]);
                     } else {
                         $controllProduit->actionInexistante();
                     }

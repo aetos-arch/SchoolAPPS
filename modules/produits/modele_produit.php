@@ -22,12 +22,11 @@ class ModeleProduit extends ModeleGenerique
 		}
     }
     
-
     public function getProduit($idProduit)
     {
         try {
-            $req = Connexion::$bdd->prepare('SELECT * FROM produits WHERE idProduit = ?');
-            $req->execute(array($idProduit));
+			$req = Connexion::$bdd->prepare('SELECT * FROM produits WHERE idProduit = ?');
+			$req->execute(array($idProduit));
             $result = $req->fetchAll();
             return $result;
         } catch (PDOException $e) {
@@ -66,5 +65,4 @@ class ModeleProduit extends ModeleGenerique
 			} catch (PDOException $e) {
 		}
 	}
-
 }

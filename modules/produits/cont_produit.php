@@ -21,11 +21,12 @@ class ContProduit extends ContGenerique
       $idProduit = $this->modele->getIdProduit($nomProduit);
       $data = $this->modele->getProduit($idProduit['idProduit']);
       $this->vue->afficherProduit($data);
+
+      $this->listerAvis($idProduit);
     }
 
-    public function listerAvis($nomProduit)
+    public function listerAvis($idProduit)
     {
-        $idProduit = $this->modele->getIdProduit($nomProduit);
         $data = $this->modele->getAllAvisProduit($idProduit['idProduit']);
         $this->vue->listerAvis($data);
     }
