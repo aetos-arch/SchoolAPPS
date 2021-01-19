@@ -19,13 +19,13 @@ class ContConnexion extends ContGenerique {
                 $_SESSION['idUtil'] = $requete[0]['idUtilisateur'];
                 $_SESSION['login'] = $requete[0]['login'];
                 $_SESSION['idTypeUtilisateur'] = $requete[0]['idTypeUtilisateur'];
+                $this->vue->affichageConnexionReussie();
             }else{
-                $this->vue->mdpErrone();
+                $this->vue->mdpErronne();
             }
         }else{
             $this->vue->IDMDPErrone();
         }
-        $this->vue->affichage();
     }
 
     function popConnexionInscription(){
@@ -56,12 +56,12 @@ class ContConnexion extends ContGenerique {
                 $_SESSION['login'] = $utilInscrit[0]['login'];
                 $_SESSION['idTypeUtilisateur'] = $utilInscrit[0]['idTypeUtilisateur'];
                 $this->vue->affichageInscription();
-                $this->vue->affichage();
+                $this->vue->affichageConnexionReussie();
             }else{
                 $this->vue->erreurInscription();
             }
         }else{
-            $this->vue->affichageIDUtilisé();
+            $this->vue->affichageIDUtilise();
         }
     }
 
