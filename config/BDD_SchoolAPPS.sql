@@ -8,14 +8,14 @@
 #------------------------------------------------------------
 
 CREATE TABLE produits(
-                         idProduit   int (11) Auto_increment  NOT NULL ,
-                         nomProduit  Varchar (64) NOT NULL ,
-                         description Text NOT NULL ,
-                         prixHT      Double NOT NULL ,
-                         dateSortie  Date NULL ,
-                         nbrVues     Int NULL ,
-                         nbrAchat    Int ,
-                         PRIMARY KEY (idProduit )
+        idProduit   int (11) Auto_increment  NOT NULL ,
+        nomProduit  Varchar (64) NOT NULL ,
+        description Text NOT NULL ,
+        prixHT      Double NOT NULL ,
+        dateSortie  Date NULL ,
+        nbrVues     Int NULL ,
+        nbrAchat    Int ,
+        PRIMARY KEY (idProduit )
 )ENGINE=InnoDB;
 
 
@@ -24,18 +24,18 @@ CREATE TABLE produits(
 #------------------------------------------------------------
 
 CREATE TABLE utilisateurs(
-                             idUtilisateur     int (11) Auto_increment  NOT NULL ,
-                             login             Varchar (32) NOT NULL ,
-                             nom               Varchar (32) NULL ,
-                             prenom            Varchar (32) NULL ,
-                             hashMdp           Varchar (64) NOT NULL ,
-                             emailFacturation  Varchar (254) NOT NULL ,
-                             emailLivraison    Varchar (254) ,
-                             telephone         Int (10) ,
-                             dateNaissance     Date NULL ,
-                             idTypeUtilisateur Int NOT NULL ,
-                             PRIMARY KEY (idUtilisateur ) ,
-                             UNIQUE (login )
+        idUtilisateur     int (11) Auto_increment  NOT NULL ,
+        login             Varchar (32) NOT NULL ,
+        nom               Varchar (32) NULL ,
+        prenom            Varchar (32) NULL ,
+        hashMdp           Varchar (64) NOT NULL ,
+        emailFacturation  Varchar (254) NOT NULL ,
+        emailLivraison    Varchar (254) ,
+        telephone         Int (10) ,
+        dateNaissance     Date NULL ,
+        idTypeUtilisateur Int NOT NULL ,
+        PRIMARY KEY (idUtilisateur ) ,
+        UNIQUE (login )
 )ENGINE=InnoDB;
 
 
@@ -44,13 +44,12 @@ CREATE TABLE utilisateurs(
 #------------------------------------------------------------
 
 CREATE TABLE paniers(
-                        idPanier      int (11) Auto_increment  NOT NULL ,
-                        dateCreation  Date NOT NULL ,
-                        total         DECIMAL (15,3)  NOT NULL ,
-                        qteProduits   Int NOT NULL ,
-                        idProduit     Int NOT NULL ,
-                        idUtilisateur Int NOT NULL ,
-                        PRIMARY KEY (idPanier )
+        idPanier      int (11) Auto_increment  NOT NULL ,
+        dateCreation  Date NOT NULL ,
+        total         DECIMAL (15,3)  NOT NULL ,
+        qteProduits   Int NOT NULL ,
+        idUtilisateur Int NOT NULL ,
+        PRIMARY KEY (idPanier )
 )ENGINE=InnoDB;
 
 
@@ -59,14 +58,14 @@ CREATE TABLE paniers(
 #------------------------------------------------------------
 
 CREATE TABLE tickets(
-                        idTicket                   int (11) Auto_increment  NOT NULL ,
-                        intitule                   Varchar (32) NOT NULL ,
-                        explication                Text ,
-                        idEtat                     Int NOT NULL ,
-                        idUtilisateur              Int NOT NULL ,
-                        idProduit                  Int NOT NULL ,
-                        idTechnicien Int NOT NULL ,
-                        PRIMARY KEY (idTicket )
+        idTicket                   int (11) Auto_increment  NOT NULL ,
+        intitule                   Varchar (32) NOT NULL ,
+        explication                Text ,
+        idEtat                     Int NOT NULL ,
+        idUtilisateur              Int NOT NULL ,
+        idProduit                  Int NOT NULL ,
+        idTechnicien Int NOT NULL ,
+        PRIMARY KEY (idTicket )
 )ENGINE=InnoDB;
 
 
@@ -75,9 +74,9 @@ CREATE TABLE tickets(
 #------------------------------------------------------------
 
 CREATE TABLE types_utilisateur(
-                                  idTypeUtilisateur int (11) Auto_increment  NOT NULL ,
-                                  typeUtilisateur   Varchar (32) NOT NULL ,
-                                  PRIMARY KEY (idTypeUtilisateur )
+        idTypeUtilisateur int (11) Auto_increment  NOT NULL ,
+        typeUtilisateur   Varchar (32) NOT NULL ,
+        PRIMARY KEY (idTypeUtilisateur )
 )ENGINE=InnoDB;
 
 
@@ -86,13 +85,13 @@ CREATE TABLE types_utilisateur(
 #------------------------------------------------------------
 
 CREATE TABLE articles(
-                         idArticles             int (11) Auto_increment  NOT NULL ,
-                         titreArticle           Varchar (32) NOT NULL ,
-                         corpsArticle           Longtext NOT NULL ,
-                         IllustrationPrinciaple Varchar (120) NOT NULL ,
-                         IllustrationSecondaire Varchar (120) NOT NULL ,
-                         idUtilisateur          Int NOT NULL ,
-                         PRIMARY KEY (idArticles )
+        idArticles             int (11) Auto_increment  NOT NULL ,
+        titreArticle           Varchar (32) NOT NULL ,
+        corpsArticle           Longtext NOT NULL ,
+        IllustrationPrinciaple Varchar (120) NOT NULL ,
+        IllustrationSecondaire Varchar (120) NOT NULL ,
+        idUtilisateur          Int NOT NULL ,
+        PRIMARY KEY (idArticles )
 )ENGINE=InnoDB;
 
 
@@ -101,12 +100,12 @@ CREATE TABLE articles(
 #------------------------------------------------------------
 
 CREATE TABLE avis(
-                     idAvis        int (11) Auto_increment  NOT NULL ,
-                     avis          Text NOT NULL ,
-                     noteProduit   Int NOT NULL ,
-                     idProduit     Int NOT NULL ,
-                     idUtilisateur Int NOT NULL ,
-                     PRIMARY KEY (idAvis )
+        idAvis        int (11) Auto_increment  NOT NULL ,
+        avis          Text NOT NULL ,
+        noteProduit   Int NOT NULL ,
+        idProduit     Int NOT NULL ,
+        idUtilisateur Int NOT NULL ,
+        PRIMARY KEY (idAvis )
 )ENGINE=InnoDB;
 
 
@@ -115,9 +114,9 @@ CREATE TABLE avis(
 #------------------------------------------------------------
 
 CREATE TABLE etats(
-                      idEtat Int NOT NULL ,
-                      etat   Varchar (32) NOT NULL ,
-                      PRIMARY KEY (idEtat )
+        idEtat Int NOT NULL ,
+        etat   Varchar (32) NOT NULL ,
+        PRIMARY KEY (idEtat )
 )ENGINE=InnoDB;
 
 
@@ -126,13 +125,13 @@ CREATE TABLE etats(
 #------------------------------------------------------------
 
 CREATE TABLE message(
-                        idMessage                  int (11) Auto_increment  NOT NULL ,
-                        message                    Text NOT NULL ,
-                        dateMsg                    Time NOT NULL ,
-                        idTicket                   Int NOT NULL ,
-                        idUtilisateur              Int NOT NULL ,
-                        idTechnicien Int NOT NULL ,
-                        PRIMARY KEY (idMessage )
+        idMessage                  int (11) Auto_increment  NOT NULL ,
+        message                    Text NOT NULL ,
+        dateMsg                    Time NOT NULL ,
+        idTicket                   Int NOT NULL ,
+        idUtilisateur              Int NOT NULL ,
+        idTechnicien Int NOT NULL ,
+        PRIMARY KEY (idMessage )
 )ENGINE=InnoDB;
 
 
@@ -141,15 +140,27 @@ CREATE TABLE message(
 #------------------------------------------------------------
 
 CREATE TABLE commandes(
-                          idCommandes   int (11) Auto_increment  NOT NULL ,
-                          dateAchat     Date NOT NULL ,
-                          idUtilisateur Int NOT NULL ,
-                          idPanier      Int NOT NULL ,
-                          PRIMARY KEY (idCommandes )
+        idCommandes   int (11) Auto_increment  NOT NULL ,
+        dateAchat     Date NOT NULL ,
+        idUtilisateur Int NOT NULL ,
+        idPanier      Int NOT NULL ,
+        PRIMARY KEY (idCommandes )
 )ENGINE=InnoDB;
 
+
+#------------------------------------------------------------
+# Table: produitsPanier
+#------------------------------------------------------------
+
+CREATE TABLE produitsPanier(
+        qteProduits Int NOT NULL ,
+        idProduit   Int NOT NULL ,
+        idPanier    Int NOT NULL ,
+        PRIMARY KEY (idProduit ,idPanier )
+)ENGINE=InnoDB;
+
+
 ALTER TABLE utilisateurs ADD CONSTRAINT FK_utilisateurs_idTypeUtilisateur FOREIGN KEY (idTypeUtilisateur) REFERENCES types_utilisateur(idTypeUtilisateur);
-ALTER TABLE paniers ADD CONSTRAINT FK_paniers_idProduit FOREIGN KEY (idProduit) REFERENCES produits(idProduit);
 ALTER TABLE paniers ADD CONSTRAINT FK_paniers_idUtilisateur FOREIGN KEY (idUtilisateur) REFERENCES utilisateurs(idUtilisateur);
 ALTER TABLE tickets ADD CONSTRAINT FK_tickets_idEtat FOREIGN KEY (idEtat) REFERENCES etats(idEtat);
 ALTER TABLE tickets ADD CONSTRAINT FK_tickets_idUtilisateur FOREIGN KEY (idUtilisateur) REFERENCES utilisateurs(idUtilisateur);
@@ -163,9 +174,10 @@ ALTER TABLE message ADD CONSTRAINT FK_message_idUtilisateur FOREIGN KEY (idUtili
 ALTER TABLE message ADD CONSTRAINT FK_message_idUtilisateur_utilisateurs FOREIGN KEY (idTechnicien) REFERENCES utilisateurs(idUtilisateur);
 ALTER TABLE commandes ADD CONSTRAINT FK_commandes_idUtilisateur FOREIGN KEY (idUtilisateur) REFERENCES utilisateurs(idUtilisateur);
 ALTER TABLE commandes ADD CONSTRAINT FK_commandes_idPanier FOREIGN KEY (idPanier) REFERENCES paniers(idPanier);
+ALTER TABLE produitsPanier ADD CONSTRAINT FK_produitsPanier_idProduit FOREIGN KEY (idProduit) REFERENCES produits(idProduit);
+ALTER TABLE produitsPanier ADD CONSTRAINT FK_produitsPanier_idPanier FOREIGN KEY (idPanier) REFERENCES paniers(idPanier);
 
-
-/* --
+/* -- 
 -- INSERTION
 -- */
 
