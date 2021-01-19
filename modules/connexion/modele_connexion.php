@@ -19,7 +19,6 @@ class ModeleConnexion extends Connexion{
                 $_SESSION['idTypeUtilisateur'] = $req[0]['idTypeUtilisateur'];
             }else{
                 echo "<br>Le mot de passe que vous avez saisi est erroné, veuillez recommencer s'il vous plait.";
-
             }
         }else{
             echo "<br>L'identifiant ou le mot de passe que vous avez saisi est erroné, veuillez recommencer s'il vous plait.";

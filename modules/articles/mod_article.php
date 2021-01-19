@@ -14,15 +14,20 @@ class ModArticle
                 case 'liste':
                     $controllArticle->listeArticles();
                     break;
-                case 'afficherArticle':
-                    $controllArticle->afficherArticle($url[2]);
+                case 'afficher-article':
+                    if (isset($url[2])) {
+                        $controllArticle->afficherArticle($url[2]);
+                    } else {
+                      $controllArticle->actionInexistante();
+                    }
                     break;
                 default:
-                    # code...
-                    break;
+                $controllArticle->actionInexistante();
+                break;
             }
-        } else
-            echo '<h3>Aucune connexion trouvée.</h3>';
+        } else {
+            $controllArticle->listeArticles();
+        }
     }
 }
 
