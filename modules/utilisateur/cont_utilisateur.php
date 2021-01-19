@@ -28,7 +28,7 @@ class ContUtilisateur extends ContGenerique
 		if (isset($_POST['nouveauLogin'])) {
 			$nouveauLogin = addslashes(strip_tags($_POST['nouveauLogin']));
 			if ($this->modele->loginExiste($nouveauLogin) != 0) {
-				// erreur login existe déjà
+				$this->loginExiste();
 				header('');
 				exit();
 			} else {
@@ -46,7 +46,7 @@ class ContUtilisateur extends ContGenerique
 		if (isset($_POST['nouveau_password2'])) {
 			$nouveauMotDePasse1 = addslashes(strip_tags($_POST['nouveau_password1']));
 			$nouveauMotDePasse2 = addslashes(strip_tags($_POST['nouveau_password2']));
-			if ($nouveauMotDePasse1 == $nouveauMotDePasse2) {
+			if ($nouveauMotDePasse1 == $nouveauMotDePasse2 && $nouveauMotDePasse1 != "") {
 				$passNow = $this->modele->getPassword($_SESSION['idUtil']);
 				if (password_verify($_POST['old_password'], $passNow)) {
 					$nouveauMotDePasseHash = password_hash($nouveauMotDePasse1,  PASSWORD_BCRYPT);
@@ -54,10 +54,10 @@ class ContUtilisateur extends ContGenerique
 					header('');
 					exit();
 				} else {
-					// ancien mot de passe incorrect
+					$this->loginExiste();
 				}
 			} else {
-				// pass1 different de pass2
+				$this->motDePasseNonIdentique();
 			}
 		}
 	}
@@ -78,11 +78,11 @@ class ContUtilisateur extends ContGenerique
 				'idProduit' => addslashes(strip_tags($_POST['idProduit'])),
 				'idUtilisateur' => $_SESSION['idUtil']
 			];
-
-			if ($this->verifTableauPasVide($result)) {
+			try {
+				$this->verifTableauValeurNull($result);
 				$this->modele->creerTicket($result);
-			} else {
-				// exception
+			} catch (Exception $e) {
+				$e->getMessage();
 			}
 		} else {
 			$this->vue->nouveauTicket();

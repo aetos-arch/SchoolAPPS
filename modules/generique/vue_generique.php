@@ -10,19 +10,30 @@ class VueGenerique {
         ob_get_clean();
     }
 
+    // erreur 404
     public function actionInexistante() {
         ?>
         <h3>Cette action est inexistante.</h3>
         <?php
     }
 
-    
-    public function tableauValeurVide() {
+    public function motDePasseIncorrect() {
         ?>
-        <h3>Valeur vide dans une case du formulaire.</h3>
+        <h3>Mot de passe incorrect.</h3>
         <?php
     }
 
+    public function motDePasseNonIdentique() {
+        ?>
+        <h3>Les deux mots de passe saisies ne sont pas identiques...</h3>
+        <?php
+    }
+
+    public function loginExiste() {
+        ?>
+        <h3>Le login que vous avez saisie existe malheuresement déjà :(...</h3>
+        <?php
+    }
 }
 
 ?>

@@ -17,17 +17,26 @@ class ContGenerique {
         $this->vue->actionInexistante();
     }
 
-    public function verifTableauPasVide ($tab) {
+    public function verifTableauValeurNull ($tab) {
         foreach ($tab as $key=>$v) {
             if (empty($v)) {
-                return false;
+                throw new Exception("Valeur vide");
             }
         }
-        return true;
     }
 
-    function tableauValeurVide() {
-        $this->vue->tableauValeurVide();
+    public function motDePasseIncorrect() {
+        $this->vue->motDePasseIncorrect();
+
+    }
+
+    public function motDePasseNonIdentique() {
+        $this->vue->motDePasseNonIdentique();
+
+    }
+
+    public function loginExiste() {
+        $this->vue->loginExiste();
     }
 
 }

@@ -33,7 +33,7 @@ class ContAdmin extends ContGenerique
 
 	public function supprimerTicket()
 	{
-		$idTicket = $_POST['idTicket'];
+		$idTicket = addslashes(strip_tags($_POST['idTicket']));
 		$this->modele->supprimerTicket($idTicket);
 	}
 
@@ -42,7 +42,7 @@ class ContAdmin extends ContGenerique
 		$this->vue->afficherTechniciens();
 
 		if (isset($_POST['idDelete'])) {
-			$this->modele->supprimerTechnicien($_POST['idDelete']);
+			$this->modele->supprimerTechnicien(addslashes(strip_tags($_POST['idDelete'])));
 		}
 
 		if (isset($_POST['nouveauTechnicien'])) {
@@ -62,12 +62,12 @@ class ContAdmin extends ContGenerique
 		if (isset($_POST['nouveauLogin'])) {
 			$nouveauLogin = addslashes(strip_tags($_POST['nouveauLogin']));
 			if ($this->modele->loginExiste($nouveauLogin) != 0) {
-				// erreur Login existe déjà
+				$this->loginExiste();
 				header('');
 				exit();
 			} else {
 				$this->modele->setLogin($_SESSION['idUtil'], $nouveauLogin);
-				$_SESSION['login'] = $nouveauLogin;
+				$_SESSION['nomUser'] = $nouveauLogin;
 				header('');
 				exit();
 			}
@@ -77,22 +77,21 @@ class ContAdmin extends ContGenerique
 	public function nouveauMotDePasse()
 	{
 		$this->vue->nouveauMotDePasse();
-		if (isset($_POST['new_password2'])) {
-			$nouveauMdp1 = addslashes(strip_tags($_POST['new_password1']));
-			$nouveauMdp2 = addslashes(strip_tags($_POST['new_password2']));
-
-			if ($nouveauMdp1 == $nouveauMdp2) {
-				$passNow = $this->modele->getPass($_SESSION['idUtil']);
+		if (isset($_POST['nouveau_password2'])) {
+			$nouveauMotDePasse1 = addslashes(strip_tags($_POST['nouveau_password1']));
+			$nouveauMotDePasse2 = addslashes(strip_tags($_POST['nouveau_password2']));
+			if ($nouveauMotDePasse1 == $nouveauMotDePasse2 && $nouveauMotDePasse1 != "") {
+				$passNow = $this->modele->getPassword($_SESSION['idUtil']);
 				if (password_verify($_POST['old_password'], $passNow)) {
-					$nouveauMdpHash = password_hash($nouveauMdp1,  PASSWORD_BCRYPT);
-					$this->modele->setPass($nouveauMdpHash, $_SESSION['idUtil']);
+					$nouveauMotDePasseHash = password_hash($nouveauMotDePasse1,  PASSWORD_BCRYPT);
+					$this->modele->setPass($nouveauMotDePasseHash, $_SESSION['idUtil']);
 					header('');
 					exit();
 				} else {
-					// ancien mot de passe incorrect
+					$this->loginExiste();
 				}
 			} else {
-				// pass1 different de pass2
+				$this->motDePasseNonIdentique();
 			}
 		}
 	}

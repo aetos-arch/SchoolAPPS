@@ -10,6 +10,4 @@ class ModeleGenerique extends Connexion {
     {
         self::$connexion = Connexion::initConnexion();
     }
-
-
 }
