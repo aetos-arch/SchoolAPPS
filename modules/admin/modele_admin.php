@@ -74,11 +74,19 @@ class ModeleAdmin extends ModeleGenerique
 	}
 
 
-	public function supprimerTechnicien($idUtilisateur)
+
+	public function supprimerTechnicien($idTechncien)
 	{
 		try {
-			$req = Connexion::$bdd->prepare('delete from utilisateurs where idUtilisateur = ?');
-			$req->execute(array($idUtilisateur));
+			$req = Connexion::$bdd->prepare('select * from tickets where idTechncien = ? and idEtat != 0');
+			$req->execute(array($idTechncien));
+			$result = $req->fetchAll();
+			if ($result === false) {
+				$req = Connexion::$bdd->prepare('delete from utilisateurs where idTechncien = ?');
+				$req->execute(array($idTechncien));
+			} else {
+				return false;
+			}
 		} catch (PDOException $e) {
 		}
 	}

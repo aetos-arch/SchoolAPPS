@@ -89,6 +89,10 @@ class ContAdmin extends ContGenerique
 		}
 	}
 
+	public function supprimerTechnicien ($idTechnicien) {
+		$this->modele->supprimerTechnicien();
+	}
+
 
 	public function menu()
 	{
