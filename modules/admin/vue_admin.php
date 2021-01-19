@@ -17,7 +17,7 @@ class VueAdmin extends VueGenerique
 	{
 	}
 
-	public function afficherTechniciens()
+	public function listeTechniciens($data)
 	{
 	}
 

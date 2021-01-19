@@ -9,7 +9,7 @@ class ModAdmin extends ModeleGenerique
 
 
 
-		if (isset($_SESSION['idTypeUtilisateur']) && $_SESSION['idTypeUtilisateur'] == 1) {
+        if (isset($_SESSION['idTypeUtilisateur']) && $_SESSION['idTypeUtilisateur'] == 1) {
             if (isset($url[1])) {
                 $action = $url[1];
                 switch ($action) {
@@ -20,32 +20,36 @@ class ModAdmin extends ModeleGenerique
                         $controllAdmin->afficherTickets();
                         break;
                     case 'ticket':
-                        $controllAdmin->afficherTicket();
+                        $controllAdmin->afficherTicket($url[2]);
                         break;
-                    case 'supprimerTicket':
+                    case 'supprimer-ticket':
                         $controllAdmin->supprimerTicket();
                         break;
                         /*  case 'discussion':
                         $controllAdmin->discussion();
                         break; */
-                    case 'gestionTechnicien':
-                        $controllAdmin->gestionTechnicien();
+                    case 'nouveau-technicien':
+                        $controllAdmin->nouveauTechnicien();
+                        break;
+                    case 'liste-techniciens':
+                        $controllAdmin->listeTechniciens();
+                        break;
+                    case 'assigner-ticket':
+                        $controllAdmin->assignerTicket();
                         break;
                         // case 'supprimerTechnicien':
                         //    $controllAdmin->supprimerTechnicien();
                         //    break;
-                    case 'nouveauLogin':
+                    case 'nouveau-login':
                         $controllAdmin->nouveauLogin();
                         break;
-                    case 'nouveauMotDePasse':
+                    case 'nouveau-mdp':
                         $controllAdmin->nouveauMotDePasse();
                         break;
                     case 'statistique':
                         $controllAdmin->statistique();
                         break;
-                    case 'assignerTicket':
-                        $controllAdmin->assignerTicket();
-                        break;
+
                     default:
                         # code...
                         break;
@@ -59,5 +63,5 @@ class ModAdmin extends ModeleGenerique
 ?>
 
 <?php
-    $modAdmin = new ModAdmin((isset($url)) ? $url : null);
+$modAdmin = new ModAdmin((isset($url)) ? $url : null);
 ?>

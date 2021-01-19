@@ -25,7 +25,11 @@ class ModeleAdmin extends ModeleGenerique
 			$req = Connexion::$bdd->prepare('select * from tickets where idTicket = ?');
 			$req->execute(array($idTicket));
 			$result = $req->fetchAll();
+			if ($result === false) {
+				throw new Exception("idTicket inexistant");
+			} else {
 			return $result;
+			}
 		} catch (PDOException $e) {
 		}
 	}
@@ -36,8 +40,6 @@ class ModeleAdmin extends ModeleGenerique
 		try {
 			$req = Connexion::$bdd->prepare('update tickets set idEtat = ? where idTicket = ?');
 			$req->execute(array($idEtat, $idTicket));
-			$result = $req->fetchAll();
-			return $result;
 		} catch (PDOException $e) {
 		}
 	}
@@ -127,6 +129,17 @@ class ModeleAdmin extends ModeleGenerique
 		try {
 			$req = Connexion::$bdd->prepare('update utilisateurs set hashMdp = ? where idUtilisateur= ?');
 			$req->execute(array($hashMdp, $idUtilisateur));
+		} catch (PDOException $e) {
+		}
+	}
+
+	public function getAllTechniciens()
+	{
+		try {
+			$req = Connexion::$bdd->prepare('select * from utilisateurs where idTypeUtilisateur=?');
+			$req->execute(2);
+			$result = $req->fetchAll();
+			return $result;
 		} catch (PDOException $e) {
 		}
 	}

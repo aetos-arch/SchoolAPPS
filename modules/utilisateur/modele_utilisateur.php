@@ -51,7 +51,7 @@ class ModeleUtilisateur extends ModeleGenerique
 			return $result;
 		} catch (PDOException $e) {
 		}
-	}	
+	}
 
 	public function creerTicket($result)
 	{
@@ -131,5 +131,4 @@ class ModeleUtilisateur extends ModeleGenerique
 		} catch (PDOException $e) {
 		}
 	}
-
 }

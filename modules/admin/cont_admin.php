@@ -11,6 +11,12 @@ class ContAdmin extends ContGenerique
 	    parent::__construct(new ModeleAdmin, new VueAdmin());
 	}
 
+	
+	public function listeTechniciens () {
+		$data = $this->modele->getAllTechniciens();
+		$this->vue->listeTechniciens($data);
+	}
+
 	public function afficherTickets()
 	{
 		$result = $this->modele->getTicketsEtat(1);
@@ -18,9 +24,9 @@ class ContAdmin extends ContGenerique
 	}
 
 
-	public function afficherTicket()
+	public function afficherTicket($idTicket)
 	{
-		$result = $this->modele->getTicket(addslashes(strip_tags($_POST['idTicket'])));
+		$result = $this->modele->getTicket(addslashes(strip_tags($idTicket)));
 		$this->vue->afficherTicket($result);
 	}
 
@@ -35,19 +41,6 @@ class ContAdmin extends ContGenerique
 	{
 		$idTicket = addslashes(strip_tags($_POST['idTicket']));
 		$this->modele->supprimerTicket($idTicket);
-	}
-
-	public function gestionTechnicien()
-	{
-		$this->vue->afficherTechniciens();
-
-		if (isset($_POST['idDelete'])) {
-			$this->modele->supprimerTechnicien(addslashes(strip_tags($_POST['idDelete'])));
-		}
-
-		if (isset($_POST['nouveauTechnicien'])) {
-			$this->modele->nouveauTechnicien($_POST['nouveauTechnicien']);
-		}
 	}
 
 	public function statistique()
@@ -101,4 +94,26 @@ class ContAdmin extends ContGenerique
 	{
 		$this->vue->afficherMenu();
 	}
+
+	public function nouveauTechnicien () {
+		if (isset($_POST['nom'])) {
+			$result = [
+				'prenom' => $_SESSION['prenom'],
+				'nom' => addslashes(strip_tags($_POST['login'])),
+				'login' => addslashes(strip_tags($_POST['login'])),
+				'hashMdp' => "bienvenue",
+				'telephone' => addslashes(strip_tags($_POST['telephone']))
+			];
+			try {
+				$this->verifTableauValeurNull($result);
+				$this->modele->nouveauTechnicien($result);
+			} catch (Exception $e) {
+				$e->getMessage();
+			}
+			
+		} else {
+			$this->vue->nouveauTechnicien();
+		}
+	}
+
 }
