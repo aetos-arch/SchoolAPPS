@@ -82,7 +82,7 @@ class ContUtilisateur extends ContGenerique
 				$this->verifTableauValeurNull($result);
 				$this->modele->creerTicket($result);
 			} catch (Exception $e) {
-				$e->getMessage();
+				$e->getMessage("");
 			}
 		} else {
 			$this->vue->nouveauTicket();

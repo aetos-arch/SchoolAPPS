@@ -55,7 +55,7 @@ class ModeleAvis extends ModeleGenerique
 			$req->execute(array($nomProduit));
 			$idProduit = $req->fetchAll();
 			if ($idProduit === false) {
-				// exception
+				throw new Exception("idProduit inexistant");
 			} else {
 				return $idProduit;
 			}
