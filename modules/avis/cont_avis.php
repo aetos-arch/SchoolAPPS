@@ -27,10 +27,10 @@ class ContAvis extends ContGenerique
         } else if (isset($_POST['commentaire'])) {
             $result = [
                 'idUtilisateur' => $_SESSION['idUtilisateur'],
-                'idProduit' => strip_tags($idProduit),
-                'titre' => strip_tags($_POST['titre']),
-                'commentaire' => strip_tags($_POST['commentaire']),
-                'note' => strip_tags($_POST['note'])
+                'idProduit' => addslashes(strip_tags($idProduit)),
+                'titre' => addslashes(strip_tags($_POST['titre'])),
+                'commentaire' => addslashes(strip_tags($_POST['commentaire'])),
+                'note' => addslashes(strip_tags($_POST['note']))
             ];
             $this->modele->donnerAvis($result);
         } else {
@@ -52,9 +52,9 @@ class ContAvis extends ContGenerique
             $result = [
                 'idUtilisateur' => $_SESSION['idUtilisateur'],
                 'idProduit' => strip_tags($_POST['idProduit']),
-                'titre' => strip_tags($_POST['titre']),
-                'commentaire' => strip_tags($_POST['commentaire']),
-                'note' => strip_tags($_POST['note'])
+                'titre' => addslashes(strip_tags($_POST['titre'])),
+                'commentaire' => addslashes(strip_tags($_POST['commentaire'])),
+                'note' => addslashes(strip_tags($_POST['note']))
             ];
             $this->modele->donnerAvis($result);
         } else {

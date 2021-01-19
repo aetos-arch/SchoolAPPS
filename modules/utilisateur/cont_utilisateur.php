@@ -9,24 +9,24 @@ class ContUtilisateur extends ContGenerique
 
 	public function __construct()
 	{
-        parent::__construct(new ModeleUtilisateur(), new VueUtilisateur());
+		parent::__construct(new ModeleUtilisateur(), new VueUtilisateur());
 	}
 
-    public function accueilUtilisateur($moduleContent)
-    {
-        $this->vue->pageAccueilUtilisateur($moduleContent);
-    }
+	public function accueilUtilisateur($moduleContent)
+	{
+		$this->vue->pageAccueilUtilisateur($moduleContent);
+	}
 
-    public function tableauBord()
-    {
-        $this->vue->tableauBord();
-    }
+	public function tableauBord()
+	{
+		$this->vue->tableauBord();
+	}
 
-    public function nouveauLogin()
+	public function nouveauLogin()
 	{
 		$this->vue->nouveauLogin();
 		if (isset($_POST['nouveauLogin'])) {
-			$nouveauLogin = strip_tags($_POST['nouveauLogin']);
+			$nouveauLogin = addslashes(strip_tags($_POST['nouveauLogin']));
 			if ($this->modele->loginExiste($nouveauLogin) != 0) {
 				// erreur login existe déjà
 				header('');
@@ -44,8 +44,8 @@ class ContUtilisateur extends ContGenerique
 	{
 		$this->vue->nouveauMotDePasse();
 		if (isset($_POST['nouveau_password2'])) {
-			$nouveauMotDePasse1 = strip_tags($_POST['nouveau_password1']);
-			$nouveauMotDePasse2 = strip_tags($_POST['nouveau_password2']);
+			$nouveauMotDePasse1 = addslashes(strip_tags($_POST['nouveau_password1']));
+			$nouveauMotDePasse2 = addslashes(strip_tags($_POST['nouveau_password2']));
 			if ($nouveauMotDePasse1 == $nouveauMotDePasse2) {
 				$passNow = $this->modele->getPassword($_SESSION['idUtil']);
 				if (password_verify($_POST['old_password'], $passNow)) {
@@ -73,9 +73,9 @@ class ContUtilisateur extends ContGenerique
 	{
 		if (isset($_POST['explication'])) {
 			$result = [
-				'explication' => strip_tags($_POST['explication']),
-				'intitule' => strip_tags($_POST['intitule']),
-				'idProduit' => strip_tags($_POST['idProduit']),
+				'explication' => addslashes(strip_tags($_POST['explication'])),
+				'intitule' => addslashes(strip_tags($_POST['intitule'])),
+				'idProduit' => addslashes(strip_tags($_POST['idProduit'])),
 				'idUtilisateur' => $_SESSION['idUtil']
 			];
 
