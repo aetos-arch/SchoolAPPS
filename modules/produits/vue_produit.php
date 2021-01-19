@@ -17,4 +17,9 @@ class VueProduit extends VueGenerique
     public function afficherProduits () {
         // to do
     }
+
+    public function listeAvis($result, $estUtilisateur)
+	{
+		// to do
+	}
 }

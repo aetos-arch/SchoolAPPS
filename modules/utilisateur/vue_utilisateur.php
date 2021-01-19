@@ -167,4 +167,15 @@ class VueUtilisateur extends VueGenerique
 			</div>
 		</form>';
 	}
+
+
+	public function formDonnerAvis()
+	{
+		// to do
+	}
+
+	public function formModifierAvis($data)
+	{
+		// to do
+	}
 }

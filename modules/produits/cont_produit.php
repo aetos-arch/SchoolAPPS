@@ -22,4 +22,11 @@ class ContProduit extends ContGenerique
       $data = $this->modele->getProduit($idProduit['idProduit']);
       $this->vue->afficherProduit($data);
     }
+
+    public function listerAvis($nomProduit)
+    {
+        $idProduit = $this->modele->getIdProduit($nomProduit);
+        $data = $this->modele->getAllAvisProduit($idProduit['idProduit']);
+        $this->vue->listerAvis($data);
+    }
 }
