@@ -4,7 +4,9 @@ require_once 'modules/generique/vue_generique.php';
 
 class VueConnexion extends VueGenerique {
 
-    public function __construct () {}
+    public function __construct () {
+        parent::__construct();
+    }
 
     function popConnexionInscription(){
         echo '<main><div id="pop_connexion">
@@ -76,7 +78,7 @@ class VueConnexion extends VueGenerique {
             </div>';
     }
 
-    function affichage(){
+    function affichageConnexionReussie(){
         echo '<main>Vous etes connecté en tant que '.$_SESSION['login'].'<br>
             <a href="/connexion/deconnexion">Se déconnecter</a></main>';
     }
@@ -102,7 +104,7 @@ class VueConnexion extends VueGenerique {
             <a href="/home">Retour à la page d\'accueil</a></main>';
     }
 
-    function affichageIDUtilisé(){
+    function affichageIDUtilise(){
         echo '<main><a href="/connexion/popConnexion">L\'identifiant que vous avez saisi est déjà pris, veuillez recommencer avec un autre.</a></main>';
 
     }
