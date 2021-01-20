@@ -64,55 +64,56 @@ class VueTechnicien extends VueGenerique
                     </section>
                 </div>
             </div>
-
-            </div>
         </section>
         <?php
 	}
 
-	public function afficherMenu()
+	public function afficherProfil($profil)
 	{
 	    ?>
-        <nav id="sideNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a href="/technicien/menu">Menu</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/technicien/ticket">Menu</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/technicien/nouveau-mot-de-passe">Menu</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/technicien/menu">Menu</a>
-                </li>
-            </ul>
-        </nav>
-
-        <?php
-	}
-	public function afficherProfil()
-	{
-	    ?>
-        <div class="card">
-            <div class="card-header">Votre profil</div>
-            <div class="card-body">Nom, prenom, age, email</div>
-        </div>
-
+        <aside class="col-lg-10 p-1 m-2">
+            <div class="card">
+                <div class="card-header"><h4>Vos infos</h4> </div>
+                <div class="card-body">
+                    Nom : <?= $profil['nom'] ?> <br>
+                    Prenom : <?= $profil['prenom'] ?> <br>
+                    Email : <?= $profil['emailFacturation'] ?> <br>
+                    Telephone : <?= $profil['telephone'] ?> <br>
+                </div>
+            </div>
+        </aside>
         <?php
 	}
 
+    public function statsTickets($stats) {
+        ?>
+        <aside class="col-lg-10 p-1 m-2">
+            <div class="card">
+                <div class="card-header"><h4>Stats rapides</h4> </div>
+                <div class="card-body">
+                    <?php
+                    foreach ($stats as &$ticket) {
+                    ?><h5>Tickets <?= $ticket['etat'] ?> : <?= $ticket['nbr'] ?> </h5>
+                    <?php
+                    }
+                    unset($ticket);
+                    ?>
+                </div>
+            </div>
+        </aside>
+        <?php
+    }
 
-    public function tableauBord()
+    public function tableauBord($profil, $stats)
     {
         ?>
-            <h3>Mon tableau de bord</h3>
-            <section class="row">
-                <h4>Tickets ouverts : </h4>
-                <h4>Tickets fermés : </h4>
-                <h4>Tickets urgents : </h4>
-            </section>
+        <h3>Mon tableau de bord</h3>
+        <section class="row">
+            <?php
+            $this->afficherProfil($profil);
+            $this->statsTickets($stats);
+            ?>
+        </section>
         <?php
     }
 
@@ -129,41 +130,73 @@ class VueTechnicien extends VueGenerique
                     <p id="explication"><?= $ticket['explication']; ?></p>
                 </div>
                 <div class="col-lg card-footer">
-                    <span>
-                        Etat : <?= $ticket['idEtat']; ?> - Id produit : <?= $ticket['idProduit']; ?>
+                    <div class="row">
+                    <span class="col-8">
+                        Etat : <?= $ticket['etat']; ?> - Id produit : <?= $ticket['idProduit']; ?>
                     </span>
-                    <a class="btn lire-plus" href="/technicien/ticket/<?= $ticket['idTicket'] ?>">Voir plus</a>
+                        <a class="btn lire-plus col-3" href="/technicien/ticket/<?= $ticket['idTicket'] ?>">Voir plus</a>
+                    </div>
                 </div>
             </div>
         <?php
         }
-
 	    unset($ticket);
 	}
 
-	public function afficheTicket($ticket)
+	public function afficheTicket($ticket, $infoClient, $etats)
 	{
         ?>
-	     <div class="ticket row card">
-                <div class="col-lg card-header">
-                    <h4 class="d-inline"><?= $ticket[0]['intitule'] ?> - N°<?= $ticket[0]['idTicket'] ?>
-                        <span>
-                            Etat <?= $ticket[0]['idEtat']; ?> - Id produit : <?= $ticket[0]['idProduit']; ?>
-                        </span>
-                    </h4>
-                </div>
+	     <div class="row">
+             <aside class="card col-lg-7 p-1 m-2">
+                    <div class="card-header">
+                        <h4>
+                            <span class="info"> N°<?= $ticket['idTicket'] ?></span>
+                            <span class="info"> - <?= $ticket['intitule'] ?></span>
+                        </h4>
+                        <h4
+                            <span class="info"> Etat <?= $ticket['etat']; ?></span>
+                            <span class="info"> - Id produit : <?= $ticket['idProduit']; ?></span>
+                        </h4>
+                    </div>
                 <div class="col-lg card-body">
-                    <p id="explication"><?= $ticket[0]['explication']; ?></p>
-                    <div class="card">
-                        Info client :
+                    <p id="explication"><?= $ticket['explication']; ?></p>
+                    <button class="btn lire-plus" type="button" onclick="document.getElementById('explication').style.display = 'inherit'">Lire la suite</button>
+                    <button class="btn lire-plus" type="button" onclick="document.getElementById('explication').style.display = '-webkit-box'">Réduire</button>
+                    <div class="col-lg card-body">
+                        <form method="post" action="/technicien/ticket/<?=$ticket['idTicket']?>/changer-etat" class="input-group">
+                            <select class="custom-select" id="inputGroupSelect04" name="nouveauEtat">
+                                <option selected>Choisir...</option>
+                                <?php
+                                foreach ($etats as &$etat) {
+                                    ?> <option value="<?= $etat['idEtat'] ?>"><?=ucfirst($etat['etat'])?></option>
+                                    <?php
+                                }
+                                unset($etat);
+                                ?>
+                            </select>
+                            <div class="input-group-append">
+                                <input class="btn btn-outline-success" type="submit" value="Changer l'état">
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="col-lg card-footer">
-
-                    <a class="btn lire-plus-r" href="/technicien/ticket/<?= $ticket[0]['idTicket'] ?>">Changer l'état</a>
-                    <a class="btn lire-plus-r" href="/technicien/ticket/<?= $ticket[0]['idTicket'] ?>">Ecrire un message</a>
+                    <a class="btn lire-plus-r" href="/technicien/ticket/<?= $ticket['idTicket'] ?>">Ecrire un message</a>
+                    <a class="btn lire-plus-r" href="/technicien/ticket/<?= $ticket['idTicket'] ?>">Changer état</a>
                 </div>
-            </div>
+             </aside>
+             <aside class="card col-lg-4 p-1 m-2" id="info-client">
+                 <div class="col-lg card-header">
+                     <h4 class="d-inline">Info du client</h4>
+                 </div>
+                 <div class="col-lg card-body">
+                     Nom : <?= $infoClient['nom'] ?> <br>
+                     Prenom : <?= $infoClient['prenom'] ?> <br>
+                     Email : <?= $infoClient['emailFacturation'] ?> <br>
+                     Telephone : <?= $infoClient['telephone'] ?> <br>
+                 </div>
+             </aside>
+         </div>
         <?php
 	}
 

@@ -2,7 +2,7 @@
     <div class="container-fluid row mx-auto" id="footer-cont">
         <div class="col-md footer-left">
             <p>
-                <a href="/home"> <img id="logo-footer" src="../images/logo.svg" alt="Logo du site" /> </a><br>
+                <a href="/home"> <img id="logo-footer" src="../../../images/logo.svg" alt="Logo du site" /> </a><br>
                 <span class="foot-sub-title">S.A.S School APPS</span><br>
                 Capital de 1 000 000 €<br>
                 Siret - 900 060 130 00013<br>
