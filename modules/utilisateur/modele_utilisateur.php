@@ -53,10 +53,21 @@ class ModeleUtilisateur extends ModeleGenerique
 		}
 	}
 
+	public function getNombreTicketsEtat($idEtat)
+	{
+		try {
+			$req = Connexion::$bdd->prepare('SELECT * FROM tickets WHERE idEtat =?');
+			$req->execute(array($idEtat));
+			$nb = $req->rowCount();
+			return $nb;
+		} catch (PDOException $e) {
+		}
+	}
+
 	public function creerTicket($result)
 	{
 		try {
-			$req = Connexion::$bdd->prepare('INSERT INTO tickets (intitule, explication, idEtat, idUtilisateur, idProduit) VALUES(?, ?, ?, ?, ?)');
+			$req = Connexion::$bdd->prepare('INSERT INTO tickets (intitule, explication, idEtat, idUtilisateur, idProduit, date) VALUES(?, ?, ?, ?, ?)');
 			$req->execute(array($result['intitule'], $result['explication'],  3, $result['idUtilisateur'],  $result['idProduit']));
 		} catch (PDOException $e) {
 		}
