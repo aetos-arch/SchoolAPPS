@@ -28,11 +28,13 @@ class ModeleAdmin extends ModeleGenerique
 			if ($result === false) {
 				throw new Exception("idTicket inexistant");
 			} else {
-			return $result;
+				return $result;
 			}
 		} catch (PDOException $e) {
 		}
 	}
+
+
 
 
 	public function changerEtatTicket($idEtat, $idTicket)
@@ -78,7 +80,7 @@ class ModeleAdmin extends ModeleGenerique
 	public function supprimerTechnicien($idTechncien)
 	{
 		try {
-			$req = Connexion::$bdd->prepare('select * from tickets where idTechncien = ? and idEtat != 0');
+			$req = Connexion::$bdd->prepare('select idTicket from tickets where idTechncien = ? and idEtat != 0');
 			$req->execute(array($idTechncien));
 			$result = $req->fetchAll();
 			if ($result === false) {
@@ -92,10 +94,13 @@ class ModeleAdmin extends ModeleGenerique
 	}
 
 
-	// To do
-	public function stat()
+	public function getNombreTicketsEtat($idEtat)
 	{
 		try {
+			$req = Connexion::$bdd->prepare('SELECT * FROM tickets WHERE idEtat =?');
+			$req->execute(array($idEtat));
+			$nb = $req->rowCount();
+			return $nb;
 		} catch (PDOException $e) {
 		}
 	}

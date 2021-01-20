@@ -8,38 +8,50 @@ class ModAdmin extends ModeleGenerique
         $controllAdmin = new ContAdmin();
 
 
-
         if (isset($_SESSION['idTypeUtilisateur']) && $_SESSION['idTypeUtilisateur'] == 1) {
             if (isset($url[1])) {
                 $action = $url[1];
                 switch ($action) {
-                    case 'menu':
+                    case 'tableau-de-bord':
                         $controllAdmin->menu();
                         break;
-                    case 'tickets':
-                        $controllAdmin->afficherTickets();
+                    case 'tickets-fermes':
+                        $controllAdmin->afficherTicketsFerme();
+                        break;
+                    case 'tickets-en-cours':
+                        $controllAdmin->afficherTicketsEncours();
+                        break;
+                    case 'tickets-urgent':
+                        $controllAdmin->afficherTicketsUrgent();
+                        break;
+                    case 'tickets-en-attente':
+                        $controllAdmin->afficherTicketsEnAttente();
                         break;
                     case 'ticket':
-                        $controllAdmin->afficherTicket($url[2]);
+                        if (isset($url[2])) {
+                            $controllAdmin->afficherTicket($url[2]);
+                        } else {
+                            $controllAdmin->actionInexistante();
+                        }
                         break;
                     case 'supprimer-ticket':
                         $controllAdmin->supprimerTicket();
                         break;
-                        /*  case 'discussion':
-                        $controllAdmin->discussion();
-                        break; */
-                    case 'nouveau-technicien':
-                        $controllAdmin->nouveauTechnicien();
-                        break;
-                    case 'liste-techniciens':
-                        $controllAdmin->listeTechniciens();
-                        break;
                     case 'assigner-ticket':
                         $controllAdmin->assignerTicket();
                         break;
-                        // case 'supprimerTechnicien':
-                        //    $controllAdmin->supprimerTechnicien();
-                        //    break;
+                        /*  case 'discussion':
+                        $controllAdmin->discussion();
+                        break; */
+                    case 'liste-techniciens':
+                        $controllAdmin->listeTechniciens();
+                        break;
+                    case 'nouveau-technicien':
+                        $controllAdmin->nouveauTechnicien();
+                        break;
+                    case 'supprimerTechnicien':
+                        $controllAdmin->supprimerTechnicien($url[2]);
+                        break;
                     case 'nouveau-login':
                         $controllAdmin->nouveauLogin();
                         break;
@@ -49,14 +61,13 @@ class ModAdmin extends ModeleGenerique
                     case 'statistique':
                         $controllAdmin->statistique();
                         break;
-
                     default:
-                        # code...
+                        $controllAdmin->actionInexistante();
                         break;
                 }
             }
         } else
-            echo '<h3>Aucune connexion trouvée.</h3>';
+            $controllAdmin->menu();
     }
 }
 

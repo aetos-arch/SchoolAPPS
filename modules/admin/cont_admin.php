@@ -8,18 +8,37 @@ class ContAdmin extends ContGenerique
 
 	public function __construct()
 	{
-	    parent::__construct(new ModeleAdmin, new VueAdmin());
+		parent::__construct(new ModeleAdmin, new VueAdmin());
 	}
 
-	
-	public function listeTechniciens () {
+
+	public function listeTechniciens()
+	{
 		$data = $this->modele->getAllTechniciens();
 		$this->vue->listeTechniciens($data);
 	}
 
-	public function afficherTickets()
+	public function afficherTicketsFerme()
+	{
+		$result = $this->modele->getTicketsEtat(0);
+		$this->vue->afficherTickets($result);
+	}
+
+	public function afficherTicketsEnCours()
 	{
 		$result = $this->modele->getTicketsEtat(1);
+		$this->vue->afficherTickets($result);
+	}
+
+	public function afficherTicketsUrgent()
+	{
+		$result = $this->modele->getTicketsEtat(2);
+		$this->vue->afficherTickets($result);
+	}
+
+	public function afficherTicketsEnAttente()
+	{
+		$result = $this->modele->getTicketsEtat(3);
 		$this->vue->afficherTickets($result);
 	}
 
@@ -45,7 +64,13 @@ class ContAdmin extends ContGenerique
 
 	public function statistique()
 	{
-		$result = $this->modele->stat();
+		$result = [
+			'ferme' => $this->modele->getNombreTicketsEtat(0),
+			'enCours' => $this->modele->getNombreTicketsEtat(1),
+			'urgent' => $this->modele->getNombreTicketsEtat(2),
+			'enAttente' => $this->modele->getNombreTicketsEtat(3),
+		];
+
 		$this->vue->afficherStatistique($result);
 	}
 
@@ -89,8 +114,9 @@ class ContAdmin extends ContGenerique
 		}
 	}
 
-	public function supprimerTechnicien ($idTechnicien) {
-		$this->modele->supprimerTechnicien();
+	public function supprimerTechnicien($idTechnicien)
+	{ 
+		$this->modele->supprimerTechnicien($idTechnicien);
 	}
 
 
@@ -99,7 +125,8 @@ class ContAdmin extends ContGenerique
 		$this->vue->afficherMenu();
 	}
 
-	public function nouveauTechnicien () {
+	public function nouveauTechnicien()
+	{
 		if (isset($_POST['nom'])) {
 			$result = [
 				'prenom' => $_SESSION['prenom'],
@@ -114,10 +141,8 @@ class ContAdmin extends ContGenerique
 			} catch (Exception $e) {
 				$e->getMessage();
 			}
-			
 		} else {
 			$this->vue->nouveauTechnicien();
 		}
 	}
-
 }
