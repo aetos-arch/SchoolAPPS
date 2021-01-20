@@ -7,9 +7,4 @@ class ModeleContact extends ModeleGenerique
 	public function __construct()
 	{
     }
-
-    public function envoiMail ($result) {
-        
-    }
-
 }
