@@ -2,7 +2,7 @@
     <?php require 'include/inc_derniers_actus.php' ?>
     <section class="content-block container">
         <h1>Nos Articles</h1>
-        <div class="container align-items-center mx-auto">
+        <div class="container">
             <article class="actu card text-center">
                 <div class="card-body">
                     <h5 class="card-title">Actu 1</h5>

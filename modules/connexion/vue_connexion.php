@@ -8,8 +8,8 @@ class VueConnexion extends VueGenerique {
         parent::__construct();
     }
 
-    function popConnexionInscription(){
-        echo '<main><div id="pop_connexion">
+    function popConnexionInscription() {
+        echo '<section class="content-block login-form"><div id="pop_connexion">
             
             <form action="/connexion/verifConnexion" method="POST">
                 <h1>Connexion</h1>
@@ -38,28 +38,32 @@ class VueConnexion extends VueGenerique {
                 </form>
                 <p>Les champs suivis d\'une étoile (*) sont obligatoires.</p>
                 </div>
-                </main>';
+                </section>';
     }
 
     function popConnexion(){
-        echo '
-            <main class="content-block">
-                <div id="pop_connexion">
-                    <h1>Connexion</h1>
-                    <form action="/connexion/connexion" method="POST">
-                    <label><b>Nom d\'utilisateur</b></label>
-                    <input type="text" placeholder="Entrer le nom d\'utilisateur" name="login" required>
-                    <label><b>Mot de passe</b></label>
-                    <input type="password" placeholder="Entrer le mot de passe" name="mdp" required>
-                    <input type="submit" id=\'submit\' value=\'Se connecter\' >
-                    </form>
-                </div>
-                <br>
-        </main>';
+        ?>
+        <section class="container content-block login-form">
+            <div id="pop_connexion">
+                <h1>Connexion</h1>
+                <hr>
+                <form class="row container-fluid" action="/connexion/connexion" method="POST">
+                    <div class="col-5 form-group mx-auto">
+                        <label for="login">Nom d'utilisateur</label>
+                        <input name="login" type="text" class="form-control" required placeholder="Votre login">
+                        <label for="mdp">Mot de passe</label>
+                        <input name="mdp" type="text" class="form-control" required placeholder="Votre mot de passe">
+                        <input class="btn btn-success" type="submit" id="submit" value="Se connecter" >
+                    </div>
+                </form>
+            </div>
+            <br>
+        </section>
+        <?php
     }
 
     function popInscription(){
-        echo '<div class="content-block">
+        echo '<div class="content-block login-form">
                 <div id="pop_inscription">
                     <form action="/connexion/inscription" method="POST">
                         <h1>Inscription</h1>
@@ -79,20 +83,20 @@ class VueConnexion extends VueGenerique {
     }
 
     function affichageConnexionReussie(){
-        echo '<main>Vous etes connecté en tant que '.$_SESSION['login'].'<br>
-            <a href="/connexion/deconnexion">Se déconnecter</a></main>';
+        echo '<span class="info-utilisateur">Vous etes connecté en tant que '.$_SESSION['login'].'<br>
+            <a href="/connexion/deconnexion">Se déconnecter</a></span>';
     }
 
     function affichageInscription(){
-        echo '<main>Votre inscription a bien été prise en compte.</main>';
+        echo '<span>Votre inscription a bien été prise en compte.</span>';
     }
 
     function erreurInscription(){
-        echo '<main>Il y a eu une erreur dans l\'inscription, veuillez recommencer.</main>';
+        echo '<span>Il y a eu une erreur dans l\'inscription, veuillez recommencer.</span>';
     }
 
     function IDMDPErrone(){
-        echo "<br>L'identifiant ou le mot de passe que vous avez saisi est erroné, veuillez recommencer s'il vous plait.";
+        echo "<span>L'identifiant ou le mot de passe que vous avez saisi est erroné, veuillez recommencer s'il vous plait.</span>";
     }
 
     function mdpErronne(){

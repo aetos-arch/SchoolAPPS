@@ -1,7 +1,7 @@
 <header class="fixed-top">
     <nav class="navbar navbar-expand-lg navbar-light">
         <a href="/home" id="brand-homelink">
-            <img id="logo" src="/images/logo/logo.svg" alt="Logo du site" />
+            <img id="logo" src="\images\logo\logo.svg" alt="Logo du site" />
             <span>La référence de l'éducation</span>
         </a>
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,16 +17,17 @@
                         Logiciels
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="//schoolDev">School Dev</a>
-                        <a class="dropdown-item" href="/schoolNet">School Net</a>
-                        <a class="dropdown-item" href="/E-education">Plateforme E-education</a>
+                        <a class="dropdown-item" href="/produits">Nos logiciels</a>
+                        <a class="dropdown-item" href="/produits/afficher-produit/schoolDev">School Dev</a>
+                        <a class="dropdown-item" href="/produits/afficher-produit/schoolNet">School Net</a>
+                        <a class="dropdown-item" href="/produits/afficher-produit/E-education">Plateforme E-education</a>
                     </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/articles">Nos articles</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/propos">À propos</a>
+                    <a class="nav-link" href="/propos">A propos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/contact">Contact</a>
@@ -42,24 +43,24 @@
                                     <a class="dropdown-item" href="/connexion/popInscription">S\'inscrire</a>';
                         }else {
                             ?>
-                                    <p class="dropdown-item"><?=ucfirst($_SESSION['login'])?></p>
-                                   <?php if (isset($_SESSION['idTypeUtilisateur'])) {
-                                        switch ($_SESSION['idTypeUtilisateur']) {
-                                            case 1:
-                                                echo '<a class="dropdown-item" href="/admin">Mon espace</a>';
-                                                break;
-                                            case 2:
-                                                echo '<a class="dropdown-item" href="/technicien">Mon espace</a>';
-                                                break;
-                                            case 3:
-                                                echo '<a class="dropdown-item" href="/utilisateur">Mon espace</a>';
-                                                break;
-                                            default:
-                                                break;
-                                        }
-                                    }
+                            <p class="dropdown-item"><?=ucfirst($_SESSION['login'])?></p>
+                            <?php if (isset($_SESSION['idTypeUtilisateur'])) {
+                                switch ($_SESSION['idTypeUtilisateur']) {
+                                    case 1:
+                                        echo '<a class="dropdown-item" href="/admin">Mon espace Admin</a>';
+                                        break;
+                                    case 2:
+                                        echo '<a class="dropdown-item" href="/technicien">Mon espace Technicien</a>';
+                                        break;
+                                    case 3:
+                                        echo '<a class="dropdown-item" href="/utilisateur">Mon espace Utilisateur</a>';
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
                             ?>
-                                    <a class="dropdown-item" href="/connexion/deconnexion">Se déconnecter</a>
+                            <a class="dropdown-item" href="/connexion/deconnexion">Se déconnecter</a>
                             <?php
                         }
                         ?>
@@ -68,7 +69,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/panier"><i class="fas fa-shopping-cart"></i><span class="badge bg-danger badge-dot">
                             <?php require_once 'modules/panier/cont_panier.php';
-                                echo Contpanier::avoirNBProduitsPanier();?></span></a>
+                            echo Contpanier::avoirNBProduitsPanier();?></span></a>
                 </li>
             </ul>
         </div>
