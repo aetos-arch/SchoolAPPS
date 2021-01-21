@@ -65,4 +65,5 @@ class ModeleProduit extends ModeleGenerique
 			} catch (PDOException $e) {
 		}
 	}
+
 }

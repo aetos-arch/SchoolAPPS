@@ -27,11 +27,9 @@ class ModelePanier extends ModeleGenerique
                     WHERE idUtilisateur=:idUtil');
                 $selectPrepareeSelect->execute(array(':idUtil' => $idUtil));
                 $resultat = $selectPrepareeSelect->fetchAll();
-                echo '<main>Panier existant maintenant: ' . $resultat[0] . '</main>'; //TEST
                 $_SESSION['panier'] = $resultat[0]['idPanier'];
             } else {
                 //Il existe déjà un panier
-                echo '<main>Panier existant : ' . $resultat[0]['idPanier'] . '</main>'; //TEST
                 $_SESSION['panier'] = $resultat[0]['idPanier'];
             }
         } catch (PDOException $e) {
@@ -63,4 +61,38 @@ class ModelePanier extends ModeleGenerique
         $req = $selectPreparee->execute($reponse);
         return $req;
     }
+
+    function getIDPanier($idUtil){
+        try {
+            $req = Connexion::$bdd->prepare('SELECT idPanier from paniers where idUtilisateur=:idUtil');
+            $req->execute(array(':idUtil' => $idUtil));
+            $reponse = $req ->fetchAll();
+            return $reponse[0]['idPanier'];
+        } catch (PDOException $e) {
+        }
+    }
+
+    function ajouterProduitPanier($idProduit, $idPanier){
+        try {
+            //Voir si le panier comprend déjà ce produit
+            $selectPreparee = Connexion::$bdd->prepare('SELECT * FROM produitsPanier 
+                WHERE idProduit=:idProduit AND idPanier=:idPanier;');
+            $selectPreparee->execute(array(':idProduit' => $idProduit, ':idPanier' => $idPanier));
+
+            if ($selectPreparee->rowCount()>0){
+                //Quand le panier comprend déjà ce produit, alors on ajoute 1 à la quantité.
+                $modifPreparee = Connexion::$bdd->prepare('UPDATE produitsPanier SET qteProduits=qteProduits+1
+                    WHERE idProduit=:idProduit AND idPanier=:idPanier');
+                $modifPreparee->execute(array(':idProduit' => $idProduit, ':idPanier' => $idPanier));
+            }else{
+                //TODO : revoir gestion quantité
+                $insertPreparee = Connexion::$bdd->prepare('INSERT INTO produitsPanier 
+                (qteProduits, idProduit, idPanier) VALUES (1, :idProduit, :idPanier)');
+                $insertPreparee->execute(array(':idProduit' => $idProduit, ':idPanier' => $idPanier));
+                //TODO : Peut-être faire une vérification que le produit a bien été ajouté
+            }
+        } catch (PDOException $e) {
+        }
+    }
+
 }
