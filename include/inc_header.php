@@ -26,7 +26,7 @@
                     <a class="nav-link" href="/articles">Nos articles</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/propos">A propos</a>
+                    <a class="nav-link" href="/propos">À propos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/contact">Contact</a>
@@ -46,13 +46,13 @@
                                    <?php if (isset($_SESSION['idTypeUtilisateur'])) {
                                         switch ($_SESSION['idTypeUtilisateur']) {
                                             case 1:
-                                                echo '<a class="dropdown-item" href="/admin">Mon espace Admin</a>';
+                                                echo '<a class="dropdown-item" href="/admin">Mon espace</a>';
                                                 break;
                                             case 2:
-                                                echo '<a class="dropdown-item" href="/technicien">Mon espace Technicien</a>';
+                                                echo '<a class="dropdown-item" href="/technicien">Mon espace</a>';
                                                 break;
                                             case 3:
-                                                echo '<a class="dropdown-item" href="/utilisateur">Mon espace Utilisateur</a>';
+                                                echo '<a class="dropdown-item" href="/utilisateur">Mon espace</a>';
                                                 break;
                                             default:
                                                 break;

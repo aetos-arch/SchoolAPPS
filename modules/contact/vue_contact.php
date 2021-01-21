@@ -21,7 +21,6 @@ class VueContact extends VueGenerique
                         Pour toutes vos questions nous serons heureux de vous apporter une réponse.<br>
                         Si votre demande concerne un produit, vous pouvez ouvrir un ticket en vous connectant <a href="conexion">ici</a>,
                         nos techniciens vous accompagneront avec la plus grande attention.<br>
-                        <a href="logiciels">Et n'hésitez pas à donner votre avis sur nos logiciels !</a><br>
                     </p>
                     <div class="form-group">
                         <label for="sujet">Sujet</label>

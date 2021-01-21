@@ -4,7 +4,7 @@
             <p>
                 <a href="/home"> <img id="logo-footer" src="images/logo/logo.svg" alt="Logo du site" /> </a><br>
                 <span class="foot-sub-title">S.A.S School APPS</span><br>
-                "Aidons à l'éducation"<br>
+                "Apprendre à votre façon"<br>
                 Capital de 1 000 000 €<br>
                 Siret - 900 060 130 00013<br>
             </p>
@@ -25,7 +25,7 @@
                 <aside class="row">
                     <p class="col-lg">
                         <a href="/home">Accueil</a><br>
-                        <a href="/propos">A propos de nous</a><br>
+                        <a href="/propos">À propos de nous</a><br>
                         <a href="/mentions">Nos produits</a><br>
                         <a href="/contact">Contact</a><br>
                         <a href="/connexion/popConnexion">Se connecter</a><br>

@@ -85,7 +85,7 @@ class VueUtilisateur extends VueGenerique
                             </ul>
                         </nav>
                         <div class="col-lg">
-                            <h1>Votre espace utilisateur, <?php echo ucfirst($_SESSION['login']); ?> </h1>
+                            <h1>Votre espace, <?php echo ucfirst($_SESSION['login']); ?> </h1>
                             <?= $moduleContent ?>
                         </div>
                     </section>
@@ -115,12 +115,12 @@ class VueUtilisateur extends VueGenerique
     ?>
         <aside class="col-lg-12 p-1 m-2">
             <div class="card">
-                <div class="card-header"><h4>Vos infos</h4> </div>
+                <div class="card-header"><h4>Vous</h4> </div>
                 <div class="card-body" id="user-info">
                     Nom : <?= $profil['nom'] ?> <br>
-                    Prenom : <?= $profil['prenom'] ?> <br>
-                    Email : <?= $profil['emailFacturation'] ?> <br>
-                    Telephone : <?= $profil['telephone'] ?> <br>
+                    Prénom : <?= $profil['prenom'] ?> <br>
+                    E-mail : <?= $profil['emailFacturation'] ?> <br>
+                    Téléphone : <?= $profil['telephone'] ?> <br>
                 </div>
             </div>
         </aside>
@@ -132,7 +132,7 @@ class VueUtilisateur extends VueGenerique
     ?>
         <aside class="col-lg-12 p-1 m-2">
             <div class="card">
-                <div class="card-header"><h4>Stats rapides</h4> </div>
+                <div class="card-header"><h4>Tickets</h4> </div>
                 <div class="card-body">
                     <?php
                     foreach ($stats as &$ticket) {
@@ -175,7 +175,7 @@ class VueUtilisateur extends VueGenerique
                 foreach ($commandes as &$commande) {
                 ?>
                     <div class="card-body" id="user-info">
-                        IdCommandes : <?= $commande['idCommandes'] ?> <br>
+                        IdCommande : <?= $commande['idCommandes'] ?> <br>
                         Date : <?= $commande['dateAchat'] ?> <br>
                     </div>
                 <?php
@@ -200,7 +200,7 @@ class VueUtilisateur extends VueGenerique
                 <div class="col-lg card-footer">
                     <div class="row">
                     <span class="col-8">
-                        Commandée le : <?= $commande['dateAchat']; ?>
+                        Commandé le : <?= $commande['dateAchat']; ?>
                     </span>
                         <a class="btn lire-plus col-3" href="/utilisateur/commande/<?= $commande['idCommandes'] ?>">Détails de la commande</a>
                     </div>
@@ -257,11 +257,11 @@ class VueUtilisateur extends VueGenerique
 			<div class="row">
                 <div class="row">
                     <div class="col form-group">
-                        <label for="intitule">Intitule</label>
+                        <label for="intitule">Intitulé</label>
                         <input type="text" name="intitule" required pattern="\S+.*" class="form-control">
                     </div>
                     <div class="col form-group">
-                        <label for="produit">Produit concercé</label>
+                        <label for="produit">Produit concerné</label>
                         <select class="custom-select form-control" id="inputGroupSelect04" name="idProduit" required>
                             <option <?= (is_null($default) ? 'selected' : '')?>>Choisir...</option>
                             <?php
@@ -299,7 +299,7 @@ class VueUtilisateur extends VueGenerique
                 <div class="col-lg card-footer">
                     <div class="row">
                         <span class="col-8">
-                            Etat : <?= $ticket['etat']; ?> - Id produit : <?= $ticket['idProduit']; ?> - le : <?= $ticket['dateCreation']; ?>
+                            État : <?= $ticket['etat']; ?> - Id-Produit : <?= $ticket['idProduit']; ?> - le : <?= $ticket['dateCreation']; ?>
                         </span>
                         <a class="btn lire-plus col-3" href="/utilisateur/ticket/<?= $ticket['idTicket'] ?>">Voir plus</a>
                     </div>
@@ -320,8 +320,8 @@ class VueUtilisateur extends VueGenerique
                         <span class="info"> N°<?= $ticket['idTicket'] ?></span>
                         <span class="info"> - <?= $ticket['intitule'] ?></span>
                     </h4>
-                    <h4 <span class="info"> Etat <?= $ticket['etat']; ?></span>
-                        <span class="info"> - Id produit : <?= $ticket['idProduit']; ?></span>
+                    <h4 <span class="info"> État <?= $ticket['etat']; ?></span>
+                        <span class="info"> - Id-Produit : <?= $ticket['idProduit']; ?></span>
                     </h4>
                 </div>
                 <div class="col-lg card-body">
@@ -339,9 +339,9 @@ class VueUtilisateur extends VueGenerique
                 </div>
                 <div class="col-lg card-body">
                     Nom : <?= $infoTech['nom'] ?> <br>
-                    Prenom : <?= $infoTech['prenom'] ?> <br>
-                    Email : <?= $infoTech['emailFacturation'] ?> <br>
-                    Telephone : <?= $infoTech['telephone'] ?> <br>
+                    Prénom : <?= $infoTech['prenom'] ?> <br>
+                    E-mail : <?= $infoTech['emailFacturation'] ?> <br>
+                    Téléphone : <?= $infoTech['telephone'] ?> <br>
                 </div>
             </aside>
         </div>
@@ -357,7 +357,7 @@ class VueUtilisateur extends VueGenerique
 			<form action="/utilisateur/changer-login" method="POST">
 				<div class="row">
 					<div class="col-4 form-group">
-						<label for="nouveauLogin">Nouveau Login</label>
+						<label for="nouveauLogin">Login</label>
 						<input name="nouveauLogin" type="text" class="form-control" required pattern="\S+.*" placeholder="Votre nouveau login">
 						<button class="btn btn-primary " type="submit" name="action">Valider</button>
 					</div>

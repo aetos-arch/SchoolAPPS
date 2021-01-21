@@ -87,13 +87,13 @@ class VueTechnicien extends VueGenerique
         <aside class="col-lg-12 p-1 m-2">
             <div class="card">
                 <div class="card-header">
-                    <h4>Vos infos</h4>
+                    <h4>Vous</h4>
                 </div>
                 <div class="card-body">
                     Nom : <?= $profil['nom'] ?> <br>
-                    Prenom : <?= $profil['prenom'] ?> <br>
-                    Email : <?= $profil['emailFacturation'] ?> <br>
-                    Telephone : <?= $profil['telephone'] ?> <br>
+                    Prénom : <?= $profil['prenom'] ?> <br>
+                    E-mail : <?= $profil['emailFacturation'] ?> <br>
+                    Téléphone : <?= $profil['telephone'] ?> <br>
                 </div>
             </div>
         </aside>
@@ -106,7 +106,7 @@ class VueTechnicien extends VueGenerique
         <aside class="col-lg-12 p-1 m-2">
             <div class="card">
                 <div class="card-header">
-                    <h4>Stats rapides</h4>
+                    <h4>Statistique</h4>
                 </div>
                 <div class="card-body">
                     <?php
@@ -137,7 +137,7 @@ class VueTechnicien extends VueGenerique
                 <div class="col-lg card-footer">
                     <div class="row">
                         <span class="col-8">
-                            Etat : <?= $ticket['etat']; ?> - Id produit : <?= $ticket['idProduit']; ?> - le : <?= $ticket['dateCreation']; ?>
+                            État : <?= $ticket['etat']; ?> - Id-Produit : <?= $ticket['idProduit']; ?> - le : <?= $ticket['dateCreation']; ?>
                         </span>
                         <a class="btn lire-plus col-3" href="/technicien/ticket/<?= $ticket['idTicket'] ?>">Voir plus</a>
                     </div>
@@ -158,8 +158,8 @@ class VueTechnicien extends VueGenerique
                         <span class="info"> N°<?= $ticket['idTicket'] ?></span>
                         <span class="info"> - <?= $ticket['intitule'] ?></span>
                     </h4>
-                    <h4 <span class="info"> Etat <?= $ticket['etat']; ?></span>
-                        <span class="info"> - Id produit : <?= $ticket['idProduit']; ?></span>
+                    <h4 <span class="info"> État <?= $ticket['etat']; ?></span>
+                        <span class="info"> - Id-Produit: <?= $ticket['idProduit']; ?></span>
                     </h4>
                 </div>
                 <div class="col-lg card-body">
@@ -191,7 +191,7 @@ class VueTechnicien extends VueGenerique
             </aside>
             <aside class="card col-lg-4 p-1 m-2" id="info-client">
                 <div class="col-lg card-header">
-                    <h4 class="d-inline">Info du client</h4>
+                    <h4 class="d-inline">Informations du client</h4>
                 </div>
                 <div class="col-lg card-body">
                     Nom : <?= $infoClient['nom'] ?> <br>
@@ -243,7 +243,7 @@ class VueTechnicien extends VueGenerique
 			<form action="/technicien/changer-login" method="POST">
 				<div class="row">
 					<div class="col-4 form-group">
-						<label for="nouveauLogin">Nouveau Login</label>
+						<label for="nouveauLogin">Login</label>
 						<input name="nouveauLogin" type="text" class="form-control" required pattern="\S+.*" placeholder="Votre nouveau login">
 						<button class="btn btn-primary " type="submit" name="action">Valider</button>
 					</div>

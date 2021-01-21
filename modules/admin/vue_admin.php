@@ -64,7 +64,7 @@ class VueAdmin extends VueGenerique
 			<form action="user/nouveauLogin" method="POST" >
 				<div class="row">
 					<div class="col-4 form-group">
-						<label for="nouveauLogin">Nouveau Login</label>
+						<label for="nouveauLogin">Login</label>
 						<input name="nouveauLogin" type="text" class="form-control">
 						<button style="margin-top:20px;"class="btn btn-primary" type="submit" name="action">Valider</button>
 					</div>

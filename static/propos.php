@@ -2,9 +2,9 @@
     <?php require 'include/inc_derniers_actus.php' ?>
     <section class="container">
         <div class="container content-block">
-            <h1>A propos de nous</h1>
+            <h1>À propos de nous</h1>
             <p>
-                Lentrrprise School APPS, a vu le jour dans le cadre de notre parcours universitaire en tant que projet étudiant.
+                L'entreprise School APPS, a vu le jour dans le cadre de notre parcours universitaire en tant que projet étudiant.
                 Cofondée par M. Z, M. Y. Mme A, notre société a pour vocation de rendre l'éducation plus accessible et universelle.
                 Rendre accessible des outils ergonomique et simple d'accès au plus de monde.
 
