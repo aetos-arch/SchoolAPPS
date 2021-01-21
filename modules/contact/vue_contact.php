@@ -15,7 +15,7 @@ class VueContact extends VueGenerique
             <h1>Nous contacter</h1>
 
             <div class="container content-block">
-                <h2>Par mail</h2>
+                <h2>Par e-mail</h2>
                 <form action="contact/envoi-mail" method="POST">
                     <p>
                         Pour toutes vos questions nous serons heureux de vous apporter une réponse.<br>
@@ -45,11 +45,7 @@ class VueContact extends VueGenerique
                         <label for="message">Votre message</label>
                         <textarea required class="form-control" name="message" id="message" rows="3"></textarea>
                     </div>
-                    <div class="form-check">
-                        <small id="emailHelp" class="form-text text-muted d-block">Nous veillerons à la sécurité de vos données</small>
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Suivre par mail</label>
-                    </div>
+
                     <button type="submit" class="btn btn-primary">Submit</button>
 
                 </form>
