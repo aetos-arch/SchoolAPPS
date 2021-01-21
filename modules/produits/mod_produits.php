@@ -20,7 +20,7 @@ class ModProduit
                 case 'ajouter-au-panier':
                     if (isset($url[2])) {
                         //TODO : Enlever commentaire
-                        //$controllProduit->afficherProduit($url[2]);
+                        $controllProduit->afficherProduit($url[2]);
                         $controllProduit->ajouterProduitPanier($url[2]);
                     } else {
                         $controllProduit->actionInexistante();

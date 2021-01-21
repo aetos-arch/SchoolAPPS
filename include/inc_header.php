@@ -67,7 +67,9 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/panier"><i class="fas fa-shopping-cart"></i><span class="badge bg-danger badge-dot">0</span></a>
+                    <a class="nav-link" href="/panier"><i class="fas fa-shopping-cart"></i><span class="badge bg-danger badge-dot">
+                            <?php require_once 'modules/panier/cont_panier.php';
+                                echo Contpanier::avoirNBProduitsPanier();?></span></a>
                 </li>
             </ul>
         </div>
