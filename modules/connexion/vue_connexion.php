@@ -9,36 +9,52 @@ class VueConnexion extends VueGenerique {
     }
 
     function popConnexionInscription() {
-        echo '<section class="content-block login-form"><div id="pop_connexion">
-            
-            <form action="/connexion/verifConnexion" method="POST">
+        ?>
+        <section class="container content-block login-form">
+            <div id="pop_connexion">
                 <h1>Connexion</h1>
-                
-                <label><b>Nom d\'utilisateur</b></label>
-                <input type="text" placeholder="Entrer le nom d\'utilisateur" name="login" required>
-
-                <label><b>Mot de passe</b></label>
-                <input type="password" placeholder="Entrer le mot de passe" name="mdp" required>
-
-                <input type="submit" id=\'submit\' value=\'Se connecter\' >
-                </form></div>
-                
-                <div id="pop_inscription">
-                    <form action="/connexion/inscription" method="POST">
-                        <h1>Inscription</h1>
-                        <input type="text" placeholder="Nom d\'utilisateur*" name="login" required><br>
-                        <input type="text" placeholder="Nom*" name="nom" required><br>
-                        <input type="text" placeholder="Prénom*" name="prenom" required><br>
-                        <input type="password" placeholder="Mot de passe*" name="mdp" required><br>
-                        <input type="email" placeholder="E-mail de facturation*" name="eFacturation" required><br>
-                        <input type="email" placeholder="E-mail de livraison" name="eLivraison"><br>
-                        <input type="tel" placeholder="Téléphone*" name="tel" required><br>
-                        <input type="date" placeholder="Date de naissance*" name="dateNaissance" required><br>
-                        <input type="submit" id=\'submit\' value=\'Créer un compte\' >
+                <hr>
+                <form class="row container-fluid" action="/connexion/connexion" method="POST">
+                    <div class="col-5 form-group mx-auto">
+                        <label for="login">Nom d'utilisateur</label>
+                        <input name="login" type="text" class="form-control" required placeholder="Votre identifiant">
+                        <label for="mdp">Mot de passe</label>
+                        <input name="mdp" type="password" class="form-control" required placeholder="Votre mot de passe">
+                        <input class="btn btn-success" type="submit" id="submit" value="Se connecter" >
+                    </div>
                 </form>
-                <p>Les champs suivis d\'une étoile (*) sont obligatoires.</p>
-                </div>
-                </section>';
+            </div>
+            <br>
+        </section>
+        <section class="container content-block login-form">
+            <div id="pop_inscription">
+                <h1>Inscription</h1>
+                <hr>
+                <form class="row container-fluid" action="/connexion/inscription" method="POST">
+                    <div class="col-5 form-group mx-auto">
+                        <label for="login">Nom d'utilisateur*</label>
+                        <input name="login" type="text" class="form-control" required placeholder="Nom d'utilisateur*">
+                        <label for="nom">Nom*</label>
+                        <input name="nom" type="text" class="form-control" required placeholder="Nom*">
+                        <label for="prenom">Prénom*</label>
+                        <input name="prenom" type="text" class="form-control" required placeholder="Prénom*">
+                        <label for="mdp">Mot de passe</label>
+                        <input name="mdp" type="password" class="form-control" required placeholder="Mot de passe*">
+                        <label for="eFacturation">Adresse e-mail de facturation*</label>
+                        <input name="eFacturation" type="email" class="form-control" required placeholder="E-mail de facturation*">
+                        <label for="eLivraison">Adresse e-mail de livraison</label>
+                        <input name="eLivraison" type="email" class="form-control" placeholder="E-mail de livraison">
+                        <label for="tel">Téléphone*</label>
+                        <input name="tel" type="tel" class="form-control" required placeholder="Téléphone*">
+                        <label for="dateNaissance">Date de naissance*</label>
+                        <input name="dateNaissance" type="date" class="form-control" required placeholder="Date de naissance*">
+                        <input type="submit" id="submit" value="Créer un compte" class="btn btn-success">
+                        <p>Les champs suivis d'une étoile (*) sont obligatoires.</p>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <?php
     }
 
     function popConnexion(){
@@ -50,7 +66,7 @@ class VueConnexion extends VueGenerique {
                 <form class="row container-fluid" action="/connexion/connexion" method="POST">
                     <div class="col-5 form-group mx-auto">
                         <label for="login">Nom d'utilisateur</label>
-                        <input name="login" type="text" class="form-control" required placeholder="Votre login">
+                        <input name="login" type="text" class="form-control" required placeholder="Votre identifiant">
                         <label for="mdp">Mot de passe</label>
                         <input name="mdp" type="password" class="form-control" required placeholder="Votre mot de passe">
                         <input class="btn btn-success" type="submit" id="submit" value="Se connecter" >
@@ -63,53 +79,66 @@ class VueConnexion extends VueGenerique {
     }
 
     function popInscription(){
-        echo '<div class="content-block login-form">
+        ?>
+        <section class="container content-block login-form">
                 <div id="pop_inscription">
-                    <form action="/connexion/inscription" method="POST">
                         <h1>Inscription</h1>
-                        <input type="text" placeholder="Nom d\'utilisateur*" name="login" required><br>
-                        <input type="text" placeholder="Nom*" name="nom" required><br>
-                        <input type="text" placeholder="Prénom*" name="prenom" required><br>
-                        <input type="password" placeholder="Mot de passe*" name="mdp" required><br>
-                        <input type="email" placeholder="E-mail de facturation*" name="eFacturation" required><br>
-                        <input type="email" placeholder="E-mail de livraison" name="eLivraison"><br>
-                        <input type="tel" placeholder="Téléphone*" name="tel" required><br>
-                        <input type="date" placeholder="Date de naissance*" name="dateNaissance" required><br>
-                        <input type="submit" id=\'submit\' value=\'Créer un compte\' >
-                    </form>
-                <p>Les champs suivis d\'une étoile (*) sont obligatoires.</p>
+                        <hr>
+                        <form class="row container-fluid" action="/connexion/inscription" method="POST">
+                            <div class="col-5 form-group mx-auto">
+                                <label for="login">Nom d'utilisateur*</label>
+                                <input name="login" type="text" class="form-control" required placeholder="Nom d'utilisateur*">
+                                <label for="nom">Nom*</label>
+                                <input name="nom" type="text" class="form-control" required placeholder="Nom*">
+                                <label for="prenom">Prénom*</label>
+                                <input name="prenom" type="text" class="form-control" required placeholder="Prénom*">
+                                <label for="mdp">Mot de passe</label>
+                                <input name="mdp" type="password" class="form-control" required placeholder="Mot de passe*">
+                                <label for="eFacturation">Adresse e-mail de facturation*</label>
+                                <input name="eFacturation" type="email" class="form-control" required placeholder="E-mail de facturation*">
+                                <label for="eLivraison">Adresse e-mail de livraison</label>
+                                <input name="eLivraison" type="email" class="form-control" placeholder="E-mail de livraison">
+                                <label for="tel">Téléphone*</label>
+                                <input name="tel" type="tel" class="form-control" required placeholder="Téléphone*">
+                                <label for="dateNaissance">Date de naissance*</label>
+                                <input name="dateNaissance" type="date" class="form-control" required placeholder="Date de naissance*">
+                                <input type="submit" id="submit" value="Créer un compte" class="btn btn-success">
+                                <p>Les champs suivis d'une étoile (*) sont obligatoires.</p>
+                            </div>
+                        </form>
                 </div>
-            </div>';
+        </section>
+        <?php
     }
 
     function affichageConnexionReussie(){
-        echo '<span class="info-utilisateur">Vous etes connecté en tant que '.$_SESSION['login'].'<br>
+        echo '<span class="info-utilisateur">Vous êtes connecté.e en tant que '.$_SESSION['login'].'<br>
             <a href="/connexion/deconnexion">Se déconnecter</a></span>';
     }
 
     function affichageInscription(){
-        echo '<span>Votre inscription a bien été prise en compte.</span>';
+        echo '<span class="info-utilisateur">Votre inscription a bien été prise en compte.</span>';
     }
 
     function erreurInscription(){
-        echo '<span>Il y a eu une erreur dans l\'inscription, veuillez recommencer.</span>';
+        echo '<span class="info-utilisateur">Il y a eu une erreur dans l\'inscription, veuillez recommencer.</span>';
     }
 
     function IDMDPErrone(){
-        echo "<span>L'identifiant ou le mot de passe que vous avez saisi est erroné, veuillez recommencer s'il vous plait.</span>";
+        echo '<span class="info-utilisateur">L\'identifiant ou le mot de passe que vous avez saisi est erroné, veuillez recommencer s\'il vous plait.</span>';
     }
 
     function mdpErronne(){
-        echo "<br>Le mot de passe que vous avez saisi est erroné, veuillez recommencer s'il vous plait.";
+        echo '<span class="info-utilisateur"><br>Le mot de passe que vous avez saisi est erroné, veuillez recommencer s\'il vous plait.</span>';
     }
 
     function affichageDeconnexion(){
-        echo '<main>Vous avez bien été déconnecté(e).<br>
-            <a href="/home">Retour à la page d\'accueil</a></main>';
+        echo '<span class="info-utilisateur">Vous avez bien été déconnecté(e).<br>
+            <a href="/home">Retour à la page d\'accueil</a></span>';
     }
 
     function affichageIDUtilise(){
-        echo '<main><a href="/connexion/popInscription">L\'identifiant que vous avez saisi est déjà pris, veuillez recommencer avec un autre.</a></main>';
+        echo '<span class="info-utilisateur"><a href="/connexion/popInscription">L\'identifiant que vous avez saisi est déjà pris, veuillez recommencer avec un autre.</a></span>';
     }
 
 }
