@@ -112,33 +112,77 @@ class VueConnexion extends VueGenerique {
     }
 
     function affichageConnexionReussie(){
-        echo '<span class="info-utilisateur">Vous êtes connecté.e en tant que '.$_SESSION['login'].'<br>
-            <a href="/connexion/deconnexion">Se déconnecter</a></span>';
+        ?>
+        <div class="container-fluid row">
+            <div class="login-form">
+                <div class="big-info"><h1>Bonjour, vous êtes connecté(e) en tant que <b><i><?=$_SESSION['login']?></i></b></h1></div><br>
+                <h1 class="big-info" id="error-h1"><a class="big-info btn btn-outline-success" href="/home">Page d'accueil</a>
+                    <a class="big-info btn btn-outline-success" href="/utilisateur">Espace utilisateur</a></h1>
+            </div>
+        </div>
+        <?php
     }
 
     function affichageInscription(){
-        echo '<span class="info-utilisateur">Votre inscription a bien été prise en compte.</span>';
+        ?>
+        <div class="container-fluid row">
+            <div class="login-form">
+                <div class="big-info"><h1>Bienvenue <b><i><?=$_SESSION['login']?></i></b>, votre inscription a bien été prise en compte.</h1></div><br>
+                <h1 class="big-info" id="error-h1"><a class="big-info btn btn-outline-success" href="/home">Page d'accueil</a>
+                    <a class="big-info btn btn-outline-success" href="/utilisateur">Espace utilisateur</a></h1>
+            </div>
+        </div>
+        <?php
     }
 
     function erreurInscription(){
-        echo '<span class="info-utilisateur">Il y a eu une erreur dans l\'inscription, veuillez recommencer.</span>';
+        ?>
+        <div class="container-fluid row">
+            <div class="login-form">
+                <div class="big-info"><h1>Nous sommes désolés mais il semblerait qu'il y ait eu une erreur dans l'inscription,<br>
+                       veuillez recommencer s'il vous plaît.<br>
+                    Si le problème persiste, veuillez nous envoyer un e-mail à <u>contact@schoolaps.studio</u>.</h1></div><br>
+                <h1 class="big-info" id="error-h1"><a class="big-info btn btn-outline-success" href="/home">Page d'accueil</a>
+                    <a class="big-info btn btn-outline-success" href="/connexion/popInscription">Inscription</a></h1>
+            </div>
+        </div>
+        <?php
     }
 
     function IDMDPErrone(){
-        echo '<span class="info-utilisateur">L\'identifiant ou le mot de passe que vous avez saisi est erroné, veuillez recommencer s\'il vous plait.</span>';
-    }
-
-    function mdpErronne(){
-        echo '<span class="info-utilisateur"><br>Le mot de passe que vous avez saisi est erroné, veuillez recommencer s\'il vous plait.</span>';
+        ?>
+        <div class="container-fluid row">
+            <div class="login-form">
+                <div class="big-info"><h1>L'identifiant ou le mot de passe que vous avez saisi est erroné, veuillez recommencer s'il vous plait.</h1></div><br>
+                <h1 class="big-info" id="error-h1"><a class="big-info btn btn-outline-success" href="/home">Page d'accueil</a>
+                    <a class="big-info btn btn-outline-success" href="/connexion/popConnexion">Connexion</a></h1>
+            </div>
+        </div>
+        <?php
     }
 
     function affichageDeconnexion(){
-        echo '<span class="info-utilisateur">Vous avez bien été déconnecté(e).<br>
-            <a href="/home">Retour à la page d\'accueil</a></span>';
+        ?>
+        <div class="container-fluid row">
+            <div class="login-form">
+                <div class="big-info"><h1>Vous avez bien été déconnecté(e).</h1></div><br>
+                <h1 class="big-info" id="error-h1"><a class="big-info btn btn-outline-success" href="/home">Page d'accueil</a>
+                    <a class="big-info btn btn-outline-success" href="/connexion">Page de connexion</a></h1>
+            </div>
+        </div>
+        <?php
     }
 
     function affichageIDUtilise(){
-        echo '<span class="info-utilisateur"><a href="/connexion/popInscription">L\'identifiant que vous avez saisi est déjà pris, veuillez recommencer avec un autre.</a></span>';
+        ?>
+        <div class="container-fluid row">
+            <div class="login-form">
+                <div class="big-info"><h1>L'identifiant que vous avez saisi est déjà pris, veuillez recommencer avec un autre.</h1></div><br>
+                <h1 class="big-info" id="error-h1"><a class="big-info btn btn-outline-success" href="/home">Page d'accueil</a>
+                    <a class="big-info btn btn-outline-success" href="/connexion/popInscription">Inscription</a></h1>
+            </div>
+        </div>
+        <?php
     }
 
 }
