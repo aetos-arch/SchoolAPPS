@@ -22,7 +22,6 @@ class VuePanier extends VueGenerique
                         </div>
                 <a href="/panier/suppression/' . ($listeProduit[$i])['idProduit'] . '">Supprimer</a><br><br>
                 </div>';
-
             }
             echo '
                 <div class = "totalPanier">
@@ -41,9 +40,10 @@ class VuePanier extends VueGenerique
         }
     }
 
-        function affichageCheckOut(){
+    function affichageCheckOut()
+    {
         //TODO : affichage du récap de la commande
-            echo '<form action="/panier/commandeValide" method="post">
+        echo '<form action="/panier/commandeValide" method="post">
                 <div class = "detailsFact">
                     <h3>Détails de la facturation</h3>
                     <input type="text" placeholder="Prénom*" name="login" required>
@@ -67,15 +67,16 @@ class VuePanier extends VueGenerique
             </form>';
     }
 
-    function passageCommandeValide(){
+    function passageCommandeValide()
+    {
         //TODO : donner licence ou produit
         echo "Votre commande est passé avec succès.";
     }
 
-    function erreurPassageCommande(){
+    function erreurPassageCommande()
+    {
         //TODO : vérifier que la commande n'est vrmt pas passé
         echo "Votre commande n'est pas passé.
          L'achat a été annulé, veuillez réessayer.";
     }
-
 }

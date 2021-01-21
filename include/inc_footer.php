@@ -21,7 +21,7 @@
         </div>
         <div class="col-md mx-auto" id="footer-right">
             <div class="row" id="footer-quicklinks">
-                <span class="foot-sub-title">Accès Rapide</span>
+                <span class="foot-sub-title">Accès rapides</span>
                 <aside class="row">
                     <p class="col-lg">
                         <a href="/home">Accueil</a><br>

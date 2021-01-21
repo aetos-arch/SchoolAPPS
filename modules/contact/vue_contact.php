@@ -71,6 +71,6 @@ class VueContact extends VueGenerique
 
             public function confirmationEnvoiMail()
             {
-                // to do
+                ?> <h1>E-mail bien envoyé :D !</h1> <?php
             }
         }
