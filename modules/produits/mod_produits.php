@@ -12,7 +12,7 @@ class ModProduit
             switch ($action) {
                 case 'afficher-produit':
                     if (isset($url[2])) {
-                        $controllProduit->afficherProduit($url[2]);
+                        $controllProduit->afficherProduit(addslashes(strip_tags($url[2])));
                     } else {
                         $controllProduit->actionInexistante();
                     }

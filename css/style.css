@@ -41,7 +41,7 @@ section.row {
 
 a.lire-plus {
     background-color: var(--cg-blue);
-    margin: 2px;
+    margin: 5px;
     color: white;
 }
 
@@ -94,7 +94,7 @@ h1 {
 }
 
 h2 {
-    color: var(--armananth-purple);
+    color: var(--rich-black);
     font-size: 22pt;
 }
 
@@ -115,6 +115,7 @@ h5 {
 }
 
 p {
+    color: var(--rich-black);
     font-size: 15pt;
     font-family: 'Quattrocento Sans', sans-serif;
 }
@@ -159,6 +160,12 @@ form, input, label, textarea, button, select {
 .badge-dot {
     border-radius: 9px;
     font-size: 9pt;
+}
+
+.center-img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 nav a {
@@ -242,6 +249,17 @@ article.card-footer {
     background-color: var(--cg-blue-light);
 }
 
+.login-form {
+    background-color: #def2f954;
+    top: 1rem;
+    left: 1rem;
+    bot: 1rem;
+    right: 1rem;
+    margin-top: 25px !important;
+    margin-bottom: 25px !important;
+    border-radius: 12px;
+}
+
 .sponsor {
     margin: 20px 0;
     text-align: center;
@@ -268,6 +286,10 @@ article.card-footer {
     display: -webkit-box;
     -webkit-line-clamp: 4; /* number of lines to show */
     -webkit-box-orient: vertical;
+}
+
+footer p {
+    color: white;
 }
 
 footer {
