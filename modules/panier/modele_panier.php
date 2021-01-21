@@ -95,14 +95,93 @@ class ModelePanier extends ModeleGenerique
 
     static function avoirNBProduitsPanier($idPanier){
         try {
-            //TODO
             $selectPreparee = Connexion::$bdd->prepare('SELECT SUM(qteProduits) AS SommePanier 
                 FROM produitsPanier where idPanier=:idPanier');
             $selectPreparee->execute(array(':idPanier' => $idPanier));
             $reponse = $selectPreparee ->fetchAll();
-            return $reponse[0]['SommePanier'];
+            if ($reponse[0]['SommePanier']==NULL){
+                return 0;
+            }else{
+                return $reponse[0]['SommePanier'];
+            }
         } catch (PDOException $e) {
         }
+    }
+
+    function moinsQte($idProduit,$idPanier){
+        try {
+            $selectPreparee = Connexion::$bdd->prepare('SELECT qteProduits
+                FROM produitsPanier 
+                WHERE idProduit=:idProduit AND idPanier=:idPanier');
+            $selectPreparee->execute(array(':idProduit' => $idProduit, ':idPanier' => $idPanier));
+            $reponse = $selectPreparee ->fetchAll();
+            if ($reponse[0]['qteProduits']==1){
+                //TODO : voir pour afficher un PopUp
+                $this->supprimerProduit($idProduit);
+            }else{
+                $modifPreparee = Connexion::$bdd->prepare('UPDATE produitsPanier SET qteProduits=qteProduits-1
+                    WHERE idProduit=:idProduit AND idPanier=:idPanier');
+                $modifPreparee->execute(array(':idProduit' => $idProduit, ':idPanier' => $idPanier));
+            }
+        } catch (PDOException $e) {
+        }
+    }
+
+    function plusQte($idProduit,$idPanier){
+        try {
+            $modifPreparee = Connexion::$bdd->prepare('UPDATE produitsPanier SET qteProduits=qteProduits+1
+                    WHERE idProduit=:idProduit AND idPanier=:idPanier');
+            $modifPreparee->execute(array(':idProduit' => $idProduit, ':idPanier' => $idPanier));
+        } catch (PDOException $e) {
+        }
+    }
+
+    function passagePanierCommande($idPanier, $idUtilisateur){
+        try {
+            //Création d'une commande
+            $insertPrepareeCommande = Connexion::$bdd->prepare('INSERT INTO commandes
+                (dateAchat, idUtilisateur) 
+                VALUES (NOW(), :idU)');
+            $insertPrepareeCommande->execute(array(':idU' => $idUtilisateur));
+
+            //Recherche de la commande qui vient d'être passé
+            $idCommande = Connexion::$bdd->lastInsertId();
+
+            //Sauvegarde des produits dans la table de produitsCommande
+            $selectPreparee = Connexion::$bdd->prepare('SELECT 
+                T0.idProduit,
+                T0.qteProduits,
+                T1.nomProduit,
+                T1.description,
+                T1.prixHT
+                FROM produitsPanier T0
+                INNER JOIN produits T1 ON T0.idProduit=T1.idProduit
+                WHERE idPanier=:idPanier');
+            $selectPreparee->execute(array(':idPanier' => $idPanier));
+            $reponse = $selectPreparee ->fetchAll();
+            for ($i=0; $i < count($reponse); $i++) {
+                $insertPreparee = Connexion::$bdd->prepare('INSERT INTO produitsCommandes 
+                (nomProduit, qteProduit, prixHT, description, idCommandes) 
+                VALUES (:nomP, :qteP, :prixHTP, :descriptionP, :idCommande)');
+                $insertPreparee->execute(array(':nomP' => $reponse[$i]['nomProduit'], ':qteP' => $reponse[$i]['qteProduits'],
+                    ':prixHTP' => $reponse[$i]['prixHT'], ':descriptionP' => $reponse[$i]['description'],
+                    'idCommande' => $idCommande));
+            }
+
+            return $this->supprimerPanier($idPanier);
+        } catch (PDOException $e) {
+        }
+    }
+
+    function supprimerPanier($idPanier){
+        //Suppression tout les éléments du panier
+        $supProduitPanier = Connexion::$bdd->prepare('DELETE FROM produitsPanier WHERE idPanier=:idPanier');
+        $supProduitPanier->execute(array(':idPanier' => $idPanier));
+
+        //Suppression du panier
+        $supPanier = Connexion::$bdd->prepare('DELETE FROM paniers WHERE idPanier=:idPanier');
+        $req = $supPanier->execute(array(':idPanier' => $idPanier));
+        return $req;
     }
 
 }
