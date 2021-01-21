@@ -12,62 +12,68 @@ class ContUtilisateur extends ContGenerique
 		parent::__construct(new ModeleUtilisateur(), new VueUtilisateur());
 	}
 
-	public function accueilUtilisateur($moduleContent)
+	public function accueilUtilisateur($moduleContent, $url)
 	{
-		$this->vue->pageAccueilUtilisateur($moduleContent);
+		$this->vue->pageAccueilUtilisateur($moduleContent, $url);
 	}
 
-	public function tableauBord()
-	{
-		$this->vue->tableauBord();
-	}
+    public function tableauBord()
+    {
+        $statsTickets = $this->modele->getNombreTicketsParEtat(($_SESSION['idUtil']));
+        $profil = $this->modele->getProfil(($_SESSION['idUtil']));
+        $commandes = $this->modele->getDernieresCommandes(($_SESSION['idUtil']));
+       // $profil = $this->modele->getProfil(($_SESSION['idUtil']));
+        $this->vue->tableauBord($profil, $statsTickets, $commandes, $profil);
+    }
 
-	public function nouveauLogin()
-	{
-		$this->vue->nouveauLogin();
-		if (isset($_POST['nouveauLogin'])) {
-			$nouveauLogin = addslashes(strip_tags($_POST['nouveauLogin']));
-			if ($this->modele->loginExiste($nouveauLogin) != 0) {
-				$this->loginExiste();
-				header('');
-				exit();
-			} else {
-				$this->modele->setLogin($_SESSION['idUtil'], $nouveauLogin);
-				$_SESSION['nomUser'] = $nouveauLogin;
-				header('');
-				exit();
-			}
-		}
-	}
+    public function nouveauMotDePasse()
+    {
+        $this->vue->nouveauMotDePasse();
+        $this->checkChangementMotDePasse();
+    }
 
-	public function nouveauMotDePasse()
-	{
-		$this->vue->nouveauMotDePasse();
-		if (isset($_POST['nouveau_password2'])) {
-			$nouveauMotDePasse1 = addslashes(strip_tags($_POST['nouveau_password1']));
-			$nouveauMotDePasse2 = addslashes(strip_tags($_POST['nouveau_password2']));
-			if ($nouveauMotDePasse1 == $nouveauMotDePasse2 && $nouveauMotDePasse1 != "") {
-				$passNow = $this->modele->getPassword($_SESSION['idUtil']);
-				if (password_verify($_POST['old_password'], $passNow)) {
-					$nouveauMotDePasseHash = password_hash($nouveauMotDePasse1,  PASSWORD_BCRYPT);
-					$this->modele->setPass($nouveauMotDePasseHash, $_SESSION['idUtil']);
-					header('');
-					exit();
-				} else {
-					$this->loginExiste();
-				}
-			} else {
-				$this->motDePasseNonIdentique();
-			}
-		}
-	}
+    public function checkChangementMotDePasse()
+    {
+        if (isset($_POST['nouveau_password2'])) {
+            $nouveauMotDePasse1 = addslashes(strip_tags($_POST['nouveau_password1']));
+            $nouveauMotDePasse2 = addslashes(strip_tags($_POST['nouveau_password2']));
+            $passNow = $this->modele->getPass($_SESSION['idUtil']);
+            if ($nouveauMotDePasse1 == $nouveauMotDePasse2 && $nouveauMotDePasse1 != "") {
+                if (password_verify($_POST['old_password'], $passNow[0]['hashMdp'])) {
+                    if ($_POST['old_password'] !== $nouveauMotDePasse1) {
+                        $nouveauMotDePasseHash = password_hash($nouveauMotDePasse1, PASSWORD_BCRYPT);
+                        $this->modele->setPass($nouveauMotDePasseHash, $_SESSION['idUtil']);
+                        $this->vue->messageVue("Votre mot de passe a bien été modifié.");
+                    } else
+                        $this->vue->messageVue("Les trois mot de passe renseignés sont identiques !");
+                } else {
+                    $this->vue->messageVue("Le mot de passe renseigné ne correspond pas au mot de passe actuel.");
+                }
+            } else {
+                $this->vue->messageVue("Les deux nouveaux mot de passe ne sont pas identiques !");
+            }
+        }
+    }
 
+    public function nouveauLogin()
+    {
+        $this->vue->nouveauLogin();
+        $this->soumettreLogin();
 
-	public function menu()
-	{
-		$this->vue->afficherMenu();
-	}
+    }
 
+    public function soumettreLogin() {
+        if (isset($_POST['nouveauLogin']) && $_POST['nouveauLogin']!= "") {
+            $nouveauLogin = addslashes(strip_tags($_POST['nouveauLogin']));
+            if ($this->modele->loginExiste($nouveauLogin)) {
+                $this->vue->messageVue("Vous ne pouvez pas remettre le login actuel");
+            } else {
+                $this->modele->setLogin($_SESSION['idUtil'], $nouveauLogin);
+                $_SESSION['nomUser'] = $nouveauLogin;
+                $this->vue->loginMisAjour($nouveauLogin);
+            }
+        }
+    }
 	public function getMessages($idTicket, $isJson)
 	{
 		if ($isJson) {
@@ -111,24 +117,29 @@ class ContUtilisateur extends ContGenerique
 		}
 	}
 
+    public function profil()
+    {
+        $result = $this->modele->getProfil(($_SESSION['idUtil']));
+        $this->vue->afficherProfil($result);
+    }
+
 	public function afficheTickets()
 	{
 		$result = $this->modele->getTickets(($_SESSION['idUtil']));
 		$this->vue->afficheTickets($result);
 	}
 
-	public function afficheTicket()
+	public function afficheTicket($idTicket)
 	{
-		$idTicket = strip_tags($_POST['idTicket']);
 		$result = $this->modele->getTicket($idTicket);
-		$this->vue->afficheTicket($result);
+        $infoTech = $this->modele->getInfoTech($idTicket);
+		$this->vue->afficheTicket($result, $infoTech);
 	}
 
 	public function afficheCommandes()
 	{
 		//$commandes = $this->modele->getCommandes($_SESSION['idUtil']);
 		$commandes = $this->modele->getCommandes(1);
-		var_dump($commandes);
 		$this->vue->afficheCommandes($commandes);
 	}
 
