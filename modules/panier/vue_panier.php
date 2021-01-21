@@ -5,6 +5,7 @@ require_once 'modules/generique/vue_generique.php';
 class VuePanier extends VueGenerique
 {
 
+    //TEST POUR COMMIT
     function affichagePanier($listeProduit)
     {
         echo '<section><br><h1>Panier</h1><hr>';
