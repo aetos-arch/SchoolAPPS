@@ -11,10 +11,10 @@ class ContConnexion extends ContGenerique {
     }
 
     function connexion(){
-        $requete = $this->modele->connexion($_POST['login']);
+        $requete = $this->modele->connexion(addslashes(strip_tags($_POST['login'])));
         if ($requete!=NULL) {
             //Vérification du mot de passe :
-            if(password_verify($_POST['mdp'], $requete[0]['hashMdp'])) {
+            if(password_verify(addslashes(strip_tags($_POST['mdp'])), $requete[0]['hashMdp'])) {
                 $_SESSION['idUtil'] = $requete[0]['idUtilisateur'];
                 $_SESSION['login'] = $requete[0]['login'];
                 $_SESSION['idTypeUtilisateur'] = $requete[0]['idTypeUtilisateur'];
@@ -46,10 +46,10 @@ class ContConnexion extends ContGenerique {
     }
 
     function inscription(){
-        if($this->modele->loginExiste($_POST['login'])==0) {
-            $this->modele->inscription($_POST['login'], $_POST['nom'], $_POST['prenom'],
-                $_POST['mdp'], $_POST['eFacturation'], $_POST['eLivraison'], $_POST['tel'], $_POST['dateNaissance']);
-            $utilInscrit = $this->modele->verifInscription($_POST['login']);
+        if($this->modele->loginExiste(addslashes(strip_tags($_POST['login'])))==0) {
+            $this->modele->inscription(addslashes(strip_tags($_POST['login'])), addslashes(strip_tags($_POST['nom'])), addslashes(strip_tags($_POST['prenom'])),
+                addslashes(strip_tags($_POST['mdp'])), addslashes(strip_tags($_POST['eFacturation'])), addslashes(strip_tags($_POST['eLivraison'])), addslashes(strip_tags($_POST['tel'])), addslashes(strip_tags($_POST['dateNaissance'])));
+            $utilInscrit = $this->modele->verifInscription(addslashes(strip_tags($_POST['login'])));
             if (!empty($utilInscrit)){
                 $_SESSION['idUtil'] = $utilInscrit[0]['idUtilisateur'];
                 $_SESSION['login'] = $utilInscrit[0]['login'];

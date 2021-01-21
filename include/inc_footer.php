@@ -2,7 +2,7 @@
     <div class="container-fluid row mx-auto" id="footer-cont">
         <div class="col-md footer-left">
             <p>
-                <a href="/home"> <img id="logo-footer" src="/images/logo/logo.svg" alt="Logo du site" /> </a><br>
+                <a href="/home"> <img id="logo-footer" src="\images\logo\logo.svg" alt="Logo du site" /> </a><br>
                 <span class="foot-sub-title">S.A.S School APPS</span><br>
                 "Apprendre à votre façon"<br>
                 Capital de 1 000 000 €<br>
@@ -15,6 +15,7 @@
                     140 Rue de la Nouvelle France<br>
                     93100 Montreuil<br>
                     <span class="foot-sub-title">Contact</span><br>
+                    +33 1 01 01 01 01<br>
                     +33 1 01 01 01 01<br>
                     contact@schoolaps.studio<br>
             </p>
