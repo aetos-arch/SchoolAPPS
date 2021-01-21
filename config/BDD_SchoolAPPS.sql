@@ -58,7 +58,7 @@ CREATE TABLE paniers(
 
 CREATE TABLE tickets(
         idTicket                   int (11) Auto_increment  NOT NULL ,
-        intitule                   Varchar (32) NOT NULL ,
+        intitule                   Varchar (100) NOT NULL ,
         explication                Text ,
         dateCreation               Datetime ,
         dateFermeture              Datetime ,
@@ -207,11 +207,11 @@ INSERT INTO `types_utilisateur` (`idTypeUtilisateur`, `typeUtilisateur`) VALUES
 (3, 'utilisateur');
 
 INSERT INTO `utilisateurs` (`idUtilisateur`, `login`, `nom`, `prenom`, `hashMdp`, `emailFacturation`, `emailLivraison`, `telephone`, `dateNaissance`, `idTypeUtilisateur`) VALUES
-(1, 'utilisateur', 'utilisateur', 'utilisateur', '$2y$10$90yGN9i3D0/TIJVoseZUN.qOf1SjmszFNSnC.QT9NLExI9FmmiHGi', 'utilisateur@hotmail.fr', 'utilisateur@hotmail.fr', 101010101, '2021-01-01', 3),
-(2, 'technicien', 'technicien', 'technicien', '$2y$10$90yGN9i3D0/TIJVoseZUN.qOf1SjmszFNSnC.QT9NLExI9FmmiHGi', 'technicien@hotmail.fr', 'technicien@hotmail.fr', 202020202, '2021-01-02', 2),
-(3, 'admin', 'admin', 'admin', '$2y$10$90yGN9i3D0/TIJVoseZUN.qOf1SjmszFNSnC.QT9NLExI9FmmiHGi', 'admin@hotmail.fr', 'admin@hotmail.fr', 303030303, '2021-01-03', 1),
-(4, 'VotreTechnicien', 'VotreTechnicien', 'VotreTechnicien', '$2y$10$90yGN9i3D0/TIJVoseZUN.qOf1SjmszFNSnC.QT9NLExI9FmmiHGi', 'technicien2@hotmail.fr', 'technicien2@hotmail.fr', 202020202, '2021-01-02', 2),
-(5, 'Client', 'Jean', 'Marc', '$2y$10$90yGN9i3D0/TIJVoseZUN.qOf1SjmszFNSnC.QT9NLExI9FmmiHGi', 'jean-marc93@hotmail.fr', 'jean-marc93@hotmail.fr', 0612562024, '2021-01-02', 2);
+(1, 'utilisateur', 'Utilisateur', 'Client', '$2y$10$90yGN9i3D0/TIJVoseZUN.qOf1SjmszFNSnC.QT9NLExI9FmmiHGi', 'utilisateur@hotmail.fr', 'utilisateur@hotmail.fr', 1041010101, '2021-01-01', 3),
+(2, 'technicien', 'Technicien', 'technicien', '$2y$10$90yGN9i3D0/TIJVoseZUN.qOf1SjmszFNSnC.QT9NLExI9FmmiHGi', 'technicien@hotmail.fr', 'technicien@hotmail.fr', 2024020202, '2021-01-02', 2),
+(3, 'admin', 'Admin', 'admin', '$2y$10$90yGN9i3D0/TIJVoseZUN.qOf1SjmszFNSnC.QT9NLExI9FmmiHGi', 'admin@hotmail.fr', 'admin@hotmail.fr', 303030303, '2021-01-03', 1),
+(4, 'VotreTechnicien', 'VotreTechnicien', 'VotreTechnicien', '$2y$10$90yGN9i3D0/TIJVoseZUN.qOf1SjmszFNSnC.QT9NLExI9FmmiHGi', 'technicien2@hotmail.fr', 'technicien2@hotmail.fr', 0612562024, '2021-01-02', 2),
+(5, 'Client', 'Jean', 'Marc', '$2y$10$90yGN9i3D0/TIJVoseZUN.qOf1SjmszFNSnC.QT9NLExI9FmmiHGi', 'jean-marc93@hotmail.fr', 'jean-marc93@hotmail.fr', 0612562024, '2021-01-02', 3);
 
 
 INSERT INTO `produits` (`idProduit`, `nomProduit`, `description`, `prixHT`, `dateSortie`, `nbrVues`, `nbrAchat`) VALUES 
@@ -235,9 +235,31 @@ INSERT INTO `commandes` (`idCommandes`, `dateAchat`, `idUtilisateur`) VALUES
 ('6', '2020-10-17', '5');
 
 
-INSERT INTO `produitscommandes` (`IdProduitCommande`, `nomProduit`, `qteProduit`, `prixHT`, `description`, `idCommandes`) VALUES 
+INSERT INTO `produitsCommandes` (`IdProduitCommande`, `nomProduit`, `qteProduit`, `prixHT`, `description`, `idCommandes`) VALUES 
 ('1', 'SchoolNet', '2', '50.00', 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', '1'), 
 ('2', 'E-education', '6', '1000.99', 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', '1'),
 ('3', 'SchoolNet', '6', '1000.99', 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', '2'),
 ('4', 'SchoolDev', '6', '1000.99', 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', '2'),
-('5', 'E-education', '6', '1000.99', 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', '2');
+('5', 'E-education', '6', '1000.99', 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', '2'),
+('6', 'SchoolNet', '2', '50.00', 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', '4'), 
+('7', 'E-education', '6', '1000.99', 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', '4'),
+('8', 'SchoolNet', '6', '1000.99', 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', '6'),
+('9', 'SchoolDev', '6', '1000.99', 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', '5'),
+('10', 'E-education', '6', '1000.99', 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', '3'),
+('11', 'SchoolNet', '2', '50.00', 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', '6'), 
+('12', 'E-education', '6', '1000.99', 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', '2'),
+('13', 'SchoolNet', '6', '1000.99', 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', '4'),
+('14', 'SchoolDev', '6', '1000.99', 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', '6'),
+('15', 'E-education', '6', '1000.99', 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', '5'),
+('16', 'SchoolNet', '2', '50.00', 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', '3'), 
+('17', 'E-education', '6', '1000.99', 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', '3');
+
+
+INSERT INTO `avis` (`idAvis`, `avis`, `noteProduit`, `idProduit`, `idUtilisateur`) VALUES 
+('1', 'Ce produit est de très grande qualité ! Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', '5', '1', '1'),
+('2', 'Ce produit est de très grande qualité ! Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', '4', '2', '5'),
+('3', 'Ce produit est de très grande qualité ! Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', '3', '3', '5'),
+('4', 'Ce produit est de très grande qualité ! Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', '4', '1', '1'),
+('5', 'Ce produit est de très grande qualité !', '5', '2', '5'),
+('6', 'Ce produit est de très grande qualité !', '4', '3', '1'),
+('7', 'Ce produit est de très grande qualité !', '4', '1', '5');

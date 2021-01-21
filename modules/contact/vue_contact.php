@@ -61,17 +61,18 @@ class VueContact extends VueGenerique
                     </div>
                     <div class="content-block">
                         <h2>Nous situer</h2>
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.77831866901!2d2.4619861155551392!3d48.86243747928795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e612ae6a4cd20d%3A0xfe5502b116430be!2sIUT%20De%20Montreuil!5e0!3m2!1sfr!2sfr!4v1611219092899!5m2!1sfr!2sfr" width="100%" height="500px" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.77831866901!2d2.4619861155551392!3d48.86243747928795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e612ae6a4cd20d%3A0xfe5502b116430be!2sIUT%20De%20Montreuil!5e0!3m2!1sfr!2sfr!4v1611219092899!5m2!1sfr!2sfr" width="100%" height="400px" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                     </div>
                 </div>
             </div>
         </div>
-         <?php
+    <?php
     }
 
 
-            public function confirmationEnvoiMail()
-            {
-                // to do
-            }
-}
+    public function confirmationEnvoiMail()
+    {
+        ?> <h1>E-mail bien envoyé :D !</h1> <?php
+    }                                  
+  }
+

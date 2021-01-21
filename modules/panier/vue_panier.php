@@ -45,7 +45,8 @@ class VuePanier extends VueGenerique
         }
     }
 
-        function affichageCheckOut(){
+    function affichageCheckOut()
+    {
         //TODO : affichage du récap de la commande
         ?>
             <section class="container content-block login-form">
@@ -97,7 +98,8 @@ class VuePanier extends VueGenerique
         echo '<span class="info-utilisateur">Votre commande est passé avec succès.</span>';
     }
 
-    function erreurPassageCommande(){
+    function erreurPassageCommande()
+    {
         //TODO : vérifier que la commande n'est vrmt pas passé
         echo '<span class="info-utilisateur">Votre commande n\'est pas passé.
          L\'achat a été annulé, veuillez réessayer.</span>';
@@ -114,5 +116,4 @@ class VuePanier extends VueGenerique
     function affichageDMDUtilCo(){
         echo '<span class="info-utilisateur">Vous devez être connecté pour avoir un panier !</span>';
     }
-
 }
