@@ -11,7 +11,7 @@ class Connexion
     {
         $db_host = "localhost";
         $user = "root";
-        $password = "root";
+        $password = "";
         $db_name = "SchoolAPPS";
         $dns = 'mysql:host=' . $db_host . ';dbname=' . $db_name . ';charset=utf8';
         try {

@@ -19,23 +19,22 @@ class ContProduit extends ContGenerique
         $this->controleurPanier = new ContPanier();
     }
     
-    public function listeProduits () {
-      $data = $this->modele->getAllProduit();
+    public function listeProduits() {
+      $data = $this->modele->getProduits();
       $this->vue->afficherProduits($data);
     }
 
     public function afficherProduit ($nomProduit) {
-      $idProduit = $this->modele->getIdProduit($nomProduit);
-      $data = $this->modele->getProduit($idProduit['idProduit']);
-      $this->vue->afficherProduit($data);
-
-      $this->listerAvis($idProduit);
+        $idProduit = $this->modele->getIdProduit($nomProduit);
+        $data = $this->modele->getProduit($idProduit['idProduit']);
+        $this->vue->afficherProduit($data);
+        $this->listerAvis($idProduit);
     }
 
     public function listerAvis($idProduit)
     {
         $data = $this->modele->getAllAvisProduit($idProduit['idProduit']);
-        $this->vue->listerAvis($data);
+        $this->vue->listerAvis($data, isset($_SESSION['idUtil']));
     }
 
     public function ajouterProduitPanier($idProduit){
