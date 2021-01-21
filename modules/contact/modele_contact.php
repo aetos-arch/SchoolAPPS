@@ -13,7 +13,7 @@ class ModeleContact extends ModeleGenerique
 		$to = $result['email'];
 		$subject = $result['sujet'];
 		$message = $result['message'];
-		$headers = "De :" . $from;
+		$headers = "From: " . $from;
 		mail($to,$subject,$message, $headers);
 	}
 }

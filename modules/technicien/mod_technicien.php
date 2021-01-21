@@ -43,17 +43,16 @@ class ModTechnicien extends ModGenerique
 						$controllTech->afficheTickets();
 						break;
 					case 'chat':
-						if (isset($_POST['message'])) {
-							$controllTech->envoyerMessage($url[2], $_POST['message']);
+						if (isset($_POST['message']) && is_numeric($url[2])) {
+							$controllTech->envoyerMessage($url[2], addslashes(htmlspecialchars($_POST['message'])));
 						} else {
-							if (isset($url[2])) {
+							if (isset($url[2]) && is_numeric($url[2])) {
 								$controllTech->getMessages($url[2], isset($_GET['json']) && $_GET['json'] == "true");
 							} else {
 								$controllTech->actionInexistante();
 							}
 						}
 						break;
-
 					default:
 						$controllTech->actionInexistante();
 						break;

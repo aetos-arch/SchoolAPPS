@@ -5,15 +5,15 @@ require_once 'modules/generique/vue_generique.php';
 class VueTechnicien extends VueGenerique
 {
 
-	public function __construct()
-	{
-	    parent::__construct();
-	}
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-	public function pageAccueilTech($moduleContent, $url)
-	{
-	    include 'include/inc_breadcrumb.php';
-	    ?>
+    public function pageAccueilTech($moduleContent, $url)
+    {
+        include 'include/inc_breadcrumb.php';
+?>
         <section>
             <div class="content-block">
                 <div class="container">
@@ -30,9 +30,9 @@ class VueTechnicien extends VueGenerique
                                 <div id="accordion">
                                     <div class="card">
                                         <div class="card-header" id="headingOne">
-                                                <button class="btn btn-nav dropdown-toggle" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                    Votre profil
-                                                </button>
+                                            <button class="btn btn-nav dropdown-toggle" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                Votre profil
+                                            </button>
                                         </div>
                                         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                                             <a class="dropdown-item" href="/technicien/profil">Mes informations</a>
@@ -58,19 +58,19 @@ class VueTechnicien extends VueGenerique
                             </ul>
                         </nav>
                         <div class="col-lg">
-                            <h1>Votre espace technicien, <?php echo ucfirst($_SESSION['login']);?> </h1>
+                            <h1>Votre espace technicien, <?php echo ucfirst($_SESSION['login']); ?> </h1>
                             <?= $moduleContent ?>
                         </div>
                     </section>
                 </div>
             </div>
         </section>
-        <?php
-	}
+    <?php
+    }
 
     public function tableauBord($profil, $stats)
     {
-        ?>
+    ?>
         <h3>Mon tableau de bord</h3>
         <section class="row">
             <?php
@@ -78,15 +78,17 @@ class VueTechnicien extends VueGenerique
             $this->statsTickets($stats);
             ?>
         </section>
-        <?php
+    <?php
     }
 
-	public function afficherProfil($profil)
-	{
-	    ?>
+    public function afficherProfil($profil)
+    {
+    ?>
         <aside class="col-lg-12 p-1 m-2">
             <div class="card">
-                <div class="card-header"><h4>Vos infos</h4> </div>
+                <div class="card-header">
+                    <h4>Vos infos</h4>
+                </div>
                 <div class="card-body">
                     Nom : <?= $profil['nom'] ?> <br>
                     Prenom : <?= $profil['prenom'] ?> <br>
@@ -95,32 +97,35 @@ class VueTechnicien extends VueGenerique
                 </div>
             </div>
         </aside>
-        <?php
-	}
+    <?php
+    }
 
-    public function statsTickets($stats) {
+    public function statsTickets($stats)
+    {
     ?>
-    <aside class="col-lg-12 p-1 m-2">
-        <div class="card">
-            <div class="card-header"><h4>Stats rapides</h4> </div>
-            <div class="card-body">
-                <?php
-                foreach ($stats as &$ticket) {
+        <aside class="col-lg-12 p-1 m-2">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Stats rapides</h4>
+                </div>
+                <div class="card-body">
+                    <?php
+                    foreach ($stats as &$ticket) {
                     ?><h5>Tickets <?= $ticket['etat'] ?> : <?= $ticket['nbr'] ?> </h5>
                     <?php
-                }
-                unset($ticket);
-                ?>
+                    }
+                    unset($ticket);
+                    ?>
+                </div>
             </div>
-        </div>
-    </aside>
-    <?php
-}
+        </aside>
+        <?php
+    }
 
-	public function afficheTickets($result)
-	{
-	    foreach ($result as &$ticket) {
-	    ?>
+    public function afficheTickets($result)
+    {
+        foreach ($result as &$ticket) {
+        ?>
             <div class="ticket row card">
                 <div class="col-lg card-header">
                     <img src="../../images/60x60.png">
@@ -131,45 +136,44 @@ class VueTechnicien extends VueGenerique
                 </div>
                 <div class="col-lg card-footer">
                     <div class="row">
-                    <span class="col-8">
-                        Etat : <?= $ticket['etat']; ?> - Id produit : <?= $ticket['idProduit']; ?> - le : <?= $ticket['dateCreation']; ?>
-                    </span>
+                        <span class="col-8">
+                            Etat : <?= $ticket['etat']; ?> - Id produit : <?= $ticket['idProduit']; ?> - le : <?= $ticket['dateCreation']; ?>
+                        </span>
                         <a class="btn lire-plus col-3" href="/technicien/ticket/<?= $ticket['idTicket'] ?>">Voir plus</a>
                     </div>
                 </div>
             </div>
         <?php
         }
-	    unset($ticket);
-	}
+        unset($ticket);
+    }
 
-	public function afficheTicket($ticket, $infoClient, $etats)
-	{
+    public function afficheTicket($ticket, $infoClient, $etats)
+    {
         ?>
-	     <div class="row">
-             <aside class="card col-lg-7 p-1 m-2">
-                    <div class="card-header">
-                        <h4>
-                            <span class="info"> N°<?= $ticket['idTicket'] ?></span>
-                            <span class="info"> - <?= $ticket['intitule'] ?></span>
-                        </h4>
-                        <h4
-                            <span class="info"> Etat <?= $ticket['etat']; ?></span>
-                            <span class="info"> - Id produit : <?= $ticket['idProduit']; ?></span>
-                        </h4>
-                    </div>
+        <div class="row">
+            <aside class="card col-lg-7 p-1 m-2">
+                <div class="card-header">
+                    <h4>
+                        <span class="info"> N°<?= $ticket['idTicket'] ?></span>
+                        <span class="info"> - <?= $ticket['intitule'] ?></span>
+                    </h4>
+                    <h4 <span class="info"> Etat <?= $ticket['etat']; ?></span>
+                        <span class="info"> - Id produit : <?= $ticket['idProduit']; ?></span>
+                    </h4>
+                </div>
                 <div class="col-lg card-body">
                     <p id="explication"><?= $ticket['explication']; ?></p>
                     <button class="btn lire-plus" type="button" onclick="document.getElementById('explication').style.display = 'inherit'">Lire la suite</button>
                     <button class="btn lire-plus" type="button" onclick="document.getElementById('explication').style.display = '-webkit-box'">Réduire</button>
                     <div class="col-lg card-body">
-                        <form method="post" action="/technicien/ticket/<?=$ticket['idTicket']?>/changer-etat" class="input-group">
+                        <form method="post" action="/technicien/ticket/<?= $ticket['idTicket'] ?>/changer-etat" class="input-group">
                             <select class="custom-select" id="inputGroupSelect04" name="nouveauEtat">
                                 <option selected>Choisir...</option>
                                 <?php
                                 foreach ($etats as &$etat) {
-                                    ?> <option value="<?= $etat['idEtat'] ?>"><?=ucfirst($etat['etat'])?></option>
-                                    <?php
+                                ?> <option value="<?= $etat['idEtat'] ?>"><?= ucfirst($etat['etat']) ?></option>
+                                <?php
                                 }
                                 unset($etat);
                                 ?>
@@ -184,55 +188,55 @@ class VueTechnicien extends VueGenerique
                     <a class="btn lire-plus-r" href="/technicien/ticket/<?= $ticket['idTicket'] ?>">Ecrire un message</a>
                     <a class="btn lire-plus-r" href="/technicien/ticket/<?= $ticket['idTicket'] ?>">Changer état</a>
                 </div>
-             </aside>
-             <aside class="card col-lg-4 p-1 m-2" id="info-client">
-                 <div class="col-lg card-header">
-                     <h4 class="d-inline">Info du client</h4>
-                 </div>
-                 <div class="col-lg card-body">
-                     Nom : <?= $infoClient['nom'] ?> <br>
-                     Prenom : <?= $infoClient['prenom'] ?> <br>
-                     Email : <?= $infoClient['emailFacturation'] ?> <br>
-                     Telephone : <?= $infoClient['telephone'] ?> <br>
-                 </div>
-             </aside>
-         </div>
-        <?php
+            </aside>
+            <aside class="card col-lg-4 p-1 m-2" id="info-client">
+                <div class="col-lg card-header">
+                    <h4 class="d-inline">Info du client</h4>
+                </div>
+                <div class="col-lg card-body">
+                    Nom : <?= $infoClient['nom'] ?> <br>
+                    Prenom : <?= $infoClient['prenom'] ?> <br>
+                    Email : <?= $infoClient['emailFacturation'] ?> <br>
+                    Telephone : <?= $infoClient['telephone'] ?> <br>
+                </div>
+            </aside>
+        </div>
+    <?php
     }
-    
+
     public function chat()
-	{
-	?>
-  <link rel="stylesheet" href="../../css/app.css">
+    {
+    ?>
+        <link rel="stylesheet" href="../../css/app.css">
 
-		<body>
-			<header>
-				<h1>Chat</h1>
-			</header>
+        <body>
+            <header>
+                <h1>Chat</h1>
+            </header>
 
-			<section class="chat">
-				<div class="messages">
-				</div>
-				<div class="user-inputs">
-					<form id="envoiMessage" method="POST">
-						<input type="text" id="content" name="content" placeholder="Envoyer message">
-						<button type="submit">Send !</button>
-					</form>
-				</div>
-			</section>
-			<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-			<script src="../../js/appbis.js"></script>
-		</body> <?php
-			}
+            <section class="chat">
+                <div class="messages">
+                </div>
+                <div class="user-inputs">
+                    <form id="envoiMessage" method="POST">
+                        <input type="text" id="content" name="content" placeholder="Envoyer message">
+                        <button type="submit">Send !</button>
+                    </form>
+                </div>
+            </section>
+            <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+            <script src="../../js/appbis.js"></script>
+        </body> <?php
+            }
 
-			public function json($result)
-			{
-				echo json_encode($result);
-			}
+            public function json($result)
+            {
+                echo json_encode($result);
+            }
 
-	public function nouveauLogin()
-	{
-		echo '<h3>Changer de Login</h3>
+            public function nouveauLogin()
+            {
+                echo '<h3>Changer de Login</h3>
 		<hr class="mt-2 mb-4">
 		
 		<div class="card-panel  lighten-4">
@@ -246,18 +250,18 @@ class VueTechnicien extends VueGenerique
 				</div>
 			</form>
 		</div>';
-	}
+            }
 
-    public function loginMisAjour($newLogin)
-    {
-        ?> <span class="alert-warning">Votre login a bien été mis à jour<br>
-        (Lors de votre prochaine connexion il faudra utiliser celui-ci : <?= $newLogin ?>)</span><?php
-    }
+            public function loginMisAjour($newLogin)
+            {
+                ?> <span class="alert-warning">Votre login a bien été mis à jour<br>
+            (Lors de votre prochaine connexion il faudra utiliser celui-ci : <?= $newLogin ?>)</span><?php
+                                                                                                    }
 
 
-	public function nouveauMotDePasse()
-	{
-		echo  '<h3>Changer votre mot de passe</h3>
+                                                                                                    public function nouveauMotDePasse()
+                                                                                                    {
+                                                                                                        echo  '<h3>Changer votre mot de passe</h3>
 		<hr class="mt-2 mb-4">
 		
 		<form action="/technicien/nouveau-mot-de-passe" method="post">
@@ -280,5 +284,5 @@ class VueTechnicien extends VueGenerique
 				</div>
 			</div>
 		</form>';
-	}
-}
+                                                                                                    }
+                                                                                                }

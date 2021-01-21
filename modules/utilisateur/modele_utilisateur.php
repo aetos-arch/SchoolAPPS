@@ -55,10 +55,9 @@ class ModeleUtilisateur extends ModeleGenerique
     public function peutVoirChat($idTicket, $idUtilisateur)
     {
         try {
-            $req = Connexion::$bdd->prepare('SELECT idTicket FROM tickets where idTicket = ? and idUtilisateur = ?');
+            $req = Connexion::$bdd->prepare('SELECT count(1) FROM tickets where idTicket = ? and idUtilisateur = ?');
             $req->execute(array($idTicket, $idUtilisateur));
-            $nb = $req->rowCount();
-            return $nb;
+            return $req->fetch(PDO::FETCH_COLUMN);
         } catch (PDOException $e) {
         }
     }
