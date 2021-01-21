@@ -12,7 +12,7 @@ class ModeleTechnicien extends ModeleGenerique
 	public function getTicketsEtat($idEtat, $idUtilisateur)
 	{
 		try {
-			$req = Connexion::$bdd->prepare('select * from tickets where idEtat = ? and idUtilisateur = ?');
+			$req = Connexion::$bdd->prepare('select * from tickets where idEtat in (?) and idUtilisateur = ?');
 			$req->execute(array($idEtat, $idUtilisateur));
 			$result = $req->fetchAll();
 			return $result;
@@ -132,16 +132,6 @@ class ModeleTechnicien extends ModeleGenerique
 			$req->execute(array($idUtilisateur));
 			$result = $req->fetchAll();
 			return $result;
-		} catch (PDOException $e) {
-		}
-	}
-
-	public function getEtats()
-	{
-		try {
-			$req = Connexion::$bdd->prepare('select * from etats');
-			$req->execute();
-            return $req->fetchAll();
 		} catch (PDOException $e) {
 		}
 	}

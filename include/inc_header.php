@@ -1,7 +1,7 @@
 <header class="fixed-top">
     <nav class="navbar navbar-expand-lg navbar-light">
         <a href="/home" id="brand-homelink">
-            <img id="logo" src="../../../../images/logo.svg" alt="Logo du site" />
+            <img id="logo" src="/images/logo.svg" alt="Logo du site" />
             <span>La référence de l'éducation</span>
         </a>
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,7 +17,7 @@
                         Logiciels
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="/schoolDev">School Dev</a>
+                        <a class="dropdown-item" href="//schoolDev">School Dev</a>
                         <a class="dropdown-item" href="/schoolNet">School Net</a>
                         <a class="dropdown-item" href="/E-education">Plateforme E-education</a>
                     </div>

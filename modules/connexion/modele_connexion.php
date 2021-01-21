@@ -5,7 +5,7 @@ require_once 'config/connexion.php';
 class ModeleConnexion extends Connexion{
 
     function connexion($pseudo){
-        $selectPreparee =Connexion::$bdd->prepare('SELECT idUtilisateur,login,hashMdp,idTypeUtilisateur FROM Utilisateurs 
+        $selectPreparee =Connexion::$bdd->prepare('SELECT idUtilisateur,login,hashMdp,idTypeUtilisateur FROM utilisateurs 
             WHERE login=:pseudo');
         $reponse = array(':pseudo' => $pseudo);
         $selectPreparee->execute($reponse);

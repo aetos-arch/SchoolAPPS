@@ -7,6 +7,7 @@ class ModeleUtilisateur extends ModeleGenerique
 {
     public function __construct()
     {
+        parent::__construct();
     }
 
     public function getProfil($idUtilisateur)
@@ -20,22 +21,23 @@ class ModeleUtilisateur extends ModeleGenerique
         }
     }
 
-    public function getCommande($idCommande)
-    {
-        try {
-            $req = Connexion::$bdd->prepare('SELECT * FROM commandes c INNER JOIN panier p ON c.idUtilisateur=p.idtilisateur WHERE p.idPanier=c.idpanier AND c.idCommandes = ?');
-            $req->execute(array($idCommande));
-            $result = $req->fetchAll();
-            return $result;
-        } catch (PDOException $e) {
-        }
-    }
+	public function getCommande($idCommande)
+	{
+		try {
+			$req = Connexion::$bdd->prepare('SELECT * FROM commandes c INNER JOIN produitsCommandes p ON c.idCommandes=p.idCommandes WHERE c.idCommandes= ?');
+			$req->execute(array($idCommande));
+			$result = $req->fetchAll();
+			return $result;
+		} catch (PDOException $e) {
+		}
+	}
 
 
     public function getCommandes($idUtilisateur)
     {
         try {
-            $req = Connexion::$bdd->prepare('SELECT * FROM commandes c INNER JOIN produitsCommmandes p ON c.idCommandes=p.idCommandes WHERE c.idUtilisateur= ?');
+            $req = Connexion::$bdd->prepare('SELECT * FROM commandes c WHERE c.idUtilisateur= ?
+                                            order by c.dateAchat DESC');
             $req->execute(array($idUtilisateur));
             return $req->fetchAll();
         } catch (PDOException $e) {
@@ -158,8 +160,8 @@ class ModeleUtilisateur extends ModeleGenerique
     public function creerTicket($result)
     {
         try {
-            $req = Connexion::$bdd->prepare('INSERT INTO tickets (intitule, explication, idEtat, idUtilisateur, idProduit, date) VALUES(?, ?, ?, ?, ?)');
-            $req->execute(array($result['intitule'], $result['explication'],  3, $result['idUtilisateur'],  $result['idProduit']));
+            $req = Connexion::$bdd->prepare('INSERT INTO tickets (intitule, explication, dateCreation, idEtat, idUtilisateur, idProduit) VALUES(?, ?, NOW(), ?, ?, ?)');
+            return $req->execute(array($result['intitule'], $result['explication'],  3, $result['idUtilisateur'],  $result['idProduit']));
         } catch (PDOException $e) {
         }
     }

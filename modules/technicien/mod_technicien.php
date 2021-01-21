@@ -18,7 +18,7 @@ class ModTechnicien extends ModGenerique
 					case 'menu':
 						$controllTech->menu();
 						break;
-					case 'profil':
+					case 'mes-informations':
 						$controllTech->profil();
 						break;
 					case 'nouveau-mot-de-passe':
