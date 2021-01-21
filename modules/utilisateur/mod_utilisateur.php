@@ -57,7 +57,11 @@ class ModUtilisateur extends ModGenerique
 						if (isset($_POST['message'])) {
 							$controllUtilisateur->envoyerMessage($url[2], $_POST['message']);
 						} else {
-							$controllUtilisateur->getMessages($url[2], isset($_GET['json']) && $_GET['json'] == "true");
+							if (isset($url[2])) {
+								$controllUtilisateur->getMessages($url[2], isset($_GET['json']) && $_GET['json'] == "true");
+							} else {
+								$controllUtilisateur->actionInexistante();
+							}
 						}
 						break;
 					default:
