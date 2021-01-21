@@ -56,10 +56,10 @@ class ModUtilisateur extends ModGenerique
 						$controllUtilisateur->modifierAvis();
 						break;
 					case 'chat':
-						if (isset($_POST['message'])) {
-							$controllUtilisateur->envoyerMessage($url[2], $_POST['message']);
+						if (isset($_POST['message']) && is_numeric($url[2])) {
+							$controllUtilisateur->envoyerMessage($url[2], addslashes(htmlspecialchars($_POST['message'])));
 						} else {
-							if (isset($url[2])) {
+							if (isset($url[2]) && is_numeric($url[2])) {
 								$controllUtilisateur->getMessages($url[2], isset($_GET['json']) && $_GET['json'] == "true");
 							} else {
 								$controllUtilisateur->actionInexistante();

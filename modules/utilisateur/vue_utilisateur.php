@@ -5,15 +5,15 @@ require_once 'modules/generique/vue_generique.php';
 class VueUtilisateur extends VueGenerique
 {
 
-	public function __construct()
-	{
+    public function __construct()
+    {
         parent::__construct();
-	}
+    }
 
     public function pageAccueilUtilisateur($moduleContent, $url)
     {
         include 'include/inc_breadcrumb.php';
-        ?>
+?>
         <section>
             <div class="content-block">
                 <div class="container">
@@ -72,19 +72,19 @@ class VueUtilisateur extends VueGenerique
                             </ul>
                         </nav>
                         <div class="col-lg">
-                            <h1>Votre espace utilisateur, <?php echo ucfirst($_SESSION['login']);?> </h1>
+                            <h1>Votre espace utilisateur, <?php echo ucfirst($_SESSION['login']); ?> </h1>
                             <?= $moduleContent ?>
                         </div>
                     </section>
                 </div>
             </div>
         </section>
-        <?php
+    <?php
     }
 
     public function tableauBord($profil, $stats, $commandes, $tickets)
     {
-        ?>
+    ?>
         <h3>Mon tableau de bord</h3>
         <section class="row">
             <?php
@@ -94,15 +94,17 @@ class VueUtilisateur extends VueGenerique
             $this->derniersTickets($tickets);
             ?>
         </section>
-        <?php
+    <?php
     }
 
     public function afficherProfil($profil)
     {
-        ?>
+    ?>
         <aside class="col-lg-12 p-1 m-2">
             <div class="card">
-                <div class="card-header"><h4>Vos infos</h4> </div>
+                <div class="card-header">
+                    <h4>Vos infos</h4>
+                </div>
                 <div class="card-body" id="user-info">
                     Nom : <?= $profil['nom'] ?> <br>
                     Prenom : <?= $profil['prenom'] ?> <br>
@@ -111,34 +113,39 @@ class VueUtilisateur extends VueGenerique
                 </div>
             </div>
         </aside>
-        <?php
+    <?php
     }
 
-    public function statsTickets($stats) {
-        ?>
+    public function statsTickets($stats)
+    {
+    ?>
         <aside class="col-lg-12 p-1 m-2">
             <div class="card">
-                <div class="card-header"><h4>Stats rapides</h4> </div>
+                <div class="card-header">
+                    <h4>Stats rapides</h4>
+                </div>
                 <div class="card-body">
                     <?php
                     foreach ($stats as &$ticket) {
-                        ?><h5>Tickets <?= $ticket['etat'] ?> : <?= $ticket['nbr'] ?> </h5>
-                        <?php
+                    ?><h5>Tickets <?= $ticket['etat'] ?> : <?= $ticket['nbr'] ?> </h5>
+                    <?php
                     }
                     unset($ticket);
                     ?>
                 </div>
             </div>
         </aside>
-        <?php
+    <?php
     }
 
     public function derniersTickets($profil)
     {
-        ?>
+    ?>
         <aside class="col-lg-12 p-1 m-2">
             <div class="card">
-                <div class="card-header"><h4>Vos derniers tickets</h4> </div>
+                <div class="card-header">
+                    <h4>Vos derniers tickets</h4>
+                </div>
                 <div class="card-body" id="user-info">
                     Nom : <?= $profil['nom'] ?> <br>
                     Prenom : <?= $profil['prenom'] ?> <br>
@@ -147,24 +154,26 @@ class VueUtilisateur extends VueGenerique
                 </div>
             </div>
         </aside>
-        <?php
+    <?php
     }
 
     public function dernieresCommandes($commandes)
     {
-        ?>
+    ?>
         <aside class="col-lg-12 p-1 m-2">
             <div class="card">
-                <div class="card-header"><h4>Vos dernières commandes</h4> </div>
+                <div class="card-header">
+                    <h4>Vos dernières commandes</h4>
+                </div>
 
                 <?php
                 foreach ($commandes as &$commande) {
-                    ?>
+                ?>
                     <div class="card-body" id="user-info">
-                    IdCommandes : <?= $commande['idCommandes'] ?> <br>
-                    Date : <?= $commande['dateAchat'] ?> <br>
+                        IdCommandes : <?= $commande['idCommandes'] ?> <br>
+                        Date : <?= $commande['dateAchat'] ?> <br>
                     </div>
-                    <?php
+                <?php
                 }
                 unset($commande);
                 ?>
@@ -175,19 +184,19 @@ class VueUtilisateur extends VueGenerique
         <?php
     }
 
-	public function afficheCommandes()
-	{
-	}
+    public function afficheCommandes()
+    {
+    }
 
-	public function afficheCommande()
-	{
-	}
+    public function afficheCommande()
+    {
+    }
 
 
-	// ajouter le select produit
-	public function nouveauTicket()
-	{
-		echo ' <h3>Création ticket</h3>
+    // ajouter le select produit
+    public function nouveauTicket()
+    {
+        echo ' <h3>Création ticket</h3>
 		<hr class="mt-2 mb-4">
 
 		<form action="" method="POST">
@@ -202,12 +211,12 @@ class VueUtilisateur extends VueGenerique
 				</div>
 			<button type="submit" class="btn btn-primary d-block mb-2">Envoyer</button>
 		</form>';
-	}
+    }
 
     public function afficheTickets($result)
     {
         foreach ($result as &$ticket) {
-            ?>
+        ?>
             <div class="ticket row card">
                 <div class="col-lg card-header">
                     <img src="../../images/60x60.png">
@@ -218,14 +227,14 @@ class VueUtilisateur extends VueGenerique
                 </div>
                 <div class="col-lg card-footer">
                     <div class="row">
-                    <span class="col-8">
-                        Etat : <?= $ticket['etat']; ?> - Id produit : <?= $ticket['idProduit']; ?> - le : <?= $ticket['dateCreation']; ?>
-                    </span>
+                        <span class="col-8">
+                            Etat : <?= $ticket['etat']; ?> - Id produit : <?= $ticket['idProduit']; ?> - le : <?= $ticket['dateCreation']; ?>
+                        </span>
                         <a class="btn lire-plus col-3" href="/utilisateur/ticket/<?= $ticket['idTicket'] ?>">Voir plus</a>
                     </div>
                 </div>
             </div>
-            <?php
+        <?php
         }
         unset($ticket);
     }
@@ -240,9 +249,8 @@ class VueUtilisateur extends VueGenerique
                         <span class="info"> N°<?= $ticket['idTicket'] ?></span>
                         <span class="info"> - <?= $ticket['intitule'] ?></span>
                     </h4>
-                    <h4
-                    <span class="info"> Etat <?= $ticket['etat']; ?></span>
-                    <span class="info"> - Id produit : <?= $ticket['idProduit']; ?></span>
+                    <h4 <span class="info"> Etat <?= $ticket['etat']; ?></span>
+                        <span class="info"> - Id produit : <?= $ticket['idProduit']; ?></span>
                     </h4>
                 </div>
                 <div class="col-lg card-body">
@@ -266,7 +274,7 @@ class VueUtilisateur extends VueGenerique
                 </div>
             </aside>
         </div>
-        <?php
+    <?php
     }
 
     public function nouveauLogin()
@@ -287,45 +295,45 @@ class VueUtilisateur extends VueGenerique
 		</div>';
     }
 
-	public function chat()
-	{
-	?>
-  <link rel="stylesheet" href="../../css/app.css">
-
-		<body>
-			<header>
-				<h1>Chat</h1>
-			</header>
-
-			<section class="chat">
-				<div class="messages">
-				</div>
-				<div class="user-inputs">
-					<form id="envoiMessage" method="POST">
-						<input type="text" id="content" name="content" placeholder="Envoyer message">
-						<button type="submit">Send !</button>
-					</form>
-				</div>
-			</section>
-			<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-			<script src="../../js/appbis.js"></script>
-		</body> <?php
-			}
-
-			public function json($result)
-			{
-				echo json_encode($result);
-			}
-
-    public function loginMisAjour($newLogin)
+    public function chat()
     {
-        ?> <span class="alert-warning">Votre login a bien été mis à jour<br>
-        (Lors de votre prochaine connexion il faudra utiliser celui-ci : <?= $newLogin ?>)</span><?php
-    }
+    ?>
+        <link rel="stylesheet" href="../../css/app.css">
 
-    public function nouveauMotDePasse()
-    {
-        echo  '<h3>Changer votre mot de passe</h3>
+        <body>
+            <header>
+                <h1>Chat</h1>
+            </header>
+
+            <section class="chat">
+                <div class="messages">
+                </div>
+                <div class="user-inputs">
+                    <form id="envoiMessage" method="POST">
+                        <input type="text" id="content" name="content" placeholder="Envoyer message">
+                        <button type="submit">Send !</button>
+                    </form>
+                </div>
+            </section>
+            <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+            <script src="../../js/appbis.js"></script>
+        </body> <?php
+            }
+
+            public function json($result)
+            {
+                echo json_encode($result);
+            }
+
+            public function loginMisAjour($newLogin)
+            {
+                ?> <span class="alert-warning">Votre login a bien été mis à jour<br>
+            (Lors de votre prochaine connexion il faudra utiliser celui-ci : <?= $newLogin ?>)</span><?php
+                                                                                                    }
+
+                                                                                                    public function nouveauMotDePasse()
+                                                                                                    {
+                                                                                                        echo  '<h3>Changer votre mot de passe</h3>
 		<hr class="mt-2 mb-4">
 		
 		<form action="/utilisateur/nouveau-mot-de-passe" method="post">
@@ -348,16 +356,16 @@ class VueUtilisateur extends VueGenerique
 				</div>
 			</div>
 		</form>';
-    }
+                                                                                                    }
 
 
-			public function formDonnerAvis()
-			{
-				// to do
-			}
+                                                                                                    public function formDonnerAvis()
+                                                                                                    {
+                                                                                                        // to do
+                                                                                                    }
 
-			public function formModifierAvis($data)
-			{
-				// to do
-			}
-		}
+                                                                                                    public function formModifierAvis($data)
+                                                                                                    {
+                                                                                                        // to do
+                                                                                                    }
+                                                                                                }

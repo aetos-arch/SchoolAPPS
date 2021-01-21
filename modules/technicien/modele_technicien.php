@@ -61,7 +61,9 @@ class ModeleTechnicien extends ModeleGenerique
             return $nb;
         } catch (PDOException $e) {
         }
-    }
+	}
+
+
 
     public function envoyerMessage($result)
     {
