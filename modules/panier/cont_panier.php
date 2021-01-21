@@ -38,6 +38,13 @@ class ContPanier extends ContGenerique {
         $this->modele->ajouterProduitPanier($idProduit, $this->modele->getIDPanier($_SESSION['idUtil']));
     }
 
+    static function avoirNBProduitsPanier(){
+        if (!isset($_SESSION['panier'])){
+            return 0;
+        }
+        return ModelePanier::avoirNBProduitsPanier($_SESSION['panier']);
+    }
+
 }
 
 ?>
