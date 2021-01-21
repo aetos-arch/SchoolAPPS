@@ -207,7 +207,7 @@ class VueTechnicien extends VueGenerique
     public function chat()
     {
     ?>
-        <link rel="stylesheet" href="../../css/app.css">
+        <link rel="stylesheet" href="../../css/chat.css">
 
         <body>
             <header>
@@ -220,12 +220,12 @@ class VueTechnicien extends VueGenerique
                 <div class="user-inputs">
                     <form id="envoiMessage" method="POST">
                         <input type="text" id="content" name="content" placeholder="Envoyer message">
-                        <button type="submit">Send !</button>
+                        <button type="submit">Envoyer</button>
                     </form>
                 </div>
             </section>
             <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-            <script src="../../js/appbis.js"></script>
+            <script src="../../js/chatbis.js"></script>
         </body> <?php
             }
 
@@ -259,30 +259,30 @@ class VueTechnicien extends VueGenerique
                                                                                                     }
 
 
-                                                                                                    public function nouveauMotDePasse()
-                                                                                                    {
-                                                                                                        echo  '<h3>Changer votre mot de passe</h3>
-		<hr class="mt-2 mb-4">
-		
-		<form action="/technicien/nouveau-mot-de-passe" method="post">
-			<div class="row">
-				<div class="col-4 form-group">
-					<label for="old_password">Ancien mot de passe</label>
-					<input type="password" name="old_password" class="form-control" required>
-				</div>
-				<div class="col-4 form-group">
-					<label for="nouveau_password1">Nouveau mot de passe</label>
-					<input type="password" name="nouveau_password1" class="form-control" required>
-				</div>
-		
-				<div class="col-4 form-group">
-					<label for="nouveau_password2">Confirmation mot de passe</label>
-					<input type="password" name="nouveau_password2" class="form-control" required>
-				</div>		
-				<div class="col-4">
-					<button type="submit" class="btn btn-primary">Modifier</button>
-				</div>
-			</div>
-		</form>';
-                                                                                                    }
-                                                                                                }
+            public function nouveauMotDePasse()
+            {
+                echo  '<h3>Changer votre mot de passe</h3>
+                        <hr class="mt-2 mb-4">
+                        
+                        <form action="/technicien/nouveau-mot-de-passe" method="post">
+                            <div class="row">
+                                <div class="col-4 form-group">
+                                    <label for="old_password">Ancien mot de passe</label>
+                                    <input type="password" name="old_password" class="form-control" required>
+                                </div>
+                                <div class="col-4 form-group">
+                                    <label for="nouveau_password1">Nouveau mot de passe</label>
+                                    <input type="password" name="nouveau_password1" class="form-control" required>
+                                </div>
+                        
+                                <div class="col-4 form-group">
+                                    <label for="nouveau_password2">Confirmation mot de passe</label>
+                                    <input type="password" name="nouveau_password2" class="form-control" required>
+                                </div>		
+                                <div class="col-4">
+                                    <button type="submit" class="btn btn-primary">Modifier</button>
+                                </div>
+                            </div>
+                        </form>';
+                }
+}

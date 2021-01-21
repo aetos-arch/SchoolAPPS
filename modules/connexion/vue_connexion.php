@@ -52,7 +52,7 @@ class VueConnexion extends VueGenerique {
                         <label for="login">Nom d'utilisateur</label>
                         <input name="login" type="text" class="form-control" required placeholder="Votre login">
                         <label for="mdp">Mot de passe</label>
-                        <input name="mdp" type="text" class="form-control" required placeholder="Votre mot de passe">
+                        <input name="mdp" type="password" class="form-control" required placeholder="Votre mot de passe">
                         <input class="btn btn-success" type="submit" id="submit" value="Se connecter" >
                     </div>
                 </form>

@@ -7,13 +7,22 @@ class ModAdmin extends ModeleGenerique
     {
         $controllAdmin = new ContAdmin();
 
-
+        ob_start();
         if (isset($_SESSION['idTypeUtilisateur']) && $_SESSION['idTypeUtilisateur'] == 1) {
             if (isset($url[1])) {
                 $action = $url[1];
                 switch ($action) {
-                    case 'tableau-de-bord':
-                        $controllAdmin->menu();
+                    case 'mes-informations':
+                        $controllAdmin->profil();
+                        break;
+                    case 'nouveau-mot-de-passe':
+                        $controllAdmin->nouveauMotDePasse();
+                        break;
+                    case 'changer-login':
+                        $controllAdmin->nouveauLogin();
+                        if (isset($url[2]) && $url === 'verif') {
+                            $controllAdmin->soumettreLogin();
+                        }
                         break;
                     case 'tickets-fermes':
                         $controllAdmin->afficherTicketsFerme();
@@ -52,12 +61,6 @@ class ModAdmin extends ModeleGenerique
                     case 'supprimerTechnicien':
                         $controllAdmin->supprimerTechnicien($url[2]);
                         break;
-                    case 'nouveau-login':
-                        $controllAdmin->nouveauLogin();
-                        break;
-                    case 'nouveau-mdp':
-                        $controllAdmin->nouveauMotDePasse();
-                        break;
                     case 'statistique':
                         $controllAdmin->statistique();
                         break;
@@ -65,9 +68,14 @@ class ModAdmin extends ModeleGenerique
                         $controllAdmin->actionInexistante();
                         break;
                 }
+            } else {
+                $controllAdmin->tableauBord();
             }
+            $moduleContent = ob_get_clean();
+
+            $controllAdmin->accueilAdmin($moduleContent, $url);
         } else
-            $controllAdmin->menu();
+            $controllAdmin->vue->pasConnecté();
     }
 }
 

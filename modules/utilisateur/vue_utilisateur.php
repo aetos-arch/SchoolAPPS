@@ -95,7 +95,7 @@ class VueUtilisateur extends VueGenerique
     <?php
     }
 
-    public function tableauBord($profil, $stats, $commandes, $tickets)
+    public function tableauBord($profil, $stats, $commandes)
     {
     ?>
         <h3>Mon tableau de bord</h3>
@@ -104,7 +104,6 @@ class VueUtilisateur extends VueGenerique
             $this->afficherProfil($profil);
             $this->statsTickets($stats);
             $this->dernieresCommandes($commandes);
-            $this->derniersTickets($tickets);
             ?>
         </section>
     <?php
@@ -115,7 +114,9 @@ class VueUtilisateur extends VueGenerique
     ?>
         <aside class="col-lg-12 p-1 m-2">
             <div class="card">
-                <div class="card-header"><h4>Vous</h4> </div>
+                <div class="card-header">
+                    <h4>Vous</h4>
+                </div>
                 <div class="card-body" id="user-info">
                     Nom : <?= $profil['nom'] ?> <br>
                     Prénom : <?= $profil['prenom'] ?> <br>
@@ -132,32 +133,17 @@ class VueUtilisateur extends VueGenerique
     ?>
         <aside class="col-lg-12 p-1 m-2">
             <div class="card">
-                <div class="card-header"><h4>Tickets</h4> </div>
+                <div class="card-header">
+                    <h4>Tickets</h4>
+                </div>
                 <div class="card-body">
                     <?php
                     foreach ($stats as &$ticket) {
-                        ?><h5>Tickets <?= $ticket['etat'] ?> : <?= $ticket['nbr'] ?> </h5>
-                        <?php
+                    ?><h5>Tickets <?= $ticket['etat'] ?> : <?= $ticket['nbr'] ?> </h5>
+                    <?php
                     }
                     unset($ticket);
                     ?>
-                </div>
-            </div>
-        </aside>
-    <?php
-    }
-
-    public function derniersTickets($profil)
-    {
-    ?>
-        <aside class="col-lg-12 p-1 m-2">
-            <div class="card">
-                <div class="card-header"><h4>Vos derniers tickets</h4> </div>
-                <div class="card-body" id="user-info">
-                    Nom : <?= $profil['nom'] ?> <br>
-                    Prenom : <?= $profil['prenom'] ?> <br>
-                    Email : <?= $profil['emailFacturation'] ?> <br>
-                    Telephone : <?= $profil['telephone'] ?> <br>
                 </div>
             </div>
         </aside>
@@ -169,7 +155,9 @@ class VueUtilisateur extends VueGenerique
     ?>
         <aside class="col-lg-12 p-1 m-2">
             <div class="card">
-                <div class="card-header"><h4>Vos dernières commandes</h4> </div>
+                <div class="card-header">
+                    <h4>Vos dernières commandes</h4>
+                </div>
 
                 <?php
                 foreach ($commandes as &$commande) {
@@ -189,30 +177,30 @@ class VueUtilisateur extends VueGenerique
         <?php
     }
 
-	public function afficheCommandes($commandes)
-	{
+    public function afficheCommandes($commandes)
+    {
         foreach ($commandes as &$commande) {
-            ?>
+        ?>
             <div class="ticket row card">
                 <div class="col-lg card-header">
                     <h4 class="d-inline">Commande - Ref N° <?= $commande['idCommandes'] ?></h4>
                 </div>
                 <div class="col-lg card-footer">
                     <div class="row">
-                    <span class="col-8">
-                        Commandé le : <?= $commande['dateAchat']; ?>
-                    </span>
+                        <span class="col-8">
+                            Commandé le : <?= $commande['dateAchat']; ?>
+                        </span>
                         <a class="btn lire-plus col-3" href="/utilisateur/commande/<?= $commande['idCommandes'] ?>">Détails de la commande</a>
                     </div>
                 </div>
             </div>
-            <?php
+        <?php
         }
         unset($commande);
-	}
+    }
 
-	public function afficheCommande($produitsCommandes)
-	{
+    public function afficheCommande($produitsCommandes)
+    {
         ?>
         <div class="row">
             <aside class="card col-lg p-1 m-2">
@@ -231,30 +219,31 @@ class VueUtilisateur extends VueGenerique
                         <p id="explication">
                             Nom produit : <?= $produit['nomProduit']; ?><br>
                             Quantité : <?= $produit['qteProduit']; ?><br>
-                            Prix unitaire HT : <?= $produit['prixHT']; ?><p>
+                            Prix unitaire HT : <?= $produit['prixHT']; ?>
+                        <p>
                         <p>Description : <?= $produit['description']; ?></p>
                         <div class="card-body">
                             <a class="btn btn-outline-success" href="/utilisateur/nouveau-ticket/<?= $produit['nomProduit']; ?>">Ouvir un ticket pour ce produit</a>
                         </div>
                     </div>
-                  <?php
+                <?php
                 }
                 unset($produit)
                 ?>
             </aside>
         </div>
-        <?php
-	}
+    <?php
+    }
 
 
-	// ajouter le select produit
-	public function nouveauTicket($produits, $default)
-	{ ?>
+    // ajouter le select produit
+    public function nouveauTicket($produits, $default)
+    { ?>
         <h3>Création ticket</h3>
-		<hr class="mt-2 mb-4">
+        <hr class="mt-2 mb-4">
 
-		<form action="" method="POST">
-			<div class="row">
+        <form action="" method="POST">
+            <div class="row">
                 <div class="row">
                     <div class="col form-group">
                         <label for="intitule">Intitulé</label>
@@ -263,26 +252,26 @@ class VueUtilisateur extends VueGenerique
                     <div class="col form-group">
                         <label for="produit">Produit concerné</label>
                         <select class="custom-select form-control" id="inputGroupSelect04" name="idProduit" required>
-                            <option <?= (is_null($default) ? 'selected' : '')?>>Choisir...</option>
+                            <option <?= (is_null($default) ? 'selected' : '') ?>>Choisir...</option>
                             <?php
                             foreach ($produits as &$produit) {
-                                ?> <option <?= ((!is_null($default) && $default === $produit['nomProduit']) ? 'selected' : '')?> value="<?= $produit['idProduit'] ?>"><?=ucfirst($produit['nomProduit'])?></option>
-                                <?php
+                            ?> <option <?= ((!is_null($default) && $default === $produit['nomProduit']) ? 'selected' : '') ?> value="<?= $produit['idProduit'] ?>"><?= ucfirst($produit['nomProduit']) ?></option>
+                            <?php
                             }
                             unset($etat);
                             ?>
                         </select>
                     </div>
                 </div>
-				<div class="col-lg form-group">
-					<label for="explication">Votre message</label>
+                <div class="col-lg form-group">
+                    <label for="explication">Votre message</label>
                     <textarea name="explication" required pattern="\S+.*" rows="5" cols="33" class="form-control"></textarea>
-				</div>
+                </div>
 
-			<button type="submit" class="btn btn-primary mb-2">Envoyer</button>
-		</form>
-    <?php
-	}
+                <button type="submit" class="btn btn-primary mb-2">Envoyer</button>
+        </form>
+        <?php
+    }
 
     public function afficheTickets($result)
     {
@@ -369,7 +358,7 @@ class VueUtilisateur extends VueGenerique
     public function chat()
     {
     ?>
-        <link rel="stylesheet" href="../../css/app.css">
+        <link rel="stylesheet" href="../../css/chat.css">
 
         <body>
             <header>
@@ -382,12 +371,12 @@ class VueUtilisateur extends VueGenerique
                 <div class="user-inputs">
                     <form id="envoiMessage" method="POST">
                         <input type="text" id="content" name="content" placeholder="Envoyer message">
-                        <button type="submit">Send !</button>
+                        <button type="submit">Envoyer</button>
                     </form>
                 </div>
             </section>
             <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-            <script src="../../js/appbis.js"></script>
+            <script src="../../js/chatbis.js"></script>
         </body> <?php
             }
 
