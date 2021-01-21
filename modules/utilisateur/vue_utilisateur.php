@@ -7,83 +7,173 @@ class VueUtilisateur extends VueGenerique
 
 	public function __construct()
 	{
+        parent::__construct();
 	}
 
-	public function pageAccueilUtilisateur($moduleContent)
-	{
-		include 'include/inc_breadcrumb.php';
-?>
-		<section>
-			<div class="content-block">
-				<div class="container-fluid">
-					<section class="row">
-						<nav class="col-lg-3" id="sideNav">
-							<ul class="navbar-nav">
-								<li class="nav-item">
-									<div class="card">
-										<div class="card-header" id="headingOne">
-											<a href="/technicien" class="btn btn-nav">Tableau de bord</a>
-										</div>
-									</div>
-								</li>
-								<div id="accordion">
-									<div class="card">
-										<div class="card-header" id="headingOne">
-											<button class="btn btn-nav dropdown-toggle" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-												Votre profil
-											</button>
-										</div>
-										<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-											<a class="dropdown-item" href="/technicien/profil">Mes informations</a>
-											<a class="dropdown-item" href="/technicien/changer-login">Changer mon login</a>
-											<a class="dropdown-item" href="/technicien/nouveau-mot-de-passe">Changer mon mot de passe</a>
-										</div>
-									</div>
-								</div>
-								<li class="nav-item">
-									<div class="card">
-										<div class="card-header" id="headingOne">
-											<a href="/technicien/mes-tickets" class="btn btn-nav">Mes Tickets</a>
-										</div>
-									</div>
-								</li>
-								<li class="nav-item">
-									<div class="card">
-										<div class="card-header" id="headingOne">
-											<a href="/technicien" class="btn btn-nav">Messagerie</a>
-										</div>
-									</div>
-								</li>
-							</ul>
-						</nav>
-						<div class="col-lg">
-							<h1>Votre espace technicien, <?php echo ucfirst($_SESSION['login']); ?> </h1>
-							<?= $moduleContent ?>
-						</div>
-					</section>
-				</div>
-			</div>
+    public function pageAccueilUtilisateur($moduleContent, $url)
+    {
+        include 'include/inc_breadcrumb.php';
+        ?>
+        <section>
+            <div class="content-block">
+                <div class="container">
+                    <section class="row">
+                        <nav class="col-lg-3" id="sideNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <div class="card">
+                                        <div class="card-header" id="headingOne">
+                                            <a href="/utilisateur" class="btn btn-nav">Tableau de bord</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <div id="accordion">
+                                    <div class="card">
+                                        <div class="card-header" id="headingOne">
+                                            <button class="btn btn-nav dropdown-toggle" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                Votre profil
+                                            </button>
+                                        </div>
+                                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                            <a class="dropdown-item" href="/utilisateur/profil">Mes informations</a>
+                                            <a class="dropdown-item" href="/utilisateur/changer-login">Changer mon login</a>
+                                            <a class="dropdown-item" href="/utilisateur/nouveau-mot-de-passe">Changer mon mot de passe</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <li class="nav-item">
+                                    <div class="card">
+                                        <div class="card-header" id="headingOne">
+                                            <a href="/utilisateur/mes-commandes" class="btn btn-nav">Mes Commandes</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <div class="card">
+                                        <div class="card-header" id="headingOne">
+                                            <a href="/utilisateur/mes-avis" class="btn btn-nav">Mes Avis</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <div class="card">
+                                        <div class="card-header" id="headingOne">
+                                            <a href="/utilisateur/mes-tickets" class="btn btn-nav">Mes Tickets</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <div class="card">
+                                        <div class="card-header" id="headingOne">
+                                            <a href="/utilisateur" class="btn btn-nav">Messagerie</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="col-lg">
+                            <h1>Votre espace utilisateur, <?php echo ucfirst($_SESSION['login']);?> </h1>
+                            <?= $moduleContent ?>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+        <?php
+    }
 
-			</div>
-		</section>
-	<?php
-	}
+    public function tableauBord($profil, $stats, $commandes, $tickets)
+    {
+        ?>
+        <h3>Mon tableau de bord</h3>
+        <section class="row">
+            <?php
+            $this->afficherProfil($profil);
+            $this->statsTickets($stats);
+            $this->dernieresCommandes($commandes);
+            $this->derniersTickets($tickets);
+            ?>
+        </section>
+        <?php
+    }
 
-	public function tableauBord()
-	{
-	?>
-		<h3>Mon tableau de bord</h3>
-		<section class="row">
-			<h4>Tickets ouverts : </h4>
-			<h4>Tickets fermés : </h4>
-			<h4>Tickets urgents : </h4>
-		</section>
-	<?php
-	}
+    public function afficherProfil($profil)
+    {
+        ?>
+        <aside class="col-lg-12 p-1 m-2">
+            <div class="card">
+                <div class="card-header"><h4>Vos infos</h4> </div>
+                <div class="card-body" id="user-info">
+                    Nom : <?= $profil['nom'] ?> <br>
+                    Prenom : <?= $profil['prenom'] ?> <br>
+                    Email : <?= $profil['emailFacturation'] ?> <br>
+                    Telephone : <?= $profil['telephone'] ?> <br>
+                </div>
+            </div>
+        </aside>
+        <?php
+    }
 
-	public function afficherMenu()
-	{
-	}
+    public function statsTickets($stats) {
+        ?>
+        <aside class="col-lg-12 p-1 m-2">
+            <div class="card">
+                <div class="card-header"><h4>Stats rapides</h4> </div>
+                <div class="card-body">
+                    <?php
+                    foreach ($stats as &$ticket) {
+                        ?><h5>Tickets <?= $ticket['etat'] ?> : <?= $ticket['nbr'] ?> </h5>
+                        <?php
+                    }
+                    unset($ticket);
+                    ?>
+                </div>
+            </div>
+        </aside>
+        <?php
+    }
+
+    public function derniersTickets($profil)
+    {
+        ?>
+        <aside class="col-lg-12 p-1 m-2">
+            <div class="card">
+                <div class="card-header"><h4>Vos derniers tickets</h4> </div>
+                <div class="card-body" id="user-info">
+                    Nom : <?= $profil['nom'] ?> <br>
+                    Prenom : <?= $profil['prenom'] ?> <br>
+                    Email : <?= $profil['emailFacturation'] ?> <br>
+                    Telephone : <?= $profil['telephone'] ?> <br>
+                </div>
+            </div>
+        </aside>
+        <?php
+    }
+
+    public function dernieresCommandes($commandes)
+    {
+        ?>
+        <aside class="col-lg-12 p-1 m-2">
+            <div class="card">
+                <div class="card-header"><h4>Vos dernières commandes</h4> </div>
+
+                <?php
+                foreach ($commandes as &$commande) {
+                    ?>
+                    <div class="card-body" id="user-info">
+                    IdCommandes : <?= $commande['idCommandes'] ?> <br>
+                    Date : <?= $commande['dateAchat'] ?> <br>
+                    </div>
+                    <?php
+                }
+                unset($commande);
+                ?>
+
+            </div>
+            <div class="card-footer"><a class="btn lire-plus col" href="/utilisateur/mes-commandes">Voir toutes mes commandes</a></div>
+        </aside>
+        <?php
+    }
 
 	public function afficheCommandes()
 	{
@@ -114,31 +204,88 @@ class VueUtilisateur extends VueGenerique
 		</form>';
 	}
 
-	public function afficheTickets()
-	{
-	}
+    public function afficheTickets($result)
+    {
+        foreach ($result as &$ticket) {
+            ?>
+            <div class="ticket row card">
+                <div class="col-lg card-header">
+                    <img src="../../images/60x60.png">
+                    <h4 class="d-inline"><?= $ticket['intitule'] ?> - N°<?= $ticket['idTicket'] ?></h4>
+                </div>
+                <div class="col-lg card-body">
+                    <p id="explication"><?= $ticket['explication']; ?></p>
+                </div>
+                <div class="col-lg card-footer">
+                    <div class="row">
+                    <span class="col-8">
+                        Etat : <?= $ticket['etat']; ?> - Id produit : <?= $ticket['idProduit']; ?> - le : <?= $ticket['dateCreation']; ?>
+                    </span>
+                        <a class="btn lire-plus col-3" href="/utilisateur/ticket/<?= $ticket['idTicket'] ?>">Voir plus</a>
+                    </div>
+                </div>
+            </div>
+            <?php
+        }
+        unset($ticket);
+    }
 
-	public function afficheTicket()
-	{
-	}
+    public function afficheTicket($ticket, $infoTech)
+    {
+        ?>
+        <div class="row">
+            <aside class="card col-lg-7 p-1 m-2">
+                <div class="card-header">
+                    <h4>
+                        <span class="info"> N°<?= $ticket['idTicket'] ?></span>
+                        <span class="info"> - <?= $ticket['intitule'] ?></span>
+                    </h4>
+                    <h4
+                    <span class="info"> Etat <?= $ticket['etat']; ?></span>
+                    <span class="info"> - Id produit : <?= $ticket['idProduit']; ?></span>
+                    </h4>
+                </div>
+                <div class="col-lg card-body">
+                    <p id="explication"><?= $ticket['explication']; ?></p>
+                    <button class="btn lire-plus" type="button" onclick="document.getElementById('explication').style.display = 'inherit'">Lire la suite</button>
+                    <button class="btn lire-plus" type="button" onclick="document.getElementById('explication').style.display = '-webkit-box'">Réduire</button>
+                </div>
+                <div class="col-lg card-footer">
+                    <a class="btn lire-plus-r" href="/utilisateur/chat/<?= $ticket['idTicket'] ?>">Ecrire un message</a>
+                </div>
+            </aside>
+            <aside class="card col-lg-4 p-1 m-2" id="info-client">
+                <div class="col-lg card-header">
+                    <h4 class="d-inline">Info du client</h4>
+                </div>
+                <div class="col-lg card-body">
+                    Nom : <?= $infoTech['nom'] ?> <br>
+                    Prenom : <?= $infoTech['prenom'] ?> <br>
+                    Email : <?= $infoTech['emailFacturation'] ?> <br>
+                    Telephone : <?= $infoTech['telephone'] ?> <br>
+                </div>
+            </aside>
+        </div>
+        <?php
+    }
 
-	public function nouveauLogin()
-	{
-		echo '<h3>Changer de Login</h3>
+    public function nouveauLogin()
+    {
+        echo '<h3>Changer de Login</h3>
 		<hr class="mt-2 mb-4">
 		
 		<div class="card-panel  lighten-4">
-			<form action="user/nouveauLogin" method="POST" >
+			<form action="/utilisateur/changer-login" method="POST">
 				<div class="row">
 					<div class="col-4 form-group">
 						<label for="nouveauLogin">Nouveau Login</label>
-						<input name="nouveauLogin" type="text" class="form-control">
-						<button style="margin-top:20px;"class="btn btn-primary" type="submit" name="action">Valider</button>
+						<input name="nouveauLogin" type="text" class="form-control" required pattern="\S+.*" placeholder="Votre nouveau login">
+						<button class="btn btn-primary " type="submit" name="action">Valider</button>
 					</div>
 				</div>
 			</form>
 		</div>';
-	}
+    }
 
 	public function chat()
 	{
@@ -170,13 +317,18 @@ class VueUtilisateur extends VueGenerique
 				echo json_encode($result);
 			}
 
+    public function loginMisAjour($newLogin)
+    {
+        ?> <span class="alert-warning">Votre login a bien été mis à jour<br>
+        (Lors de votre prochaine connexion il faudra utiliser celui-ci : <?= $newLogin ?>)</span><?php
+    }
 
-			public function nouveauMotDePasse()
-			{
-				echo  '<h3>Changer votre mot de passe</h3>
+    public function nouveauMotDePasse()
+    {
+        echo  '<h3>Changer votre mot de passe</h3>
 		<hr class="mt-2 mb-4">
 		
-		<form action="" method="post">
+		<form action="/utilisateur/nouveau-mot-de-passe" method="post">
 			<div class="row">
 				<div class="col-4 form-group">
 					<label for="old_password">Ancien mot de passe</label>
@@ -196,7 +348,7 @@ class VueUtilisateur extends VueGenerique
 				</div>
 			</div>
 		</form>';
-			}
+    }
 
 
 			public function formDonnerAvis()

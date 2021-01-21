@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text&family=Open+Sans&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
     <link rel="icon" href="/images/favicon.ico">
     <title><?= $pageTitle ?? 'School Apps' ?></title>
@@ -26,4 +27,5 @@
 
     <?= $pageJavaScripts ?? '' ?>
 </body>
+
 </html>

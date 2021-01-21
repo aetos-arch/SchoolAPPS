@@ -116,17 +116,17 @@ h5 {
 
 p {
     font-size: 15pt;
-    font-family: 'Crimson Text', serif;
+    font-family: 'Quattrocento Sans', sans-serif;
 
 }
 
 .breadcrumb {
     background-color: #e5e5e5;
-    color : var(--cyan-process);
+    color : var(--rich-black);
 }
 
 .breadcrumb > * {
-    padding: 5px 2px 5px 15px;
+    padding: 20px 2px 5px 15px;
 }
 
 #sideNav div.card-header {
@@ -178,6 +178,11 @@ nav a:hover {
 
 .navbar-toggler-icon {
     color: var(--armananth-purple);
+}
+
+div#user-info {
+    font-size: 1.3rem;
+    color: var(--rich-black);
 }
 
 #latest-articles {

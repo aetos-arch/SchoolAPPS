@@ -9,6 +9,17 @@ class ModeleUtilisateur extends ModeleGenerique
 	{
 	}
 
+    public function getProfil($idUtilisateur)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('select nom, prenom, emailFacturation, telephone from utilisateurs where idUtilisateur= ?');
+            $req->execute(array($idUtilisateur));
+            $result = $req->fetch();
+            return $result;
+        } catch (PDOException $e) {
+        }
+    }
+
 	public function getCommande($idCommande)
 	{
 		try {
@@ -21,7 +32,27 @@ class ModeleUtilisateur extends ModeleGenerique
 	}
 
 
-	public function envoyerMessage($result)
+    public function getCommandes($idUtilisateur)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('SELECT * FROM commandes c INNER JOIN produitsCommmandes p ON c.idCommandes=p.idCommandes WHERE c.idUtilisateur= ?');
+            $req->execute(array($idUtilisateur));
+            return $req->fetchAll();
+        } catch (PDOException $e) {
+        }
+    }
+    public function getDernieresCommandes($idUtilisateur)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('SELECT * FROM commandes c WHERE c.idUtilisateur= ?
+                                            order by c.dateAchat DESC LIMIT 3');
+            $req->execute(array($idUtilisateur));
+            return $req->fetchAll();
+        } catch (PDOException $e) {
+        }
+    }
+
+    public function envoyerMessage($result)
 	{
 
 		try {
@@ -31,7 +62,7 @@ class ModeleUtilisateur extends ModeleGenerique
 		}
 	}
 
-	public function getMessages($idTicket)
+    public function getMessages($idTicket)
 	{
 
 		try {
@@ -43,41 +74,50 @@ class ModeleUtilisateur extends ModeleGenerique
 		}
 	}
 
+    public function getTicket($idTicket)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('select t.*, e.etat from tickets t 
+                                                inner join etats e on t.idEtat = e.idEtat where idTicket = ?');
+            $req->execute(array($idTicket));
+            $result = $req->fetch();
+            return $result;
+        } catch (PDOException $e) {
+        }
+    }
 
 
-	public function getCommandes($idUtilisateur)
-	{
-		try {
-			$req = Connexion::$bdd->prepare('SELECT * FROM commandes c INNER JOIN panier p ON c.idUtilisateur=p.idtilisateur WHERE p.idPanier=c.idpanier AND c.idUtilisateur= ?');
-			$req->execute(array($idUtilisateur));
-			$result = $req->fetchAll();
-			return $result;
-		} catch (PDOException $e) {
-		}
-	}
+    public function getInfoTech($idTicket)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('
+            select  
+                  u.nom
+                , u.prenom
+                , u.emailFacturation
+                , u.telephone 
+            from utilisateurs u 
+                inner join tickets t 
+                    on t.idTechnicien = u.idUtilisateur 
+            where idTicket = ?');
+            $req->execute(array($idTicket));
+            $result = $req->fetch();
+            return $result;
+        } catch (PDOException $e) {
+        }
+    }
 
-	public function getTicket($idTicket)
-	{
-		try {
-			$req = Connexion::$bdd->prepare('SELECT * FROM tickets WHERE idTicket =?');
-			$req->execute(array($idTicket));
-			$result = $req->fetchAll();
-			return $result;
-		} catch (PDOException $e) {
-		}
-	}
-
-
-	public function getTickets($idUtilisateur)
-	{
-		try {
-			$req = Connexion::$bdd->prepare('SELECT * FROM tickets WHERE idUtilisateur=?');
-			$req->execute(array($idUtilisateur));
-			$result = $req->fetchAll();
-			return $result;
-		} catch (PDOException $e) {
-		}
-	}
+    public function getTickets($idUtilisateur)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('select t.*, e.etat from tickets t 
+                                                inner join etats e on t.idEtat = e.idEtat where idUtilisateur=?');
+            $req->execute(array($idUtilisateur));
+            $result = $req->fetchAll();
+            return $result;
+        } catch (PDOException $e) {
+        }
+    }
 
 	public function getNombreTicketsEtat($idEtat)
 	{
@@ -89,6 +129,21 @@ class ModeleUtilisateur extends ModeleGenerique
 		} catch (PDOException $e) {
 		}
 	}
+
+    public function getNombreTicketsParEtat($idTechnicien)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('select 
+                                                      e.etat
+                                                    , COUNT(idTicket) as nbr 
+                                                from tickets t 
+                                                inner join etats e on t.idEtat = e.idEtat
+                                                where idUtilisateur = ? group by e.etat');
+            $req->execute(array($idTechnicien));
+            return $req->fetchAll();
+        } catch (PDOException $e) {
+        }
+    }
 
 	public function creerTicket($result)
 	{
@@ -119,26 +174,6 @@ class ModeleUtilisateur extends ModeleGenerique
 		}
 	}
 
-	public function getPassword($idUtilisateur)
-	{
-		try {
-			$req = Connexion::$bdd->prepare('SELECT hashMdp FROM utilisateurs WHERE idUtilisateur=?');
-			$req->execute(array($idUtilisateur));
-			$result = $req->fetchAll();
-			return $result;
-		} catch (PDOException $e) {
-		}
-	}
-
-	public function setPass($hashMdp, $idUtilisateur)
-	{
-		try {
-			$req = Connexion::$bdd->prepare('UPDATE utilisateurs set hashMdp = ? WHERE idUtilisateur= ?');
-			$req->execute(array($hashMdp, $idUtilisateur));
-		} catch (PDOException $e) {
-		}
-	}
-
 	public function donnerAvis($result)
 	{
 		try {
@@ -159,7 +194,6 @@ class ModeleUtilisateur extends ModeleGenerique
 		}
 	}
 
-
 	public function supprimerAvis($idAvis)
 	{
 		try {
@@ -168,4 +202,24 @@ class ModeleUtilisateur extends ModeleGenerique
 		} catch (PDOException $e) {
 		}
 	}
+
+    public function getPass($idUtilisateur)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('select hashMdp from utilisateurs where idUtilisateur=?');
+            $req->execute(array($idUtilisateur));
+            $result = $req->fetchAll();
+            return $result;
+        } catch (PDOException $e) {
+        }
+    }
+
+    public function setPass($hashMdp, $idUtilisateur)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('update utilisateurs set hashMdp = ? where idUtilisateur= ?');
+            $req->execute(array($hashMdp, $idUtilisateur));
+        } catch (PDOException $e) {
+        }
+    }
 }
