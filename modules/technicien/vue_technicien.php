@@ -68,10 +68,23 @@ class VueTechnicien extends VueGenerique
         <?php
 	}
 
+    public function tableauBord($profil, $stats)
+    {
+        ?>
+        <h3>Mon tableau de bord</h3>
+        <section class="row">
+            <?php
+            $this->afficherProfil($profil);
+            $this->statsTickets($stats);
+            ?>
+        </section>
+        <?php
+    }
+
 	public function afficherProfil($profil)
 	{
 	    ?>
-        <aside class="col-lg-10 p-1 m-2">
+        <aside class="col-lg-12 p-1 m-2">
             <div class="card">
                 <div class="card-header"><h4>Vos infos</h4> </div>
                 <div class="card-body">
@@ -86,36 +99,23 @@ class VueTechnicien extends VueGenerique
 	}
 
     public function statsTickets($stats) {
-        ?>
-        <aside class="col-lg-10 p-1 m-2">
-            <div class="card">
-                <div class="card-header"><h4>Stats rapides</h4> </div>
-                <div class="card-body">
-                    <?php
-                    foreach ($stats as &$ticket) {
+    ?>
+    <aside class="col-lg-12 p-1 m-2">
+        <div class="card">
+            <div class="card-header"><h4>Stats rapides</h4> </div>
+            <div class="card-body">
+                <?php
+                foreach ($stats as &$ticket) {
                     ?><h5>Tickets <?= $ticket['etat'] ?> : <?= $ticket['nbr'] ?> </h5>
                     <?php
-                    }
-                    unset($ticket);
-                    ?>
-                </div>
+                }
+                unset($ticket);
+                ?>
             </div>
-        </aside>
-        <?php
-    }
-
-    public function tableauBord($profil, $stats)
-    {
-        ?>
-        <h3>Mon tableau de bord</h3>
-        <section class="row">
-            <?php
-            $this->afficherProfil($profil);
-            $this->statsTickets($stats);
-            ?>
-        </section>
-        <?php
-    }
+        </div>
+    </aside>
+    <?php
+}
 
 	public function afficheTickets($result)
 	{
@@ -132,7 +132,7 @@ class VueTechnicien extends VueGenerique
                 <div class="col-lg card-footer">
                     <div class="row">
                     <span class="col-8">
-                        Etat : <?= $ticket['etat']; ?> - Id produit : <?= $ticket['idProduit']; ?>
+                        Etat : <?= $ticket['etat']; ?> - Id produit : <?= $ticket['idProduit']; ?> - le : <?= $ticket['dateCreation']; ?>
                     </span>
                         <a class="btn lire-plus col-3" href="/technicien/ticket/<?= $ticket['idTicket'] ?>">Voir plus</a>
                     </div>
@@ -217,11 +217,6 @@ class VueTechnicien extends VueGenerique
 			</form>
 		</div>';
 	}
-
-    public function loginExistant()
-    {
-        ?> <span class="alert-warning">Vous ne pouvez pas remettre le login actuel</span><?php
-    }
 
     public function loginMisAjour($newLogin)
     {

@@ -37,9 +37,12 @@ class ContTechnicien extends ContGenerique
             $passNow = $this->modele->getPass($_SESSION['idUtil']);
             if ($nouveauMotDePasse1 == $nouveauMotDePasse2 && $nouveauMotDePasse1 != "") {
                 if (password_verify($_POST['old_password'], $passNow[0]['hashMdp'])) {
-                    $nouveauMotDePasseHash = password_hash($nouveauMotDePasse1,  PASSWORD_BCRYPT);
-                    $this->modele->setPass($nouveauMotDePasseHash, $_SESSION['idUtil']);
-                    $this->vue->messageVue("Votre mot de passe a bien été modifié.");
+                    if ($_POST['old_password'] !== $nouveauMotDePasse1) {
+                        $nouveauMotDePasseHash = password_hash($nouveauMotDePasse1, PASSWORD_BCRYPT);
+                        $this->modele->setPass($nouveauMotDePasseHash, $_SESSION['idUtil']);
+                        $this->vue->messageVue("Votre mot de passe a bien été modifié.");
+                    } else
+                        $this->vue->messageVue("Les trois mot de passe renseignés sont identiques !");
                 } else {
                     $this->vue->messageVue("Le mot de passe renseigné ne correspond pas au mot de passe actuel.");
                 }

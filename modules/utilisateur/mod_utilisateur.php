@@ -15,8 +15,8 @@ class ModUtilisateur extends ModGenerique
 			if (isset($url[1])) {
 				$action = $url[1];
 				switch ($action) {
-					case 'menu':
-						$controllUtilisateur->menu();
+					case 'profil':
+						$controllUtilisateur->profil();
 						break;
 					case 'changer-login':
 						$controllUtilisateur->nouveauLogin();
@@ -27,17 +27,19 @@ class ModUtilisateur extends ModGenerique
 					case 'mes-tickets':
 						$controllUtilisateur->afficheTickets();
 						break;
-					case 'commandes':
+					case 'mes-commandes':
 						$controllUtilisateur->afficheCommandes();
+						break;
+						case 'mes-avis':
+						$controllUtilisateur->affichesAvis();
 						break;
 					case 'nouveau-ticket':
 						$controllUtilisateur->nouveauTicket();
 						break;
 					case 'ticket':
-						if (isset($url[2])) {
-							$controllUtilisateur->afficheTicket($url[2]);
-						} else {
-							$controllUtilisateur->actionInexistante();
+						if (isset($url[2]) && is_numeric($url[2])) {
+							$idTicket = addslashes(strip_tags($url[2]));
+							$controllUtilisateur->afficheTicket($idTicket);
 						}
 						break;
 					case 'donner-avis':
@@ -69,7 +71,7 @@ class ModUtilisateur extends ModGenerique
 			}
 			$moduleContent = ob_get_clean();
 
-			$controllUtilisateur->accueilUtilisateur($moduleContent);
+			$controllUtilisateur->accueilUtilisateur($moduleContent, $url);
 		} else
 			echo '<h3>Aucune connexion trouvée.</h3>';
 	}

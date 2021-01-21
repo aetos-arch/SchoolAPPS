@@ -42,9 +42,6 @@ class ModTechnicien extends ModGenerique
 					case 'mes-tickets':
 						$controllTech->afficheTickets();
 						break;
-						//case 'changerEtat':
-						//	$controllTech->changerEtat();
-						//	break;
 						//case 'discussion':
 						//	$controllTech->discussion();
 						//	break;
