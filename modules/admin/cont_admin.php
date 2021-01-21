@@ -129,8 +129,8 @@ class ContAdmin extends ContGenerique
 	{
 		if (isset($_POST['nom'])) {
 			$result = [
-				'prenom' => $_SESSION['prenom'],
-				'nom' => addslashes(strip_tags($_POST['login'])),
+				'prenom' => addslashes(strip_tags($_POST['prenom'])),
+				'nom' => addslashes(strip_tags($_POST['nom'])),
 				'login' => addslashes(strip_tags($_POST['login'])),
 				'hashMdp' => "bienvenue",
 				'telephone' => addslashes(strip_tags($_POST['telephone']))
