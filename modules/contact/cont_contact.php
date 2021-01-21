@@ -22,7 +22,8 @@ class ContContact extends ContGenerique
 				'name' => addslashes(strip_tags($_POST['name'])),
 				'prenom' => addslashes(strip_tags($_POST['prenom'])),
 				'email' => addslashes(strip_tags($_POST['email'])),
-				'message' => addslashes(strip_tags($_POST['message']))
+                'message' => addslashes(strip_tags($_POST['message'])),
+                'sujet' => addslashes(strip_tags($_POST['sujet']))
 			];
             $this->verifTableauValeurNull($result);
             $this->modele->envoiMail($result);
