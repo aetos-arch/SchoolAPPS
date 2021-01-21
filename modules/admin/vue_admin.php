@@ -11,7 +11,7 @@ class VueAdmin extends VueGenerique
 	}
 
 
-    public function pageAccueilTech($moduleContent, $url)
+    public function pageAccueilAdmin($moduleContent, $url)
     {
         include 'include/inc_breadcrumb.php';
         ?>
@@ -24,7 +24,7 @@ class VueAdmin extends VueGenerique
                                 <li class="nav-item">
                                     <div class="card">
                                         <div class="card-header" id="headingOne">
-                                            <a href="/technicien" class="btn btn-nav">Tableau de bord</a>
+                                            <a href="/admin" class="btn btn-nav">Tableau de bord</a>
                                         </div>
                                     </div>
                                 </li>
@@ -36,30 +36,44 @@ class VueAdmin extends VueGenerique
                                             </button>
                                         </div>
                                         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                                            <a class="dropdown-item" href="/technicien/mes-informations">Mes informations</a>
-                                            <a class="dropdown-item" href="/technicien/changer-login">Changer mon login</a>
-                                            <a class="dropdown-item" href="/technicien/nouveau-mot-de-passe">Changer mon mot de passe</a>
+                                            <a class="dropdown-item" href="/admin/mes-informations">Mes informations</a>
+                                            <a class="dropdown-item" href="/admin/changer-login">Changer mon login</a>
+                                            <a class="dropdown-item" href="/admin/nouveau-mot-de-passe">Changer mon mot de passe</a>
                                         </div>
                                     </div>
                                 </div>
-                                <li class="nav-item">
+                                <div id="accordion">
                                     <div class="card">
                                         <div class="card-header" id="headingOne">
-                                            <a href="/technicien/mes-tickets" class="btn btn-nav">Mes Tickets</a>
+                                            <button class="btn btn-nav dropdown-toggle" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
+                                                Les tickets
+                                            </button>
+                                        </div>
+                                        <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                            <a class="dropdown-item" href="/admin/mes-informations">Voir les tickets</a>
+                                            <a class="dropdown-item" href="/admin/changer-login">Changer mon login</a>
+                                            <a class="dropdown-item" href="/admin/nouveau-mot-de-passe">Changer mon mot de passe</a>
                                         </div>
                                     </div>
-                                </li>
-                                <li class="nav-item">
+                                </div>
+                                <div id="accordion">
                                     <div class="card">
                                         <div class="card-header" id="headingOne">
-                                            <a href="/technicien" class="btn btn-nav">Messagerie</a>
+                                            <button class="btn btn-nav dropdown-toggle" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseOne">
+                                                Les techniciens
+                                            </button>
+                                        </div>
+                                        <div id="collapseThree" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                            <a class="dropdown-item" href="/admin/mes-informations">Liste des techniciens</a>
+                                            <a class="dropdown-item" href="/admin/changer-login">Nouveau technicien</a>
+                                            <a class="dropdown-item" href="/admin/nouveau-mot-de-passe">Changer mon mot de passe</a>
                                         </div>
                                     </div>
-                                </li>
+                                </div>
                             </ul>
                         </nav>
                         <div class="col-lg">
-                            <h1>Votre espace technicien, <?php echo ucfirst($_SESSION['login']); ?> </h1>
+                            <h1>Votre espace administrateur, <?php echo ucfirst($_SESSION['login']); ?> </h1>
                             <?= $moduleContent ?>
                         </div>
                     </section>
@@ -69,7 +83,7 @@ class VueAdmin extends VueGenerique
         <?php
     }
 
-    public function tableauBord($profil, $stats)
+    public function tableauBord($profil, $stats, $tickets)
     {
         ?>
         <h3>Mon tableau de bord</h3>
@@ -77,6 +91,7 @@ class VueAdmin extends VueGenerique
             <?php
             $this->afficherProfil($profil);
             $this->statsTickets($stats);
+            //$this->derniersTickets($tickets)
             ?>
         </section>
         <?php
@@ -148,7 +163,7 @@ class VueAdmin extends VueGenerique
 		<hr class="mt-2 mb-4">
 		
 		<div class="card-panel  lighten-4">
-			<form action="/technicien/changer-login" method="POST">
+			<form action="/admin/changer-login" method="POST">
 				<div class="row">
 					<div class="col-4 form-group">
 						<label for="nouveauLogin">Login</label>
@@ -172,7 +187,7 @@ class VueAdmin extends VueGenerique
         echo  '<h3>Changer votre mot de passe</h3>
                         <hr class="mt-2 mb-4">
                         
-                        <form action="/technicien/nouveau-mot-de-passe" method="post">
+                        <form action="/admin/nouveau-mot-de-passe" method="post">
                             <div class="row">
                                 <div class="col-4 form-group">
                                     <label for="old_password">Ancien mot de passe</label>

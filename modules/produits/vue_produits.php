@@ -21,7 +21,7 @@ class VueProduit extends VueGenerique
                     foreach ($produits as &$produit) {
                         ?>
                         <article class="card bg-transparent col-lg m-2 p-1">
-                            <div class="card-header text-center" id="produit-title"><h5 class="card-title"><?= $produit['nomProduit'] ?></h5></div>
+                            <div class="card-header text-center" id="produit-title"><h5 class="card-title product-title"><?= $produit['nomProduit'] ?></h5></div>
                             <div class="card-footer text-center">Date de sortie - <?= $produit['dateSortie'] ?></div>
                             <div class="card-body">
                                 <img class="w-50 center-img" src="\images\logo\<?= $produit['nomProduit'] ?>.png">
@@ -47,7 +47,7 @@ class VueProduit extends VueGenerique
         ?>
         <div class="content-block">
             <div class="container">
-                <h1 class="card-title"><?= $produit['nomProduit'] ?></h1>
+                <h1 class="card-title product-title"><?= $produit['nomProduit'] ?></h1>
                 <div class="card-footer text-center">Date de sortie - <?= $produit['dateSortie'] ?></div>
                 <div class="card-body">
                     <img class="w-25 center-img" src="\images\logo\<?= $produit['nomProduit'] ?>.png">

@@ -265,6 +265,10 @@ article.card-footer {
     text-align: center;
 }
 
+.product-title {
+    color: var(--cyan-process);
+}
+
 .ticket {
     margin: 10px 0px;
     opacity: 0.9;

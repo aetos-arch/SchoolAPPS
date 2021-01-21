@@ -20,7 +20,7 @@ class ContAdmin extends ContGenerique
     {
         $statsTickets = $this->modele->getNombreTicketsParEtat(($_SESSION['idUtil']));
         $profil = $this->modele->getProfil(($_SESSION['idUtil']));
-        $this->vue->tableauBord($profil, $statsTickets);
+        $this->vue->tableauBord($profil, $statsTickets, $profil);
     }
 
     public function profil()

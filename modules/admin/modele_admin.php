@@ -19,6 +19,33 @@ class ModeleAdmin extends ModeleGenerique
         }
     }
 
+    public function getNombreTicketsParEtat($idTechnicien)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('select 
+                                                      e.etat
+                                                    , COUNT(idTicket) as nbr 
+                                                from tickets t 
+                                                inner join etats e on t.idEtat = e.idEtat
+                                                where idTechnicien = ? group by e.etat');
+            $req->execute(array($idTechnicien));
+            return $req->fetchAll();
+        } catch (PDOException $e) {
+        }
+    }
+
+    public function getTickets($idUtilisateur)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('select t.*, e.etat from tickets t 
+                                                inner join etats e on t.idEtat = e.idEtat where idTechnicien=?');
+            $req->execute(array($idUtilisateur));
+            $result = $req->fetchAll();
+            return $result;
+        } catch (PDOException $e) {
+        }
+    }
+
 
     public function getTicketsEtat($idEtat)
 	{
