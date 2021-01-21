@@ -198,7 +198,37 @@ class VueTechnicien extends VueGenerique
              </aside>
          </div>
         <?php
-	}
+    }
+    
+    public function chat()
+	{
+	?>
+  <link rel="stylesheet" href="../../css/app.css">
+
+		<body>
+			<header>
+				<h1>Chat</h1>
+			</header>
+
+			<section class="chat">
+				<div class="messages">
+				</div>
+				<div class="user-inputs">
+					<form id="envoiMessage" method="POST">
+						<input type="text" id="content" name="content" placeholder="Envoyer message">
+						<button type="submit">Send !</button>
+					</form>
+				</div>
+			</section>
+			<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+			<script src="../../js/appbis.js"></script>
+		</body> <?php
+			}
+
+			public function json($result)
+			{
+				echo json_encode($result);
+			}
 
 	public function nouveauLogin()
 	{

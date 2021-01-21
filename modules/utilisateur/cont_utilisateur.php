@@ -93,17 +93,17 @@ class ContUtilisateur extends ContGenerique
 
 	public function envoyerMessage($idTicket, $message)
 	{
-		$peutVoirChat = $this->modele->peutVoirChat($idTicket);
-		if ($peutVoirChat == 1) {
+	//	$peutVoirChat = $this->modele->peutVoirChat($idTicket);
+		//if ($peutVoirChat == 1) {
 			$result = [
 				'idAuteur' => $_SESSION['idUtil'],
 				'idTicket' => $idTicket,
 				'message' => $message
 			];
 			$this->modele->envoyerMessage($result);
-		} else {
-			$this->vue->messageVue("Pas de chat...");
-		}
+	//	} else {
+	//		$this->vue->messageVue("Pas de chat...");
+	//	}
 	}
 
 

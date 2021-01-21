@@ -50,6 +50,39 @@ class ModeleTechnicien extends ModeleGenerique
             return $result;
         } catch (PDOException $e) {
         }
+	}
+	
+	public function peutVoirChat($idTicket, $idTechnicien)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('SELECT idTicket FROM tickets where idTicket = ? and idTechnicien = ?');
+            $req->execute(array($idTicket, $idTechnicien));
+            $nb = $req->rowCount();
+            return $nb;
+        } catch (PDOException $e) {
+        }
+    }
+
+    public function envoyerMessage($result)
+    {
+
+        try {
+            $req = Connexion::$bdd->prepare('INSERT INTO message (message, idTicket, idAuteur) VALUES(?, ?, ?)');
+            $req->execute(array($result['message'],  $result['idTicket'], $result['idAuteur']));
+        } catch (PDOException $e) {
+        }
+    }
+
+    public function getMessages($idTicket)
+    {
+
+        try {
+            $req = Connexion::$bdd->prepare('SELECT nom, prenom, message, dateMsg  FROM message inner join utilisateurs on idAuteur = idUtilisateur WHERE idTicket = ? ORDER BY dateMsg DESC');
+            $req->execute(array($idTicket));
+            $result = $req->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } catch (PDOException $e) {
+        }
     }
 
 	public function changerEtat($idEtat, $idTicket)
