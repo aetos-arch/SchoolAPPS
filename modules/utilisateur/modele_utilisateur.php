@@ -5,9 +5,9 @@ require_once 'modules/generique/modele_generique.php';
 
 class ModeleUtilisateur extends ModeleGenerique
 {
-	public function __construct()
-	{
-	}
+    public function __construct()
+    {
+    }
 
     public function getProfil($idUtilisateur)
     {
@@ -20,16 +20,16 @@ class ModeleUtilisateur extends ModeleGenerique
         }
     }
 
-	public function getCommande($idCommande)
-	{
-		try {
-			$req = Connexion::$bdd->prepare('SELECT * FROM commandes c INNER JOIN panier p ON c.idUtilisateur=p.idtilisateur WHERE p.idPanier=c.idpanier AND c.idCommandes = ?');
-			$req->execute(array($idCommande));
-			$result = $req->fetchAll();
-			return $result;
-		} catch (PDOException $e) {
-		}
-	}
+    public function getCommande($idCommande)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('SELECT * FROM commandes c INNER JOIN panier p ON c.idUtilisateur=p.idtilisateur WHERE p.idPanier=c.idpanier AND c.idCommandes = ?');
+            $req->execute(array($idCommande));
+            $result = $req->fetchAll();
+            return $result;
+        } catch (PDOException $e) {
+        }
+    }
 
 
     public function getCommandes($idUtilisateur)
@@ -52,27 +52,38 @@ class ModeleUtilisateur extends ModeleGenerique
         }
     }
 
-    public function envoyerMessage($result)
-	{
+    public function peutVoirChat($idTicket, $idUtilisateur)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('SELECT idTicket FROM tickets where idTicket = ? and idUtilisateur = ?');
+            $req->execute(array($idTicket, $idUtilisateur));
+            $nb = $req->rowCount();
+            return $nb;
+        } catch (PDOException $e) {
+        }
+    }
 
-		try {
-			$req = Connexion::$bdd->prepare('INSERT INTO message (message, idTicket, idAuteur) VALUES(?, ?, ?)');
-			$req->execute(array($result['message'],  $result['idTicket'], $result['idAuteur']));
-		} catch (PDOException $e) {
-		}
-	}
+    public function envoyerMessage($result)
+    {
+
+        try {
+            $req = Connexion::$bdd->prepare('INSERT INTO message (message, idTicket, idAuteur) VALUES(?, ?, ?)');
+            $req->execute(array($result['message'],  $result['idTicket'], $result['idAuteur']));
+        } catch (PDOException $e) {
+        }
+    }
 
     public function getMessages($idTicket)
-	{
+    {
 
-		try {
-			$req = Connexion::$bdd->prepare('SELECT nom, prenom, message, dateMsg  FROM message inner join utilisateurs on idAuteur = idUtilisateur WHERE idTicket = ? ORDER BY dateMsg DESC');
-			$req->execute(array($idTicket));
-			$result = $req->fetchAll(PDO::FETCH_ASSOC);
-			return $result;
-		} catch (PDOException $e) {
-		}
-	}
+        try {
+            $req = Connexion::$bdd->prepare('SELECT nom, prenom, message, dateMsg  FROM message inner join utilisateurs on idAuteur = idUtilisateur WHERE idTicket = ? ORDER BY dateMsg DESC');
+            $req->execute(array($idTicket));
+            $result = $req->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } catch (PDOException $e) {
+        }
+    }
 
     public function getTicket($idTicket)
     {
@@ -119,16 +130,16 @@ class ModeleUtilisateur extends ModeleGenerique
         }
     }
 
-	public function getNombreTicketsEtat($idEtat)
-	{
-		try {
-			$req = Connexion::$bdd->prepare('SELECT * FROM tickets WHERE idEtat =?');
-			$req->execute(array($idEtat));
-			$nb = $req->rowCount();
-			return $nb;
-		} catch (PDOException $e) {
-		}
-	}
+    public function getNombreTicketsEtat($idEtat)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('SELECT * FROM tickets WHERE idEtat =?');
+            $req->execute(array($idEtat));
+            $nb = $req->rowCount();
+            return $nb;
+        } catch (PDOException $e) {
+        }
+    }
 
     public function getNombreTicketsParEtat($idTechnicien)
     {
@@ -145,63 +156,63 @@ class ModeleUtilisateur extends ModeleGenerique
         }
     }
 
-	public function creerTicket($result)
-	{
-		try {
-			$req = Connexion::$bdd->prepare('INSERT INTO tickets (intitule, explication, idEtat, idUtilisateur, idProduit, date) VALUES(?, ?, ?, ?, ?)');
-			$req->execute(array($result['intitule'], $result['explication'],  3, $result['idUtilisateur'],  $result['idProduit']));
-		} catch (PDOException $e) {
-		}
-	}
+    public function creerTicket($result)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('INSERT INTO tickets (intitule, explication, idEtat, idUtilisateur, idProduit, date) VALUES(?, ?, ?, ?, ?)');
+            $req->execute(array($result['intitule'], $result['explication'],  3, $result['idUtilisateur'],  $result['idProduit']));
+        } catch (PDOException $e) {
+        }
+    }
 
-	public function loginExiste($nouveauLogin)
-	{
-		try {
-			$req = Connexion::$bdd->prepare('SELECT login FROM utilisateurs WHERE login = ?');
-			$req->execute(array($nouveauLogin));
-			$nb = $req->rowCount();
-			return $nb;
-		} catch (PDOException $e) {
-		}
-	}
+    public function loginExiste($nouveauLogin)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('SELECT login FROM utilisateurs WHERE login = ?');
+            $req->execute(array($nouveauLogin));
+            $nb = $req->rowCount();
+            return $nb;
+        } catch (PDOException $e) {
+        }
+    }
 
-	public function setLogin($idUtilisateur, $nouveauLogin)
-	{
-		try {
-			$req = Connexion::$bdd->prepare('UPDATE utilisateurs set login = ? WHERE idUtilisateur= ?');
-			$req->execute(array($nouveauLogin, $idUtilisateur));
-		} catch (PDOException $e) {
-		}
-	}
+    public function setLogin($idUtilisateur, $nouveauLogin)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('UPDATE utilisateurs set login = ? WHERE idUtilisateur= ?');
+            $req->execute(array($nouveauLogin, $idUtilisateur));
+        } catch (PDOException $e) {
+        }
+    }
 
-	public function donnerAvis($result)
-	{
-		try {
-			$req = Connexion::$bdd->prepare('insert into avis (idUtilisateur, idProduit, titre, commentaire, note) values(?, ?, ?, ?, ?)');
-			$req->execute(array($result['idUtilisateur'], $result['idProduit'],  $result['titre'], $result['commentaire'],  $result['note']));
-		} catch (PDOException $e) {
-		}
-	}
+    public function donnerAvis($result)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('insert into avis (idUtilisateur, idProduit, titre, commentaire, note) values(?, ?, ?, ?, ?)');
+            $req->execute(array($result['idUtilisateur'], $result['idProduit'],  $result['titre'], $result['commentaire'],  $result['note']));
+        } catch (PDOException $e) {
+        }
+    }
 
-	public function avisExiste($idUtilisateur, $idProduit)
-	{
-		try {
-			$req = Connexion::$bdd->prepare('select idUtilisateur from avis where idUtilisateur = ? and idProduit = ?');
-			$req->execute(array($idUtilisateur, $idProduit));
-			$nb = $req->rowCount();
-			return $nb;
-		} catch (PDOException $e) {
-		}
-	}
+    public function avisExiste($idUtilisateur, $idProduit)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('select idUtilisateur from avis where idUtilisateur = ? and idProduit = ?');
+            $req->execute(array($idUtilisateur, $idProduit));
+            $nb = $req->rowCount();
+            return $nb;
+        } catch (PDOException $e) {
+        }
+    }
 
-	public function supprimerAvis($idAvis)
-	{
-		try {
-			$req = Connexion::$bdd->prepare('delete from avis where idAvis = ?');
-			$req->execute(array($idAvis));
-		} catch (PDOException $e) {
-		}
-	}
+    public function supprimerAvis($idAvis)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('delete from avis where idAvis = ?');
+            $req->execute(array($idAvis));
+        } catch (PDOException $e) {
+        }
+    }
 
     public function getPass($idUtilisateur)
     {
