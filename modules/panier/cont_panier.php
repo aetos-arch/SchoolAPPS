@@ -13,7 +13,6 @@ class ContPanier extends ContGenerique {
     function affichagePanier(){
         if (!isset($_SESSION['idUtil'])){
             echo '<main>Vous devez être connecté pour avoir un panier !</main>';
-            //TODO : voir si on créé quand même un panier même si l'utilisateur n'est pas connecté
         }else{
             if (!isset($_SESSION['panier'])){
                 $this->modele->creationPanier($_SESSION['idUtil']);
@@ -25,10 +24,18 @@ class ContPanier extends ContGenerique {
     function supprimerProduit($idProduit){
         if ($this->modele->supprimerProduit($idProduit)==true) {
             //TODO : voir pour une redirection vers panier
+            // + voir ce qu'on peut faire pour un retour arrière pour éviter de remettre dans le panier
             echo "<main>Le produit a été supprimé.</main>";
         }else{
             echo "<main>Il y a eu une erreur, le produit n'a pas été supprimé, veuillez recommencer.</main>";
         }
+    }
+
+    function ajouterProduitPanier($idProduit){
+        if (!isset($_SESSION['panier'])){
+            $this->modele->creationPanier($_SESSION['idUtil']);
+        }
+        $this->modele->ajouterProduitPanier($idProduit, $this->modele->getIDPanier($_SESSION['idUtil']));
     }
 
 }
