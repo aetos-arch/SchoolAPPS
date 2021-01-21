@@ -2,6 +2,7 @@
 
 require_once 'modules/generique/modele_generique.php';
 
+
 class ModeleUtilisateur extends ModeleGenerique
 {
 	public function __construct()
@@ -18,6 +19,31 @@ class ModeleUtilisateur extends ModeleGenerique
 		} catch (PDOException $e) {
 		}
 	}
+
+
+	public function envoyerMessage($result)
+	{
+
+		try {
+			$req = Connexion::$bdd->prepare('INSERT INTO message (message, idTicket, idAuteur) VALUES(?, ?, ?)');
+			$req->execute(array($result['message'],  $result['idTicket'], $result['idAuteur']));
+		} catch (PDOException $e) {
+		}
+	}
+
+	public function getMessages($idTicket)
+	{
+
+		try {
+			$req = Connexion::$bdd->prepare('SELECT nom, prenom, message, dateMsg  FROM message inner join utilisateurs on idAuteur = idUtilisateur WHERE idTicket = ? ORDER BY dateMsg DESC');
+			$req->execute(array($idTicket));
+			$result = $req->fetchAll(PDO::FETCH_ASSOC);
+			return $result;
+		} catch (PDOException $e) {
+		}
+	}
+
+
 
 	public function getCommandes($idUtilisateur)
 	{

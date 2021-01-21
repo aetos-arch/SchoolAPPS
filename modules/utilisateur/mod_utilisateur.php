@@ -53,6 +53,13 @@ class ModUtilisateur extends ModGenerique
 					case 'modifierAvis':
 						$controllUtilisateur->modifierAvis();
 						break;
+					case 'chat':
+						if (isset($_POST['message'])) {
+							$controllUtilisateur->envoyerMessage($url[2], $_POST['message']);
+						} else {
+							$controllUtilisateur->getMessages($url[2], isset($_GET['json']) && $_GET['json'] == "true");
+						}
+						break;
 					default:
 						$controllUtilisateur->actionInexistante();
 						break;

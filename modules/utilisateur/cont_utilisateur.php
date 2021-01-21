@@ -68,6 +68,28 @@ class ContUtilisateur extends ContGenerique
 		$this->vue->afficherMenu();
 	}
 
+	public function getMessages($idTicket, $isJson)
+	{
+		if ($isJson) {
+			$result = $this->modele->getMessages($idTicket);
+			$this->vue->json($result);
+			header('Content-Type: application/json');
+			exit();
+		} else {
+			$this->vue->chat();
+		}
+	}
+
+	public function envoyerMessage($idTicket, $message)
+	{
+		$result = [
+			'idAuteur' => $_SESSION['idUtil'],
+			'idTicket' => $idTicket,
+			'message' => $message
+		];
+		$this->modele->envoyerMessage($result);
+	}
+
 
 	public function nouveauTicket()
 	{
