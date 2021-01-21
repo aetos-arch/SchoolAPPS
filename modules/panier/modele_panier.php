@@ -95,12 +95,15 @@ class ModelePanier extends ModeleGenerique
 
     static function avoirNBProduitsPanier($idPanier){
         try {
-            //TODO
             $selectPreparee = Connexion::$bdd->prepare('SELECT SUM(qteProduits) AS SommePanier 
                 FROM produitsPanier where idPanier=:idPanier');
             $selectPreparee->execute(array(':idPanier' => $idPanier));
             $reponse = $selectPreparee ->fetchAll();
-            return $reponse[0]['SommePanier'];
+            if ($reponse[0]['SommePanier']==NULL){
+                return 0;
+            }else{
+                return $reponse[0]['SommePanier'];
+            }
         } catch (PDOException $e) {
         }
     }
