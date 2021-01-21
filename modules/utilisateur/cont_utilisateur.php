@@ -108,25 +108,32 @@ class ContUtilisateur extends ContGenerique
 		}
 	}
 
-	public function nouveauTicket()
+	public function nouveauTicket($ProduitDefault)
 	{
-		if (isset($_POST['explication'])) {
-			$result = [
-				'explication' => addslashes(strip_tags($_POST['explication'])),
-				'intitule' => addslashes(strip_tags($_POST['intitule'])),
-				'idProduit' => addslashes(strip_tags($_POST['idProduit'])),
-				'idUtilisateur' => $_SESSION['idUtil']
-			];
-			try {
-				$this->verifTableauValeurNull($result);
-				$this->modele->creerTicket($result);
-			} catch (Exception $e) {
-				$e->getMessage("");
-			}
-		} else {
-			$this->vue->nouveauTicket();
-		}
+        $produits = $this->modele->getProduits();
+        $this->vue->nouveauTicket($produits, $ProduitDefault);
+        $this->checkNouveauTicket();
 	}
+
+	public function checkNouveauTicket() {
+        if (isset($_POST['explication'])) {
+            $result = [
+                'explication' => addslashes(strip_tags($_POST['explication'])),
+                'intitule' => addslashes(strip_tags($_POST['intitule'])),
+                'idProduit' => addslashes(strip_tags($_POST['idProduit'])),
+                'idUtilisateur' => $_SESSION['idUtil']
+            ];
+            try {
+                $this->verifTableauValeurNull($result);
+                if($this->modele->creerTicket($result))
+                    $this->vue->messageVue("Votre ticket a bien été créé, il sera traité sous peu.");
+                else
+                    $this->vue->messageVue("Erreur interne, impossible de créer le ticket");
+            } catch (Exception $e) {
+                $e->getMessage("");
+            }
+        }
+    }
 
 	public function profil()
 	{
@@ -149,15 +156,13 @@ class ContUtilisateur extends ContGenerique
 
 	public function afficheCommandes()
 	{
-		//$commandes = $this->modele->getCommandes($_SESSION['idUtil']);
-		$commandes = $this->modele->getCommandes(1);
+		$commandes = $this->modele->getCommandes($_SESSION['idUtil']);
 		$this->vue->afficheCommandes($commandes);
 	}
 
-	public function afficheCommande()
+	public function afficheCommande($idCommande)
 	{
-		$idCommande = strip_tags($_POST['idCommande']);
-		$result = $this->modele->getTicket($idCommande);
+		$result = $this->modele->getCommande($idCommande);
 		$this->vue->afficheCommande($result);
 	}
 

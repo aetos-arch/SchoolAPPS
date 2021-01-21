@@ -12,7 +12,6 @@ class ContConnexion extends ContGenerique {
 
     function connexion(){
         $requete = $this->modele->connexion($_POST['login']);
-
         if ($requete!=NULL) {
             //Vérification du mot de passe :
             if(password_verify($_POST['mdp'], $requete[0]['hashMdp'])) {

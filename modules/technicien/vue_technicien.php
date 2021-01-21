@@ -35,7 +35,7 @@ class VueTechnicien extends VueGenerique
                                             </button>
                                         </div>
                                         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                                            <a class="dropdown-item" href="/technicien/profil">Mes informations</a>
+                                            <a class="dropdown-item" href="/technicien/mes-informations">Mes informations</a>
                                             <a class="dropdown-item" href="/technicien/changer-login">Changer mon login</a>
                                             <a class="dropdown-item" href="/technicien/nouveau-mot-de-passe">Changer mon mot de passe</a>
                                         </div>
@@ -164,11 +164,11 @@ class VueTechnicien extends VueGenerique
                 </div>
                 <div class="col-lg card-body">
                     <p id="explication"><?= $ticket['explication']; ?></p>
-                    <button class="btn lire-plus" type="button" onclick="document.getElementById('explication').style.display = 'inherit'">Lire la suite</button>
-                    <button class="btn lire-plus" type="button" onclick="document.getElementById('explication').style.display = '-webkit-box'">Réduire</button>
+                    <button class="btn btn-outline-primary" type="button" onclick="document.getElementById('explication').style.display = 'inherit'">Lire la suite</button>
+                    <button class="btn btn-outline-primary" type="button" onclick="document.getElementById('explication').style.display = '-webkit-box'">Réduire</button>
                     <div class="col-lg card-body">
                         <form method="post" action="/technicien/ticket/<?= $ticket['idTicket'] ?>/changer-etat" class="input-group">
-                            <select class="custom-select" id="inputGroupSelect04" name="nouveauEtat">
+                            <select class="custom-select form-control" id="inputGroupSelect04" name="nouveauEtat">
                                 <option selected>Choisir...</option>
                                 <?php
                                 foreach ($etats as &$etat) {

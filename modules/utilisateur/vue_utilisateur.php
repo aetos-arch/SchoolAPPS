@@ -34,8 +34,8 @@ class VueUtilisateur extends VueGenerique
                                                 Votre profil
                                             </button>
                                         </div>
-                                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                                            <a class="dropdown-item" href="/utilisateur/profil">Mes informations</a>
+                                        <div id="collapseOne" class="collapse" aria-labelledby="mes infos" data-parent="#accordion">
+                                            <a class="dropdown-item" href="/utilisateur/mes-informations">Mes informations</a>
                                             <a class="dropdown-item" href="/utilisateur/changer-login">Changer mon login</a>
                                             <a class="dropdown-item" href="/utilisateur/nouveau-mot-de-passe">Changer mon mot de passe</a>
                                         </div>
@@ -48,20 +48,33 @@ class VueUtilisateur extends VueGenerique
                                         </div>
                                     </div>
                                 </li>
-                                <li class="nav-item">
+                                <div id="accordion">
                                     <div class="card">
                                         <div class="card-header" id="headingOne">
-                                            <a href="/utilisateur/mes-avis" class="btn btn-nav">Mes Avis</a>
+                                            <button class="btn btn-nav dropdown-toggle" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
+                                                Vos tickets
+                                            </button>
+                                        </div>
+                                        <div id="collapseTwo" class="collapse" aria-labelledby="tickets" data-parent="#accordion">
+                                            <a class="dropdown-item" href="/utilisateur/mes-tickets">Mes tickets</a>
+                                            <a class="dropdown-item" href="/utilisateur/nouveau-ticket">Ouvrir un ticket</a>
                                         </div>
                                     </div>
-                                </li>
-                                <li class="nav-item">
+                                </div>
+                                <div id="accordion">
                                     <div class="card">
                                         <div class="card-header" id="headingOne">
-                                            <a href="/utilisateur/mes-tickets" class="btn btn-nav">Mes Tickets</a>
+                                            <button class="btn btn-nav dropdown-toggle" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseOne">
+                                                Vos avis
+                                            </button>
+                                        </div>
+                                        <div id="collapseThree" class="collapse" aria-labelledby="tickets" data-parent="#accordion">
+                                            <a class="dropdown-item" href="/utilisateur/mes-avis">Mes tickets</a>
+                                            <a class="dropdown-item" href="/utilisateur/donner-avis">Donner un avis</a>
+                                            <a class="dropdown-item" href="/utilisateur/modifier-avis">Modifier un avis</a>
                                         </div>
                                     </div>
-                                </li>
+                                </div>
                                 <li class="nav-item">
                                     <div class="card">
                                         <div class="card-header" id="headingOne">
@@ -102,9 +115,7 @@ class VueUtilisateur extends VueGenerique
     ?>
         <aside class="col-lg-12 p-1 m-2">
             <div class="card">
-                <div class="card-header">
-                    <h4>Vos infos</h4>
-                </div>
+                <div class="card-header"><h4>Vos infos</h4> </div>
                 <div class="card-body" id="user-info">
                     Nom : <?= $profil['nom'] ?> <br>
                     Prenom : <?= $profil['prenom'] ?> <br>
@@ -121,14 +132,12 @@ class VueUtilisateur extends VueGenerique
     ?>
         <aside class="col-lg-12 p-1 m-2">
             <div class="card">
-                <div class="card-header">
-                    <h4>Stats rapides</h4>
-                </div>
+                <div class="card-header"><h4>Stats rapides</h4> </div>
                 <div class="card-body">
                     <?php
                     foreach ($stats as &$ticket) {
-                    ?><h5>Tickets <?= $ticket['etat'] ?> : <?= $ticket['nbr'] ?> </h5>
-                    <?php
+                        ?><h5>Tickets <?= $ticket['etat'] ?> : <?= $ticket['nbr'] ?> </h5>
+                        <?php
                     }
                     unset($ticket);
                     ?>
@@ -143,9 +152,7 @@ class VueUtilisateur extends VueGenerique
     ?>
         <aside class="col-lg-12 p-1 m-2">
             <div class="card">
-                <div class="card-header">
-                    <h4>Vos derniers tickets</h4>
-                </div>
+                <div class="card-header"><h4>Vos derniers tickets</h4> </div>
                 <div class="card-body" id="user-info">
                     Nom : <?= $profil['nom'] ?> <br>
                     Prenom : <?= $profil['prenom'] ?> <br>
@@ -162,9 +169,7 @@ class VueUtilisateur extends VueGenerique
     ?>
         <aside class="col-lg-12 p-1 m-2">
             <div class="card">
-                <div class="card-header">
-                    <h4>Vos dernières commandes</h4>
-                </div>
+                <div class="card-header"><h4>Vos dernières commandes</h4> </div>
 
                 <?php
                 foreach ($commandes as &$commande) {
@@ -184,34 +189,100 @@ class VueUtilisateur extends VueGenerique
         <?php
     }
 
-    public function afficheCommandes()
-    {
-    }
+	public function afficheCommandes($commandes)
+	{
+        foreach ($commandes as &$commande) {
+            ?>
+            <div class="ticket row card">
+                <div class="col-lg card-header">
+                    <h4 class="d-inline">Commande - Ref N° <?= $commande['idCommandes'] ?></h4>
+                </div>
+                <div class="col-lg card-footer">
+                    <div class="row">
+                    <span class="col-8">
+                        Commandée le : <?= $commande['dateAchat']; ?>
+                    </span>
+                        <a class="btn lire-plus col-3" href="/utilisateur/commande/<?= $commande['idCommandes'] ?>">Détails de la commande</a>
+                    </div>
+                </div>
+            </div>
+            <?php
+        }
+        unset($commande);
+	}
 
-    public function afficheCommande()
-    {
-    }
+	public function afficheCommande($produitsCommandes)
+	{
+        ?>
+        <div class="row">
+            <aside class="card col-lg p-1 m-2">
+                <div class="col-lg card-header">
+                    <h4 class="d-inline">Info commandes</h4>
+                </div>
+                <div class="col-lg card-body">
+                    Ref de la commande : <?= $produitsCommandes[0]['idCommandes'] ?> | Date de commande : <?= $produitsCommandes[0]['dateAchat']; ?><br>
+                </div>
+                <div class="card-header">
+                    <h4 class="d-inline">Listes des produits</h4>
+                </div>
+                <?php
+                foreach ($produitsCommandes as &$produit) { ?>
+                    <div class="col-lg card-header">
+                        <p id="explication">
+                            Nom produit : <?= $produit['nomProduit']; ?><br>
+                            Quantité : <?= $produit['qteProduit']; ?><br>
+                            Prix unitaire HT : <?= $produit['prixHT']; ?><p>
+                        <p>Description : <?= $produit['description']; ?></p>
+                        <div class="card-body">
+                            <a class="btn btn-outline-success" href="/utilisateur/nouveau-ticket/<?= $produit['nomProduit']; ?>">Ouvir un ticket pour ce produit</a>
+                        </div>
+                    </div>
+                  <?php
+                }
+                unset($produit)
+                ?>
+            </aside>
+        </div>
+        <?php
+	}
 
 
-    // ajouter le select produit
-    public function nouveauTicket()
-    {
-        echo ' <h3>Création ticket</h3>
+	// ajouter le select produit
+	public function nouveauTicket($produits, $default)
+	{ ?>
+        <h3>Création ticket</h3>
 		<hr class="mt-2 mb-4">
 
 		<form action="" method="POST">
 			<div class="row">
-				<div class="col-4 form-group">
-					<label for="intitule">intitule</label>
-					<input type="text" name="intitule" required value="intitule" class="form-control">
+                <div class="row">
+                    <div class="col form-group">
+                        <label for="intitule">Intitule</label>
+                        <input type="text" name="intitule" required pattern="\S+.*" class="form-control">
+                    </div>
+                    <div class="col form-group">
+                        <label for="produit">Produit concercé</label>
+                        <select class="custom-select form-control" id="inputGroupSelect04" name="idProduit" required>
+                            <option <?= (is_null($default) ? 'selected' : '')?>>Choisir...</option>
+                            <?php
+                            foreach ($produits as &$produit) {
+                                ?> <option <?= ((!is_null($default) && $default === $produit['nomProduit']) ? 'selected' : '')?> value="<?= $produit['idProduit'] ?>"><?=ucfirst($produit['nomProduit'])?></option>
+                                <?php
+                            }
+                            unset($etat);
+                            ?>
+                        </select>
+                    </div>
+                </div>
+				<div class="col-lg form-group">
+					<label for="explication">Votre message</label>
+                    <textarea name="explication" required pattern="\S+.*" rows="5" cols="33" class="form-control"></textarea>
 				</div>
-				<div class="col-4 form-group">
-					<label for="explication">explication</label>
-					<textarea name="explication" required rows="5" cols="33" class="form-control">
-				</div>
-			<button type="submit" class="btn btn-primary d-block mb-2">Envoyer</button>
-		</form>';
-    }
+
+			<button type="submit" class="btn btn-primary mb-2">Envoyer</button>
+		</form>
+    <?php
+	}
 
     public function afficheTickets($result)
     {
@@ -255,8 +326,8 @@ class VueUtilisateur extends VueGenerique
                 </div>
                 <div class="col-lg card-body">
                     <p id="explication"><?= $ticket['explication']; ?></p>
-                    <button class="btn lire-plus" type="button" onclick="document.getElementById('explication').style.display = 'inherit'">Lire la suite</button>
-                    <button class="btn lire-plus" type="button" onclick="document.getElementById('explication').style.display = '-webkit-box'">Réduire</button>
+                    <button class="btn btn-outline-primary" type="button" onclick="document.getElementById('explication').style.display = 'inherit'">Lire la suite</button>
+                    <button class="btn btn-outline-primary" type="button" onclick="document.getElementById('explication').style.display = '-webkit-box'">Réduire</button>
                 </div>
                 <div class="col-lg card-footer">
                     <a class="btn lire-plus-r" href="/utilisateur/chat/<?= $ticket['idTicket'] ?>">Ecrire un message</a>
@@ -264,7 +335,7 @@ class VueUtilisateur extends VueGenerique
             </aside>
             <aside class="card col-lg-4 p-1 m-2" id="info-client">
                 <div class="col-lg card-header">
-                    <h4 class="d-inline">Info du client</h4>
+                    <h4 class="d-inline">Info du technicien</h4>
                 </div>
                 <div class="col-lg card-body">
                     Nom : <?= $infoTech['nom'] ?> <br>

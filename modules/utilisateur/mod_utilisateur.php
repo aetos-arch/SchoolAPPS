@@ -15,7 +15,7 @@ class ModUtilisateur extends ModGenerique
 			if (isset($url[1])) {
 				$action = $url[1];
 				switch ($action) {
-					case 'profil':
+					case 'mes-informations':
 						$controllUtilisateur->profil();
 						break;
 					case 'changer-login':
@@ -27,20 +27,31 @@ class ModUtilisateur extends ModGenerique
 					case 'mes-tickets':
 						$controllUtilisateur->afficheTickets();
 						break;
-					case 'mes-commandes':
-						$controllUtilisateur->afficheCommandes();
-						break;
-					case 'mes-avis':
-						$controllUtilisateur->affichesAvis();
-						break;
-					case 'nouveau-ticket':
-						$controllUtilisateur->nouveauTicket();
-						break;
 					case 'ticket':
 						if (isset($url[2]) && is_numeric($url[2])) {
 							$idTicket = addslashes(strip_tags($url[2]));
 							$controllUtilisateur->afficheTicket($idTicket);
 						}
+						break;
+					case 'nouveau-ticket':
+						if (isset($url[2])) {
+							$produitsDefault = addslashes(strip_tags($url[2]));
+						} else {
+							$produitsDefault = null;
+						}
+						$controllUtilisateur->nouveauTicket($produitsDefault);
+						break;
+					case 'mes-commandes':
+						$controllUtilisateur->afficheCommandes();
+						break;
+					case 'commande':
+						if (isset($url[2]) && is_numeric($url[2])) {
+							$idTicket = addslashes(strip_tags($url[2]));
+							$controllUtilisateur->afficheCommande($idTicket);
+						}
+						break;
+					case 'mes-avis':
+						$controllUtilisateur->affichesAvis();
 						break;
 					case 'donner-avis':
 						if (isset($url[2])) {
@@ -49,10 +60,10 @@ class ModUtilisateur extends ModGenerique
 							$controllUtilisateur->actionInexistante();
 						}
 						break;
-					case 'supprimerAvis':
+					case 'supprimer-avis':
 						$controllUtilisateur->supprimerAvis();
 						break;
-					case 'modifierAvis':
+					case 'modifier-avis':
 						$controllUtilisateur->modifierAvis();
 						break;
 					case 'chat':
