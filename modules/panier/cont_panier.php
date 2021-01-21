@@ -60,11 +60,8 @@ class ContPanier extends ContGenerique {
 
     function validationCommande(){
         //TODO : mieux gérer si erreur dans la commande survient
-        if($this->modele->passagePanierCommande($_SESSION['panier'], $_SESSION['idUtil'])) {
-            $this->vue->passageCommandeValide();
-        }else{
-            $this->vue->erreurPassageCommande();
-        }
+        $this->modele->passagePanierCommande($_SESSION['panier'], $_SESSION['idUtil']);
+        $this->vue->passageCommandeValide();
     }
 
 }

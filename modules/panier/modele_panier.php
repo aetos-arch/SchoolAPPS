@@ -62,12 +62,13 @@ class ModelePanier extends ModeleGenerique
 
     function getIDPanier($idUtil){
         try {
+
             $req = Connexion::$bdd->prepare('SELECT idPanier from paniers where idUtilisateur=:idUtil');
             $req->execute(array(':idUtil' => $idUtil));
             $reponse = $req ->fetchAll();
+            return $reponse[0]['idPanier'];
         } catch (PDOException $e) {
         }
-        return $reponse[0]['idPanier'];
     }
 
     function ajouterProduitPanier($idProduit, $idPanier){
@@ -174,6 +175,7 @@ class ModelePanier extends ModeleGenerique
     }
 
     function supprimerPanier($idPanier){
+        //TODO : que faire s'il y a une erreur ?
         //Suppression tout les éléments du panier
         $supProduitPanier = Connexion::$bdd->prepare('DELETE FROM produitsPanier WHERE idPanier=:idPanier');
         $supProduitPanier->execute(array(':idPanier' => $idPanier));
@@ -181,7 +183,9 @@ class ModelePanier extends ModeleGenerique
         //Suppression du panier
         $supPanier = Connexion::$bdd->prepare('DELETE FROM paniers WHERE idPanier=:idPanier');
         $req = $supPanier->execute(array(':idPanier' => $idPanier));
-        return $req;
+        if ($req){
+            unset($_SESSION['panier']);
+        }
     }
 
 }
