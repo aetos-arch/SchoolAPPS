@@ -95,7 +95,7 @@ class VueUtilisateur extends VueGenerique
     <?php
     }
 
-    public function tableauBord($profil, $stats, $commandes, $tickets)
+    public function tableauBord($profil, $stats, $commandes)
     {
     ?>
         <h3>Mon tableau de bord</h3>
@@ -104,7 +104,6 @@ class VueUtilisateur extends VueGenerique
             $this->afficherProfil($profil);
             $this->statsTickets($stats);
             $this->dernieresCommandes($commandes);
-            $this->derniersTickets($tickets);
             ?>
         </section>
     <?php
@@ -141,23 +140,6 @@ class VueUtilisateur extends VueGenerique
                     }
                     unset($ticket);
                     ?>
-                </div>
-            </div>
-        </aside>
-    <?php
-    }
-
-    public function derniersTickets($profil)
-    {
-    ?>
-        <aside class="col-lg-12 p-1 m-2">
-            <div class="card">
-                <div class="card-header"><h4>Vos derniers tickets</h4> </div>
-                <div class="card-body" id="user-info">
-                    Nom : <?= $profil['nom'] ?> <br>
-                    Prenom : <?= $profil['prenom'] ?> <br>
-                    Email : <?= $profil['emailFacturation'] ?> <br>
-                    Telephone : <?= $profil['telephone'] ?> <br>
                 </div>
             </div>
         </aside>

@@ -15,9 +15,6 @@ class ModTechnicien extends ModGenerique
 			if (isset($url[1])) {
 				$action = $url[1];
 				switch ($action) {
-					case 'menu':
-						$controllTech->menu();
-						break;
 					case 'mes-informations':
 						$controllTech->profil();
 						break;
@@ -64,7 +61,7 @@ class ModTechnicien extends ModGenerique
 
 			$controllTech->accueilTechnicien($moduleContent, $url);
 		} else
-			echo '<h3>Aucune connexion trouvée.</h3>';
+			$controllTech->vue->pasconnecté();
 	}
 }
 

@@ -8,7 +8,19 @@ class ModeleAdmin extends ModeleGenerique
 	{
 	}
 
-	public function getTicketsEtat($idEtat)
+    public function getProfil($idUtilisateur)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('select nom, prenom, emailFacturation, telephone from utilisateurs where idUtilisateur= ?');
+            $req->execute(array($idUtilisateur));
+            $result = $req->fetch();
+            return $result;
+        } catch (PDOException $e) {
+        }
+    }
+
+
+    public function getTicketsEtat($idEtat)
 	{
 		try {
 			$req = Connexion::$bdd->prepare('select * from tickets where idEtat = ?');
@@ -34,7 +46,45 @@ class ModeleAdmin extends ModeleGenerique
 		}
 	}
 
+    public function getInfoClient($idTicket)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('
+            select  
+                  u.nom
+                , u.prenom
+                , u.emailFacturation
+                , u.telephone 
+            from utilisateurs u 
+                inner join tickets t 
+                    on t.idUtilisateur = u.idUtilisateur 
+            where idTicket = ?');
+            $req->execute(array($idTicket));
+            $result = $req->fetch();
+            return $result;
+        } catch (PDOException $e) {
+        }
+    }
 
+    public function getInfoTech($idTicket)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('
+            select  
+                  u.nom
+                , u.prenom
+                , u.emailFacturation
+                , u.telephone 
+            from utilisateurs u 
+                inner join tickets t 
+                    on t.idTechnicien = u.idTechnicien 
+            where idTicket = ?');
+            $req->execute(array($idTicket));
+            $result = $req->fetch();
+            return $result;
+        } catch (PDOException $e) {
+        }
+    }
 
 
 	public function changerEtatTicket($idEtat, $idTicket)

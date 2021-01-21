@@ -26,9 +26,9 @@ if (!in_array($page, array('connexion', 'utilisateur', 'technicien', 'admin', 'p
         $pageContent = ob_get_clean();
         require 'layout.php';
     } else { // Ni module ni page static
-        $error = '403';
+        $error = '404';
         require "static/error.php";
-        http_response_code(403);
+        http_response_code(404);
         die;
     }
 } else { // Module

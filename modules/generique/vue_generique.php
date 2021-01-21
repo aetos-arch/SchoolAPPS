@@ -22,6 +22,22 @@ class VueGenerique {
         ?> <span class="alert-warning"><?= $msg ?></span><?php
     }
 
+    public function pasConnecté(){
+        ?>
+        <section class="container content-block login-form">
+            <div class="container-fluid" id="pop_connexion">
+                <div class="row">
+                    <h1>Vous devez être connecté pour accéder cette ressource</h1>
+                    <hr>
+                    <span class="login-form"></span>
+                    <a class="btn btn-outline-success col-5 mx-auto" href="/connexion/popConnexion">Me connecter</a>
+                </div>
+            </div>
+            <br>
+        </section>
+        <?php
+    }
+
     public function motDePasseIncorrect() {
         ?>
         <h3>Mot de passe incorrect.</h3>
