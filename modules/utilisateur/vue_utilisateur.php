@@ -44,7 +44,7 @@ class VueUtilisateur extends VueGenerique
                                 <li class="nav-item">
                                     <div class="card">
                                         <div class="card-header" id="headingOne">
-                                            <a href="/utilisateur/mes-commandes" class="btn btn-nav">Mes Commandes</a>
+                                            <a href="/utilisateur/mes-commandes" class="btn btn-nav">Mes commandes</a>
                                         </div>
                                     </div>
                                 </li>
