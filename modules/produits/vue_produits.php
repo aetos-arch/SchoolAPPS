@@ -22,4 +22,10 @@ class VueProduit extends VueGenerique
 	{
 		// to do
 	}
+
+    public function erreurConnexionPanier()
+    {
+        echo "<main>Vous devez être connecté pour pouvoir ajouter un produit au panier.</main>";
+    }
+
 }
