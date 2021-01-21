@@ -330,3 +330,90 @@ footer ul {
     list-style-type: none;
     text-align: center;
 }
+
+.article {
+    display: block;
+    border: 0;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 14px 0 11px;
+    padding-left: 90px;
+    position: relative;
+    min-height: 60px;
+    float: left;
+    width: 100%;
+    line-height: normal;
+}
+
+.article.nomProduit {
+    margin: 0;
+    line-height: 23px;
+    display: block;
+}
+
+.article.prixProduit {
+    display: block;
+}
+
+.article.quantiteProduit {
+    margin: 10px 0 4px;
+    display: inline-block;
+    border: 1px solid #ddd;
+    line-height: normal !important;
+    height: 28px;
+    text-align: center;
+}
+
+.article.quantiteProduit.moinsQte {
+    border-left: 0;
+    border-right: 1px solid #e5e5e5;
+    font-size: 11px;
+    border: 0;
+    background: #f5f5f5;
+    float: left;
+    padding: 0;
+    width: 25px;
+}
+
+.article.qte{
+    width: 44px;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    background: #fff;
+    float: left;
+}
+
+.article.quantiteProduit button {
+    width: 25px;
+    height: 28px;
+}
+
+.article.quantiteProduit.moinsQte {
+    border-left: 0;
+    border-right: 1px solid #e5e5e5;
+    font-size: 11px;
+    border: 0;
+    background: #f5f5f5;
+    float: left;
+    padding: 0;
+    width: 25px;
+}
+
+.article.quantiteProduit.plusQte {
+    border-left: 0;
+    border-right: 1px solid #e5e5e5;
+    font-size: 11px;
+    border: 0;
+    background: #f5f5f5;
+    float: left;
+    padding: 0;
+}
+
+.totalPanier h2 {
+    margin: 0 0 2px;
+    font-size: 16px;
+    line-height: 32px;
+    font-weight: 500;
+    padding: 0 25px;
+    text-transform: capitalize;
+}

@@ -38,11 +38,33 @@ class ContPanier extends ContGenerique {
         $this->modele->ajouterProduitPanier($idProduit, $this->modele->getIDPanier($_SESSION['idUtil']));
     }
 
+    //Fonctions pour les vues
     static function avoirNBProduitsPanier(){
         if (!isset($_SESSION['panier'])){
             return 0;
         }
         return ModelePanier::avoirNBProduitsPanier($_SESSION['panier']);
+    }
+
+    function moinsQte($idProduit){
+        $this->modele->moinsQte($idProduit,$_SESSION['panier']);
+    }
+
+    function plusQte($idProduit){
+        $this->modele->plusQte($idProduit,$_SESSION['panier']);
+    }
+
+    function checkOut(){
+        $this->vue->affichageCheckOut();
+    }
+
+    function validationCommande(){
+        //TODO : mieux gérer si erreur dans la commande survient
+        if($this->modele->passagePanierCommande($_SESSION['panier'], $_SESSION['idUtil'])) {
+            $this->vue->passageCommandeValide();
+        }else{
+            $this->vue->erreurPassageCommande();
+        }
     }
 
 }
