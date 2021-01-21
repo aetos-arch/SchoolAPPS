@@ -248,9 +248,18 @@ article.card-footer {
     opacity: 1;
 }
 
+#info-client {
+    display: inline;
+}
+
 #explication {
     font-size: 16pt;
     color: var(--rich-black);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* number of lines to show */
+    -webkit-box-orient: vertical;
 }
 
 footer {

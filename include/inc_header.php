@@ -2,6 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-light">
         <a href="/home" id="brand-homelink">
             <img id="logo" src="/images/logo.svg" alt="Logo du site" />
+
             <span>La référence de l'éducation</span>
         </a>
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
