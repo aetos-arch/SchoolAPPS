@@ -10,6 +10,38 @@ class ContTechnicien extends ContGenerique
 	public function __construct()
 	{
         parent::__construct(new ModeleTechnicien(), new VueTechnicien());
+    }
+    
+    public function getMessages($idTicket, $isJson)
+	{
+		$peutVoirChat = $this->modele->peutVoirChat($idTicket, $_SESSION['idUtil']);
+		if ($peutVoirChat) {
+			if ($isJson) {
+				$result = $this->modele->getMessages($idTicket);
+				$this->vue->json($result);
+				header('Content-Type: application/json');
+				exit();
+			} else {
+				$this->vue->chat();
+			}
+		} else {
+			$this->vue->messageVue("Pas de chat...");
+		}
+	}
+
+	public function envoyerMessage($idTicket, $message)
+	{
+		$peutVoirChat = $this->modele->peutVoirChat($idTicket,  $_SESSION['idUtil']);
+		if ($peutVoirChat == 1) {
+			$result = [
+				'idAuteur' => $_SESSION['idUtil'],
+				'idTicket' => $idTicket,
+				'message' => $message
+			];
+			$this->modele->envoyerMessage($result);
+		} else {
+			$this->vue->messageVue("Pas de chat...");
+		}
 	}
 
     public function accueilTechnicien($moduleContent, $url)

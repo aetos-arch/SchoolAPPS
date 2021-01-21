@@ -12,7 +12,7 @@ class ModeleTechnicien extends ModeleGenerique
 	public function getTicketsEtat($idEtat, $idUtilisateur)
 	{
 		try {
-			$req = Connexion::$bdd->prepare('select * from tickets where idEtat = ? and idUtilisateur = ?');
+			$req = Connexion::$bdd->prepare('select * from tickets where idEtat in (?) and idUtilisateur = ?');
 			$req->execute(array($idEtat, $idUtilisateur));
 			$result = $req->fetchAll();
 			return $result;
@@ -47,6 +47,41 @@ class ModeleTechnicien extends ModeleGenerique
             where idTicket = ?');
             $req->execute(array($idTicket));
             $result = $req->fetch();
+            return $result;
+        } catch (PDOException $e) {
+        }
+	}
+	
+	public function peutVoirChat($idTicket, $idTechnicien)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('SELECT idTicket FROM tickets where idTicket = ? and idTechnicien = ?');
+            $req->execute(array($idTicket, $idTechnicien));
+            $nb = $req->rowCount();
+            return $nb;
+        } catch (PDOException $e) {
+        }
+	}
+
+
+
+    public function envoyerMessage($result)
+    {
+
+        try {
+            $req = Connexion::$bdd->prepare('INSERT INTO message (message, idTicket, idAuteur) VALUES(?, ?, ?)');
+            $req->execute(array($result['message'],  $result['idTicket'], $result['idAuteur']));
+        } catch (PDOException $e) {
+        }
+    }
+
+    public function getMessages($idTicket)
+    {
+
+        try {
+            $req = Connexion::$bdd->prepare('SELECT nom, prenom, message, dateMsg  FROM message inner join utilisateurs on idAuteur = idUtilisateur WHERE idTicket = ? ORDER BY dateMsg DESC');
+            $req->execute(array($idTicket));
+            $result = $req->fetchAll(PDO::FETCH_ASSOC);
             return $result;
         } catch (PDOException $e) {
         }
@@ -97,16 +132,6 @@ class ModeleTechnicien extends ModeleGenerique
 			$req->execute(array($idUtilisateur));
 			$result = $req->fetchAll();
 			return $result;
-		} catch (PDOException $e) {
-		}
-	}
-
-	public function getEtats()
-	{
-		try {
-			$req = Connexion::$bdd->prepare('select * from etats');
-			$req->execute();
-            return $req->fetchAll();
 		} catch (PDOException $e) {
 		}
 	}

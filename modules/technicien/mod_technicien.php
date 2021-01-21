@@ -18,7 +18,7 @@ class ModTechnicien extends ModGenerique
 					case 'menu':
 						$controllTech->menu();
 						break;
-					case 'profil':
+					case 'mes-informations':
 						$controllTech->profil();
 						break;
 					case 'nouveau-mot-de-passe':
@@ -42,9 +42,17 @@ class ModTechnicien extends ModGenerique
 					case 'mes-tickets':
 						$controllTech->afficheTickets();
 						break;
-						//case 'discussion':
-						//	$controllTech->discussion();
-						//	break;
+					case 'chat':
+						if (isset($_POST['message']) && is_numeric($url[2])) {
+							$controllTech->envoyerMessage($url[2], addslashes(htmlspecialchars($_POST['message'])));
+						} else {
+							if (isset($url[2]) && is_numeric($url[2])) {
+								$controllTech->getMessages($url[2], isset($_GET['json']) && $_GET['json'] == "true");
+							} else {
+								$controllTech->actionInexistante();
+							}
+						}
+						break;
 					default:
 						$controllTech->actionInexistante();
 						break;

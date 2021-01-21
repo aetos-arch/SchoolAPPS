@@ -117,7 +117,10 @@ h5 {
 p {
     font-size: 15pt;
     font-family: 'Quattrocento Sans', sans-serif;
+}
 
+form, input, label, textarea, button, select {
+    margin: 3px 1px !important;
 }
 
 .breadcrumb {
@@ -307,10 +310,6 @@ footer a:hover {
 
 #footer-social{
     margin: 15px 0;
-}
-
-#footer-quicklinks {
-
 }
 
 .foot-sub-title {
