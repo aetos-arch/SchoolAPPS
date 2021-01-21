@@ -32,7 +32,11 @@ class ModTechnicien extends ModGenerique
 						break;
 					case 'ticket':
 						if (isset($url[2]) && is_numeric($url[2])) {
-							$controllTech->afficheTicket($url[2]);
+							$idTicket = addslashes(strip_tags($url[2]));
+							$controllTech->afficheTicket($idTicket);
+							if (isset($url[3]) && $url[3] === 'changer-etat') {
+								$controllTech->changerEtatTicket($idTicket);
+							}
 						}
 						break;
 					case 'mes-tickets':

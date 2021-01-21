@@ -19,7 +19,8 @@ class ContTechnicien extends ContGenerique
 
     public function profil()
     {
-        $this->vue->afficherProfil();
+        $result = $this->modele->getProfil(($_SESSION['idUtil']));
+        $this->vue->afficherProfil($result);
     }
 
 	public function nouveauMotDePasse()
@@ -27,7 +28,6 @@ class ContTechnicien extends ContGenerique
 		$this->vue->nouveauMotDePasse();
 		$this->checkChangementMotDePasse();
 	}
-
 
     public function checkChangementMotDePasse()
     {
@@ -49,8 +49,6 @@ class ContTechnicien extends ContGenerique
         }
     }
 
-
-
     public function nouveauLogin()
     {
         $this->vue->nouveauLogin();
@@ -71,14 +69,22 @@ class ContTechnicien extends ContGenerique
         }
     }
 
-	public function menu()
-	{
-		$this->vue->afficherMenu();
-	}
+    public function changerEtatTicket($idTicket) {
+        if (isset($_POST['nouveauEtat']) && $_POST['nouveauEtat']!= "") {
+            $nouveauEtat = addslashes(strip_tags($_POST['nouveauEtat']));
+            if ($this->modele->changementEtatTicket($idTicket, $nouveauEtat)) {
+                $this->vue->messageVue("L'etat du ticket a été mis à jour !");
+            } else {
+                $this->vue->messageVue("Oups, une erreur s'est produite la mise à jour n'a pas été prise en compte");
+            }
+        }
+    }
 
 	public function tableauBord()
 	{
-		$this->vue->tableauBord();
+        $statsTickets = $this->modele->getNombreTicketsParEtat(($_SESSION['idUtil']));
+        $profil = $this->modele->getProfil(($_SESSION['idUtil']));
+		$this->vue->tableauBord($profil, $statsTickets);
 	}
 
 	public function afficheTickets()
@@ -87,11 +93,19 @@ class ContTechnicien extends ContGenerique
 		$this->vue->afficheTickets($result);
 	}
 
+	public function afficheTicketsParEtat()
+	{
+		$result = $this->modele->getNombreTicketsParEtat(($_SESSION['idUtil']));
+		var_dump($result);
+		//$this->vue->afficheTickets($result);
+	}
+
 	public function afficheTicket($idTicket)
 	{
-		//$idTicket = addslashes(strip_tags($_POST['idTicket']));
-		$result = $this->modele->getTicket($idTicket);
-		$this->vue->afficheTicket($result);
+		$ticket = $this->modele->getTicket($idTicket);
+        $infoClient = $this->modele->getInfoClient($idTicket);
+        $etats = $this->modele->getEtats();
+		$this->vue->afficheTicket($ticket, $infoClient, $etats);
 	}
 
 
