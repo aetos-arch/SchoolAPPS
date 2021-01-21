@@ -30,7 +30,7 @@ class ModUtilisateur extends ModGenerique
 					case 'mes-commandes':
 						$controllUtilisateur->afficheCommandes();
 						break;
-						case 'mes-avis':
+					case 'mes-avis':
 						$controllUtilisateur->affichesAvis();
 						break;
 					case 'nouveau-ticket':
