@@ -4,9 +4,9 @@
             <p>
                 <a href="/home"> <img id="logo-footer" src="../../../images/logo.svg" alt="Logo du site" /> </a><br>
                 <span class="foot-sub-title">S.A.S School APPS</span><br>
+                "Aidons à l'éducation"<br>
                 Capital de 1 000 000 €<br>
                 Siret - 900 060 130 00013<br>
-                Fièrement sponsoriée par Monsieur BOSSARD<br>
             </p>
         </div>
         <div class="col-md" id="footer-center">
@@ -15,8 +15,7 @@
                     140 Rue de la Nouvelle France<br>
                     93100 Montreuil<br>
                     <span class="foot-sub-title">Contact</span><br>
-                    +33 1 02 03 04 05<br>
-                    +33 6 02 03 04 05<br>
+                    +33 1 01 01 01 01<br>
                     contact@schoolaps.studio<br>
             </p>
         </div>
