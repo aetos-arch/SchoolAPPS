@@ -41,7 +41,6 @@ class VueProduit extends VueGenerique
         include 'include\inc_sponsors.php';
     }
 
-
     public function afficherProduit($produit)
     {
         include 'include\inc_derniers_actus.php';
