@@ -105,7 +105,7 @@ class VueConnexion extends VueGenerique {
     }
 
     function affichageIDUtilise(){
-        echo '<main><a href="/connexion/popConnexion">L\'identifiant que vous avez saisi est déjà pris, veuillez recommencer avec un autre.</a></main>';
+        echo '<main><a href="/connexion/popInscription">L\'identifiant que vous avez saisi est déjà pris, veuillez recommencer avec un autre.</a></main>';
     }
 
 }

@@ -15,11 +15,9 @@ class ModelePanier extends ModeleGenerique
 
             if ($selectPreparee->rowCount() < 1) {
                 //Si le panier n'existe pas
-                echo '<main>Panier inexistant : </main>'; //TEST
-
                 $selectPrepareeInsert = Connexion::$bdd->prepare('INSERT INTO `paniers` 
-                    (`dateCreation`, `total`, `qteProduits`, `idUtilisateur`) 
-                    VALUES (NOW(), \'0\', \'0\', :idUtil)');
+                    (`dateCreation`, `total`, `idUtilisateur`) 
+                    VALUES (NOW(), \'0\', :idUtil)');
                 $selectPrepareeInsert->execute(array(':idUtil' => $idUtil));
 
                 //Assignation du nouveau panier à la variable de session du panier :
@@ -67,9 +65,9 @@ class ModelePanier extends ModeleGenerique
             $req = Connexion::$bdd->prepare('SELECT idPanier from paniers where idUtilisateur=:idUtil');
             $req->execute(array(':idUtil' => $idUtil));
             $reponse = $req ->fetchAll();
-            return $reponse[0]['idPanier'];
         } catch (PDOException $e) {
         }
+        return $reponse[0]['idPanier'];
     }
 
     function ajouterProduitPanier($idProduit, $idPanier){
@@ -91,6 +89,18 @@ class ModelePanier extends ModeleGenerique
                 $insertPreparee->execute(array(':idProduit' => $idProduit, ':idPanier' => $idPanier));
                 //TODO : Peut-être faire une vérification que le produit a bien été ajouté
             }
+        } catch (PDOException $e) {
+        }
+    }
+
+    static function avoirNBProduitsPanier($idPanier){
+        try {
+            //TODO
+            $selectPreparee = Connexion::$bdd->prepare('SELECT SUM(qteProduits) AS SommePanier 
+                FROM produitsPanier where idPanier=:idPanier');
+            $selectPreparee->execute(array(':idPanier' => $idPanier));
+            $reponse = $selectPreparee ->fetchAll();
+            return $reponse[0]['SommePanier'];
         } catch (PDOException $e) {
         }
     }
