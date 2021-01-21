@@ -22,8 +22,7 @@ class ContUtilisateur extends ContGenerique
 		$statsTickets = $this->modele->getNombreTicketsParEtat(($_SESSION['idUtil']));
 		$profil = $this->modele->getProfil(($_SESSION['idUtil']));
 		$commandes = $this->modele->getDernieresCommandes(($_SESSION['idUtil']));
-		// $profil = $this->modele->getProfil(($_SESSION['idUtil']));
-		$this->vue->tableauBord($profil, $statsTickets, $commandes, $profil);
+		$this->vue->tableauBord($profil, $statsTickets, $commandes);
 	}
 
 	public function nouveauMotDePasse()

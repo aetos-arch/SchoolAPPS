@@ -88,7 +88,7 @@ class ModUtilisateur extends ModGenerique
 
 			$controllUtilisateur->accueilUtilisateur($moduleContent, $url);
 		} else
-			echo '<h3>Aucune connexion trouvée.</h3>';
+			$controllUtilisateur->vue->pasConnecté();
 	}
 }
 ?>

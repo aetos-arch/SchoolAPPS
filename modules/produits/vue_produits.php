@@ -86,5 +86,4 @@ class VueProduit extends VueGenerique
     {
         echo "<main>Vous devez être connecté pour pouvoir ajouter un produit au panier.</main>";
     }
-
 }
