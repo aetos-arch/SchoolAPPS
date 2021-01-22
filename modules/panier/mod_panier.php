@@ -48,5 +48,3 @@ class ModPanier extends ModGenerique {
 }
 
 $modPanier = new ModPanier((isset($url)) ? $url : null);
-
-?>

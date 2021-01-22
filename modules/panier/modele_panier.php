@@ -52,92 +52,144 @@ class ModelePanier extends ModeleGenerique
         return $resultat;
     }
 
-    function supprimerProduit($idProduit)
+    function supprimerProduit($idProduit,$idPanier)
     {
+        //Mis à jour du total du panier
+        $selectPrepareeProduit = Connexion::$bdd->prepare('SELECT 
+                T0.prixHT,
+                T1.qteProduits
+                FROM produits T0
+                INNER JOIN produitsPanier T1 ON T0.idProduit = T1.idProduit
+                WHERE T0.idProduit=:idProduit;');
+        $selectPrepareeProduit->execute(array(':idProduit' => $idProduit));
+        $reponse = $selectPrepareeProduit->fetchAll();
+
+        $modifPrepareeMAJTotal = Connexion::$bdd->prepare('UPDATE paniers SET total=total-:prixAncienProduit*:qteProduits
+                    WHERE idPanier=:idPanier');
+        $modifPrepareeMAJTotal->execute(array(':prixAncienProduit' => $reponse[0]['prixHT'], ':qteProduits' => $reponse[0]['qteProduits'], ':idPanier' => $idPanier));
+
+        //Suppression du produit
         $selectPreparee = Connexion::$bdd->prepare('DELETE FROM produitsPanier WHERE idProduit=:idProduit');
         $reponse = array(':idProduit' => $idProduit);
         $req = $selectPreparee->execute($reponse);
+
         return $req;
     }
 
-    function getIDPanier($idUtil){
+    function getIDPanier($idUtil)
+    {
         try {
 
             $req = Connexion::$bdd->prepare('SELECT idPanier from paniers where idUtilisateur=:idUtil');
             $req->execute(array(':idUtil' => $idUtil));
-            $reponse = $req ->fetchAll();
+            $reponse = $req->fetchAll();
             return $reponse[0]['idPanier'];
         } catch (PDOException $e) {
         }
     }
 
-    function ajouterProduitPanier($idProduit, $idPanier){
+    function ajouterProduitPanier($idProduit, $idPanier)
+    {
         try {
             //Voir si le panier comprend déjà ce produit
             $selectPreparee = Connexion::$bdd->prepare('SELECT * FROM produitsPanier 
                 WHERE idProduit=:idProduit AND idPanier=:idPanier;');
             $selectPreparee->execute(array(':idProduit' => $idProduit, ':idPanier' => $idPanier));
 
-            if ($selectPreparee->rowCount()>0){
+            if ($selectPreparee->rowCount() > 0) {
                 //Quand le panier comprend déjà ce produit, alors on ajoute 1 à la quantité.
                 $modifPreparee = Connexion::$bdd->prepare('UPDATE produitsPanier SET qteProduits=qteProduits+1
                     WHERE idProduit=:idProduit AND idPanier=:idPanier');
                 $modifPreparee->execute(array(':idProduit' => $idProduit, ':idPanier' => $idPanier));
-            }else{
+
+            } else {
                 //TODO : revoir gestion quantité
                 $insertPreparee = Connexion::$bdd->prepare('INSERT INTO produitsPanier 
                 (qteProduits, idProduit, idPanier) VALUES (1, :idProduit, :idPanier)');
                 $insertPreparee->execute(array(':idProduit' => $idProduit, ':idPanier' => $idPanier));
                 //TODO : Peut-être faire une vérification que le produit a bien été ajouté
             }
+            //Mis à jour du total du panier
+            $selectPrepareeProduit = Connexion::$bdd->prepare('SELECT prixHT FROM produits 
+                WHERE idProduit=:idProduit;');
+            $selectPrepareeProduit->execute(array(':idProduit' => $idProduit));
+            $reponse = $selectPrepareeProduit->fetchAll();
+
+            $modifPrepareeMAJTotal = Connexion::$bdd->prepare('UPDATE paniers SET total=total+:prixNouvProduit
+                    WHERE idPanier=:idPanier');
+            $modifPrepareeMAJTotal->execute(array(':prixNouvProduit' => $reponse[0]['prixHT'], ':idPanier' => $idPanier));
+
         } catch (PDOException $e) {
         }
     }
 
-    static function avoirNBProduitsPanier($idPanier){
+    static function avoirNBProduitsPanier($idPanier)
+    {
         try {
             $selectPreparee = Connexion::$bdd->prepare('SELECT SUM(qteProduits) AS SommePanier 
                 FROM produitsPanier where idPanier=:idPanier');
             $selectPreparee->execute(array(':idPanier' => $idPanier));
-            $reponse = $selectPreparee ->fetchAll();
-            if ($reponse[0]['SommePanier']==NULL){
+            $reponse = $selectPreparee->fetchAll();
+            if ($reponse[0]['SommePanier'] == NULL) {
                 return 0;
-            }else{
+            } else {
                 return $reponse[0]['SommePanier'];
             }
         } catch (PDOException $e) {
         }
     }
 
-    function moinsQte($idProduit,$idPanier){
+    function moinsQte($idProduit, $idPanier)
+    {
         try {
             $selectPreparee = Connexion::$bdd->prepare('SELECT qteProduits
                 FROM produitsPanier 
                 WHERE idProduit=:idProduit AND idPanier=:idPanier');
             $selectPreparee->execute(array(':idProduit' => $idProduit, ':idPanier' => $idPanier));
-            $reponse = $selectPreparee ->fetchAll();
-            if ($reponse[0]['qteProduits']==1){
+            $reponse = $selectPreparee->fetchAll();
+            if ($reponse[0]['qteProduits'] == 1) {
                 //TODO : voir pour afficher un PopUp
                 $this->supprimerProduit($idProduit);
-            }else{
+            } else {
                 $modifPreparee = Connexion::$bdd->prepare('UPDATE produitsPanier SET qteProduits=qteProduits-1
                     WHERE idProduit=:idProduit AND idPanier=:idPanier');
                 $modifPreparee->execute(array(':idProduit' => $idProduit, ':idPanier' => $idPanier));
             }
+            //Mis à jour du total du panier
+            $selectPrepareeProduit = Connexion::$bdd->prepare('SELECT prixHT FROM produits 
+                WHERE idProduit=:idProduit;');
+            $selectPrepareeProduit->execute(array(':idProduit' => $idProduit));
+            $reponse = $selectPrepareeProduit->fetchAll();
+
+            $modifPrepareeMAJTotal = Connexion::$bdd->prepare('UPDATE paniers SET total=total-:prixAncienProduit
+                    WHERE idPanier=:idPanier');
+            $modifPrepareeMAJTotal->execute(array(':prixAncienProduit' => $reponse[0]['prixHT'], ':idPanier' => $idPanier));
         } catch (PDOException $e) {
         }
     }
 
-    function plusQte($idProduit,$idPanier){
+    function plusQte($idProduit, $idPanier)
+    {
         try {
             $modifPreparee = Connexion::$bdd->prepare('UPDATE produitsPanier SET qteProduits=qteProduits+1
                     WHERE idProduit=:idProduit AND idPanier=:idPanier');
             $modifPreparee->execute(array(':idProduit' => $idProduit, ':idPanier' => $idPanier));
+
+            //Mis à jour du total du panier
+            $selectPrepareeProduit = Connexion::$bdd->prepare('SELECT prixHT FROM produits 
+                WHERE idProduit=:idProduit;');
+            $selectPrepareeProduit->execute(array(':idProduit' => $idProduit));
+            $reponse = $selectPrepareeProduit->fetchAll();
+
+            $modifPrepareeMAJTotal = Connexion::$bdd->prepare('UPDATE paniers SET total=total+:prixAncienProduit
+                    WHERE idPanier=:idPanier');
+            $modifPrepareeMAJTotal->execute(array(':prixAncienProduit' => $reponse[0]['prixHT'], ':idPanier' => $idPanier));
         } catch (PDOException $e) {
         }
     }
 
-    function passagePanierCommande($idPanier, $idUtilisateur){
+    function passagePanierCommande($idPanier, $idUtilisateur)
+    {
         try {
             //Création d'une commande
             $insertPrepareeCommande = Connexion::$bdd->prepare('INSERT INTO commandes
@@ -159,14 +211,16 @@ class ModelePanier extends ModeleGenerique
                 INNER JOIN produits T1 ON T0.idProduit=T1.idProduit
                 WHERE idPanier=:idPanier');
             $selectPreparee->execute(array(':idPanier' => $idPanier));
-            $reponse = $selectPreparee ->fetchAll();
-            for ($i=0; $i < count($reponse); $i++) {
+            $reponse = $selectPreparee->fetchAll();
+            for ($i = 0; $i < count($reponse); $i++) {
                 $insertPreparee = Connexion::$bdd->prepare('INSERT INTO produitsCommandes 
                 (nomProduit, qteProduit, prixHT, description, idCommandes) 
                 VALUES (:nomP, :qteP, :prixHTP, :descriptionP, :idCommande)');
-                $insertPreparee->execute(array(':nomP' => $reponse[$i]['nomProduit'], ':qteP' => $reponse[$i]['qteProduits'],
+                $insertPreparee->execute(array(
+                    ':nomP' => $reponse[$i]['nomProduit'], ':qteP' => $reponse[$i]['qteProduits'],
                     ':prixHTP' => $reponse[$i]['prixHT'], ':descriptionP' => $reponse[$i]['description'],
-                    'idCommande' => $idCommande));
+                    'idCommande' => $idCommande
+                ));
             }
 
             return $this->supprimerPanier($idPanier);
@@ -174,7 +228,8 @@ class ModelePanier extends ModeleGenerique
         }
     }
 
-    function supprimerPanier($idPanier){
+    function supprimerPanier($idPanier)
+    {
         //TODO : que faire s'il y a une erreur ?
         //Suppression tout les éléments du panier
         $supProduitPanier = Connexion::$bdd->prepare('DELETE FROM produitsPanier WHERE idPanier=:idPanier');
@@ -183,9 +238,8 @@ class ModelePanier extends ModeleGenerique
         //Suppression du panier
         $supPanier = Connexion::$bdd->prepare('DELETE FROM paniers WHERE idPanier=:idPanier');
         $req = $supPanier->execute(array(':idPanier' => $idPanier));
-        if ($req){
+        if ($req) {
             unset($_SESSION['panier']);
         }
     }
-
 }

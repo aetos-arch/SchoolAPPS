@@ -84,6 +84,14 @@ class VueProduit extends VueGenerique
 
     public function erreurConnexionPanier()
     {
-        echo "<main>Vous devez être connecté pour pouvoir ajouter un produit au panier.</main>";
+        ?>
+        <div class="container-fluid row">
+            <div class="login-form">
+                <div class="big-info"><h1>Vous devez être connecté pour pouvoir ajouter un produit au panier.</h1></div><br>
+                <h1 class="big-info" id="error-h1"><a class="big-info btn btn-outline-success" href="/home">Page d'accueil</a>
+                    <a class="big-info btn btn-outline-success" href="/connexion">Se connecter ou s'inscrire</a></h1>
+            </div>
+        </div>
+        <?php
     }
 }

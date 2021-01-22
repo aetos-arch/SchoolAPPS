@@ -221,7 +221,7 @@ class VueTechnicien extends VueGenerique
     public function chat()
     {
     ?>
-        <link rel="stylesheet" href="../../css/app.css">
+        <link rel="stylesheet" href="../../css/chat.css">
 
         <body>
             <header>
@@ -234,12 +234,12 @@ class VueTechnicien extends VueGenerique
                 <div class="user-inputs">
                     <form id="envoiMessage" method="POST">
                         <input type="text" id="content" name="content" placeholder="Envoyer message">
-                        <button type="submit">Send !</button>
+                        <button type="submit">Envoyer</button>
                     </form>
                 </div>
             </section>
             <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-            <script src="../../js/appbis.js"></script>
+            <script src="../../js/chatbis.js"></script>
         </body> <?php
             }
 

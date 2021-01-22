@@ -110,7 +110,7 @@ class ContTechnicien extends ContGenerique
         if (isset($_POST['nouveauEtat']) && $_POST['nouveauEtat']!= "") {
             $nouveauEtat = addslashes(strip_tags($_POST['nouveauEtat']));
             if ($this->modele->changementEtatTicket($idTicket, $nouveauEtat)) {
-                $this->vue->messageVue("L'etat du ticket a été mis à jour !");
+                $this->vue->messageVue("L'état du ticket a été mis à jour !");
             } else {
                 $this->vue->messageVue("Oups, une erreur s'est produite la mise à jour n'a pas été prise en compte");
             }
