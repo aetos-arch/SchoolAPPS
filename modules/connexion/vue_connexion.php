@@ -167,7 +167,7 @@ class VueConnexion extends VueGenerique {
             <div class="login-form">
                 <div class="big-info"><h1>Vous avez bien été déconnecté(e).</h1></div><br>
                 <h1 class="big-info" id="error-h1"><a class="big-info btn btn-outline-success" href="/home">Page d'accueil</a>
-                    <a class="big-info btn btn-outline-success" href="/connexion">Page de connexion</a></h1>
+                    <a class="big-info btn btn-outline-success" href="/connexion/popConnexion">Page de connexion</a></h1>
             </div>
         </div>
         <?php
