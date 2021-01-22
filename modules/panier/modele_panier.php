@@ -52,11 +52,27 @@ class ModelePanier extends ModeleGenerique
         return $resultat;
     }
 
-    function supprimerProduit($idProduit)
+    function supprimerProduit($idProduit,$idPanier)
     {
+        //Mis à jour du total du panier
+        $selectPrepareeProduit = Connexion::$bdd->prepare('SELECT 
+                T0.prixHT,
+                T1.qteProduits
+                FROM produits T0
+                INNER JOIN produitsPanier T1 ON T0.idProduit = T1.idProduit
+                WHERE T0.idProduit=:idProduit;');
+        $selectPrepareeProduit->execute(array(':idProduit' => $idProduit));
+        $reponse = $selectPrepareeProduit->fetchAll();
+
+        $modifPrepareeMAJTotal = Connexion::$bdd->prepare('UPDATE paniers SET total=total-:prixAncienProduit*:qteProduits
+                    WHERE idPanier=:idPanier');
+        $modifPrepareeMAJTotal->execute(array(':prixAncienProduit' => $reponse[0]['prixHT'], ':qteProduits' => $reponse[0]['qteProduits'], ':idPanier' => $idPanier));
+
+        //Suppression du produit
         $selectPreparee = Connexion::$bdd->prepare('DELETE FROM produitsPanier WHERE idProduit=:idProduit');
         $reponse = array(':idProduit' => $idProduit);
         $req = $selectPreparee->execute($reponse);
+
         return $req;
     }
 
