@@ -187,7 +187,23 @@ class VueAdmin extends VueGenerique
         <div class="row">
             <aside class="card col-lg-7 p-1 m-2">
                 <div class="card-header">
-                    <h4>
+                    <?php
+                    switch ($ticket['etat']) {
+                        case 'Urgent':
+                            echo '<img class="m-2" src="\..\images\etats\Urgent.png">';
+                            break;
+                        case 'En cours':
+                            echo '<img class="m-2" src="\..\images\etats\En cours.png">';
+                            break;
+                        case 'Fermé':
+                            echo '<img class="m-2" src="\..\images\etats\Fermé.png">';
+                            break;
+                        case 'En attente':
+                            echo '<img class="m-2" src="\..\images\etats\En attente.png">';
+                            break;
+                    }
+                    ?>
+                    <h4 class="d-inline">
                         <span class="info"> N°<?= $ticket['idTicket'] ?></span>
                         <span class="info"> - <?= $ticket['intitule'] ?></span>
                     </h4>
@@ -268,13 +284,6 @@ class VueAdmin extends VueGenerique
         }
         unset($technicien);
 	}
-
-
-	public function afficherStatistique($result)
-	{
-	}
-
-
 
     public function nouveauTechnicien()
     {?>

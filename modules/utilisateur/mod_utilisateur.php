@@ -27,6 +27,18 @@ class ModUtilisateur extends ModGenerique
 					case 'mes-tickets':
 						$controllUtilisateur->afficheTickets();
 						break;
+					case 'tickets-fermes':
+						$controllUtilisateur->afficherTicketsFerme();
+						break;
+					case 'tickets-en-cours':
+						$controllUtilisateur->afficherTicketsEncours();
+						break;
+					case 'tickets-urgent':
+						$controllUtilisateur->afficherTicketsUrgent();
+						break;
+					case 'tickets-en-attente':
+						$controllUtilisateur->afficherTicketsEnAttente();
+						break;
 					case 'ticket':
 						if (isset($url[2]) && is_numeric($url[2])) {
 							$idTicket = addslashes(strip_tags($url[2]));

@@ -261,6 +261,16 @@ class VueUtilisateur extends VueGenerique
 
     public function afficheTickets($result)
     {
+        ?>
+        <div class="m-2 p-2">
+            <a href="/utilisateur/tickets-en-attente" class="btn btn-outline-primary">Tickets en attente</a>
+            <a href="/utilisateur/tickets-fermes" class="btn btn-outline-primary">Tickets fermés</a>
+            <a href="/utilisateur/tickets-en-cours" class="btn btn-outline-primary">Tickets en cours</a>
+            <a href="/utilisateur/tickets-urgent" class="btn btn-outline-primary">Tickets urgents</a>
+        </div>
+
+        <?php
+
         foreach ($result as &$ticket) {
         ?>
             <div class="ticket row card">
@@ -306,7 +316,23 @@ class VueUtilisateur extends VueGenerique
         <div class="row">
             <aside class="card col-lg-7 p-1 m-2">
                 <div class="card-header">
-                    <h4>
+                    <?php
+                    switch ($ticket['etat']) {
+                        case 'Urgent':
+                            echo '<img class="m-2" src="\..\images\etats\Urgent.png">';
+                            break;
+                        case 'En cours':
+                            echo '<img class="m-2" src="\..\images\etats\En cours.png">';
+                            break;
+                        case 'Fermé':
+                            echo '<img class="m-2" src="\..\images\etats\Fermé.png">';
+                            break;
+                        case 'En attente':
+                            echo '<img class="m-2" src="\..\images\etats\En attente.png">';
+                            break;
+                    }
+                    ?>
+                    <h4 class="d-inline">
                         <span class="info"> N°<?= $ticket['idTicket'] ?></span>
                         <span class="info"> - <?= $ticket['intitule'] ?></span>
                     </h4>

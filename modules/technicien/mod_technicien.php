@@ -27,6 +27,18 @@ class ModTechnicien extends ModGenerique
 							$controllTech->soumettreLogin();
 						}
 						break;
+					case 'tickets-fermes':
+						$controllTech->afficherTicketsFerme();
+						break;
+					case 'tickets-en-cours':
+						$controllTech->afficherTicketsEncours();
+						break;
+					case 'tickets-urgent':
+						$controllTech->afficherTicketsUrgent();
+						break;
+					case 'tickets-en-attente':
+						$controllTech->afficherTicketsEnAttente();
+						break;
 					case 'ticket':
 						if (isset($url[2]) && is_numeric($url[2])) {
 							$idTicket = addslashes(strip_tags($url[2]));

@@ -10,6 +10,17 @@ class ModeleUtilisateur extends ModeleGenerique
         parent::__construct();
     }
 
+    public function getTicketsEtat($idEtat, $idUtilisateur)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('select * from tickets t inner join etats e on t.idEtat = e.idEtat where t.idEtat = ? and idUtilisateur = ?');
+            $req->execute(array($idEtat, $idUtilisateur));
+            $result = $req->fetchAll();
+            return $result;
+        } catch (PDOException $e) {
+        }
+    }
+
     public function getProfil($idUtilisateur)
     {
         try {
