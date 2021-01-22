@@ -75,7 +75,6 @@ class VueProduit extends VueGenerique
         <h1>Les avis</h1>
         <section class="row" id="latest-articles">
             <?php
-            var_dump($allAvis);
             foreach ($allAvis as &$avis) {
                 ?>
                 <article class="avis card col-lg-8 m-2 p-1">

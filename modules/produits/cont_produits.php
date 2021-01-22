@@ -40,20 +40,17 @@ class ContProduit extends ContGenerique
     public function donnerAvis($idProduit)
     {
         $avisExiste = $this->modele->avisExiste($_SESSION['idUtil'], $idProduit);
-        if ($avisExiste != 0) {
-            $this->vue->messageVue("avis existe déjà");
-        } else {
-            $this->fromDonnerAvis($idProduit);
-        }
+        $this->fromDonnerAvis($idProduit, $avisExiste);
+
     }
 
-    public function fromDonnerAvis($idProduit)
+    public function fromDonnerAvis($idProduit, $avisExiste)
     {
         $this->vue->formDonnerAvis($idProduit);
-        $this->envoiAvis($idProduit);
+        $this->checkAvis($idProduit, $avisExiste);
     }
 
-    public function envoiAvis($idProduit)
+    public function checkAvis($idProduit, $avisExiste)
     {
         if (isset($_POST['commentaire'])) {
             $result = [
@@ -63,7 +60,9 @@ class ContProduit extends ContGenerique
                 'commentaire' => addslashes(strip_tags($_POST['commentaire'])),
                 'note' => addslashes(strip_tags($_POST['note']))
             ];
-            if ($this->modele->donnerAvis($result)) {
+            if($avisExiste != 0) {
+                $this->vue->messageVue("Vous avez déjà donné un avis pour ce produit");
+            } else if ($this->modele->donnerAvis($result)) {
                 $this->vue->messageVue("Votre avis a été pris en compte");
             } else
                 $this->vue->messageVue("Votre avis n'a pas pu être ajouté");

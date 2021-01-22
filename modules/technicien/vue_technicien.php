@@ -175,7 +175,7 @@ class VueTechnicien extends VueGenerique
                     <button class="btn btn-outline-primary" type="button" onclick="document.getElementById('explication').style.display = 'inherit'">Lire la suite</button>
                     <button class="btn btn-outline-primary" type="button" onclick="document.getElementById('explication').style.display = '-webkit-box'">Réduire</button>
                     <div class="col-lg card-body">
-                        <form method="post" action="/technicien/ticket/<?= $ticket['idTicket'] ?>/changer-etat" class="input-group">
+                        <form method="post" action="/technicien/changer-etat/<?= $ticket['idTicket'] ?>" class="input-group">
                             <select class="custom-select form-control" id="inputGroupSelect04" name="nouveauEtat">
                                 <option selected>Choisir...</option>
                                 <?php
@@ -193,7 +193,7 @@ class VueTechnicien extends VueGenerique
                     </div>
                 </div>
                 <div class="col-lg card-footer">
-                    <a class="btn lire-plus-r" href="/technicien/chat/<?= $ticket['idTicket'] ?>">Chat</a>
+                    <a class="btn lire-plus-r" id="btn-chat" href="/technicien/chat/<?= $ticket['idTicket'] ?>">Chat</a>
                 </div>
             </aside>
             <aside class="card col-lg-4 p-1 m-2" id="info-client">

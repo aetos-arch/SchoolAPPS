@@ -114,6 +114,10 @@ h5 {
     font-size: 16pt;
 }
 
+h6 {
+    font-size: 1.25rem !important;
+}
+
 p {
     color: var(--rich-black);
     font-size: 15pt;
@@ -133,12 +137,13 @@ form, input, label, textarea, button, select {
     padding: 20px 2px 5px 15px;
 }
 
-#sideNav div.card-header {
-    background: var(--cg-blue-light);
+div#headingOne {
+    background: #7891FF;
+    color:white;
 }
 
-#sideNav div.card-header:hover {
-    background: var(--cg-blue);
+a#btn-chat {
+    background: #395eff;
 }
 
 #brand-homelink {

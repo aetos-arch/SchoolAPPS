@@ -320,7 +320,7 @@ class VueUtilisateur extends VueGenerique
                     <button class="btn btn-outline-primary" type="button" onclick="document.getElementById('explication').style.display = '-webkit-box'">Réduire</button>
                 </div>
                 <div class="col-lg card-footer">
-                    <a class="btn lire-plus-r" href="/utilisateur/chat/<?= $ticket['idTicket'] ?>">Chat</a>
+                    <a class="btn lire-plus-r" id="btn-chat" href="/utilisateur/chat/<?= $ticket['idTicket'] ?>">Chat</a>
                 </div>
             </aside>
             <aside class="card col-lg-4 p-1 m-2" id="info-client">
