@@ -20,6 +20,7 @@ class ContPanier extends ContGenerique
             if (!isset($_SESSION['panier'])) {
                 $this->modele->creationPanier($_SESSION['idUtil']);
             }
+            $this->modele->misAJourTotalPanier($_SESSION['panier']);
             $this->vue->affichagePanier($this->modele->recuperationPanier($_SESSION['idUtil'], $_SESSION['panier']));
         }
     }

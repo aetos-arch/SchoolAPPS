@@ -39,36 +39,27 @@ CREATE TABLE IF NOT EXISTS `articles` (
   KEY `FK_articles_idUtilisateur` (`idUtilisateur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
---
--- Structure de la table `avis`
---
-
-DROP TABLE IF EXISTS `avis`;
-CREATE TABLE IF NOT EXISTS `avis` (
-  `idAvis` int(11) NOT NULL AUTO_INCREMENT,
-  `avis` text NOT NULL,
-  `noteProduit` int(11) NOT NULL,
-  `idProduit` int(11) NOT NULL,
-  `idUtilisateur` int(11) NOT NULL,
-  PRIMARY KEY (`idAvis`),
-  KEY `FK_avis_idProduit` (`idProduit`),
-  KEY `FK_avis_idUtilisateur` (`idUtilisateur`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+#------------------------------------------------------------
+# Table: avis
+#------------------------------------------------------------
+DROP TABLE IF EXISTS avis;
+CREATE TABLE IF NOT EXISTS avis(
+                     idAvis        int (11) Auto_increment  NOT NULL ,
+                     titreAvis     Varchar (100) NOT NULL ,
+                     avis          Text NOT NULL ,
+                     noteProduit   Int NOT NULL ,
+                     idProduit     Int NOT NULL ,
+                     idUtilisateur Int NOT NULL ,
+                     PRIMARY KEY (idAvis )
+)ENGINE=InnoDB;
 
 --
 -- Déchargement des données de la table `avis`
 --
 
-INSERT INTO `avis` (`idAvis`, `avis`, `noteProduit`, `idProduit`, `idUtilisateur`) VALUES
-(1, 'Ce produit est de très grande qualité ! Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', 5, 1, 1),
-(2, 'Ce produit est de très grande qualité ! Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', 4, 2, 5),
-(3, 'Ce produit est de très grande qualité ! Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', 3, 3, 5),
-(4, 'Ce produit est de très grande qualité ! Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', 4, 1, 1),
-(5, 'Ce produit est de très grande qualité !', 5, 2, 5),
-(6, 'Ce produit est de très grande qualité !', 4, 3, 1),
-(7, 'Ce produit est de très grande qualité !', 4, 1, 5);
+INSERT INTO avis (idAvis, titreAvis,avis, noteProduit, idProduit, idUtilisateur) VALUES
+('1', 'Ce produit est de très grande qualité !', 'Ce produit est de très grande qualité ! Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', '5', '1', '4'),
+('2', 'Ce produit est de très grande qualité !', 'Ce produit est de très grande qualité ! Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', '4', '2', '5');
 
 -- --------------------------------------------------------
 
@@ -90,12 +81,7 @@ CREATE TABLE IF NOT EXISTS `commandes` (
 --
 
 INSERT INTO `commandes` (`idCommandes`, `dateAchat`, `idUtilisateur`) VALUES
-(1, '2021-01-18', 1),
-(2, '2021-01-11', 1),
-(3, '2020-01-17', 5),
-(4, '2021-01-17', 5),
-(5, '2021-01-17', 5),
-(6, '2020-10-17', 5);
+(1, '2021-01-18', 1);
 
 -- --------------------------------------------------------
 
@@ -222,22 +208,7 @@ CREATE TABLE IF NOT EXISTS `produitscommandes` (
 
 INSERT INTO `produitscommandes` (`IdProduitCommande`, `nomProduit`, `qteProduit`, `prixHT`, `description`, `idCommandes`) VALUES
 (1, 'SchoolNet', 2, 50, 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', 1),
-(2, 'E-education', 6, 1000.99, 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', 1),
-(3, 'SchoolNet', 6, 1000.99, 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', 2),
-(4, 'SchoolDev', 6, 1000.99, 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', 2),
-(5, 'E-education', 6, 1000.99, 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', 2),
-(6, 'SchoolNet', 2, 50, 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', 4),
-(7, 'E-education', 6, 1000.99, 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', 4),
-(8, 'SchoolNet', 6, 1000.99, 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', 6),
-(9, 'SchoolDev', 6, 1000.99, 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', 5),
-(10, 'E-education', 6, 1000.99, 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', 3),
-(11, 'SchoolNet', 2, 50, 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', 6),
-(12, 'E-education', 6, 1000.99, 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', 2),
-(13, 'SchoolNet', 6, 1000.99, 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', 4),
-(14, 'SchoolDev', 6, 1000.99, 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', 6),
-(15, 'E-education', 6, 1000.99, 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', 5),
-(16, 'SchoolNet', 2, 50, 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', 3),
-(17, 'E-education', 6, 1000.99, 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', 3);
+(2, 'E-education', 6, 1000.99, 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', 1);
 
 -- --------------------------------------------------------
 
@@ -346,11 +317,13 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
 --
 
 INSERT INTO `utilisateurs` (`idUtilisateur`, `login`, `nom`, `prenom`, `hashMdp`, `emailFacturation`, `emailLivraison`, `telephone`, `dateNaissance`, `idTypeUtilisateur`) VALUES
-(1, 'utilisateur', 'Utilisateur', 'Client', '$2y$10$90yGN9i3D0/TIJVoseZUN.qOf1SjmszFNSnC.QT9NLExI9FmmiHGi', 'utilisateur@hotmail.fr', 'utilisateur@hotmail.fr', 1041010101, '2021-01-01', 3),
-(2, 'technicien', 'Technicien', 'technicien', '$2y$10$90yGN9i3D0/TIJVoseZUN.qOf1SjmszFNSnC.QT9NLExI9FmmiHGi', 'technicien@hotmail.fr', 'technicien@hotmail.fr', 2024020202, '2021-01-02', 2),
+(1, 'lola', 'CALVARO', 'Lola', '$2y$10$7gMrOyfg0CT11M4L08TVbe0FnomrhAK2YpSEtZnW/mphpOpcGR91W', 'lola.calvarro@hotmail.fr', 'lola.calvarro@hotmail.fr', 1041010101, '2001-03-03', 2),
+(2, 'remilevel', 'LEVEL', 'Rémi', '$2y$10$JI3UvhSqu288e1ooQcaHGex0IHP6tOHLpbMyHG2x0jnsI8Gg0WHb2', 'remi.level@gmail.com', 'remi.level@gmail.com', 2024020202, '2000-02-08', 2),
 (3, 'admin', 'Admin', 'admin', '$2y$10$90yGN9i3D0/TIJVoseZUN.qOf1SjmszFNSnC.QT9NLExI9FmmiHGi', 'admin@hotmail.fr', 'admin@hotmail.fr', 303030303, '2021-01-03', 1),
-(4, 'VotreTechnicien', 'VotreTechnicien', 'VotreTechnicien', '$2y$10$90yGN9i3D0/TIJVoseZUN.qOf1SjmszFNSnC.QT9NLExI9FmmiHGi', 'technicien2@hotmail.fr', 'technicien2@hotmail.fr', 612562024, '2021-01-02', 2),
-(5, 'Client', 'Jean', 'Marc', '$2y$10$90yGN9i3D0/TIJVoseZUN.qOf1SjmszFNSnC.QT9NLExI9FmmiHGi', 'jean-marc93@hotmail.fr', 'jean-marc93@hotmail.fr', 612562024, '2021-01-02', 3);
+(4, 'bob-le-bricoleur', 'BRICO', 'Bob', '$2y$10$caw6KJDyFvRxwi2yVvu94OfTpiAGY7dB4ad/.l///S4bxcDnFW0ae', 'technicien@schoolapps.fr', 'technicien@schoolapps.fr', 612562024, '1998-01-02', 2),
+(5, 'jm', 'Jean', 'Marc', '$2y$10$90yGN9i3D0/TIJVoseZUN.qOf1SjmszFNSnC.QT9NLExI9FmmiHGi', 'jean-marc93@hotmail.fr', 'jean-marc93@hotmail.fr', 612562024, '2021-01-02', 3),
+(6, 'abossard', 'BOSSARD', 'Aurélien', '$2y$10$YDNKgQKW/RpSG8VRQCbjquJtZW2R56L7eBM27TrVs6mJuhEaX1T6W', 'abossard@iut.univ-paris8.fr', NULL, 0123456789, '1980-01-01', 3),
+(7, 'alice', 'DUPOND', 'Alice', '$2y$10$ltiNlkig0oKWG9fUejUD6.M/5hOWLzTVElWUTHgknDvEyv6DR.lM6', 'alice.dupond2001@gmail.com', 'alice.dupond2001@gmail.com', 0923456789, '2001-06-04', 3);
 
 --
 -- Contraintes pour les tables déchargées

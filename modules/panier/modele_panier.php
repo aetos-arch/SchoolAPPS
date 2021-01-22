@@ -242,4 +242,28 @@ class ModelePanier extends ModeleGenerique
             unset($_SESSION['panier']);
         }
     }
+
+    function misAJourTotalPanier($idPanier){
+        //Mis à jour du total du panier
+        $selectPrepareeProduit = Connexion::$bdd->prepare('SELECT 
+                T0.qteProduits,
+                T1.prixHT
+                FROM produitspanier T0
+                INNER JOIN produits T1 ON T0.idProduit = T1.idProduit
+                WHERE idPanier=:idPanier');
+        $selectPrepareeProduit->execute(array(':idPanier' => $idPanier));
+        $reponse = $selectPrepareeProduit->fetchAll();
+
+        $total = 0;
+        for ($i = 0; $i < count($reponse); $i++) {
+            echo 'test';
+            $total += $reponse[$i]['prixHT']*$reponse[$i]['qteProduits'];
+        }
+
+        $modifPrepareeMAJTotal = Connexion::$bdd->prepare('UPDATE paniers SET total=total+:totalMAJ
+                    WHERE idPanier=:idPanier');
+        $modifPrepareeMAJTotal->execute(array(':totalMAJ' => $total, ':idPanier' => $idPanier));
+
+    }
+
 }
