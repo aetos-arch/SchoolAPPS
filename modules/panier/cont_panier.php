@@ -26,7 +26,7 @@ class ContPanier extends ContGenerique
 
     function supprimerProduit($idProduit)
     {
-        if ($this->modele->supprimerProduit($idProduit) == true) {
+        if ($this->modele->supprimerProduit($idProduit, $_SESSION['panier']) == true) {
             header('Location:/panier');
             //TODO : voir pour une redirection vers panier
             // + voir ce qu'on peut faire pour un retour arrière pour éviter de remettre dans le panier
