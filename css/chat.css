@@ -4,16 +4,31 @@
    font-family: "Helvetica", cursive;
  }
  
- body, input, button {
-   font-family: Ubuntu, sans-serif;
+ body {
+    font-family: Ubuntu, sans-serif;
  }
+
+
+input {
+  border-radius: 3px;
+  box-shadow: 0 15px 30px rgba(black,.1);
+  border: 0;
+}
+
+button {
+  border-radius: 3px;
+  box-shadow: 0 15px 30px rgba(black,.1);
+  border: 0;
+  background: #395eff;
+  color:white;
+}
  
  header {
    text-align: center;
  }
  
  .messages {
-   background-color: rgba(123, 169, 206, 0.356);
+   background-color: rgba(204, 209, 226, 0.356);
    border-radius: 5px;
    padding: 1em;
    height: 50vh;
@@ -24,8 +39,12 @@
    color: rgb(0, 0, 0);
    padding: 0.3em;
  }
+
+ .date {
+   font-size: 12px;
+ }
  
- .date, .author {
+ .author {
    font-weight: bold;
  }
  
@@ -49,6 +68,7 @@
  
  #content {
    width: 60%;
+   
  }
  
  button[type="submit"]{
