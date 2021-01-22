@@ -70,9 +70,17 @@ class VueContact extends VueGenerique
     }
 
 
-    public function confirmationEnvoiMail()
-    {
-        ?> <h1>E-mail bien envoyé :D !</h1> <?php
+    public function confirmationEnvoiMail() {
+    ?>
+        <div class="container-fluid row">
+            <div class="login-form">
+                <div class="big-info">
+                    <h1>E-mail bien envoyé !</h1>
+                </div><br>
+                <h1 class="big-info" id="error-h1"><a class="big-info btn btn-outline-success" href="/home">Page d'accueil</a>
+                </h1>
+            </div>
+        </div>
+    <?php
     }                                  
   }
-
