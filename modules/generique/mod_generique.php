@@ -5,16 +5,17 @@ require_once "cont_generique.php";
 require_once "modele_generique.php";
 require_once "vue_generique.php";
 
-class ModGenerique{
+class ModGenerique
+{
 
     protected static $url;
 
-    function __construct(){
+    function __construct()
+    {
         $controleur = new ContGenerique(new ModeleGenerique(), new VueGenerique());
     }
-
 }
 ?>
 <?php
-    $modConnexion = new ModGenerique();
+$modConnexion = new ModGenerique();
 ?>
