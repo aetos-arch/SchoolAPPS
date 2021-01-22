@@ -61,19 +61,13 @@ class VueUtilisateur extends VueGenerique
                                         </div>
                                     </div>
                                 </div>
-                                <div id="accordion">
+                                <li class="nav-item">
                                     <div class="card">
                                         <div class="card-header" id="headingOne">
-                                            <button class="btn btn-nav dropdown-toggle" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseOne">
-                                                Vos avis
-                                            </button>
-                                        </div>
-                                        <div id="collapseThree" class="collapse" aria-labelledby="tickets" data-parent="#accordion">
-                                            <a class="dropdown-item" href="/utilisateur/mes-avis">Mes avis</a>
-                                            <a class="dropdown-item" href="/utilisateur/donner-avis">Donner un avis</a>
+                                            <a href="/utilisateur/mes-avis" class="btn btn-nav">Mes avis</a>
                                         </div>
                                     </div>
-                                </div>
+                                </li>
                             </ul>
                         </nav>
                         <div class="col-lg">
