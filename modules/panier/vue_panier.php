@@ -7,64 +7,30 @@ class VuePanier extends VueGenerique
 
     function affichagePanier($listeProduit)
     {
-?>
-        <?php
+        echo '<section><br><h1>Panier</h1><hr>';
         if (empty($listeProduit)) {
-            //TODO : Mise en page du message
-        ?>
-            <div class="container-fluid row">
-                <div class="login-form">
-                    <div class="big-info">
-                        <h1>Votre panier est vide, remplissez-le !</h1>
-                    </div>
-                    <h1 class="big-info" id="error-h1"><a class="big-info btn btn-outline-success" href="/home">Page d'accueil</a></h1>
-                </div>
+            echo '  <div class="container-fluid row">
+            <div class="login-form">
+                <div class="big-info"><h1>Votre panier est vide, remplissez-le !<br/></h1></div><br>
+                <h1 class="big-info" id="error-h1"><a class="big-info btn btn-outline-success" href="/home">Page d\'accueil</a></h1>
             </div>
-        <?php
+        </div>';
         } else {
-            echo '   <section>
-            <div class="row">
-            <!--Grid column-->
-            <div class="col-lg-8">
-
-            <!-- Card -->
-            <div class="mb-3">
-            <div class="pt-4 wish-list">
-            <h1 class="mb-4">Panier</h1>';
-
             for ($i = 0; $i < count($listeProduit); $i++) {
                 echo '
-                <div class="row mb-4">
-                    <div class="col-md-7 col-lg-9 col-xl-9">
-                        <div>
-                            <div class="d-flex justify-content-between">
-                                <h5>' . ($listeProduit[$i])['nomProduit'] . '</h5>
-                                <div>
-                                    <div class="def-number-input number-input safari_only mb-0 w-100">
-                                        <form class="row container-fluid" action="/panier/moinsQte/' . ($listeProduit[$i])['idProduit'] . '">
-                                            <input class="minus decrease" type="submit" value="-">
-                                        </form>
-                                        <label class="quantity" name="quantity" type="number">' . ($listeProduit[$i])['qteProduits'] . '</label>
-                                         <form class="row container-fluid" action="/panier/plusQte/' . ($listeProduit[$i])['idProduit'] . '">
-                                            <input class="plus increase" type="submit" value="+">
-                                         </form>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <a href="/panier/suppression/' . ($listeProduit[$i])['idProduit'] . '" type="button" class="card-link-secondary small text-uppercase mr-3">
-                                    <i class="fas fa-trash-alt mr-1"></i>Supprimer l\'article</a>
-                                </div>
-                                <p class="mb-0"><span><strong id="summary">' . ($listeProduit[$i])['prixHT'] . ' €</strong></span></p class="mb-0">
-                            </div>
+                    <section class="row"><aside class="col-lg-12 p-1 m-2">
+                    <div class=card>
+                        <div class = "header">' . ($listeProduit[$i])['nomProduit'] . '</div>
+                        <div class="card-body" id="user-info">' . ($listeProduit[$i])['prixHT'] . ' €
+                        <div class = "quantiteProduit">
+                            <form class="row container-fluid" action="/panier/moinsQte/' . ($listeProduit[$i])['idProduit'] . '"><input class = "moinsQte" type="submit" value="-"/></form>
+                            ' . ($listeProduit[$i])['qteProduits'] . '
+                            <form class="row container-fluid" action="/panier/plusQte/' . ($listeProduit[$i])['idProduit'] . '"><input class = "plusQte" type="submit" value="+"/></form>
                         </div>
-                    </div>
-                </div>
-                         ';
+                <a href="/panier/suppression/' . ($listeProduit[$i])['idProduit'] . '">Supprimer</a><br><br>
+                </div></div></aside></section>';
             }
-            /*echo '
+            echo '
                 <div class = "totalPanier">
                     <h2>Total panier HT</h2>
                     <table>
@@ -78,21 +44,14 @@ class VuePanier extends VueGenerique
                         <input class="btn btn-success" type="submit" id="submit" value="Valider la commande">
                     </form>
                 </div>
-                </section>';*/
-        ?>
-            </div>
-            </div>
-            </div>
-            </div>
-            </section>
-        <?php
+                </section>';
         }
     }
 
     function affichageCheckOut()
     {
         //TODO : affichage du récap de la commande
-        ?>
+?>
         <section class="container content-block login-form">
             <form class="row container-fluid" action="/panier/commandeValide" method="post">
                 <div class="col-5 form-group mx-auto">
@@ -122,11 +81,11 @@ class VuePanier extends VueGenerique
                         <hr>
                         <h3>Carte de paiement</h3>
                         <label for="numCarteFact">Numéro de carte *</label>
-                        <input name="numCarteFact" type="text" class="form-control" required placeholder="Numéro de carte *">
+                        <input type="password" name="numCarteFact" class="form-control" required placeholder="Numéro de carte *">
                         <label for="dateExpfact">Date d'expiration *</label>
                         <input name="dateExpfact" type="date" class="form-control" required placeholder="Date d'expiration *">
                         <label for="cvc">CVC *</label>
-                        <input name="cvc" type="number" class="form-control" required placeholder="CVC *">
+                        <input name="cvc" type="password" class="form-control" required placeholder="CVC *">
                         <input name="condUtilisation" type="checkbox" required>J'ai lu et accepté.e les <a href="/conditions-generales-de-ventes/">conditions générales</a> *
                         <input class="btn btn-success" type="submit" id="submit" value="Commander">
                     </div>

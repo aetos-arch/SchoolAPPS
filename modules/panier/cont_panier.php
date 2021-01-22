@@ -27,9 +27,9 @@ class ContPanier extends ContGenerique
     function supprimerProduit($idProduit)
     {
         if ($this->modele->supprimerProduit($idProduit) == true) {
+            header('Location:/panier');
             //TODO : voir pour une redirection vers panier
             // + voir ce qu'on peut faire pour un retour arrière pour éviter de remettre dans le panier
-            $this->vue->affichageProduitSup();
         } else {
             $this->vue->affichageSupProduitErreur();
         }
@@ -41,6 +41,7 @@ class ContPanier extends ContGenerique
             $this->modele->creationPanier($_SESSION['idUtil']);
         }
         $this->modele->ajouterProduitPanier($idProduit, $this->modele->getIDPanier($_SESSION['idUtil']));
+        header('Location: /panier');
     }
 
     //Fonctions pour les vues
