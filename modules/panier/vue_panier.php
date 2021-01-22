@@ -14,7 +14,7 @@ class VuePanier extends VueGenerique
             echo '  <div class="container-fluid row">
             <div class="login-form">
                 <div class="big-info"><h1>Votre panier est vide, remplissez-le !<br/></h1></div>
-                <h1 class="big-info" id="error-h1"><a class="big-info btn btn-outline-success" href="/home">Page d\'accueil</a></h1>
+                <h1 class="big-info" id="error-h1"><a class="big-info btn btn-outline-success" href="/produits">Nos produits</a></h1>
             </div>
         </div>';
         } else {
