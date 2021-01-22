@@ -71,7 +71,7 @@ class VueUtilisateur extends VueGenerique
                             </ul>
                         </nav>
                         <div class="col-lg">
-                            <h1>Votre espace, <?php echo ucfirst($_SESSION['login']); ?> </h1>
+                            <h1>Votre espace utilisateur, <?php echo ucfirst($_SESSION['login']); ?> </h1>
                             <?= $moduleContent ?>
                         </div>
                     </section>
