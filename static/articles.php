@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <h2 class="card-title">L’impact du
                         numérique sur l'apprentissage des élèves</h2>
-                    <img class="img-fluid" src="../images/article/macbook.jpg">
+                    <img style="padding:30px;" class="img-fluid" src="../images/article/macbook.jpg">
                     <p class="card-text">"Le Café pédagogique présente une étude de Jean Heutte publiée dans la révue
                         Spirale en 2008. "Nous revenons sur l’un des articles de Jean Heutte car, à notre
                         connaissance, cette recherche scientifique (respectant les principes méthodologiques issus
@@ -20,7 +20,7 @@
             <article class="actu card text-center">
                 <div class="card-body">
                     <h2 class="card-title">L’activité sportive : essentielle pour améliorer la concentration</h5>
-                        <img class="img-fluid" src="../images/article/sport.jpg">
+                        <img style="padding:30px;" class="img-fluid" src="../images/article/sport.jpg">
                         <p class="card-text">"12 minutes d'exercice physique seraient efficaces pour augmenter l'attention et la
                             capacité à se concentrer des adolescents selon les résultats d'une étude publiée dans la
                             revue médicale Frontiers in Psychology...</p>
@@ -31,7 +31,7 @@
             <article class="actu card text-center">
                 <div class="card-body">
                     <h2 class="card-title">Le développement du numérique dans l’enseignement</h2>
-                    <img class="img-fluid" src="../images/article/school.jpg">
+                    <img style="padding:30px;" class="img-fluid" src="../images/article/school.jpg">
                     <p class="card-text">"L’usage du numérique est largement développé pour mieux assurer la
                         différenciation de l’enseignement, pour favoriser l’interactivité et le plaisir d’apprendre, pour
                         réduire les difficultés scolaires et pour faciliter des démarches de recherche...</p>

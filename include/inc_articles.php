@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <section class="row">
             <div class="articles col-lg-3">
-                <h4>L’impact du
+                <h4 class="tArticleAccueil">L’impact du
                     numérique sur l'apprentissage des élèves</h4>
                 <img class="img-thumbnail" src="/images/article/macbook.jpg" alt="logo produit">
                 <div class="row">
@@ -15,7 +15,7 @@
                 <a class="btn lire-plus" href="article1">Lire plus</a>
             </div>
             <div class="articles col-lg-3">
-                <h4>L’activité sportive : essentielle pour améliorer la concentration</h4>
+                <h4 class="tArticleAccueil">L’activité sportive : essentielle pour améliorer la concentration</h4>
                 <img class="img-thumbnail" src="/images/article/sport.jpg" alt="logo produit">
                 <div class="row">
                     <p>
@@ -27,7 +27,7 @@
                 <a class="btn lire-plus" href="article2">Lire plus</a>
             </div>
             <div class="articles col-lg-3">
-                <h4>Le développement du numérique dans l’enseignement</h4>
+                <h4 class="tArticleAccueil">Le développement du numérique dans l’enseignement</h4>
                 <img class="img-thumbnail" src="/images/article/school.jpg" alt="logo produit">
                 <div class="row">
                     <p>
