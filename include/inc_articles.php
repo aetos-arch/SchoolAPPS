@@ -3,71 +3,42 @@
     <div class="container-fluid">
         <section class="row">
             <div class="articles col-lg-3">
-                <h4>Titre de l'article</h4>
-                <img class="img-thumbnail" src="../images/200x200.png" alt="logo produit">
+                <h4>L’impact du
+                    numérique sur l'apprentissage des élèves</h4>
+                <img class="img-thumbnail" src="/images/article/macbook.jpg" alt="logo produit">
                 <div class="row">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        Sit amet porttitor eget dolor morbi non arcu. Consectetur a erat nam at lectus urna duis. Ornare arcu dui vivamus arcu felis bibendum ut tristique et.
+                        "Les élèves habitués à l'usage du numérique en classe réussissent significativement un
+                        meilleur apprentissage à long terme et ce indépendamment du type de support..."
                     </p>
                 </div>
-                <a class="btn lire-plus" href="">Lire plus</a>
+                <a class="btn lire-plus" href="article1">Lire plus</a>
             </div>
             <div class="articles col-lg-3">
-                <h4>Titre de l'article</h4>
-                <img class="img-thumbnail" src="../images/200x200.png" alt="logo produit">
+                <h4>L’activité sportive : essentielle pour améliorer la concentration</h4>
+                <img class="img-thumbnail" src="/images/article/sport.jpg" alt="logo produit">
                 <div class="row">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        Sit amet porttitor eget dolor morbi non arcu. Consectetur a erat nam at lectus urna duis. Ornare arcu dui vivamus arcu felis bibendum ut tristique et.
+                        "12 minutes d'exercice physique seraient efficaces pour augmenter l'attention et la
+                        capacité à se concentrer des adolescents selon les résultats d'une étude publiée dans la
+                        revue médicale Frontiers in Psychology..."
                     </p>
                 </div>
-                <a class="btn lire-plus" href="">Lire plus</a>
+                <a class="btn lire-plus" href="article2">Lire plus</a>
             </div>
             <div class="articles col-lg-3">
-                <h4>Titre de l'article</h4>
-                <img class="img-thumbnail" src="../images/200x200.png" alt="logo produit">
+                <h4>Le développement du numérique dans l’enseignement</h4>
+                <img class="img-thumbnail" src="/images/article/school.jpg" alt="logo produit">
                 <div class="row">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        Sit amet porttitor eget dolor morbi non arcu. Consectetur a erat nam at lectus urna duis. Ornare arcu dui vivamus arcu felis bibendum ut tristique et.
+                        “L’usage du numérique est largement développé pour mieux assurer la
+                        différenciation de l’enseignement, pour favoriser l’interactivité et le plaisir d’apprendre, pour
+                        réduire les difficultés scolaires..."
                     </p>
                 </div>
-                <a class="btn lire-plus" href="">Lire plus</a>
+                <a class="btn lire-plus" href="article3">Lire plus</a>
             </div>
-            <div class="articles col-lg-3">
-                <h4>Titre de l'article</h4>
-                <img class="img-thumbnail" src="../images/200x200.png" alt="logo produit">
-                <div class="row">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        Sit amet porttitor eget dolor morbi non arcu. Consectetur a erat nam at lectus urna duis. Ornare arcu dui vivamus arcu felis bibendum ut tristique et.
-                    </p>
-                </div>
-                <a class="btn lire-plus" href="">Lire plus</a>
-            </div>
-            <div class="articles col-lg-3">
-                <h4>Titre de l'article</h4>
-                <img class="img-thumbnail" src="../images/200x200.png" alt="logo produit">
-                <div class="row">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        Sit amet porttitor eget dolor morbi non arcu. Consectetur a erat nam at lectus urna duis. Ornare arcu dui vivamus arcu felis bibendum ut tristique et.
-                    </p>
-                </div>
-                <a class="btn lire-plus" href="">Lire plus</a>
-            </div>
-            <div class="articles col-lg-3">
-                <h4>Titre de l'article</h4>
-                <img class="img-thumbnail" src="../images/200x200.png" alt="logo produit">
-                <div class="row">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        Sit amet porttitor eget dolor morbi non arcu. Consectetur a erat nam at lectus urna duis. Ornare arcu dui vivamus arcu felis bibendum ut tristique et.
-                    </p>
-                </div>
-                <a class="btn lire-plus" href="">Lire plus</a>
-            </div>
+
         </section>
     </div>
 </div>
