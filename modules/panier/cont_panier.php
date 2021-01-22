@@ -40,7 +40,7 @@ class ContPanier extends ContGenerique
         if (!isset($_SESSION['panier'])) {
             $this->modele->creationPanier($_SESSION['idUtil']);
         }
-        $this->modele->ajouterProduitPanier($idProduit, $this->modele->getIDPanier($_SESSION['idUtil']));
+        $this->modele->ajouterProduitPanier($idProduit, $_SESSION['panier']);
         header('Location: /panier');
     }
 
