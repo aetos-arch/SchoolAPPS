@@ -5,6 +5,7 @@ require_once 'modules/generique/vue_generique.php';
 class VuePanier extends VueGenerique
 {
 
+    //TEST POUR COMMIT
     function affichagePanier($listeProduit)
     {
         echo '<section><br><h1>Panier</h1><hr>';
@@ -95,25 +96,70 @@ class VuePanier extends VueGenerique
 
     function passageCommandeValide(){
         //TODO : rediriger car si la personne reste sur la page et rafraichit, message d'erreur car le panier n'existe plus.
-        echo '<span class="info-utilisateur">Votre commande est passé avec succès.</span>';
+        //TODO : voir ce qu'on peut avoir après la commande.
+        ?>
+        <div class="container-fluid row">
+            <div class="login-form">
+                <div class="big-info"><h1>Votre commande a été passé avec succès.</h1></div><br>
+                <h1 class="big-info" id="error-h1"><a class="big-info btn btn-outline-success" href="/home">Page d'accueil</a>
+                    <a class="big-info btn btn-outline-success" href="/utilisateur/mes-commandes">Mes commandes</a></h1>
+            </div>
+        </div>
+        <?php
     }
 
     function erreurPassageCommande()
     {
         //TODO : vérifier que la commande n'est vrmt pas passé
-        echo '<span class="info-utilisateur">Votre commande n\'est pas passé.
-         L\'achat a été annulé, veuillez réessayer.</span>';
+        ?>
+        <div class="container-fluid row">
+            <div class="login-form">
+                <div class="big-info"><h1>Nous sommes désolés mais il semblerait qu'il y ait eu une erreur dans la commande.<br>
+                        L'achat a été annulé, veuillez réessayer s'il vous plaît.<br>
+                        Si le problème persiste, veuillez nous envoyer un e-mail à <u>contact@schoolaps.studio</u>.</h1></div><br>
+                <h1 class="big-info" id="error-h1"><a class="big-info btn btn-outline-success" href="/home">Page d'accueil</a>
+                    <a class="big-info btn btn-outline-success" href="/panier">Mon panier</a></h1>
+            </div>
+        </div>
+        <?php
     }
 
     function affichageProduitSup(){
-        echo '<span class="info-utilisateur">Le produit a été supprimé.</span>';
+        //TODO : récupérer le nom du produit qui a été supprimé.
+        ?>
+        <div class="container-fluid row">
+            <div class="login-form">
+                <div class="big-info"><h1>Le produit a bien été supprimé de votre panier.</h1></div><br>
+                <h1 class="big-info" id="error-h1"><a class="big-info btn btn-outline-success" href="/home">Page d'accueil</a>
+                    <a class="big-info btn btn-outline-success" href="/panier">Mon panier</a></h1>
+            </div>
+        </div>
+        <?php
     }
 
     function affichageSupProduitErreur(){
-        echo '<span class="info-utilisateur">Il y a eu une erreur, le produit n\'a pas été supprimé, veuillez recommencer.</span>';
+        ?>
+        <div class="container-fluid row">
+            <div class="login-form">
+                <div class="big-info"><h1>Nous sommes désolés mais il semblerait qu'il y ait eu une erreur dans la suppression du produit,<br>
+                        veuillez réessayer s'il vous plaît.<br>
+                        Si le problème persiste, veuillez nous envoyer un e-mail à <u>contact@schoolaps.studio</u>.</h1></div><br>
+                <h1 class="big-info" id="error-h1"><a class="big-info btn btn-outline-success" href="/home">Page d'accueil</a>
+                    <a class="big-info btn btn-outline-success" href="/panier">Mon panier</a></h1>
+            </div>
+        </div>
+        <?php
     }
 
     function affichageDMDUtilCo(){
-        echo '<span class="info-utilisateur">Vous devez être connecté pour avoir un panier !</span>';
+        ?>
+        <div class="container-fluid row">
+            <div class="login-form">
+                <div class="big-info"><h1>Vous devez être connecté(e) pour avoir un panier !</h1></div><br>
+                <h1 class="big-info" id="error-h1"><a class="big-info btn btn-outline-success" href="/home">Page d'accueil</a>
+                    <a class="big-info btn btn-outline-success" href="/connexion">Page de connexion</a></h1>
+            </div>
+        </div>
+        <?php
     }
 }

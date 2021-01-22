@@ -20,7 +20,7 @@ class ContConnexion extends ContGenerique {
                 $_SESSION['idTypeUtilisateur'] = $requete[0]['idTypeUtilisateur'];
                 $this->vue->affichageConnexionReussie();
             }else{
-                $this->vue->mdpErronne();
+                $this->vue->IDMDPErrone();
             }
         }else{
             $this->vue->IDMDPErrone();
