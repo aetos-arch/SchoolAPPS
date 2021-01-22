@@ -81,7 +81,7 @@ class VuePanier extends VueGenerique
                         <hr>
                         <h3>Carte de paiement</h3>
                         <label for="numCarteFact">Numéro de carte *</label>
-                        <input type="password" name="numCarteFact" class="form-control" required placeholder="Numéro de carte *">
+                        <input type="text" name="numCarteFact" class="form-control" required placeholder="Numéro de carte *">
                         <label for="dateExpfact">Date d'expiration *</label>
                         <input name="dateExpfact" type="date" class="form-control" required placeholder="Date d'expiration *">
                         <label for="cvc">CVC *</label>
