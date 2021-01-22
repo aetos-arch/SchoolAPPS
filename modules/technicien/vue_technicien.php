@@ -128,7 +128,22 @@ class VueTechnicien extends VueGenerique
         ?>
             <div class="ticket row card">
                 <div class="col-lg card-header">
-                    <img src="../../images/60x60.png">
+                    <?php
+                        switch ($ticket['etat']) {
+                            case 'Urgent':
+                                echo '<img class="m-2" src="\..\images\etats\Urgent.png">';
+                                break;
+                            case 'En cours':
+                                echo '<img class="m-2" src="\..\images\etats\En cours.png">';
+                                break;
+                            case 'Fermé':
+                                echo '<img class="m-2" src="\..\images\etats\Fermé.png">';
+                                break;
+                            case 'En attente':
+                                echo '<img class="m-2" src="\..\images\etats\En attente.png">';
+                                break;
+                        }
+                    ?>
                     <h4 class="d-inline"><?= $ticket['intitule'] ?> - N°<?= $ticket['idTicket'] ?></h4>
                 </div>
                 <div class="col-lg card-body">
@@ -186,7 +201,6 @@ class VueTechnicien extends VueGenerique
                 </div>
                 <div class="col-lg card-footer">
                     <a class="btn lire-plus-r" href="/technicien/ticket/<?= $ticket['idTicket'] ?>">Ecrire un message</a>
-                    <a class="btn lire-plus-r" href="/technicien/ticket/<?= $ticket['idTicket'] ?>">Changer état</a>
                 </div>
             </aside>
             <aside class="card col-lg-4 p-1 m-2" id="info-client">
