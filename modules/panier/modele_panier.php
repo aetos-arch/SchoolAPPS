@@ -260,7 +260,7 @@ class ModelePanier extends ModeleGenerique
             $total += $reponse[$i]['prixHT']*$reponse[$i]['qteProduits'];
         }
 
-        $modifPrepareeMAJTotal = Connexion::$bdd->prepare('UPDATE paniers SET total=total+:totalMAJ
+        $modifPrepareeMAJTotal = Connexion::$bdd->prepare('UPDATE paniers SET total=:totalMAJ
                     WHERE idPanier=:idPanier');
         $modifPrepareeMAJTotal->execute(array(':totalMAJ' => $total, ':idPanier' => $idPanier));
 
