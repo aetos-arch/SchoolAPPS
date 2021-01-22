@@ -148,6 +148,30 @@ class ContUtilisateur extends ContGenerique
 		$this->vue->afficheTickets($result);
 	}
 
+    public function afficherTicketsFerme()
+    {
+        $result = $this->modele->getTicketsEtat(0, $_SESSION['idUtil']);
+        $this->vue->afficheTickets($result);
+    }
+
+    public function afficherTicketsEnCours()
+    {
+        $result = $this->modele->getTicketsEtat(1, $_SESSION['idUtil']);
+        $this->vue->afficheTickets($result);
+    }
+
+    public function afficherTicketsUrgent()
+    {
+        $result = $this->modele->getTicketsEtat(2, $_SESSION['idUtil']);
+        $this->vue->afficheTickets($result);
+    }
+
+    public function afficherTicketsEnAttente()
+    {
+        $result = $this->modele->getTicketsEtat(3, $_SESSION['idUtil']);
+        $this->vue->afficheTickets($result);
+    }
+
 	public function afficheTicket($idTicket)
 	{
 		$result = $this->modele->getTicket($idTicket);
@@ -165,6 +189,26 @@ class ContUtilisateur extends ContGenerique
 	{
 		$result = $this->modele->getCommande($idCommande);
 		$this->vue->afficheCommande($result);
+	}
+
+	public function donnerAvis($nomProduit)
+	{
+		$idProduit = $this->modele->getIdProduit($nomProduit);
+		$avisExiste = $this->modele->avisExiste($_SESSION['idUtilisateur'], $idProduit);
+		if ($avisExiste != 0) {
+			$this->vue->messageVue("avis existe déjà");
+		} else if (isset($_POST['commentaire'])) {
+			$result = [
+				'idUtilisateur' => $_SESSION['idUtilisateur'],
+				'idProduit' => addslashes(strip_tags($idProduit)),
+				'titre' => addslashes(strip_tags($_POST['titre'])),
+				'commentaire' => addslashes(strip_tags($_POST['commentaire'])),
+				'note' => addslashes(strip_tags($_POST['note']))
+			];
+			$this->modele->donnerAvis($result);
+		} else {
+			$this->vue->formDonnerAvis();
+		}
 	}
 
     public function listerAvis()

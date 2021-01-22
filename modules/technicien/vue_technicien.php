@@ -117,6 +117,17 @@ class VueTechnicien extends VueGenerique
 
     public function afficheTickets($result)
     {
+        ?>
+        <div class="m-2 p-2">
+            <a href="/technicien/tickets-en-attente" class="btn btn-outline-primary">Tickets en attente</a>
+            <a href="/technicien/tickets-fermes" class="btn btn-outline-primary">Tickets fermés</a>
+            <a href="/technicien/tickets-en-cours" class="btn btn-outline-primary">Tickets en cours</a>
+            <a href="/technicien/tickets-urgent" class="btn btn-outline-primary">Tickets urgents</a>
+        </div>
+
+        <?php
+
+
         foreach ($result as &$ticket) {
         ?>
             <div class="ticket row card">
@@ -162,12 +173,25 @@ class VueTechnicien extends VueGenerique
         <div class="row">
             <aside class="card col-lg-7 p-1 m-2">
                 <div class="card-header">
-                    <h4>
+                    <?php
+                    switch ($ticket['etat']) {
+                        case 'Urgent':
+                            echo '<img class="m-2" src="\..\images\etats\Urgent.png">';
+                            break;
+                        case 'En cours':
+                            echo '<img class="m-2" src="\..\images\etats\En cours.png">';
+                            break;
+                        case 'Fermé':
+                            echo '<img class="m-2" src="\..\images\etats\Fermé.png">';
+                            break;
+                        case 'En attente':
+                            echo '<img class="m-2" src="\..\images\etats\En attente.png">';
+                            break;
+                    }
+                    ?>
+                    <h4 class="d-inline">
                         <span class="info"> N°<?= $ticket['idTicket'] ?></span>
                         <span class="info"> - <?= $ticket['intitule'] ?></span>
-                    </h4>
-                    <h4 <span class="info"> État <?= $ticket['etat']; ?></span>
-                        <span class="info"> - Id-Produit: <?= $ticket['idProduit']; ?></span>
                     </h4>
                 </div>
                 <div class="col-lg card-body">
@@ -177,7 +201,6 @@ class VueTechnicien extends VueGenerique
                     <div class="col-lg card-body">
                         <form method="post" action="/technicien/changer-etat/<?= $ticket['idTicket'] ?>" class="input-group">
                             <select class="custom-select form-control" id="inputGroupSelect04" name="nouveauEtat">
-                                <option selected>Choisir...</option>
                                 <?php
                                 foreach ($etats as &$etat) {
                                 ?> <option value="<?= $etat['idEtat'] ?>"><?= ucfirst($etat['etat']) ?></option>

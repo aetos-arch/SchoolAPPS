@@ -131,14 +131,31 @@ class ContTechnicien extends ContGenerique
 		$this->vue->afficheTickets($result);
 	}
 
-	public function afficheTicketsParEtat()
-	{
-		$result = $this->modele->getNombreTicketsParEtat(($_SESSION['idUtil']));
-		var_dump($result);
-		//$this->vue->afficheTickets($result);
-	}
+    public function afficherTicketsFerme()
+    {
+        $result = $this->modele->getTicketsEtat(0, $_SESSION['idUtil']);
+        $this->vue->afficheTickets($result);
+    }
 
-	public function afficheTicket($idTicket)
+    public function afficherTicketsEnCours()
+    {
+        $result = $this->modele->getTicketsEtat(1, $_SESSION['idUtil']);
+        $this->vue->afficheTickets($result);
+    }
+
+    public function afficherTicketsUrgent()
+    {
+        $result = $this->modele->getTicketsEtat(2, $_SESSION['idUtil']);
+        $this->vue->afficheTickets($result);
+    }
+
+    public function afficherTicketsEnAttente()
+    {
+        $result = $this->modele->getTicketsEtat(3, $_SESSION['idUtil']);
+        $this->vue->afficheTickets($result);
+    }
+
+    public function afficheTicket($idTicket)
 	{
 		$ticket = $this->modele->getTicket($idTicket);
         $infoClient = $this->modele->getInfoClient($idTicket);
