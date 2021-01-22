@@ -216,11 +216,11 @@ div#user-info {
 }
 
 .articles:nth-child(odd) {
-    background-color: var(--armananth-purple-light);
+    background-color: rgb(225, 229, 233);
 }
 
 .articles:nth-child(even) {
-    background-color: var(--cg-blue-light);
+    background-color: rgb(184, 190, 219);
 }
 
 .products {
@@ -234,7 +234,7 @@ div#user-info {
 }
 
 .actu:hover {
-    opacity: 1;
+    opacity: 0.7;
 }
 
 article.card-footer {
@@ -242,11 +242,11 @@ article.card-footer {
 }
 
 .actu:nth-child(even) {
-    background-color: var(--armananth-purple-light);
+    background-color: rgb(184, 190, 219);
 }
 
 .actu:nth-child(odd) {
-    background-color: var(--cg-blue-light);
+    background-color: rgb(225, 229, 233);
 }
 
 .login-form {

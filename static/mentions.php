@@ -1,15 +1,9 @@
 <main>
-    <div class="container row" id="home-actus">
-        <h1>Dernièrs articles</h1>
-    </div>
-    <div class="container row" id="home-latest-products">
-        <h1>Découvrez nos nouveaux produits</h1>
-    </div>
-    <div class="container row" id="home-latest-products">
-        <h1>Nos articles</h1>
-    </div>
-    <div class="container row" id="home-sponsor">
-        <h1>Nos Sponsors</h1>
+    <h1>Mentions</h1>
+    <p>
+        Ultricies leo integer malesuada nunc. Viverra vitae congue eu consequat ac felis donec et odio. Lorem ipsum dolor sit amet consectetur adipiscing elit.
+        Tortor at auctor urna nunc id cursus metus. Etiam tempor orci eu lobortis elementum. Non quam lacus suspendisse faucibus interdum posuere lorem.
+        Cum sociis natoque penatibus et magnis. Ut diam quam nulla porttitor. Purus viverra accumsan in nisl nisi.
+    </p>
 
-    </div>
 </main>

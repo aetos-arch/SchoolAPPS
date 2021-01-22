@@ -6,7 +6,15 @@
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner">
-            <div class="carousel-item active">
+        <div class="carousel-item active">
+                <img class="d-block w-100" src="/images/article/laptop.jpg" alt=" slide">
+                <div class="carousel-caption d-none d-lg-block">
+                    <h5>Des solutions pour tout les âges</h5>
+                    <p>Et tout les niveaux
+                    <p>
+                </div>
+            </div>
+            <div class="carousel-item">
                 <img class="d-block w-100" src="/images/article/children.jpg" alt="Second slide">
 
                 <div class="carousel-caption d-none d-lg-block">
@@ -14,14 +22,7 @@
                     <p>Au service de tous !</p>
                 </div>
             </div>
-            <div class="carousel-item">
-                <img class="d-block w-100" src="/images/article/laptop.jpg" alt=" slide">
-                <div class="carousel-caption d-none d-lg-block">
-                    <h5>Des solutions pour tout les ages</h5>
-                    <p>Et tout les niveaux
-                    <p>
-                </div>
-            </div>
+
             <div class="carousel-item">
                 <img class="d-block w-100" src="/images/article/typing.jpg" alt="First slide">
                 <div class="carousel-caption d-none d-lg-block">

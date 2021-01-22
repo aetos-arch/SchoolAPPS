@@ -4,14 +4,8 @@
         <div class="container content-block">
             <h1>À propos de nous</h1>
             <p>
-                L'entreprise School APPS, a vu le jour dans le cadre de notre parcours universitaire en tant que projet étudiant.
-                Cofondée par M. Z, M. Y. Mme A, notre société a pour vocation de rendre l'éducation plus accessible et universelle.
-                Rendre accessible des outils ergonomique et simple d'accès au plus de monde.
+                L'entreprise School APPS, a vu le jour dans le cadre de notre parcours universitaire en tant que projet étudiant. Cofondée par M. Z, M. Y. Mme A, notre société a pour vocation de rendre l'éducation plus accessible et universelle. Rendre accessibles des outils ergonomiques et simples d'accès au plus de monde.
 
-            </p><p>
-                Ultricies leo integer malesuada nunc. Viverra vitae congue eu consequat ac felis donec et odio. Lorem ipsum dolor sit amet consectetur adipiscing elit.
-                Tortor at auctor urna nunc id cursus metus. Etiam tempor orci eu lobortis elementum. Non quam lacus suspendisse faucibus interdum posuere lorem.
-                Cum sociis natoque penatibus et magnis. Ut diam quam nulla porttitor. Purus viverra accumsan in nisl nisi.
             </p>
         </div>
         <div class="container content-block">
