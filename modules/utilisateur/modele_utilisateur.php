@@ -234,4 +234,15 @@ class ModeleUtilisateur extends ModeleGenerique
         } catch (PDOException $e) {
         }
     }
+
+    public function getAllAvisProduit($idProduit)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('select a.*, u.login from avis a inner join utilisateurs u on a.idUtilisateur = u.idUtilisateur where idProduit=?');
+            $req->execute(array($idProduit));
+            $result = $req->fetchAll();
+            return $result;
+        } catch (PDOException $e) {
+        }
+    }
 }

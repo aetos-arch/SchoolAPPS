@@ -60,11 +60,8 @@ class ModUtilisateur extends ModGenerique
 							$controllUtilisateur->actionInexistante();
 						}
 						break;
-					case 'supprimer-avis':
-						$controllUtilisateur->supprimerAvis();
-						break;
-					case 'modifier-avis':
-						$controllUtilisateur->modifierAvis();
+					case 'mes-avis':
+						$controllUtilisateur->listerAvis();
 						break;
 					case 'chat':
 						if (isset($_POST['message']) && is_numeric($url[2])) {
