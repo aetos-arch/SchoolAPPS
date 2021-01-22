@@ -102,7 +102,6 @@ class ModelePanier extends ModeleGenerique
                 $modifPreparee = Connexion::$bdd->prepare('UPDATE produitsPanier SET qteProduits=qteProduits+1
                     WHERE idProduit=:idProduit AND idPanier=:idPanier');
                 $modifPreparee->execute(array(':idProduit' => $idProduit, ':idPanier' => $idPanier));
-
             } else {
                 //TODO : revoir gestion quantité
                 $insertPreparee = Connexion::$bdd->prepare('INSERT INTO produitsPanier 
@@ -119,7 +118,6 @@ class ModelePanier extends ModeleGenerique
             $modifPrepareeMAJTotal = Connexion::$bdd->prepare('UPDATE paniers SET total=total+:prixNouvProduit
                     WHERE idPanier=:idPanier');
             $modifPrepareeMAJTotal->execute(array(':prixNouvProduit' => $reponse[0]['prixHT'], ':idPanier' => $idPanier));
-
         } catch (PDOException $e) {
         }
     }
@@ -244,7 +242,8 @@ class ModelePanier extends ModeleGenerique
         }
     }
 
-    function misAJourTotalPanier($idPanier){
+    function misAJourTotalPanier($idPanier)
+    {
         //Mis à jour du total du panier
         $selectPrepareeProduit = Connexion::$bdd->prepare('SELECT 
                 T0.qteProduits,
@@ -257,13 +256,11 @@ class ModelePanier extends ModeleGenerique
 
         $total = 0;
         for ($i = 0; $i < count($reponse); $i++) {
-            $total += $reponse[$i]['prixHT']*$reponse[$i]['qteProduits'];
+            $total += $reponse[$i]['prixHT'] * $reponse[$i]['qteProduits'];
         }
 
         $modifPrepareeMAJTotal = Connexion::$bdd->prepare('UPDATE paniers SET total=:totalMAJ
                     WHERE idPanier=:idPanier');
         $modifPrepareeMAJTotal->execute(array(':totalMAJ' => $total, ':idPanier' => $idPanier));
-
     }
-
 }
