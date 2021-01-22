@@ -69,19 +69,11 @@ class VueUtilisateur extends VueGenerique
                                             </button>
                                         </div>
                                         <div id="collapseThree" class="collapse" aria-labelledby="tickets" data-parent="#accordion">
-                                            <a class="dropdown-item" href="/utilisateur/mes-avis">Mes tickets</a>
+                                            <a class="dropdown-item" href="/utilisateur/mes-avis">Mes avis</a>
                                             <a class="dropdown-item" href="/utilisateur/donner-avis">Donner un avis</a>
-                                            <a class="dropdown-item" href="/utilisateur/modifier-avis">Modifier un avis</a>
                                         </div>
                                     </div>
                                 </div>
-                                <li class="nav-item">
-                                    <div class="card">
-                                        <div class="card-header" id="headingOne">
-                                            <a href="/utilisateur" class="btn btn-nav">Messagerie</a>
-                                        </div>
-                                    </div>
-                                </li>
                             </ul>
                         </nav>
                         <div class="col-lg">
@@ -334,7 +326,7 @@ class VueUtilisateur extends VueGenerique
                     <button class="btn btn-outline-primary" type="button" onclick="document.getElementById('explication').style.display = '-webkit-box'">Réduire</button>
                 </div>
                 <div class="col-lg card-footer">
-                    <a class="btn lire-plus-r" href="/utilisateur/chat/<?= $ticket['idTicket'] ?>">Ecrire un message</a>
+                    <a class="btn lire-plus-r" href="/utilisateur/chat/<?= $ticket['idTicket'] ?>">Chat</a>
                 </div>
             </aside>
             <aside class="card col-lg-4 p-1 m-2" id="info-client">
@@ -354,7 +346,7 @@ class VueUtilisateur extends VueGenerique
 
     public function nouveauLogin()
     {
-        echo '<h3>Changer de Login</h3>
+        ?><h3>Changer de Login</h3>
 		<hr class="mt-2 mb-4">
 		
 		<div class="card-panel  lighten-4">
@@ -367,7 +359,7 @@ class VueUtilisateur extends VueGenerique
 					</div>
 				</div>
 			</form>
-		</div>';
+		</div><?php
     }
 
     public function chat()
@@ -400,7 +392,7 @@ class VueUtilisateur extends VueGenerique
                 echo json_encode($result);
             }
 
-            public function loginMisAjour($newLogin)
+        public function loginMisAjour($newLogin)
             {
                 ?> <span class="alert-warning">Votre login a bien été mis à jour<br>
             (Lors de votre prochaine connexion il faudra utiliser celui-ci : <?= $newLogin ?>)</span><?php
@@ -434,37 +426,26 @@ class VueUtilisateur extends VueGenerique
                 <?php
             }
 
-
-            public function formDonnerAvis()
-            { ?>
-                <h3>Donner votre avis</h3>
-                <hr class="mt-2 mb-4">
-
-                <form action="/utilisateur/nouveau-mot-de-passe" method="post">
-                    <div class="row">
-                        <div class="col-4 form-group">
-                            <label for="old_password">Ancien mot de passe</label>
-                            <input type="password" name="old_password" class="form-control" required>
-                        </div>
-                        <div class="col-4 form-group">
-                            <label for="nouveau_password1">Nouveau mot de passe</label>
-                            <input type="password" name="nouveau_password1" class="form-control" required>
-                        </div>
-
-                        <div class="col-4 form-group">
-                            <label for="nouveau_password2">Confirmation mot de passe</label>
-                            <input type="password" name="nouveau_password2" class="form-control" required>
-                        </div>
-                        <div class="col-4">
-                            <button type="submit" class="btn btn-primary">Modifier</button>
-                        </div>
+    public function listerAvis($allAvis)
+    { ?>
+        <h1>Les avis</h1>
+        <section class="row" id="latest-articles">
+            <?php
+            foreach ($allAvis as &$avis) {
+                ?>
+                <article class="avis card col-lg-8 m-2 p-1">
+                    <div class="card-header text-center" id="produit-title"><h5 class="card-title">Avis de <?= $avis['login'] ?></h5></div>
+                    <div class="card-footer text-center">Evaluation : <?= $avis['noteProduit'] ?> / 5</div>
+                    <div class="card-body">
+                        <p class="card-text m-3"><?= $avis['avis'] ?></p>
                     </div>
-                </form>
+                </article>
                 <?php
             }
-
-                public function formModifierAvis($data)
-                {
-                    // to do
-                }
-            }
+            unset($avis);
+            ?>
+        </section>
+        <?php
+        include 'include\inc_sponsors.php';
+    }
+}

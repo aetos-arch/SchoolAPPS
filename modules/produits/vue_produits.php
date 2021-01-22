@@ -75,7 +75,7 @@ class VueProduit extends VueGenerique
                 </article>
                 <?php
             }
-            unset($produits);
+            unset($avis);
             ?>
         </section>
         <?php

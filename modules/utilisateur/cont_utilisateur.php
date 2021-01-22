@@ -43,7 +43,7 @@ class ContUtilisateur extends ContGenerique
 						$nouveauMotDePasseHash = password_hash($nouveauMotDePasse1, PASSWORD_BCRYPT);
 						$this->modele->setPass($nouveauMotDePasseHash, $_SESSION['idUtil']);
 						$this->vue->messageVue("Votre mot de passe a bien été modifié.");
-                        header('Location: /technicien/nouveau-mot-de-passe');
+                        //header('Location: /technicien/nouveau-mot-de-passe');
 					} else
 						$this->vue->messageVue("Les trois mot de passe renseignés sont identiques !");
 				} else {
@@ -72,7 +72,7 @@ class ContUtilisateur extends ContGenerique
 				$_SESSION['nomUser'] = $nouveauLogin;
 				$this->vue->loginMisAjour($nouveauLogin);
 			}
-            header('Location: /technicien/changer-login');
+            //header('Location: /technicien/changer-login');
 		}
 	}
 
