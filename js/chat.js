@@ -1,4 +1,3 @@
-
 function getMessages() {
   // Créer une requête AJAX pour se connecter au serveur
   const requeteAjax = new XMLHttpRequest();

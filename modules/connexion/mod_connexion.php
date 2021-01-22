@@ -9,11 +9,8 @@ class ModConnexion extends ModGenerique
     {
 
         $controleurConnexion = new ContConnexion();
-
-        $action = '';
-        if (isset($url[1])) {
-            $action = $url[1];
-        }
+        
+        $action = $url[1];
 
         switch ($action) {
             case "connexion":
