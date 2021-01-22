@@ -8,9 +8,11 @@ class VueArticle
 
     public function afficherArticle($data)
     {
+        // to do
     }
 
     public function afficherArticles($data)
     {
+        // to do
     }
 }

@@ -2,13 +2,15 @@
 require_once "modules/generique/mod_generique.php";
 require_once "cont_connexion.php";
 
-class ModConnexion extends ModGenerique {
+class ModConnexion extends ModGenerique
+{
 
-    function __construct($url){
+    function __construct($url)
+    {
 
         $controleurConnexion = new ContConnexion();
 
-        $action='';
+        $action = '';
         if (isset($url[1])) {
             $action = $url[1];
         }
@@ -24,8 +26,8 @@ class ModConnexion extends ModGenerique {
                 $controleurConnexion->inscription();
                 break;
             case "popConnexion":
-            $controleurConnexion->popConnexion();
-            break;
+                $controleurConnexion->popConnexion();
+                break;
             case "popInscription":
                 $controleurConnexion->popInscription();
                 break;
@@ -34,9 +36,8 @@ class ModConnexion extends ModGenerique {
                 break;
         }
     }
-
 }
 ?>
 <?php
-    $modConnexion = new ModConnexion((isset($url)) ? $url : null);
+$modConnexion = new ModConnexion((isset($url)) ? $url : null);
 ?>

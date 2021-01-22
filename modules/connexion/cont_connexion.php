@@ -65,5 +65,3 @@ class ContConnexion extends ContGenerique {
     }
 
 }
-
-?>

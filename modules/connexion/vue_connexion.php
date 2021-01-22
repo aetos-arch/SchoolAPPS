@@ -117,7 +117,7 @@ class VueConnexion extends VueGenerique {
             <div class="login-form">
                 <div class="big-info"><h1>Bonjour, vous êtes connecté(e) en tant que <b><i><?=$_SESSION['login']?></i></b></h1></div><br>
                 <h1 class="big-info" id="error-h1"><a class="big-info btn btn-outline-success" href="/home">Page d'accueil</a>
-                    <a class="big-info btn btn-outline-success" href="/utilisateur">Espace utilisateur</a></h1>
+                    <a class="big-info btn btn-outline-success" href="/utilisateur">Mon espace</a></h1>
             </div>
         </div>
         <?php
