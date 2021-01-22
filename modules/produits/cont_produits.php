@@ -37,6 +37,39 @@ class ContProduit extends ContGenerique
         $this->vue->listerAvis($data, isset($_SESSION['idUtil']));
     }
 
+    public function donnerAvis($idProduit)
+    {
+        $avisExiste = $this->modele->avisExiste($_SESSION['idUtil'], $idProduit);
+        if ($avisExiste != 0) {
+            $this->vue->messageVue("avis existe déjà");
+        } else {
+            $this->fromDonnerAvis($idProduit);
+        }
+    }
+
+    public function fromDonnerAvis($idProduit)
+    {
+        $this->vue->formDonnerAvis($idProduit);
+        $this->envoiAvis($idProduit);
+    }
+
+    public function envoiAvis($idProduit)
+    {
+        if (isset($_POST['commentaire'])) {
+            $result = [
+                'idUtilisateur' => $_SESSION['idUtil'],
+                'idProduit' => addslashes(strip_tags($idProduit)),
+                'titre' => addslashes(strip_tags($_POST['titre'])),
+                'commentaire' => addslashes(strip_tags($_POST['commentaire'])),
+                'note' => addslashes(strip_tags($_POST['note']))
+            ];
+            if ($this->modele->donnerAvis($result)) {
+                $this->vue->messageVue("Votre avis a été pris en compte");
+            } else
+                $this->vue->messageVue("Votre avis n'a pas pu être ajouté");
+        }
+    }
+
     public function ajouterProduitPanier($idProduit){
         if (isset($_SESSION['idUtil'])){
             //TODO : voir la gestion de qté

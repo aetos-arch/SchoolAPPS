@@ -51,17 +51,13 @@ class ModUtilisateur extends ModGenerique
 						}
 						break;
 					case 'mes-avis':
-						$controllUtilisateur->affichesAvis();
-						break;
-					case 'donner-avis':
-						if (isset($url[2])) {
-							$controllUtilisateur->donnerAvis($url[2]);
-						} else {
-							$controllUtilisateur->actionInexistante();
-						}
-						break;
-					case 'mes-avis':
 						$controllUtilisateur->listerAvis();
+						break;
+					case 'supprimer-avis':
+						if (isset($url[2]) && is_numeric($url[2])) {
+							$idAvis = addslashes(strip_tags($url[2]));
+							$controllUtilisateur->supprimerAvis($idAvis);
+						}
 						break;
 					case 'chat':
 						if (isset($_POST['message']) && is_numeric($url[2])) {

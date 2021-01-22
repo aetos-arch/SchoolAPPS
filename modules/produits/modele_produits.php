@@ -44,6 +44,16 @@ class ModeleProduit extends ModeleGenerique
         }
     }
 
+    public function donnerAvis($result)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('insert into avis (idUtilisateur, idProduit, titreAvis, avis, noteProduit) values(?, ?, ?, ?, ?)');
+            $req->execute(array($result['idUtilisateur'], $result['idProduit'],  $result['titre'], $result['commentaire'],  $result['note']));
+            return $req;
+        } catch (PDOException $e) {
+        }
+    }
+
     public function getAvis($idAVis)
     {
         try {
@@ -62,6 +72,17 @@ class ModeleProduit extends ModeleGenerique
             $req->execute(array($idProduit));
             $result = $req->fetchAll();
             return $result;
+        } catch (PDOException $e) {
+        }
+    }
+
+    public function avisExiste($idUtilisateur, $idProduit)
+    {
+        try {
+            $req = Connexion::$bdd->prepare('select idUtilisateur from avis where idUtilisateur = ? and idProduit = ?');
+            $req->execute(array($idUtilisateur, $idProduit));
+            $nb = $req->rowCount();
+            return $nb;
         } catch (PDOException $e) {
         }
     }

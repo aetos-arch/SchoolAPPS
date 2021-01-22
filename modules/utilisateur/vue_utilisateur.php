@@ -433,6 +433,7 @@ class VueUtilisateur extends VueGenerique
                     <div class="card-body">
                         <p class="card-text m-3"><?= $avis['avis'] ?></p>
                     </div>
+                    <div class="col-lg card-footer"><a class="btn lire-plus-r" href="/utilisateur/supprimer-avis/<?= $avis['idAvis'] ?>">Supprimer</a></div>
                 </article>
                 <?php
             }

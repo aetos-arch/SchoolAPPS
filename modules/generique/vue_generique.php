@@ -13,13 +13,23 @@ class VueGenerique {
     // erreur 404
     public function actionInexistante() {
         ?>
-        <h3>Cette action est inexistante.</h3>
+        <section class="container content-block login-form">
+            <div class="container-fluid" id="pop_connexion">
+                <div class="row">
+                    <h1>Cette action est inexistante !</h1>
+                    <hr>
+                    <span class="login-form"></span>
+                    <a class="btn btn-outline-success col-5 mx-auto" href="/home">Accueil</a>
+                </div>
+            </div>
+            <br>
+        </section>
         <?php
     }
 
     public function messageVue($msg)
     {
-        ?> <span class="alert-warning"><?= $msg ?></span><?php
+        ?> <span class="alert-warning login-form"><?= $msg ?></span><?php
     }
 
     public function pasConnecté(){

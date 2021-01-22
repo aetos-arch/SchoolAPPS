@@ -26,6 +26,14 @@ class ModProduit
                         $controllProduit->actionInexistante();
                     }
                     break;
+                case 'ajouter-avis':
+                    if (isset($url[2]) && is_numeric($url[2])) {
+                        $idProduit = addslashes(strip_tags($url[2]));
+                        $controllProduit->donnerAvis($url[2]);
+                    } else {
+                        $controllProduit->actionInexistante();
+                    }
+                    break;
                 default:
                     $controllProduit->actionInexistante();
                     break;
