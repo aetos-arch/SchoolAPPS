@@ -8,8 +8,6 @@ class VuePanier extends VueGenerique
     function affichagePanier($listeProduit)
     {
 ?>
-
-
         <?php
         if (empty($listeProduit)) {
             //TODO : Mise en page du message
