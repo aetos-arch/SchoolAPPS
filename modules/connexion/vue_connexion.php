@@ -152,6 +152,7 @@ class VueConnexion extends VueGenerique
             <div class="login-form">
                 <div class="big-info">
                     <h1>Bienvenue <b><i><?= $_SESSION['login'] ?></i></b>, votre inscription a bien été prise en compte.</h1>
+                    <h1>Vous êtes maintenant connecté.</h1>
                 </div><br>
                 <h1 class="big-info" id="error-h1"><a class="big-info btn btn-outline-success" href="/home">Page d'accueil</a>
                     <a class="big-info btn btn-outline-success" href="/utilisateur">Espace utilisateur</a>

@@ -28,8 +28,10 @@ class VueGenerique {
     }
 
     public function messageVue($msg)
-    {
-        ?> <span class="alert-warning login-form"><?= $msg ?></span><?php
+    { ?> <div class="container content-block">
+            <span class="alert-warning"><?= $msg ?></span>
+        </div>
+        <?php
     }
 
     public function pasConnecté(){

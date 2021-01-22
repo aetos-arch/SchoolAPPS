@@ -150,6 +150,11 @@ a#btn-chat {
     width: 60%;
 }
 
+.alert-warning {
+    text-align: center;
+    font-size: 1.25rem !important;
+}
+
 #brand-homelink span {
     font-size: 20px;
 }

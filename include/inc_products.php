@@ -8,7 +8,7 @@
                 Plateforme éducative numérique destiné aux enfants (maternelle à cm2) pour les écoles, mairies et les familles.
 
             </p>
-            <a class="btn lire-plus" href="schoolnet">En savoir plus</a>
+            <a class="btn lire-plus" href="/produits/afficher-produit/schoolnet">En savoir plus</a>
         </article>
         <article class="products col-md-3">
             <img class="w-25" src="/images/logo/SchoolDev.png" alt="logo produit SchoolDev">
@@ -17,7 +17,7 @@
                 Apprendre à coder dans le langage de votre choix, quelle que soit votre âge et votre niveau.
                 Lancez-vous dans la programmation par loisir ou professionnellement.
             </p>
-            <a class="btn lire-plus" href="schooldev">En savoir plus</a>
+            <a class="btn lire-plus" href="/produits/afficher-produit/schoolDev">En savoir plus</a>
         </article>
         <article class="products col-md-3">
             <img class="w-25" src="/images/logo/E-education.png" alt="logo produit E-education">
@@ -26,7 +26,7 @@
                 LA solution complète de tous les outils indispensables au fonctionnement des établissements de formation
                 et d’enseignement allant du collège au formations du supérieur.
             </p>
-            <a class="btn lire-plus" href="E-education">En savoir plus</a>
+            <a class="btn lire-plus" href="/produits/afficher-produit/E-education">En savoir plus</a>
         </article>
     </section>
 </div>
