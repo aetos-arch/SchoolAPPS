@@ -167,31 +167,18 @@ class ContUtilisateur extends ContGenerique
 		$this->vue->afficheCommande($result);
 	}
 
-	public function donnerAvis($nomProduit)
-	{
-		$idProduit = $this->modele->getIdProduit($nomProduit);
-		$avisExiste = $this->modele->avisExiste($_SESSION['idUtilisateur'], $idProduit);
-		if ($avisExiste != 0) {
-			echo "avis existe déjà";
-		} else if (isset($_POST['commentaire'])) {
-			$result = [
-				'idUtilisateur' => $_SESSION['idUtilisateur'],
-				'idProduit' => addslashes(strip_tags($idProduit)),
-				'titre' => addslashes(strip_tags($_POST['titre'])),
-				'commentaire' => addslashes(strip_tags($_POST['commentaire'])),
-				'note' => addslashes(strip_tags($_POST['note']))
-			];
-			$this->modele->donnerAvis($result);
-		} else {
-			$this->vue->formDonnerAvis();
-		}
-	}
-
-
     public function listerAvis()
     {
-        $data = $this->modele->getAllAvisProduit();
-        $this->vue->listerAvis($data, isset($_SESSION['idUtil']));
+        $data = $this->modele->getAllAvisProduit($_SESSION['idUtil']);
+        $this->vue->listerAvis($data);
+    }
+
+    public function supprimerAvis($idAvis)
+    {
+        if($this->modele->supprimerAvis($idAvis)) {
+            $this->vue->messageVue("Votre avis a été supprimé");
+        } else
+            $this->vue->messageVue("Votre avis n'a pas pu être supprimé");
     }
 
 }

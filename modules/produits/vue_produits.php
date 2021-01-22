@@ -52,7 +52,18 @@ class VueProduit extends VueGenerique
                 <div class="card-body">
                     <img class="w-25 center-img" src="\images\logo\<?= $produit['nomProduit'] ?>.png">
                     <p class="card-text m-3"><?= $produit['description'] ?></p>
-                    <a href="/produits/ajouter-au-panier/<?= $produit['idProduit'] ?>" class="btn btn-outline-success col-lg">Ajouter à mon panier</a>
+                </div>
+                <div class="card-footer row">
+                    <a href="/produits/ajouter-au-panier/<?= $produit['idProduit'] ?>" class="btn btn-outline-success col-lg-4 mx-auto">
+                        Ajouter à mon panier
+                    </a>
+                    <?php if(isset($_SESSION['idTypeUtilisateur']) && $_SESSION['idTypeUtilisateur']==3) { ?>
+                        <a href="/produits/ajouter-avis/<?= $produit['idProduit'] ?>" class="btn btn-outline-secondary col-lg-4 mx-auto">
+                            Ajouter un avis
+                        </a>
+                        <?php
+                    }
+                    ?>
                 </div>
             </div>
         </div>
@@ -80,6 +91,39 @@ class VueProduit extends VueGenerique
         </section>
         <?php
         include 'include\inc_sponsors.php';
+    }
+
+    public function formDonnerAvis($idProduit)
+    { ?>
+
+        <section class="container content-block login-form">
+            <h1>Mon avis</h1>
+            <hr>
+            <form class="row" action="/produits/ajouter-avis/<?=$idProduit?>" method="POST">
+                <aside class="container-fluid mx-auto">
+                    <div class="row">
+                        <div class="col-lg-6 form-group">
+                            <label for="titre">Titre</label>
+                            <input name="titre" type="text" class="form-control" required placeholder="Titre de l'avis">
+                            <label for="nouveauLogin">Note</label>
+                            <select name="note" class="form-control">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5" selected>5</option>
+                            </select>
+                            <button class="btn btn-primary " type="submit" name="action">Valider</button>
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <label for="commentaire">Votre commentaire</label>
+                            <textarea name="commentaire" type="text" class="form-control" required placeholder="Votre commentaire" rows="4"></textarea>
+                        </div>
+                    </div>
+                </aside>
+            </form>
+        </section>
+        <?php
     }
 
     public function erreurConnexionPanier()

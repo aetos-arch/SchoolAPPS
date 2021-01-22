@@ -210,7 +210,7 @@ class ModeleUtilisateur extends ModeleGenerique
     {
         try {
             $req = Connexion::$bdd->prepare('delete from avis where idAvis = ?');
-            $req->execute(array($idAvis));
+            return $req->execute(array($idAvis));
         } catch (PDOException $e) {
         }
     }
@@ -235,11 +235,11 @@ class ModeleUtilisateur extends ModeleGenerique
         }
     }
 
-    public function getAllAvisProduit($idProduit)
+    public function getAllAvisProduit($idUtilisateur)
     {
         try {
-            $req = Connexion::$bdd->prepare('select a.*, u.login from avis a inner join utilisateurs u on a.idUtilisateur = u.idUtilisateur where idProduit=?');
-            $req->execute(array($idProduit));
+            $req = Connexion::$bdd->prepare('select a.*, u.login from avis a inner join utilisateurs u on a.idUtilisateur = u.idUtilisateur where u.idUtilisateur=?');
+            $req->execute(array($idUtilisateur));
             $result = $req->fetchAll();
             return $result;
         } catch (PDOException $e) {

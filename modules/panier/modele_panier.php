@@ -52,7 +52,7 @@ class ModelePanier extends ModeleGenerique
         return $resultat;
     }
 
-    function supprimerProduit($idProduit,$idPanier)
+    function supprimerProduit($idProduit, $idPanier)
     {
         //Mis à jour du total du panier
         $selectPrepareeProduit = Connexion::$bdd->prepare('SELECT 
@@ -64,6 +64,7 @@ class ModelePanier extends ModeleGenerique
         $selectPrepareeProduit->execute(array(':idProduit' => $idProduit));
         $reponse = $selectPrepareeProduit->fetchAll();
 
+        //ajout panier
         $modifPrepareeMAJTotal = Connexion::$bdd->prepare('UPDATE paniers SET total=total-:prixAncienProduit*:qteProduits
                     WHERE idPanier=:idPanier');
         $modifPrepareeMAJTotal->execute(array(':prixAncienProduit' => $reponse[0]['prixHT'], ':qteProduits' => $reponse[0]['qteProduits'], ':idPanier' => $idPanier));
@@ -149,7 +150,7 @@ class ModelePanier extends ModeleGenerique
             $reponse = $selectPreparee->fetchAll();
             if ($reponse[0]['qteProduits'] == 1) {
                 //TODO : voir pour afficher un PopUp
-                $this->supprimerProduit($idProduit);
+                $this->supprimerProduit($idProduit, $idPanier);
             } else {
                 $modifPreparee = Connexion::$bdd->prepare('UPDATE produitsPanier SET qteProduits=qteProduits-1
                     WHERE idProduit=:idProduit AND idPanier=:idPanier');
@@ -256,11 +257,10 @@ class ModelePanier extends ModeleGenerique
 
         $total = 0;
         for ($i = 0; $i < count($reponse); $i++) {
-            echo 'test';
             $total += $reponse[$i]['prixHT']*$reponse[$i]['qteProduits'];
         }
 
-        $modifPrepareeMAJTotal = Connexion::$bdd->prepare('UPDATE paniers SET total=total+:totalMAJ
+        $modifPrepareeMAJTotal = Connexion::$bdd->prepare('UPDATE paniers SET total=:totalMAJ
                     WHERE idPanier=:idPanier');
         $modifPrepareeMAJTotal->execute(array(':totalMAJ' => $total, ':idPanier' => $idPanier));
 
