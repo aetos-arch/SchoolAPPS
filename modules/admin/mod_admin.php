@@ -24,6 +24,9 @@ class ModAdmin extends ModeleGenerique
                             $controllAdmin->soumettreLogin();
                         }
                         break;
+                    case 'les-tickets':
+                        $controllAdmin->afficheTickets();
+                        break;
                     case 'tickets-fermes':
                         $controllAdmin->afficherTicketsFerme();
                         break;
@@ -37,32 +40,34 @@ class ModAdmin extends ModeleGenerique
                         $controllAdmin->afficherTicketsEnAttente();
                         break;
                     case 'ticket':
-                        if (isset($url[2])) {
-                            $controllAdmin->afficherTicket($url[2]);
-                        } else {
-                            $controllAdmin->actionInexistante();
+                        if (isset($url[2]) && is_numeric($url[2])) {
+                            $idTicket = addslashes(strip_tags($url[2]));
+                            $controllAdmin->afficheTicket($idTicket);
                         }
                         break;
                     case 'supprimer-ticket':
-                        $controllAdmin->supprimerTicket();
+                        if (isset($url[2]) && is_numeric($url[2])) {
+                            $idTicket = addslashes(strip_tags($url[2]));
+                            $controllAdmin->supprimerTicket($idTicket);
+                        }
                         break;
                     case 'assigner-ticket':
-                        $controllAdmin->assignerTicket();
+                        if (isset($url[2]) && is_numeric($url[2])) {
+                            $idTicket = addslashes(strip_tags($url[2]));
+                            $controllAdmin->assignerTicket($idTicket);
+                        }
                         break;
-                        /*  case 'discussion':
-                        $controllAdmin->discussion();
-                        break; */
                     case 'liste-techniciens':
                         $controllAdmin->listeTechniciens();
                         break;
                     case 'nouveau-technicien':
                         $controllAdmin->nouveauTechnicien();
                         break;
-                    case 'supprimerTechnicien':
-                        $controllAdmin->supprimerTechnicien($url[2]);
-                        break;
-                    case 'statistique':
-                        $controllAdmin->statistique();
+                    case 'supprimer-technicien':
+                        if (isset($url[2]) && is_numeric($url[2])) {
+                            $idTechnicien = addslashes(strip_tags($url[2]));
+                            $controllAdmin->supprimerTechnicien($idTechnicien);
+                        }
                         break;
                     default:
                         $controllAdmin->actionInexistante();

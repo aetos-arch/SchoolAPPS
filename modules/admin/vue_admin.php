@@ -42,20 +42,13 @@ class VueAdmin extends VueGenerique
                                         </div>
                                     </div>
                                 </div>
-                                <div id="accordion">
+                                <li class="nav-item">
                                     <div class="card">
                                         <div class="card-header" id="headingOne">
-                                            <button class="btn btn-nav dropdown-toggle" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
-                                                Les tickets
-                                            </button>
-                                        </div>
-                                        <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                                            <a class="dropdown-item" href="/admin/mes-informations">Voir les tickets</a>
-                                            <a class="dropdown-item" href="/admin/changer-login">Changer mon login</a>
-                                            <a class="dropdown-item" href="/admin/nouveau-mot-de-passe">Changer mon mot de passe</a>
+                                            <a href="/admin/les-tickets" class="btn btn-nav">Voir les tickets</a>
                                         </div>
                                     </div>
-                                </div>
+                                </li>
                                 <div id="accordion">
                                     <div class="card">
                                         <div class="card-header" id="headingOne">
@@ -64,9 +57,9 @@ class VueAdmin extends VueGenerique
                                             </button>
                                         </div>
                                         <div id="collapseThree" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                                            <a class="dropdown-item" href="/admin/mes-informations">Liste des techniciens</a>
-                                            <a class="dropdown-item" href="/admin/changer-login">Nouveau technicien</a>
-                                            <a class="dropdown-item" href="/admin/nouveau-mot-de-passe">Changer mon mot de passe</a>
+                                            <a class="dropdown-item" href="/admin/liste-techniciens">Liste des techniciens</a>
+                                            <a class="dropdown-item" href="/admin/nouveau-technicien">Nouveau technicien</a>
+                                            <a class="dropdown-item" href="/admin/supprimer-technicien">Supprimer technicien</a>
                                         </div>
                                     </div>
                                 </div>
@@ -83,7 +76,7 @@ class VueAdmin extends VueGenerique
         <?php
     }
 
-    public function tableauBord($profil, $stats, $tickets)
+    public function tableauBord($profil, $stats)
     {
         ?>
         <h3>Mon tableau de bord</h3>
@@ -91,7 +84,6 @@ class VueAdmin extends VueGenerique
             <?php
             $this->afficherProfil($profil);
             $this->statsTickets($stats);
-            //$this->derniersTickets($tickets)
             ?>
         </section>
         <?php
@@ -138,16 +130,143 @@ class VueAdmin extends VueGenerique
         <?php
     }
 
-	public function afficherTickets()
-	{
-	}
 
-	public function afficherTicket($result)
-	{
-	}
+    public function afficheTickets($result)
+    { ?>
+            <div class="m-2 p-2">
+                <a href="/admin/tickets-en-attente" class="btn btn-outline-primary">Tickets en attente</a>
+                <a href="/admin/tickets-fermes" class="btn btn-outline-primary">Tickets fermés</a>
+                <a href="/admin/tickets-en-cours" class="btn btn-outline-primary">Tickets en cours</a>
+                <a href="/admin/tickets-urgent" class="btn btn-outline-primary">Tickets urgents</a>
+            </div>
 
-	public function listeTechniciens($data)
+            <?php
+
+        foreach ($result as &$ticket) {
+            ?>
+            <div class="ticket row card">
+                <div class="col-lg card-header">
+                    <?php
+                    switch ($ticket['etat']) {
+                        case 'Urgent':
+                            echo '<img class="m-2" src="\..\images\etats\Urgent.png">';
+                            break;
+                        case 'En cours':
+                            echo '<img class="m-2" src="\..\images\etats\En cours.png">';
+                            break;
+                        case 'Fermé':
+                            echo '<img class="m-2" src="\..\images\etats\Fermé.png">';
+                            break;
+                        case 'En attente':
+                            echo '<img class="m-2" src="\..\images\etats\En attente.png">';
+                            break;
+                    }
+                    ?>
+                    <h4 class="d-inline"><?= $ticket['intitule'] ?> - N°<?= $ticket['idTicket'] ?></h4>
+                </div>
+                <div class="col-lg card-body">
+                    <p id="explication"><?= $ticket['explication']; ?></p>
+                </div>
+                <div class="col-lg card-footer">
+                    <div class="row">
+                        <span class="col-8">
+                            État : <?= $ticket['etat']; ?> - Id-Produit : <?= $ticket['idProduit']; ?> - le : <?= $ticket['dateCreation']; ?>
+                        </span>
+                        <a class="btn lire-plus col-3" href="/admin/ticket/<?= $ticket['idTicket'] ?>">Voir plus</a>
+                    </div>
+                </div>
+            </div>
+            <?php
+        }
+        unset($ticket);
+    }
+
+    public function afficheTicket($ticket, $infoClient, $infoTech, $techinicien)
+    {
+        ?>
+        <div class="row">
+            <aside class="card col-lg-7 p-1 m-2">
+                <div class="card-header">
+                    <h4>
+                        <span class="info"> N°<?= $ticket['idTicket'] ?></span>
+                        <span class="info"> - <?= $ticket['intitule'] ?></span>
+                    </h4>
+                    <h4 <span class="info"> État <?= $ticket['etat']; ?></span>
+                    <span class="info"> - Id-Produit: <?= $ticket['idProduit']; ?></span>
+                    </h4>
+                </div>
+                <div class="col-lg card-body">
+                    <p id="explication"><?= $ticket['explication']; ?></p>
+                    <button class="btn btn-outline-primary" type="button" onclick="document.getElementById('explication').style.display = 'inherit'">Lire la suite</button>
+                    <button class="btn btn-outline-primary" type="button" onclick="document.getElementById('explication').style.display = '-webkit-box'">Réduire</button>
+                    <div class="col-lg card-body">
+                        <form method="post" action="/admin/assigner-ticket/<?= $ticket['idTicket'] ?>" class="input-group">
+                            <select class="custom-select form-control" id="inputGroupSelect04" name="idTechnicien">
+                                <option selected>Choisir...</option>
+                                <?php
+                                foreach ($techinicien as &$technicien) {
+                                    ?> <option value="<?= $technicien['idUtilisateur'] ?>"><?= ucfirst($technicien['nom']) ?></option>
+                                    <?php
+                                }
+                                unset($technicien);
+                                ?>
+                            </select>
+                            <div class="input-group-append">
+                                <input class="btn btn-outline-success" type="submit" value="Assigner">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg card-footer">
+                    <a class="btn lire-plus-r" href="/admin/supprimer-ticket/<?= $ticket['idTicket'] ?>">Supprimer ce ticket</a>
+                </div>
+            </aside>
+            <aside class="container-fluid col-lg-4 p-1 m-2" id="info-client">
+                <div class="row">
+                    <div class="card">
+                        <div class="col-lg card-header">
+                            <h4 class="d-inline">Informations du client</h4>
+                        </div>
+                        <div class="col-lg card-body">
+                            Nom : <?= $infoClient['nom'] ?> <br>
+                            Prenom : <?= $infoClient['prenom'] ?> <br>
+                            Email : <?= $infoClient['emailFacturation'] ?> <br>
+                            Telephone : <?= $infoClient['telephone'] ?> <br>
+                        </div>
+                        <div class="col-lg card-header">
+                            <h4 class="d-inline">Informations du technicien</h4>
+                        </div>
+                        <div class="col-lg card-body">
+                            Nom : <?= $infoTech['nom'] ?> <br>
+                            Prenom : <?= $infoTech['prenom'] ?> <br>
+                            Email : <?= $infoTech['emailFacturation'] ?> <br>
+                            Telephone : <?= $infoTech['telephone'] ?> <br>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+        <?php
+    }
+
+
+	public function listeTechniciens($techniciens)
 	{
+	    ?><h3>Liste des techniciens</h3><?php
+        foreach ($techniciens as &$technicien) {
+            ?>
+            <div class="col-lg-10 text-center card-header">
+                Nom : <?= $technicien['nom'] ?> <br>
+                Prenom : <?= $technicien['prenom'] ?> <br>
+                Email : <?= $technicien['emailFacturation'] ?> <br>
+                Telephone : <?= $technicien['telephone'] ?> <br>
+                <div class="card col-4 mx-auto">
+                    <a class="btn btn-danger" href="/admin/supprimer-technicien/<?= $technicien['idUtilisateur'] ?>">Supprimer ce technicien</a>
+                </div>
+            </div>
+            <?php
+        }
+        unset($technicien);
 	}
 
 
@@ -156,6 +275,35 @@ class VueAdmin extends VueGenerique
 	}
 
 
+
+    public function nouveauTechnicien()
+    {?>
+        <h1>Inscription</h1>
+        <hr>
+        <form class="row container-fluid" action="/admin/nouveau-technicien" method="POST">
+            <div class="col-lg form-group mx-auto">
+
+                <label for="login">Nom d'utilisateur*</label>
+                <input name="login" type="text" class="form-control" required placeholder="Nom d'utilisateur">
+
+                <label for="nom">Nom*</label>
+                <input name="nom" type="text" class="form-control" required placeholder="Nom">
+
+                <label for="prenom">Prénom*</label>
+                <input name="prenom" type="text" class="form-control" required placeholder="Prénom">
+
+                <label for="eFacturation">Adresse e-mail de facturation*</label>
+                <input name="eFacturation" type="email" class="form-control" required placeholder="E-mail de facturation">
+
+                <label for="tel">Téléphone*</label>
+                <input name="tel" type="tel" class="form-control" required placeholder="Téléphone">
+
+                <input type="submit" id="submit" value="Créer un compte" class="btn btn-success">
+                <p>Les champs suivis d'une étoile (*) sont obligatoires.</p>
+            </div>
+        </form>
+    <?php
+    }
 
     public function nouveauLogin()
     {

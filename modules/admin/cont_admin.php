@@ -20,13 +20,19 @@ class ContAdmin extends ContGenerique
     {
         $statsTickets = $this->modele->getNombreTicketsParEtat(($_SESSION['idUtil']));
         $profil = $this->modele->getProfil(($_SESSION['idUtil']));
-        $this->vue->tableauBord($profil, $statsTickets, $profil);
+        $this->vue->tableauBord($profil, $statsTickets);
     }
 
     public function profil()
     {
         $result = $this->modele->getProfil(($_SESSION['idUtil']));
         $this->vue->afficherProfil($result);
+    }
+
+    public function afficheTickets()
+    {
+        $tickets = $this->modele->getAllTickets();
+        $this->vue->afficheTickets($tickets);
     }
 
     public function nouveauMotDePasse()
@@ -46,6 +52,7 @@ class ContAdmin extends ContGenerique
                     if ($_POST['old_password'] !== $nouveauMotDePasse1) {
                         $nouveauMotDePasseHash = password_hash($nouveauMotDePasse1, PASSWORD_BCRYPT);
                         $this->modele->setPass($nouveauMotDePasseHash, $_SESSION['idUtil']);
+                        header('Location: /admin/nouveau-mot-de-passe');
                         $this->vue->messageVue("Votre mot de passe a bien été modifié.");
                     } else
                         $this->vue->messageVue("Les trois mot de passe renseignés sont identiques !");
@@ -75,9 +82,9 @@ class ContAdmin extends ContGenerique
                 $_SESSION['nomUser'] = $nouveauLogin;
                 $this->vue->loginMisAjour($nouveauLogin);
             }
+            header('Location: /admin/changer-login');
         }
     }
-
 
     public function listeTechniciens()
 	{
@@ -88,45 +95,57 @@ class ContAdmin extends ContGenerique
 	public function afficherTicketsFerme()
 	{
 		$result = $this->modele->getTicketsEtat(0);
-		$this->vue->afficherTickets($result);
+		$this->vue->afficheTickets($result);
 	}
 
 	public function afficherTicketsEnCours()
 	{
 		$result = $this->modele->getTicketsEtat(1);
-		$this->vue->afficherTickets($result);
+		$this->vue->afficheTickets($result);
 	}
 
 	public function afficherTicketsUrgent()
 	{
 		$result = $this->modele->getTicketsEtat(2);
-		$this->vue->afficherTickets($result);
+		$this->vue->afficheTickets($result);
 	}
 
 	public function afficherTicketsEnAttente()
 	{
 		$result = $this->modele->getTicketsEtat(3);
-		$this->vue->afficherTickets($result);
+		$this->vue->afficheTickets($result);
 	}
 
 
-	public function afficherTicket($idTicket)
-	{
-		$result = $this->modele->getTicket(addslashes(strip_tags($idTicket)));
-		$this->vue->afficherTicket($result);
-	}
+    public function afficheTicket($idTicket)
+    {
+        $ticket = $this->modele->getTicket($idTicket);
+        $infoClient = $this->modele->getInfoClient($idTicket);
+        $infoTech = $this->modele->getInfoTech($idTicket);
+        $techniciens = $this->modele->getAllTechniciens();
+        $this->vue->afficheTicket($ticket, $infoClient, $infoTech, $techniciens);
+    }
 
-	public function assignerTicket()
+	public function assignerTicket($idTicket)
 	{
-		if (isset($_POST['idTechnicien'])) {
-			$this->modele->assignerTicket(addslashes(strip_tags($_POST['idTechnicien'])));
+        if (isset($_POST['idTechnicien'])) {
+            if ($this->modele->assignerTicket($idTicket, addslashes(strip_tags($_POST['idTechnicien'])))) {
+                $this->vue->messageVue("Ticket assigné avec succès !");
+            } else
+                $this->vue->messageVue("Le ticket n'a pas pu être assigné !");
+
+            header('Location: /admin/ticket/'.$idTicket);
 		}
 	}
 
-	public function supprimerTicket()
+	public function supprimerTicket($idTicket)
 	{
-		$idTicket = addslashes(strip_tags($_POST['idTicket']));
-		$this->modele->supprimerTicket($idTicket);
+		if($this->modele->supprimerTicket($idTicket)) {
+		    $this->vue->messageVue("Ticket supprimé avec succès !");
+        } else
+            $this->vue->messageVue("Le ticket n'a pas pu être supprimé !");
+
+        header('Location: /admin/ticket/'.$idTicket);
 	}
 
 	public function statistique()
@@ -143,7 +162,10 @@ class ContAdmin extends ContGenerique
 
 	public function supprimerTechnicien($idTechnicien)
 	{ 
-		$this->modele->supprimerTechnicien($idTechnicien);
+		if($this->modele->supprimerTechnicien($idTechnicien)) {
+		    $this->vue->messageVue("Technicien supprimer avec succès !");
+        } else
+            $this->vue->messageVue("Ce technicien ne peut pas être supprimé");
 	}
 
 	public function menu()
@@ -158,12 +180,17 @@ class ContAdmin extends ContGenerique
 				'prenom' => addslashes(strip_tags($_POST['prenom'])),
 				'nom' => addslashes(strip_tags($_POST['nom'])),
 				'login' => addslashes(strip_tags($_POST['login'])),
-				'hashMdp' => "bienvenue",
-				'telephone' => addslashes(strip_tags($_POST['telephone']))
+				'hashMdp' => password_hash("bienvenue", PASSWORD_DEFAULT),
+				'telephone' => addslashes(strip_tags($_POST['tel'])),
+				'emailFacturation' => addslashes(strip_tags($_POST['eFacturation']))
 			];
 			try {
 				$this->verifTableauValeurNull($result);
-				$this->modele->nouveauTechnicien($result);
+
+                if($this->modele->nouveauTechnicien($result)) {
+                    $this->vue->messageVue("Technicien créer avec succès !");
+                } else
+                    $this->vue->messageVue("Le tehcnicien n'a pas pu être créé !");
 			} catch (Exception $e) {
 				$e->getMessage();
 			}
