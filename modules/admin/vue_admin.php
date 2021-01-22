@@ -59,7 +59,6 @@ class VueAdmin extends VueGenerique
                                         <div id="collapseThree" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                                             <a class="dropdown-item" href="/admin/liste-techniciens">Liste des techniciens</a>
                                             <a class="dropdown-item" href="/admin/nouveau-technicien">Nouveau technicien</a>
-                                            <a class="dropdown-item" href="/admin/supprimer-technicien">Supprimer technicien</a>
                                         </div>
                                     </div>
                                 </div>

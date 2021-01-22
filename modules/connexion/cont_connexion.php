@@ -55,7 +55,6 @@ class ContConnexion extends ContGenerique {
                 $_SESSION['login'] = $utilInscrit[0]['login'];
                 $_SESSION['idTypeUtilisateur'] = $utilInscrit[0]['idTypeUtilisateur'];
                 $this->vue->affichageInscription();
-                $this->vue->affichageConnexionReussie();
             }else{
                 $this->vue->erreurInscription();
             }
