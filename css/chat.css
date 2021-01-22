@@ -13,7 +13,7 @@
  }
  
  .messages {
-   background-color: steelblue;
+   background-color: rgba(123, 169, 206, 0.356);
    border-radius: 5px;
    padding: 1em;
    height: 50vh;
@@ -21,7 +21,7 @@
  }
  
  .message {
-   color: white;
+   color: rgb(0, 0, 0);
    padding: 0.3em;
  }
  

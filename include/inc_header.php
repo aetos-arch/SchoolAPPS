@@ -27,7 +27,7 @@
                     <a class="nav-link" href="/articles">Nos articles</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/propos">A propos</a>
+                    <a class="nav-link" href="/propos">À propos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/contact">Contact</a>
