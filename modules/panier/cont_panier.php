@@ -48,10 +48,12 @@ class ContPanier extends ContGenerique {
 
     function moinsQte($idProduit){
         $this->modele->moinsQte($idProduit,$_SESSION['panier']);
+
     }
 
     function plusQte($idProduit){
         $this->modele->plusQte($idProduit,$_SESSION['panier']);
+        header('Location: /panier/');
     }
 
     function checkOut(){
@@ -65,5 +67,3 @@ class ContPanier extends ContGenerique {
     }
 
 }
-
-?>
