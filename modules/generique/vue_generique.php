@@ -1,18 +1,22 @@
 <?php
 
-class VueGenerique {
+class VueGenerique
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         //ob_start();
     }
 
-    public function getPage() {
+    public function getPage()
+    {
         ob_get_clean();
     }
 
     // erreur 404
-    public function actionInexistante() {
-        ?>
+    public function actionInexistante()
+    {
+?>
         <section class="container content-block login-form">
             <div class="container-fluid" id="pop_connexion">
                 <div class="row">
@@ -24,18 +28,19 @@ class VueGenerique {
             </div>
             <br>
         </section>
-        <?php
+    <?php
     }
 
     public function messageVue($msg)
     { ?> <div class="container content-block">
             <span class="alert-warning"><?= $msg ?></span>
         </div>
-        <?php
+    <?php
     }
 
-    public function pasConnecté(){
-        ?>
+    public function pasConnecté()
+    {
+    ?>
         <section class="container content-block login-form">
             <div class="container-fluid" id="pop_connexion">
                 <div class="row">
@@ -47,27 +52,29 @@ class VueGenerique {
             </div>
             <br>
         </section>
-        <?php
+    <?php
     }
 
-    public function motDePasseIncorrect() {
-        ?>
+    public function motDePasseIncorrect()
+    {
+    ?>
         <h3>Mot de passe incorrect.</h3>
-        <?php
+    <?php
     }
 
-    public function motDePasseNonIdentique() {
-        ?>
+    public function motDePasseNonIdentique()
+    {
+    ?>
         <h3>Les deux mots de passe saisies ne sont pas identiques...</h3>
-        <?php
+    <?php
     }
 
-    public function loginExiste() {
-        ?>
+    public function loginExiste()
+    {
+    ?>
         <h3>Le login que vous avez saisie existe malheuresement déjà :(...</h3>
-        <?php
+<?php
     }
-
 }
 
 ?>

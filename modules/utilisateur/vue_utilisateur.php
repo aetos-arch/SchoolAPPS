@@ -70,7 +70,7 @@ class VueUtilisateur extends VueGenerique
                                 </li>
                             </ul>
                         </nav>
-                        <div class="col-lg">
+                        <div class="col-lg-7">
                             <h1>Votre espace utilisateur, <?php echo ucfirst($_SESSION['login']); ?> </h1>
                             <?= $moduleContent ?>
                         </div>

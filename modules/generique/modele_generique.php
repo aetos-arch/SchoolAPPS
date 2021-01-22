@@ -2,7 +2,8 @@
 
 require_once 'config/connexion.php';
 
-class ModeleGenerique extends Connexion {
+class ModeleGenerique extends Connexion
+{
 
     protected static $connexion;
 
@@ -30,6 +31,4 @@ class ModeleGenerique extends Connexion {
         } catch (PDOException $e) {
         }
     }
-
-
 }
