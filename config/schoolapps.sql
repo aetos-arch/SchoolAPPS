@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 22 jan. 2021 à 00:03
+-- Généré le : ven. 22 jan. 2021 à 10:39
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -39,27 +39,24 @@ CREATE TABLE IF NOT EXISTS `articles` (
   KEY `FK_articles_idUtilisateur` (`idUtilisateur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-#------------------------------------------------------------
-# Table: avis
-#------------------------------------------------------------
-DROP TABLE IF EXISTS avis;
-CREATE TABLE IF NOT EXISTS avis(
-                     idAvis        int (11) Auto_increment  NOT NULL ,
-                     titreAvis     Varchar (100) NOT NULL ,
-                     avis          Text NOT NULL ,
-                     noteProduit   Int NOT NULL ,
-                     idProduit     Int NOT NULL ,
-                     idUtilisateur Int NOT NULL ,
-                     PRIMARY KEY (idAvis )
-)ENGINE=InnoDB;
+-- --------------------------------------------------------
 
 --
--- Déchargement des données de la table `avis`
+-- Structure de la table `avis`
 --
 
-INSERT INTO avis (idAvis, titreAvis,avis, noteProduit, idProduit, idUtilisateur) VALUES
-('1', 'Ce produit est de très grande qualité !', 'Ce produit est de très grande qualité ! Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', '5', '1', '4'),
-('2', 'Ce produit est de très grande qualité !', 'Ce produit est de très grande qualité ! Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', '4', '2', '5');
+DROP TABLE IF EXISTS `avis`;
+CREATE TABLE IF NOT EXISTS `avis` (
+  `idAvis` int(11) NOT NULL AUTO_INCREMENT,
+  `titreAvis` varchar(100) NOT NULL,
+  `avis` text NOT NULL,
+  `noteProduit` int(11) NOT NULL,
+  `idProduit` int(11) NOT NULL,
+  `idUtilisateur` int(11) NOT NULL,
+  PRIMARY KEY (`idAvis`),
+  KEY `FK_avis_idProduit` (`idProduit`),
+  KEY `FK_avis_idUtilisateur` (`idUtilisateur`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -75,13 +72,6 @@ CREATE TABLE IF NOT EXISTS `commandes` (
   PRIMARY KEY (`idCommandes`),
   KEY `FK_commandes_idUtilisateur` (`idUtilisateur`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `commandes`
---
-
-INSERT INTO `commandes` (`idCommandes`, `dateAchat`, `idUtilisateur`) VALUES
-(1, '2021-01-18', 1);
 
 -- --------------------------------------------------------
 
@@ -124,15 +114,6 @@ CREATE TABLE IF NOT EXISTS `message` (
   KEY `FK_message_idUtilisateur` (`idAuteur`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `message`
---
-
-INSERT INTO `message` (`idMessage`, `message`, `dateMsg`, `idTicket`, `idAuteur`) VALUES
-(1, 'a', '2021-01-22 00:18:59', 2, 1),
-(2, '&lt;script&gt;', '2021-01-22 00:19:07', 2, 1),
-(3, 'a', '2021-01-22 00:19:09', 2, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -148,14 +129,6 @@ CREATE TABLE IF NOT EXISTS `paniers` (
   PRIMARY KEY (`idPanier`),
   KEY `FK_paniers_idUtilisateur` (`idUtilisateur`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `paniers`
---
-
-INSERT INTO `paniers` (`idPanier`, `dateCreation`, `total`, `idUtilisateur`) VALUES
-(1, '2021-01-22', '0.000', 3),
-(2, '2021-01-22', '0.000', 2);
 
 -- --------------------------------------------------------
 
@@ -202,14 +175,6 @@ CREATE TABLE IF NOT EXISTS `produitscommandes` (
   KEY `FK_produitsCommandes_idCommandes` (`idCommandes`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `produitscommandes`
---
-
-INSERT INTO `produitscommandes` (`IdProduitCommande`, `nomProduit`, `qteProduit`, `prixHT`, `description`, `idCommandes`) VALUES
-(1, 'SchoolNet', 2, 50, 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', 1),
-(2, 'E-education', 6, 1000.99, 'placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim.', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -224,14 +189,6 @@ CREATE TABLE IF NOT EXISTS `produitspanier` (
   PRIMARY KEY (`idProduit`,`idPanier`),
   KEY `FK_produitsPanier_idPanier` (`idPanier`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `produitspanier`
---
-
-INSERT INTO `produitspanier` (`qteProduits`, `idProduit`, `idPanier`) VALUES
-(1, 1, 1),
-(1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -256,16 +213,6 @@ CREATE TABLE IF NOT EXISTS `tickets` (
   KEY `FK_tickets_idProduit` (`idProduit`),
   KEY `FK_tickets_idUtilisateur_utilisateurs` (`idTechnicien`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `tickets`
---
-
-INSERT INTO `tickets` (`idTicket`, `intitule`, `explication`, `dateCreation`, `dateFermeture`, `idEtat`, `idUtilisateur`, `idProduit`, `idTechnicien`) VALUES
-(1, 'Ticket test', 'J\'explique mon problème', NULL, NULL, 2, 5, 1, 2),
-(2, 'Ticket 2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in lorem vulputate, placerat risus at, mollis nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et convallis enim, in hendrerit urna. Nulla auctor nisi et urna placerat volutpat. Suspendisse ultricies metus nulla, non porttitor est consectetur vitae. Suspendisse posuere, nisl vitae convallis lacinia, nibh urna luctus nunc, vitae lobortis urna ante non erat. Nam dolor arcu, malesuada et egestas non, blandit ac nibh. Donec rutrum dolor sit amet eros condimentum luctus. Maecenas consectetur venenatis rutrum. Aliquam tempor nisi nec lacus porttitor, et tincidunt augue iaculis.', NULL, NULL, 2, 1, 1, 2),
-(3, 'Ticket 3', 'J\'explique mon problème, qui est comme ça et puis comme ceci d\'où je voulais savoir si', NULL, NULL, 2, 1, 1, 2),
-(4, 'Ticket 4', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in lorem vulputate, placerat risus at, mollis nisi.', NULL, NULL, 0, 5, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -310,20 +257,18 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
   PRIMARY KEY (`idUtilisateur`),
   UNIQUE KEY `login` (`login`),
   KEY `FK_utilisateurs_idTypeUtilisateur` (`idTypeUtilisateur`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `utilisateurs`
 --
 
 INSERT INTO `utilisateurs` (`idUtilisateur`, `login`, `nom`, `prenom`, `hashMdp`, `emailFacturation`, `emailLivraison`, `telephone`, `dateNaissance`, `idTypeUtilisateur`) VALUES
-(1, 'lola', 'CALVARO', 'Lola', '$2y$10$7gMrOyfg0CT11M4L08TVbe0FnomrhAK2YpSEtZnW/mphpOpcGR91W', 'lola.calvarro@hotmail.fr', 'lola.calvarro@hotmail.fr', 1041010101, '2001-03-03', 2),
-(2, 'remilevel', 'LEVEL', 'Rémi', '$2y$10$JI3UvhSqu288e1ooQcaHGex0IHP6tOHLpbMyHG2x0jnsI8Gg0WHb2', 'remi.level@gmail.com', 'remi.level@gmail.com', 2024020202, '2000-02-08', 2),
-(3, 'admin', 'Admin', 'admin', '$2y$10$90yGN9i3D0/TIJVoseZUN.qOf1SjmszFNSnC.QT9NLExI9FmmiHGi', 'admin@hotmail.fr', 'admin@hotmail.fr', 303030303, '2021-01-03', 1),
-(4, 'bob-le-bricoleur', 'BRICO', 'Bob', '$2y$10$caw6KJDyFvRxwi2yVvu94OfTpiAGY7dB4ad/.l///S4bxcDnFW0ae', 'technicien@schoolapps.fr', 'technicien@schoolapps.fr', 612562024, '1998-01-02', 2),
-(5, 'jm', 'Jean', 'Marc', '$2y$10$90yGN9i3D0/TIJVoseZUN.qOf1SjmszFNSnC.QT9NLExI9FmmiHGi', 'jean-marc93@hotmail.fr', 'jean-marc93@hotmail.fr', 612562024, '2021-01-02', 3),
-(6, 'abossard', 'BOSSARD', 'Aurélien', '$2y$10$YDNKgQKW/RpSG8VRQCbjquJtZW2R56L7eBM27TrVs6mJuhEaX1T6W', 'abossard@iut.univ-paris8.fr', NULL, 0123456789, '1980-01-01', 3),
-(7, 'alice', 'DUPOND', 'Alice', '$2y$10$ltiNlkig0oKWG9fUejUD6.M/5hOWLzTVElWUTHgknDvEyv6DR.lM6', 'alice.dupond2001@gmail.com', 'alice.dupond2001@gmail.com', 0923456789, '2001-06-04', 3);
+(1, 'utilisateur', 'TORRES', 'Nicolas', '$2y$10$cz9RL9R9lg8X/jw9Nf0wDOSv4stRbi9j5b2u4rnyJtXufkz50OvG6', 'nicolas.torres@hotmail.fr', 'nicolas.torres@hotmail.fr', 101010101, '2001-03-03', 3),
+(2, 'technicien', 'COATELANT', 'Émilie', '$2y$10$cz9RL9R9lg8X/jw9Nf0wDOSv4stRbi9j5b2u4rnyJtXufkz50OvG6', 'emilie.level@gmail.com', 'emilie.level@gmail.com', 202020202, '2000-02-08', 2),
+(3, 'admin', 'SIVAKARAN\r\n', 'Kowsikan', '$2y$10$cz9RL9R9lg8X/jw9Nf0wDOSv4stRbi9j5b2u4rnyJtXufkz50OvG6', 'admin@hotmail.fr', 'admin@hotmail.fr', 303030303, '2021-01-03', 1),
+(4, 'technicien2', 'CREUZO', 'Paul', '$2y$10$cz9RL9R9lg8X/jw9Nf0wDOSv4stRbi9j5b2u4rnyJtXufkz50OvG6', 'paul.creuzo@hotmail.fr', 'paul.creuzo@hotmail.fr', 404040404, '2021-01-03', 2),
+(5, 'utilisateur2', 'SZANTO', 'Theo', '$2y$10$cz9RL9R9lg8X/jw9Nf0wDOSv4stRbi9j5b2u4rnyJtXufkz50OvG6', 'theo.szanto@hotmail.fr', 'theo.szanto@hotmail.fr', 505050505, '2021-01-05', 3);
 
 --
 -- Contraintes pour les tables déchargées
