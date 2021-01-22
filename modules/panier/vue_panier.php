@@ -147,9 +147,9 @@ class VuePanier extends VueGenerique
         <div class="container-fluid row">
             <div class="login-form">
                 <div class="big-info">
-                    <h1>Votre commande a été passé avec succès.</h1>
+                    <h1>Votre commande a été prise en compte avec succès !</h1>
                 </div><br>
-                <h1 class="big-info" id="error-h1"><a class="big-info btn btn-outline-success" href="/home">Page d'accueil</a>
+                <h1 class="big-info" id="error-h1"><a class="big-info btn btn-outline-success" href="/utilisa">Page d'accueil</a>
                     <a class="big-info btn btn-outline-success" href="/utilisateur/mes-commandes">Mes commandes</a>
                 </h1>
             </div>
