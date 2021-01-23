@@ -5,12 +5,17 @@ require_once 'cont_technicien.php';
 
 class ModTechnicien extends ModGenerique
 {
-
+	/**
+	 * ModTechnicien constructor.
+	 * Ce constructeur vérifie si les actions et les paramétres pour appeler la fonction correspondante dans le controlleur
+	 * @param $url
+	 */
 	public function __construct($url)
 	{
 		$controllTech = new ContTechnicien();
 
 		ob_start();
+		// Si c'est un technicien et qu'il est connecté
 		if (isset($_SESSION['idTypeUtilisateur']) && $_SESSION['idTypeUtilisateur'] == 2) {
 			if (isset($url[1])) {
 				$action = $url[1];
@@ -63,7 +68,7 @@ class ModTechnicien extends ModGenerique
 						}
 						break;
 					default:
-						$controllTech->actionInexistante();
+						$controllTech->actionInexistante(); // Action invalide
 						break;
 				}
 			} else {
@@ -73,7 +78,7 @@ class ModTechnicien extends ModGenerique
 
 			$controllTech->accueilTechnicien($moduleContent, $url);
 		} else
-			$controllTech->vue->pasconnecté();
+			$controllTech->vue->pasconnecté(); // Message utilisateur non connecté et/ou non autorisé
 	}
 }
 

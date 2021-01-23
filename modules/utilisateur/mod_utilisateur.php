@@ -5,12 +5,17 @@ require_once 'cont_utilisateur.php';
 
 class ModUtilisateur extends ModGenerique
 {
-
+	/**
+	 * ModUtilisateur constructor.
+	 * Ce constructeur vérifie si les actions et les paramétres pour appeler la fonction correspondante dans le controlleur
+	 * @param $url
+	 */
 	public function __construct($url)
 	{
 		$controllUtilisateur = new ContUtilisateur();
 
 		ob_start();
+		// Si c'est un utlisateur et qu'il est connecté
 		if (isset($_SESSION['idTypeUtilisateur']) && $_SESSION['idTypeUtilisateur'] == 3) {
 			if (isset($url[1])) {
 				$action = $url[1];
@@ -83,7 +88,7 @@ class ModUtilisateur extends ModGenerique
 						}
 						break;
 					default:
-						$controllUtilisateur->actionInexistante();
+						$controllUtilisateur->actionInexistante(); // action invalide
 						break;
 				}
 			} else {
@@ -93,7 +98,7 @@ class ModUtilisateur extends ModGenerique
 
 			$controllUtilisateur->accueilUtilisateur($moduleContent, $url);
 		} else
-			$controllUtilisateur->vue->pasConnecté();
+			$controllUtilisateur->vue->pasConnecté(); // Message utilisateur non connecté et/ou non autorisé
 	}
 }
 ?>

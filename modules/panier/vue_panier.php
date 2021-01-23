@@ -6,29 +6,28 @@ class VuePanier extends VueGenerique
 {
 
     function affichagePanier($listeProduit)
-    {
-        echo '<section class="login-form content-block">
+    { ?>
+        <section class="login-form content-block">
             <div class="container">
-                <h1>Panier</h1><hr>';
+                <h1>Panier</h1><hr> <?php
         if (empty($listeProduit)) {
-            echo '  <div class="container-fluid row">
+            ?> <div class="container-fluid row">
             <div class="login-form">
                 <div class="big-info"><h1>Votre panier est vide, remplissez-le !<br/></h1></div>
                 <h1 class="big-info" id="error-h1"><a class="big-info btn btn-outline-success" href="/produits">Nos produits</a></h1>
             </div>
-        </div>';
+        </div><?php
         } else {
-            echo '<div class="row">
+            ?><div class="row">
                     <aside class="col-lg p-1 m-2">
-                    <div>';
-            for ($i = 0; $i < count($listeProduit); $i++) {
-                echo '           
+                    <div><?php
+            for ($i = 0; $i < count($listeProduit); $i++) { ?>
                     <div class="card m-3">
-                        <h4 class ="header text-center">' . ($listeProduit[$i])['nomProduit'] . '</h4>                       
+                        <h4 class ="header text-center"> <?= ($listeProduit[$i])['nomProduit'] ?></h4>
                         <div class="card-body row mx-auto" id="user-info"> 
                         <div class="col-sm card-header text-center"> 
-                            <span class="btn">Prix unitaire HT ' .  ($listeProduit[$i])['prixHT'] . ' €</span>
-                            <span class="btn">Prix sous-total HT ' .  ($listeProduit[$i])['prixHT'] * ($listeProduit[$i])['qteProduits'] . ' €</span>
+                            <span class="btn">Prix unitaire HT <?= ($listeProduit[$i])['prixHT'] ?> €</span>
+                            <span class="btn">Prix sous-total HT <?=  ($listeProduit[$i])['prixHT'] * ($listeProduit[$i])['qteProduits'] ?> €</span>
                         </div>
 
                         <div class = "quantiteProduit col-sm-6">
@@ -36,37 +35,38 @@ class VuePanier extends VueGenerique
                                 <form class="row col-sm p-1" action="/panier/plusQte/' . ($listeProduit[$i])['idProduit'] . '">
                                     <input class="plusQte form-control" type="submit" value="+"/>
                                 </form>
-                                ' . '<div class="text-center">'.($listeProduit[$i])['qteProduits'].'</div>' . '                                
-                                <form class="row col-sm p-1" action="/panier/moinsQte/' . ($listeProduit[$i])['idProduit'] . '">
+                                <div class="text-center"> <? ($listeProduit[$i])['qteProduits'] ?></div>
+                                <form class="row col-sm p-1" action="/panier/moinsQte/<?= ($listeProduit[$i])['idProduit'] ?>">
                                     <input class="moinsQte form-control" type="submit" value="-"/>
                                 </form>
                             </div>
                         </div>
                         </div>
-                <a class="btn btn-outline-danger" href="/panier/suppression/' . ($listeProduit[$i])['idProduit'] . '">Supprimer</a>
-                </div>';
-            }
-            echo ' </div>               
+                <a class="btn btn-outline-danger" href="/panier/suppression/<?= ($listeProduit[$i])['idProduit'] ?>">Supprimer</a>
+                </div><?php
+            } ?>
+            </div>
                 </aside>             
                 <aside class="col-lg-3 p-1 m-2">
                         <div class="card-footer">
                             <div class="totalPanier">
                             <h2>Total panier HT</h2>
                             <hr>
-                            <table>';
-                for ($i = 0; $i < count($listeProduit); $i++) {
-                    echo '
+                            <table> <?php
+            for ($i = 0; $i < count($listeProduit); $i++) {
+               ?>
                             <tr>
                                 <div>
-                                    <h6 class="header m-2 text-end cart-txt">'
-                        . ($listeProduit[$i])['nomProduit'].' x '. ($listeProduit[$i])['qteProduits'] . ' - ' . ($listeProduit[$i])['prixHT'] . ' €                                   
-                            </h6>
-                            </div>
+                                    <h6 class="header m-2 text-end cart-txt">
+                                        <?= ($listeProduit[$i])['nomProduit'].' x '. ($listeProduit[$i])['qteProduits'] . ' - ' . ($listeProduit[$i])['prixHT'] . ' €' ?>
+                                    </h6>
+                                </div>
                             </tr>
-                        ';}
-                echo '          <hr>
+                        <?php
+                        } ?>
+                            <hr>
                                 <tr><th>Votre total HT : </th>
-                                <td class = "total">' . ($listeProduit[0])['TotalPanier'] . '</td>
+                                <td class = "total"> <?= ($listeProduit[0])['TotalPanier'] ?></td>
                                 </tr></table>
                                 <hr>
                         </div>
@@ -79,14 +79,12 @@ class VuePanier extends VueGenerique
                     </div>
                </aside>
                </div>
-            </section>';
+            </section> <?php
         }
     }
 
     function affichageCheckOut()
-    {
-        //TODO : affichage du récap de la commande
-?>
+    { ?>
         <section class="container content-block login-form">
             <form class="row container-fluid" action="/panier/commandeValide" method="post">
                 <h1>Valider votre commande</h1>
@@ -136,14 +134,12 @@ class VuePanier extends VueGenerique
                 </div>
             </form>
         </section>
-    <?php
+        <?php
     }
 
     function passageCommandeValide()
     {
-        //TODO : rediriger car si la personne reste sur la page et rafraichit, message d'erreur car le panier n'existe plus.
-        //TODO : voir ce qu'on peut avoir après la commande.
-    ?>
+        ?>
         <div class="container-fluid row">
             <div class="login-form">
                 <div class="big-info">
@@ -154,13 +150,12 @@ class VuePanier extends VueGenerique
                 </h1>
             </div>
         </div>
-    <?php
+        <?php
     }
 
     function erreurPassageCommande()
     {
-        //TODO : vérifier que la commande n'est vrmt pas passé
-    ?>
+        ?>
         <div class="container-fluid row">
             <div class="login-form">
                 <div class="big-info">
@@ -173,13 +168,12 @@ class VuePanier extends VueGenerique
                 </h1>
             </div>
         </div>
-    <?php
+        <?php
     }
 
     function affichageProduitSup()
     {
-        //TODO : récupérer le nom du produit qui a été supprimé.
-    ?>
+        ?>
         <div class="container-fluid row">
             <div class="login-form">
                 <div class="big-info">
@@ -190,12 +184,12 @@ class VuePanier extends VueGenerique
                 </h1>
             </div>
         </div>
-    <?php
+        <?php
     }
 
     function affichageSupProduitErreur()
     {
-    ?>
+        ?>
         <div class="container-fluid row">
             <div class="login-form">
                 <div class="big-info">
@@ -208,12 +202,12 @@ class VuePanier extends VueGenerique
                 </h1>
             </div>
         </div>
-    <?php
+        <?php
     }
 
     function affichageDMDUtilCo()
     {
-    ?>
+        ?>
         <div class="container-fluid row">
             <div class="login-form">
                 <div class="big-info">
@@ -224,6 +218,6 @@ class VuePanier extends VueGenerique
                 </h1>
             </div>
         </div>
-    <?php
+        <?php
     }
 }

@@ -3,11 +3,17 @@ require_once 'cont_admin.php';
 
 class ModAdmin extends ModeleGenerique
 {
+    /**
+     * ModAdmin constructor.
+     * Ce constructeur vérifie si les actions et les paramétres pour appeler la fonction correspondante dans le controlleur
+     * @param $url
+     */
     public function __construct($url)
     {
         $controllAdmin = new ContAdmin();
 
         ob_start();
+        // Si c'est un administrateur et qu'il est connecté
         if (isset($_SESSION['idTypeUtilisateur']) && $_SESSION['idTypeUtilisateur'] == 1) {
             if (isset($url[1])) {
                 $action = $url[1];
@@ -70,7 +76,7 @@ class ModAdmin extends ModeleGenerique
                         }
                         break;
                     default:
-                        $controllAdmin->actionInexistante();
+                        $controllAdmin->actionInexistante(); // action invalide
                         break;
                 }
             } else {
@@ -80,7 +86,7 @@ class ModAdmin extends ModeleGenerique
 
             $controllAdmin->accueilAdmin($moduleContent, $url);
         } else
-            $controllAdmin->vue->pasConnecté();
+            $controllAdmin->vue->pasConnecté(); // Message utilisateur non connecté et/ou non autorisé
     }
 }
 
