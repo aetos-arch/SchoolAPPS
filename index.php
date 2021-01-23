@@ -1,15 +1,16 @@
 <?php
-
+// commence une session si pas de login et idUtil et idTypeUtilisateur
 if (!isset($_SESSION['login']) && !isset($_SESSION['idUtil']) && !isset($_SESSION['idTypeUtilisateur'])) {
     session_start();
 }
 
 $url = '';
-
+// recuperer l'url dans un tableau qui prendra les arguments de l'url
 if (isset($_GET['url'])) {
     $url = explode('/', $_GET['url']);
 }
 
+// Recupère la page si argument 0 de l'url pas vide, sinon on dit que c'est la page d'accueil
 if (isset($url[0])) {
     $page = $url[0];
 } else {
