@@ -32,7 +32,7 @@ class VuePanier extends VueGenerique
 
                         <div class = "quantiteProduit col-sm-6">
                             <div class="row">
-                                <form class="row col-sm p-1" action="/panier/plusQte/<?php ($listeProduit[$i])['idProduit']?>">
+                                <form class="row col-sm p-1" action="/panier/plusQte/<?=($listeProduit[$i])['idProduit']?>">
                                     <input class="plusQte form-control" type="submit" value="+"/>
                                 </form>
                                 <div class="text-center"> <? ($listeProduit[$i])['qteProduits'] ?></div>

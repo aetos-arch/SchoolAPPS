@@ -7,7 +7,7 @@ class ModUtilisateur extends ModGenerique
 {
 	/**
 	 * ModUtilisateur constructor.
-	 * Ce constructeur vérifie si les actions et les paramètres pour appeler la fonction correspondante dans le controlleur
+	 * Ce constructeur vérifie si les actions et les paramètres sont valides pour appeler la fonction correspondante dans le controlleur
 	 * @param $url
 	 */
 	public function __construct($url)
