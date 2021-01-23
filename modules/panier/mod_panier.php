@@ -8,8 +8,10 @@ class ModPanier extends ModGenerique {
 
         $controleurPanier = new ContPanier();
 
-
-        $action = $url[1];
+        $action = '';
+        if (isset($url[1])) {
+            $action = $url[1];
+        }
 
         switch ($action) {
             case 'suppression' :
