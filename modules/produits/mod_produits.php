@@ -19,8 +19,6 @@ class ModProduit extends ModeleGenerique
                     break;
                 case 'ajouter-au-panier':
                     if (isset($url[2])) {
-                        //TODO : Corriger afficherProduit
-                        //$controllProduit->afficherProduit($url[2]);
                         $controllProduit->ajouterProduitPanier($url[2]);
                     } else {
                         $controllProduit->actionInexistante();

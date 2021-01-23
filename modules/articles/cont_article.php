@@ -4,9 +4,8 @@ require_once 'modele_article.php';
 
 class ContArticle extends ContGenerique
 {
-	private $vue;
-	private $modele;
-
+	public $vue;
+	public $modele;
 
 	public function __construct()
 	{

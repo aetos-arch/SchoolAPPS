@@ -11,7 +11,7 @@ class VueContact extends VueGenerique
 
     public function pageContact()
     { ?>
-        <div class="container content-block">
+        <section class="container content-block">
             <h1>Nous contacter</h1>
             <hr class="mt-2 mb-4">
             <div class="row">
@@ -65,7 +65,7 @@ class VueContact extends VueGenerique
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     <?php
     }
 

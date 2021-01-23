@@ -152,6 +152,10 @@ class ModeleAdmin extends ModeleGenerique
 		}
 	}
 
+    /**
+     * @param $result
+     * @return boolean si la création est effective
+     */
 	public function nouveauTechnicien($result)
 	{
 		try {
