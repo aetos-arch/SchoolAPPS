@@ -5,7 +5,7 @@ class ModAdmin extends ModeleGenerique
 {
     /**
      * ModAdmin constructor.
-     * Ce constructeur vérifie si les actions et les paramétres pour appeler la fonction correspondante dans le controlleur
+     * Ce constructeur vérifie si les actions et les paramètres pour appeler la fonction correspondante dans le controlleur
      * @param $url
      */
     public function __construct($url)
