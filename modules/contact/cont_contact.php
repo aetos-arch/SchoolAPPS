@@ -24,7 +24,8 @@ class ContContact extends ContGenerique
 				'email' => addslashes(strip_tags($_POST['email'])),
                 'message' => addslashes(strip_tags($_POST['message'])),
                 'sujet' => addslashes(strip_tags($_POST['sujet']))
-			];
+            ];
+            // verification tout les champs pas vide
             $this->verifTableauValeurNull($result);
             $this->modele->envoiMail($result);
             $this->vue->confirmationEnvoiMail();

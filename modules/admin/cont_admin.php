@@ -43,16 +43,19 @@ class ContAdmin extends ContGenerique
 
     public function checkChangementMotDePasse()
     {
+        // si post du nouveau mot de passe 2
         if (isset($_POST['nouveau_password2'])) {
+            // recupere mot de pase
             $nouveauMotDePasse1 = addslashes(strip_tags($_POST['nouveau_password1']));
             $nouveauMotDePasse2 = addslashes(strip_tags($_POST['nouveau_password2']));
-            $passNow = $this->modele->getPass($_SESSION['idUtil']);
+            $passNow = $this->modele->getPass($_SESSION['idUtil']); // recuperer le mot de passe actuel pour ensuite le comparer
+            // si les 2 nouveaux mdp sont identiques et pas vide
             if ($nouveauMotDePasse1 == $nouveauMotDePasse2 && $nouveauMotDePasse1 != "") {
                 if (password_verify($_POST['old_password'], $passNow[0]['hashMdp'])) {
+                    // si nouveau mdp different de l'ancien
                     if ($_POST['old_password'] !== $nouveauMotDePasse1) {
                         $nouveauMotDePasseHash = password_hash($nouveauMotDePasse1, PASSWORD_BCRYPT);
                         $this->modele->setPass($nouveauMotDePasseHash, $_SESSION['idUtil']);
-                        //header('Location: /admin/nouveau-mot-de-passe');
                         $this->vue->messageVue("Votre mot de passe a bien été modifié.");
                     } else
                         $this->vue->messageVue("Les trois mot de passe renseignés sont identiques !");
@@ -186,7 +189,6 @@ class ContAdmin extends ContGenerique
 			];
 			try {
 				$this->verifTableauValeurNull($result);
-
                 if($this->modele->nouveauTechnicien($result)) {
                     $this->vue->messageVue("Technicien créer avec succès !");
                 } else

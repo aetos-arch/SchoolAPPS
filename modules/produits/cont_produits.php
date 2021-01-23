@@ -4,13 +4,11 @@ require_once 'modules/generique/cont_generique.php';
 require_once 'vue_produits.php';
 require_once 'modele_produits.php';
 
-//TODO : valider si c'est la bonne méthode d'appeler une méthode de panier
 require_once 'modules/panier/cont_panier.php';
 
 class ContProduit extends ContGenerique
 {
 
-    //TODO : à valider avec Kowsikan et Nicolas, mais j'ai besoin de faire appel aux méthodes panier
     public $controleurPanier;
 
     public function __construct()
@@ -19,12 +17,14 @@ class ContProduit extends ContGenerique
         $this->controleurPanier = new ContPanier();
     }
 
-    public function listeProduits() {
+    public function listeProduits()
+    {
         $data = $this->modele->getProduits();
         $this->vue->afficherProduits($data);
     }
 
-    public function afficherProduit ($nomProduit) {
+    public function afficherProduit($nomProduit)
+    {
         $idProduit = $this->modele->getIdProduit($nomProduit);
         $data = $this->modele->getProduit($idProduit['idProduit']);
         $this->vue->afficherProduit($data);
@@ -41,7 +41,6 @@ class ContProduit extends ContGenerique
     {
         $avisExiste = $this->modele->avisExiste($_SESSION['idUtil'], $idProduit);
         $this->fromDonnerAvis($idProduit, $avisExiste);
-
     }
 
     public function fromDonnerAvis($idProduit, $avisExiste)
@@ -60,7 +59,8 @@ class ContProduit extends ContGenerique
                 'commentaire' => addslashes(strip_tags($_POST['commentaire'])),
                 'note' => addslashes(strip_tags($_POST['note']))
             ];
-            if($avisExiste != 0) {
+            $this->verifTableauValeurNull($result);
+            if ($avisExiste != 0) {
                 $this->vue->messageVue("Vous avez déjà donné un avis pour ce produit");
             } else if ($this->modele->donnerAvis($result)) {
                 $this->vue->messageVue("Votre avis a été pris en compte");
@@ -69,15 +69,12 @@ class ContProduit extends ContGenerique
         }
     }
 
-    public function ajouterProduitPanier($idProduit){
-        if (isset($_SESSION['idUtil'])){
-            //TODO : voir la gestion de qté
+    public function ajouterProduitPanier($idProduit)
+    {
+        if (isset($_SESSION['idUtil'])) {
             $this->controleurPanier->ajouterProduitPanier($idProduit);
-        }else{
+        } else {
             $this->vue->erreurConnexionPanier();
         }
-        //TODO : faire une redirection d'URL pour éviter que quand l'utilisateur rafraichit la page,
-        // il ne rajoute une deuxième fois le produit.
     }
-
 }
