@@ -189,7 +189,6 @@ class ContAdmin extends ContGenerique
 			];
 			try {
 				$this->verifTableauValeurNull($result);
-
                 if($this->modele->nouveauTechnicien($result)) {
                     $this->vue->messageVue("Technicien créer avec succès !");
                 } else
