@@ -24,15 +24,15 @@ class VuePanier extends VueGenerique
             for ($i = 0; $i < count($listeProduit); $i++) { ?>
                     <div class="card m-3">
                         <h4 class ="header text-center"> <?= ($listeProduit[$i])['nomProduit'] ?></h4>
-                        <div class="card-body row mx-auto" id="user-info"> 
-                        <div class="col-sm card-header text-center"> 
+                        <div class="card-body row mx-auto" id="user-info">
+                        <div class="col-sm card-header text-center">
                             <span class="btn">Prix unitaire HT <?= ($listeProduit[$i])['prixHT'] ?> €</span>
                             <span class="btn">Prix sous-total HT <?=  ($listeProduit[$i])['prixHT'] * ($listeProduit[$i])['qteProduits'] ?> €</span>
                         </div>
 
                         <div class = "quantiteProduit col-sm-6">
                             <div class="row">
-                                <form class="row col-sm p-1" action="/panier/plusQte/' . ($listeProduit[$i])['idProduit'] . '">
+                                <form class="row col-sm p-1" action="/panier/plusQte/<?php ($listeProduit[$i])['idProduit']?>">
                                     <input class="plusQte form-control" type="submit" value="+"/>
                                 </form>
                                 <div class="text-center"> <? ($listeProduit[$i])['qteProduits'] ?></div>
@@ -46,7 +46,7 @@ class VuePanier extends VueGenerique
                 </div><?php
             } ?>
             </div>
-                </aside>             
+                </aside>
                 <aside class="col-lg-3 p-1 m-2">
                         <div class="card-footer">
                             <div class="totalPanier">
@@ -70,7 +70,7 @@ class VuePanier extends VueGenerique
                                 </tr></table>
                                 <hr>
                         </div>
-                      
+
                         <div class ="validation">
                             <form class="row container-fluid" action="/panier/check-out">
                                 <input class="btn btn-success" type="submit" id="submit" value="Valider la commande">
