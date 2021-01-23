@@ -1,7 +1,7 @@
 <?php
 require_once 'cont_produits.php';
 
-class ModProduit
+class ModProduit extends ModeleGenerique
 {
     public function __construct($url)
     {

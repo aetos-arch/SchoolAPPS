@@ -29,8 +29,6 @@ class ContPanier extends ContGenerique
     {
         if ($this->modele->supprimerProduit($idProduit, $_SESSION['panier'])) {
             header('Location:/panier');
-            //TODO : voir pour une redirection vers panier
-            // + voir ce qu'on peut faire pour un retour arrière pour éviter de remettre dans le panier
         } else {
             $this->vue->affichageSupProduitErreur();
         }
@@ -73,7 +71,6 @@ class ContPanier extends ContGenerique
 
     function validationCommande()
     {
-        //TODO : mieux gérer si erreur dans la commande survient
         $this->modele->passagePanierCommande($_SESSION['panier'], $_SESSION['idUtil']);
         $this->vue->passageCommandeValide();
     }
