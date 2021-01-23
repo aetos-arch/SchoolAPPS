@@ -103,11 +103,9 @@ class ModelePanier extends ModeleGenerique
                     WHERE idProduit=:idProduit AND idPanier=:idPanier');
                 $modifPreparee->execute(array(':idProduit' => $idProduit, ':idPanier' => $idPanier));
             } else {
-                //TODO : revoir gestion quantité
                 $insertPreparee = Connexion::$bdd->prepare('INSERT INTO produitsPanier 
                 (qteProduits, idProduit, idPanier) VALUES (1, :idProduit, :idPanier)');
                 $insertPreparee->execute(array(':idProduit' => $idProduit, ':idPanier' => $idPanier));
-                //TODO : Peut-être faire une vérification que le produit a bien été ajouté
             }
             //Mis à jour du total du panier
             $selectPrepareeProduit = Connexion::$bdd->prepare('SELECT prixHT FROM produits 
@@ -147,7 +145,6 @@ class ModelePanier extends ModeleGenerique
             $selectPreparee->execute(array(':idProduit' => $idProduit, ':idPanier' => $idPanier));
             $reponse = $selectPreparee->fetchAll();
             if ($reponse[0]['qteProduits'] == 1) {
-                //TODO : voir pour afficher un PopUp
                 $this->supprimerProduit($idProduit, $idPanier);
             } else {
                 $modifPreparee = Connexion::$bdd->prepare('UPDATE produitsPanier SET qteProduits=qteProduits-1
@@ -229,7 +226,6 @@ class ModelePanier extends ModeleGenerique
 
     function supprimerPanier($idPanier)
     {
-        //TODO : que faire s'il y a une erreur ?
         //Suppression tout les éléments du panier
         $supProduitPanier = Connexion::$bdd->prepare('DELETE FROM produitsPanier WHERE idPanier=:idPanier');
         $supProduitPanier->execute(array(':idPanier' => $idPanier));
