@@ -7,6 +7,9 @@ Principales fonctionnalités :
 • Espace utilisateur/technicien/administrateur
 
 • Chat en temps réel
+
 • Panier
+
 • Avis
+
 • Articles
