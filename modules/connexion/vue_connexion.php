@@ -18,12 +18,17 @@ class VueConnexion extends VueGenerique
                 <h1>Connexion</h1>
                 <hr>
                 <form class="row container-fluid" action="/connexion/connexion" method="POST">
-                    <div class="col-5 form-group mx-auto">
-                        <label for="login">Nom d'utilisateur</label>
-                        <input name="login" type="text" class="form-control" required placeholder="Votre identifiant">
-                        <label for="mdp">Mot de passe</label>
-                        <input name="mdp" type="password" class="form-control" required placeholder="Votre mot de passe">
+                    <div class="col-lg-6 form-group mx-auto">
+                        <div class="form-content">
+                            <label for="login">Nom d'utilisateur</label>
+                            <input name="login" type="text" class="form-control" required placeholder="Votre identifiant">
+                        </div>
+                        <div class="form-content">
+                            <label for="mdp">Mot de passe</label>
+                            <input name="mdp" type="password" class="form-control" required placeholder="Votre mot de passe"></div>
+                        <div class="form-content">
                         <input class="btn btn-success" type="submit" id="submit" value="Se connecter">
+                        </div>
                     </div>
                 </form>
             </div>
@@ -34,25 +39,46 @@ class VueConnexion extends VueGenerique
                 <h1>Inscription</h1>
                 <hr>
                 <form class="row container-fluid" action="/connexion/inscription" method="POST">
-                    <div class="col-5 form-group mx-auto">
-                        <label for="login">Nom d'utilisateur*</label>
-                        <input name="login" type="text" class="form-control" required placeholder="Nom d'utilisateur*">
-                        <label for="nom">Nom*</label>
-                        <input name="nom" type="text" class="form-control" required placeholder="Nom*">
-                        <label for="prenom">Prénom*</label>
-                        <input name="prenom" type="text" class="form-control" required placeholder="Prénom*">
-                        <label for="mdp">Mot de passe</label>
-                        <input name="mdp" type="password" class="form-control" required placeholder="Mot de passe*">
-                        <label for="eFacturation">Adresse e-mail de facturation*</label>
-                        <input name="eFacturation" type="email" class="form-control" required placeholder="E-mail de facturation*">
-                        <label for="eLivraison">Adresse e-mail de livraison</label>
-                        <input name="eLivraison" type="email" class="form-control" placeholder="E-mail de livraison">
-                        <label for="tel">Téléphone*</label>
-                        <input name="tel" type="tel" class="form-control" required placeholder="Téléphone*">
-                        <label for="dateNaissance">Date de naissance*</label>
-                        <input name="dateNaissance" type="date" class="form-control" required placeholder="Date de naissance*">
-                        <input type="submit" id="submit" value="Créer un compte" class="btn btn-success">
-                        <p>Les champs suivis d'une étoile (*) sont obligatoires.</p>
+                    <div class="col-lg-6 form-group mx-auto">
+                        <div class="form-content">
+                            <label for="login">Nom d'utilisateur *</label>
+                            <input name="login" type="text" class="form-control" required placeholder="Nom d'utilisateur">
+                        </div>
+                        <div class="form-content">
+                            <label for="nom">Nom *</label>
+                            <input name="nom" type="text" class="form-control" required placeholder="Nom">
+                        </div>
+                        <div class="form-content">
+                            <label for="prenom">Prénom *</label>
+                            <input name="prenom" type="text" class="form-control" required placeholder="Prénom">
+                        </div>
+                        <div class="form-content">
+
+                        </div>
+                        <div class="form-content">
+                            <label for="mdp">Mot de passe *</label>
+                            <input name="mdp" type="password" class="form-control" required placeholder="Mot de passe">
+                        </div>
+                        <div class="form-content">
+                            <label for="eFacturation">Adresse e-mail de facturation *</label>
+                            <input name="eFacturation" type="email" class="form-control" required placeholder="E-mail de facturation">
+                        </div>
+                        <div class="form-content">
+                            <label for="eLivraison">Adresse e-mail de livraison</label>
+                            <input name="eLivraison" type="email" class="form-control" placeholder="E-mail de livraison">
+                        </div>
+                        <div class="form-content">
+                            <label for="tel">Téléphone *</label>
+                            <input name="tel" type="tel" class="form-control" required placeholder="Téléphone">
+                        </div>
+                        <div class="form-content">
+                            <label for="dateNaissance">Date de naissance *</label>
+                            <input name="dateNaissance" type="date" class="form-control" required placeholder="Date de naissance">
+                        </div>
+                        <div class="form-content">
+                            <input type="submit" id="submit" value="Créer un compte" class="btn btn-success">
+                            <p>Les champs suivis d'une étoile (*) sont obligatoires.</p>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -68,12 +94,17 @@ class VueConnexion extends VueGenerique
                 <h1>Connexion</h1>
                 <hr>
                 <form class="row container-fluid" action="/connexion/connexion" method="POST">
-                    <div class="col-5 form-group mx-auto">
-                        <label for="login">Nom d'utilisateur</label>
-                        <input name="login" type="text" class="form-control" required placeholder="Votre identifiant">
-                        <label for="mdp">Mot de passe</label>
-                        <input name="mdp" type="password" class="form-control" required placeholder="Votre mot de passe">
-                        <input class="btn btn-success" type="submit" id="submit" value="Se connecter">
+                    <div class="col-lg-6 form-group mx-auto">
+                        <div class="form-content">
+                            <label for="login">Nom d'utilisateur</label>
+                            <input name="login" type="text" class="form-control" required placeholder="Votre identifiant">
+                        </div>
+                        <div class="form-content">
+                            <label for="mdp">Mot de passe</label>
+                            <input name="mdp" type="password" class="form-control" required placeholder="Votre mot de passe"></div>
+                        <div class="form-content">
+                            <input class="btn btn-success" type="submit" id="submit" value="Se connecter">
+                        </div>
                     </div>
                 </form>
             </div>
@@ -90,25 +121,46 @@ class VueConnexion extends VueGenerique
                 <h1>Inscription</h1>
                 <hr>
                 <form class="row container-fluid" action="/connexion/inscription" method="POST">
-                    <div class="col-5 form-group mx-auto">
-                        <label for="login">Nom d'utilisateur*</label>
-                        <input name="login" type="text" class="form-control" required placeholder="Nom d'utilisateur*">
-                        <label for="nom">Nom*</label>
-                        <input name="nom" type="text" class="form-control" required placeholder="Nom*">
-                        <label for="prenom">Prénom*</label>
-                        <input name="prenom" type="text" class="form-control" required placeholder="Prénom*">
-                        <label for="mdp">Mot de passe</label>
-                        <input name="mdp" type="password" class="form-control" required placeholder="Mot de passe*">
-                        <label for="eFacturation">Adresse e-mail de facturation*</label>
-                        <input name="eFacturation" type="email" class="form-control" required placeholder="E-mail de facturation*">
-                        <label for="eLivraison">Adresse e-mail de livraison</label>
-                        <input name="eLivraison" type="email" class="form-control" placeholder="E-mail de livraison">
-                        <label for="tel">Téléphone*</label>
-                        <input name="tel" type="tel" class="form-control" required placeholder="Téléphone*">
-                        <label for="dateNaissance">Date de naissance*</label>
-                        <input name="dateNaissance" type="date" class="form-control" required placeholder="Date de naissance*">
-                        <input type="submit" id="submit" value="Créer un compte" class="btn btn-success">
-                        <p>Les champs suivis d'une étoile (*) sont obligatoires.</p>
+                    <div class="col-lg-6 form-group mx-auto">
+                        <div class="form-content">
+                            <label for="login">Nom d'utilisateur *</label>
+                            <input name="login" type="text" class="form-control" required placeholder="Nom d'utilisateur">
+                        </div>
+                        <div class="form-content">
+                            <label for="nom">Nom *</label>
+                            <input name="nom" type="text" class="form-control" required placeholder="Nom">
+                        </div>
+                        <div class="form-content">
+                            <label for="prenom">Prénom *</label>
+                            <input name="prenom" type="text" class="form-control" required placeholder="Prénom">
+                        </div>
+                        <div class="form-content">
+
+                        </div>
+                        <div class="form-content">
+                            <label for="mdp">Mot de passe *</label>
+                            <input name="mdp" type="password" class="form-control" required placeholder="Mot de passe">
+                        </div>
+                        <div class="form-content">
+                            <label for="eFacturation">Adresse e-mail de facturation *</label>
+                            <input name="eFacturation" type="email" class="form-control" required placeholder="E-mail de facturation">
+                        </div>
+                        <div class="form-content">
+                            <label for="eLivraison">Adresse e-mail de livraison</label>
+                            <input name="eLivraison" type="email" class="form-control" placeholder="E-mail de livraison">
+                        </div>
+                        <div class="form-content">
+                            <label for="tel">Téléphone *</label>
+                            <input name="tel" type="tel" class="form-control" required placeholder="Téléphone">
+                        </div>
+                        <div class="form-content">
+                            <label for="dateNaissance">Date de naissance *</label>
+                            <input name="dateNaissance" type="date" class="form-control" required placeholder="Date de naissance">
+                        </div>
+                        <div class="form-content">
+                            <input type="submit" id="submit" value="Créer un compte" class="btn btn-success">
+                            <p>Les champs suivis d'une étoile (*) sont obligatoires.</p>
+                        </div>
                     </div>
                 </form>
             </div>

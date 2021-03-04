@@ -14,8 +14,8 @@ class VueContact extends VueGenerique
         <section class="container content-block">
             <h1>Nous contacter</h1>
             <hr class="mt-2 mb-4">
-            <div class="row">
-                <div class="col-lg-5 m-2 p-1">
+            <div class="row m-2 p-1">
+                <div class="col-lg-5">
                     <h2>Par e-mail</h2>
                     <form action="contact/envoi-mail" method="POST">
                         <p>
@@ -36,7 +36,7 @@ class VueContact extends VueGenerique
                             <input required type="text" class="form-control" name="prenom" id="prenom" aria-describedby="Champs prenom" placeholder="Votre prénom">
                         </div>
                         <div class="form-group">
-                            <label for="email">Email address</label>
+                            <label for="email">Adresse mail</label>
                             <input required type="email" class="form-control" name="email" id="email" aria-describedby="Champs email" placeholder="votre@email.com">
 
                         </div>
@@ -45,18 +45,20 @@ class VueContact extends VueGenerique
                             <textarea required class="form-control" name="message" id="message" rows="5"></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Envoyer</button>
 
                     </form>
                 </div>
-                <div class="col-lg m-2 p-1">
-                    <div class="row container-fluid">
-                        <h2>Sur nos réseaux sociaux</h2>
-                        <div class="mx-auto" id="contact-social">
-                            <a href="#"> <i class="fab fa-twitter"></i> </a>
-                            <a href="#"> <i class="fab fa-facebook-square"></i> </a>
-                            <a href="#"> <i class="fab fa-youtube"></i> </a>
-                            <a href="#"> <i class="fab fa-linkedin-in"></i> </a>
+                <div class="col-lg">
+                    <div class="content-block">
+                    <h2>Sur nos réseaux sociaux</h2>
+                        <div class="row">
+                            <div class="mx-auto" id="contact-social">
+                                <a href="#"> <i class="fab fa-twitter"></i> </a>
+                                <a href="#"> <i class="fab fa-facebook-square"></i> </a>
+                                <a href="#"> <i class="fab fa-youtube"></i> </a>
+                                <a href="#"> <i class="fab fa-linkedin-in"></i> </a>
+                            </div>
                         </div>
                     </div>
                     <div class="content-block">

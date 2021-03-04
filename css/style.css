@@ -128,6 +128,10 @@ form, input, label, textarea, button, select {
     margin: 3px 1px !important;
 }
 
+div.form-content {
+    margin : 16px 0px !important;
+}
+
 .breadcrumb {
     background-color: #e5e5e5;
     color : var(--rich-black);

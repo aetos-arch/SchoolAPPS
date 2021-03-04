@@ -244,7 +244,7 @@ class ModelePanier extends ModeleGenerique
         $selectPrepareeProduit = Connexion::$bdd->prepare('SELECT 
                 T0.qteProduits,
                 T1.prixHT
-                FROM produitspanier T0
+                FROM produitsPanier T0
                 INNER JOIN produits T1 ON T0.idProduit = T1.idProduit
                 WHERE idPanier=:idPanier');
         $selectPrepareeProduit->execute(array(':idPanier' => $idPanier));
