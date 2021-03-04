@@ -9,28 +9,30 @@ class ModConnexion extends ModGenerique
     {
 
         $controleurConnexion = new ContConnexion();
-        
+
         $action = $url[1];
 
-        switch ($action) {
-            case "connexion":
-                $controleurConnexion->connexion();
-                break;
-            case "deconnexion":
-                $controleurConnexion->deconnexion();
-                break;
-            case "inscription":
-                $controleurConnexion->inscription();
-                break;
-            case "popConnexion":
-                $controleurConnexion->popConnexion();
-                break;
-            case "popInscription":
-                $controleurConnexion->popInscription();
-                break;
-            default:
-                $controleurConnexion->popConnexionInscription();
-                break;
+        if (isset($url[1])) {
+            switch ($action) {
+                case "connexion":
+                    $controleurConnexion->connexion();
+                    break;
+                case "deconnexion":
+                    $controleurConnexion->deconnexion();
+                    break;
+                case "inscription":
+                    $controleurConnexion->inscription();
+                    break;
+                case "popConnexion":
+                    $controleurConnexion->popConnexion();
+                    break;
+                case "popInscription":
+                    $controleurConnexion->popInscription();
+                    break;
+                default:
+                    $controleurConnexion->popConnexionInscription();
+                    break;
+            }
         }
     }
 }

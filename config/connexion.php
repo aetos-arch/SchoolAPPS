@@ -10,8 +10,8 @@ class Connexion
     public static function initConnexion()
     {
         $db_host = "localhost";
-        $user = "root";
-        $password = "";
+        $user = "admin";
+        $password = "SchoolAPPS-06";
         $db_name = "schoolapps";
         $dns = 'mysql:host=' . $db_host . ';dbname=' . $db_name . ';charset=utf8';
         try {

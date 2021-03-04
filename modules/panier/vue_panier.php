@@ -16,6 +16,7 @@ class VuePanier extends VueGenerique
                 <div class="big-info"><h1>Votre panier est vide, remplissez-le !<br/></h1></div>
                 <h1 class="big-info" id="error-h1"><a class="big-info btn btn-outline-success" href="/produits">Nos produits</a></h1>
             </div>
+            </div></div>
         </div><?php
         } else {
             ?><div class="row">
@@ -91,11 +92,11 @@ class VuePanier extends VueGenerique
                 <hr>
                 <div class="col-5 form-group mx-auto">
                     <div id="detailsFact">
-                        <h2>Détails de la facturation</h2>
+                        <h2>Informations de facturation</h2>
                         <hr>
-                        <label for="prenomFact">Prénom*</label>
+                        <label for="prenomFact">Prénom *</label>
                         <input name="prenomFact" type="text" class="form-control" required placeholder="Prénom">
-                        <label for="nomFact">Nom*</label>
+                        <label for="nomFact">Nom *</label>
                         <input name="nomFact" type="text" class="form-control" required placeholder="Nom">
                         <label for="entrepriseFact">Entreprise (facultatif)</label>
                         <input name="entrepriseFact" type="text" class="form-control" placeholder="Nom de l'entreprise (facultatif)">
@@ -103,18 +104,18 @@ class VuePanier extends VueGenerique
                         <input name="adresseFact" type="text" class="form-control" required placeholder="Numéro et nom de rue">
                         <label for="cpFact">Code postal *</label>
                         <input name="cpFact" type="text" class="form-control" required placeholder="Code postal">
-                        <label for="villeFact">Ville*</label>
+                        <label for="villeFact">Ville *</label>
                         <input name="villeFact" type="text" class="form-control" required placeholder="Ville">
-                        <label for="telFact">Téléphone*</label>
+                        <label for="telFact">Téléphone *</label>
                         <input name="telFact" type="tel" class="form-control" required placeholder="Téléphone">
-                        <label for="emailFact">Adresse de messagerie*</label>
+                        <label for="emailFact">Adresse de messagerie *</label>
                         <input name="emailFact" type="email" class="form-control" required placeholder="Adresse de messagerie">
                         <br>
                     </div>
                 </div>
                 <div class="col-5 form-group mx-auto">
                     <div class="detailsPaiement">
-                        <h2>Mode de paiement</h2>
+                        <h2>Paiement</h2>
                         <hr>
                         <h3>Carte de paiement</h3>
                         <label for="numCarteFact">Numéro de carte *</label>
@@ -124,7 +125,7 @@ class VuePanier extends VueGenerique
                         <label for="cvc">CVC *</label>
                         <input name="cvc" type="text" class="form-control" required placeholder="CVC">
                         <div class="input-group">
-                            <input class="m-1" name="condUtilisation" type="checkbox" required> J'ai lu et accepte.e les <a href="/conditions-generales-de-ventes/"> Conditions générales</a> *
+                            <input class="m-1" name="condUtilisation" type="checkbox" required>J'ai lu et j’accepte les&nbsp;<a href="#">conditions générales </a>&nbsp;*
                         </div>
                         <img class="w-25" src="\images\logo\moyens-paiement.png" alt="moyens de paiements">
                         <input class="btn btn-success form-control" type="submit" id="submit" value="Commander">
@@ -214,7 +215,7 @@ class VuePanier extends VueGenerique
                     <h1>Vous devez être connecté(e) pour avoir un panier !</h1>
                 </div><br>
                 <h1 class="big-info" id="error-h1"><a class="big-info btn btn-outline-success" href="/home">Page d'accueil</a>
-                    <a class="big-info btn btn-outline-success" href="/connexion">Page de connexion</a>
+                    <a class="big-info btn btn-outline-success" href="connexion/">Page de connexion</a>
                 </h1>
             </div>
         </div>

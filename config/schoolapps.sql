@@ -153,8 +153,8 @@ CREATE TABLE IF NOT EXISTS `produits` (
 --
 
 INSERT INTO `produits` (`idProduit`, `nomProduit`, `description`, `prixHT`, `dateSortie`, `nbrVues`, `nbrAchat`) VALUES
-(1, 'SchoolDev', 'Apprendre à coder dans le langage de votre choix, quels que soient votre âge et votre niveau : lancez-vous dans la programmation par loisir ou professionnellement.', 50, '2021-01-17', NULL, NULL),
-(2, 'SchoolNet', 'Plateforme éducative numérique destiné aux enfants (de niveau maternelle à CM2) pour les écoles, mairies et les familles.', 50, '2021-01-17', NULL, NULL),
+(1, 'SchoolDev', 'Apprendre à coder dans le langage de votre choix, quels que soit votre âge et votre niveau.Lancez-vous dans la programmation par loisir ou professionnellement.', 50, '2021-01-17', NULL, NULL),
+(2, 'SchoolNet', 'Plateforme éducative numérique destiné aux enfants (maternelle à cm2) pour les écoles, mairies et les familles.', 50, '2021-01-17', NULL, NULL),
 (3, 'E-education', 'LA solution complète de tous les outils indispensables au fonctionnement des établissements de formation et d’enseignement allant du collège aux formations du supérieur.', 50, '2021-01-17', NULL, NULL);
 
 -- --------------------------------------------------------
